@@ -13,6 +13,7 @@ pydantic         # FastAPI data validation
 torch            # PyTorch deep learning
 torchvision      # Computer vision models
 opencv-python    # Face detection
+mediapipe        # Google 高精度人臉偵測 (取代原本的 haarcascade)
 Pillow           # Image processing
 openai           # OpenAI API
 pdfplumber       # PDF text extraction

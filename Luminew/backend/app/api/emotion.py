@@ -2,15 +2,17 @@
 # 情緒分析 API 路由
 
 from fastapi import APIRouter, UploadFile, File, Form, Request
-from fastapi.responses import FileResponse, StreamingResponse
+from fastapi.responses import FileResponse, StreamingResponse, JSONResponse
 from app.services.emotion_service import (
     analyze_video, 
     analyze_portfolio, 
+    calibrate_baseline,
     get_video_storage_dir
 )
 from app.services.question_generator import analyze_pdf_and_generate_questions
 import uuid
 import os
+import json
 
 router = APIRouter()
 
@@ -18,13 +20,15 @@ router = APIRouter()
 @router.post("/analyze")
 async def api_analyze_video(
     video: UploadFile = File(...),
-    save_video: str = Form(default="true")
+    save_video: str = Form(default="true"),
+    baseline: str = Form(default="")
 ):
     """
     分析影片情緒
     
     - **video**: 上傳的影片檔案 (MP4)
     - **save_video**: 是否保存影片 ("true" / "false")
+    - **baseline**: 個人校準基線 JSON（可選，由 /emotion/calibrate 取得）
     
     Returns:
         情緒分析結果，包含 emotions, timeline, ai_analysis, video_url
@@ -40,12 +44,52 @@ async def api_analyze_video(
     
     print(f"📥 收到影片，已存檔至: {video_path}")
     
-    # 分析影片
+    # ★ 解析 baseline（如果有的話）
+    baseline_dict = None
+    if baseline and baseline.strip():
+        try:
+            baseline_dict = json.loads(baseline)
+            print(f"🎯 收到個人基線: {baseline_dict}")
+        except json.JSONDecodeError:
+            print("⚠️ baseline JSON 解析失敗，忽略")
+    
+    # 分析影片（帶上 baseline）
     save_flag = save_video.lower() == "true"
-    result = await analyze_video(video_path, save_flag)
+    result = await analyze_video(video_path, save_flag, baseline_dict)
     
     if "error" in result:
-        return result, 400 if "No face" in result.get("error", "") else 500
+        status = 400 if "No face" in result.get("error", "") else 500
+        return JSONResponse(content=result, status_code=status)
+    
+    return result
+
+
+@router.post("/calibrate")
+async def api_calibrate(
+    video: UploadFile = File(...)
+):
+    """
+    個人化校準：掃描自然表情，建立情緒基線
+    
+    - **video**: 5-10 秒的短影片（自然表情）
+    
+    Returns:
+        {"success": true, "baseline": {"confidence": 35.2, "nervous": 25.1, ...}, "frames_analyzed": 50}
+    """
+    video_dir = get_video_storage_dir()
+    filename = f"calibrate_{uuid.uuid4()}.mp4"
+    video_path = os.path.join(video_dir, filename)
+    
+    content = await video.read()
+    with open(video_path, "wb") as f:
+        f.write(content)
+    
+    print(f"🎯 收到校準影片，已存檔至: {video_path}")
+    
+    result = await calibrate_baseline(video_path)
+    
+    if "error" in result:
+        return JSONResponse(content=result, status_code=400)
     
     return result
 
@@ -76,7 +120,7 @@ async def api_analyze_portfolio(pdf: UploadFile = File(...)):
     result = await analyze_portfolio(pdf_path)
     
     if "error" in result:
-        return result, 400
+        return JSONResponse(content=result, status_code=400)
     
     return result
 

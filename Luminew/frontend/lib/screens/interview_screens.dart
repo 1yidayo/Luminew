@@ -2,15 +2,21 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:http/http.dart' as http;
 import 'package:fl_chart/fl_chart.dart';
 import 'package:video_player/video_player.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:record/record.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:path_provider/path_provider.dart';
 import '../models.dart';
 import '../mock_data.dart';
 import '../sql_service.dart';
+import '../interview_ws_service.dart';
 
 
 // 全域變數：用來儲存可用的相機列表
@@ -201,10 +207,70 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
   List<String> _generatedQuestions = [];
   bool _isAnalyzing = false;
 
+  // ★ 校準相關
+  Map<String, dynamic>? _baseline;
+  bool _isCalibrating = false;
+  bool _calibrationDone = false;
+
   @override
   void dispose() {
     _nameController.dispose();
     super.dispose();
+  }
+
+  // ★ 個人化校準：彈出預覽畫面 → 錄 5 秒 → 上傳 → 取得 baseline
+  Future<void> _calibrate() async {
+    setState(() {
+      _isCalibrating = true;
+      _calibrationDone = false;
+      _baseline = null;
+    });
+
+    try {
+      // 0. 先請求麥克風權限
+      final recorder = AudioRecorder();
+      await recorder.hasPermission();
+      recorder.dispose();
+
+      // 1. 開啟前鏡頭
+      if (cameras.isEmpty) cameras = await availableCameras();
+      final frontCam = cameras.firstWhere(
+        (c) => c.lensDirection == CameraLensDirection.front,
+        orElse: () => cameras.first,
+      );
+      final camCtrl = CameraController(frontCam, ResolutionPreset.medium, enableAudio: false);
+      await camCtrl.initialize();
+
+      // 2. 彈出全螢幕對話框顯示預覽
+      if (!mounted) { camCtrl.dispose(); return; }
+
+      final result = await showDialog<Map<String, dynamic>?>(
+        context: context,
+        barrierDismissible: false,
+        builder: (ctx) => _CalibrationDialog(camCtrl: camCtrl),
+      );
+
+      // 3. 清理
+      camCtrl.dispose();
+
+      // 4. 處理結果
+      if (result != null) {
+        setState(() {
+          _baseline = result;
+          _calibrationDone = true;
+        });
+        print('✅ 校準完成: $_baseline');
+      }
+    } catch (e) {
+      print('❌ 校準失敗: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('校準失敗: $e')),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isCalibrating = false);
+    }
   }
 
   // ★ 選擇 PDF 檔案
@@ -410,6 +476,80 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
               ),
             ],
 
+            const SizedBox(height: 16),
+            const Divider(),
+            const SizedBox(height: 8),
+
+            // ★ 6. 個人化校準區塊
+            const Text(
+              "個人化校準（選填）",
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              "掃描您的自然表情 5 秒，讓 AI 更準確地分析您的情緒變化",
+              style: TextStyle(fontSize: 12, color: Colors.grey),
+            ),
+            const SizedBox(height: 12),
+            OutlinedButton.icon(
+              onPressed: _isCalibrating ? null : _calibrate,
+              icon: Icon(_calibrationDone ? Icons.check_circle : Icons.face_retouching_natural),
+              label: Text(_isCalibrating
+                  ? '校準中…'
+                  : _calibrationDone
+                      ? '✅ 校準完成（可重新校準）'
+                      : '開始校準'),
+              style: OutlinedButton.styleFrom(
+                padding: const EdgeInsets.all(16),
+                side: BorderSide(
+                  color: _calibrationDone ? Colors.green : Colors.deepPurple,
+                ),
+              ),
+            ),
+            if (_isCalibrating) ...[
+              const SizedBox(height: 12),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2)),
+                  SizedBox(width: 12),
+                  Text('請保持自然放鬆，看著鏡頭…'),
+                ],
+              ),
+            ],
+            if (_calibrationDone && _baseline != null) ...[
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.deepPurple.shade50,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.deepPurple.shade200),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.tune, color: Colors.deepPurple.shade700, size: 18),
+                        const SizedBox(width: 8),
+                        Text('您的基線已建立',
+                          style: TextStyle(color: Colors.deepPurple.shade700, fontWeight: FontWeight.w500)),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      '自信: ${_baseline!["confidence"]?.toStringAsFixed(1)}%  '
+                      '緊張: ${_baseline!["nervous"]?.toStringAsFixed(1)}%  '
+                      '熱忱: ${_baseline!["passion"]?.toStringAsFixed(1)}%  '
+                      '放鬆: ${_baseline!["relaxed"]?.toStringAsFixed(1)}%',
+                      style: TextStyle(fontSize: 12, color: Colors.deepPurple.shade600),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+
             const SizedBox(height: 24),
 
             // 開始面試按鈕
@@ -431,7 +571,8 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
                       language: _lang,
                       saveVideo: _saveVideo,
                       questions: _generatedQuestions.isNotEmpty ? _generatedQuestions : null,
-                      interviewName: _nameController.text.trim(), // ★ 新增
+                      interviewName: _nameController.text.trim(),
+                      baseline: _baseline, // ★ 傳遞校準基線
                     ),
                   ),
                 );
@@ -476,6 +617,153 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
   }
 }
 
+// ★ 新增：校準專用對話框（含相機預覽）
+class _CalibrationDialog extends StatefulWidget {
+  final CameraController camCtrl;
+  const _CalibrationDialog({required this.camCtrl});
+
+  @override
+  State<_CalibrationDialog> createState() => _CalibrationDialogState();
+}
+
+class _CalibrationDialogState extends State<_CalibrationDialog> {
+  int _countdown = 5;
+  String _statusMessage = "準備開始錄影...";
+  bool _isUploading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _startCalibrationProcess();
+  }
+
+  Future<void> _startCalibrationProcess() async {
+    try {
+      // 給預覽一點時間顯示
+      await Future.delayed(const Duration(milliseconds: 500));
+      
+      setState(() {
+        _statusMessage = "請保持自然放鬆，看著鏡頭";
+      });
+      await widget.camCtrl.startVideoRecording();
+
+      // 5 秒倒數
+      for (int i = 5; i > 0; i--) {
+        if (!mounted) return;
+        setState(() { _countdown = i; });
+        await Future.delayed(const Duration(seconds: 1));
+      }
+
+      if (!mounted) return;
+      setState(() {
+        _countdown = 0;
+        _statusMessage = "處理中，請稍候...";
+        _isUploading = true;
+      });
+
+      final file = await widget.camCtrl.stopVideoRecording();
+
+      // 上傳
+      var request = http.MultipartRequest(
+        'POST',
+        Uri.parse('http://10.0.2.2:8000/emotion/calibrate'),
+      );
+      request.files.add(await http.MultipartFile.fromPath('video', file.path));
+
+      var streamedResp = await request.send().timeout(
+        const Duration(seconds: 60),
+        onTimeout: () => throw Exception('校準逾時'),
+      );
+      var resp = await http.Response.fromStream(streamedResp);
+
+      if (resp.statusCode == 200) {
+        final data = jsonDecode(resp.body);
+        if (data['success'] == true) {
+          if (mounted) Navigator.pop(context, Map<String, dynamic>.from(data['baseline']));
+        } else {
+          throw Exception(data['error'] ?? '校準失敗');
+        }
+      } else {
+        throw Exception('Server error: ${resp.statusCode}');
+      }
+    } catch (e) {
+      print('❌ 校準失敗: $e');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('校準失敗: $e')));
+        Navigator.pop(context, null);
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      backgroundColor: Colors.black,
+      insetPadding: const EdgeInsets.all(16),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: SizedBox(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height * 0.7,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              // 相機預覽
+              CameraPreview(widget.camCtrl),
+              
+              // 黑色半透明遮罩
+              Container(color: Colors.black45),
+
+              // UI 層
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (!_isUploading) ...[
+                    Text(
+                      '$_countdown',
+                      style: const TextStyle(
+                        fontSize: 80,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        shadows: [Shadow(color: Colors.black87, blurRadius: 10)],
+                      ),
+                    ),
+                  ] else ...[
+                    const CircularProgressIndicator(color: Colors.white),
+                    const SizedBox(height: 20),
+                  ],
+                  const SizedBox(height: 20),
+                  Text(
+                    _statusMessage,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+              
+              // 關閉按鈕
+              Positioned(
+                top: 16,
+                right: 16,
+                child: IconButton(
+                  icon: const Icon(Icons.close, color: Colors.white, size: 30),
+                  onPressed: () {
+                    // 若正在錄影，讓流程自行中斷並關閉
+                    Navigator.pop(context, null);
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 
 // ==========================================
 // 3. 面試錄影頁 (相機 + AI連線 + SQL儲存)
@@ -487,7 +775,8 @@ class MockInterviewScreen extends StatefulWidget {
   final String language;
   final bool saveVideo;
   final List<String>? questions;
-  final String interviewName; // ★ 新增：面試名稱
+  final String interviewName;
+  final Map<String, dynamic>? baseline; // ★ 新增：校準基線
 
   const MockInterviewScreen({
     super.key,
@@ -496,8 +785,9 @@ class MockInterviewScreen extends StatefulWidget {
     required this.interviewer,
     required this.language,
     required this.saveVideo,
-    required this.interviewName, // ★ 新增
+    required this.interviewName,
     this.questions,
+    this.baseline, // ★ 新增
   });
 
   @override
@@ -512,10 +802,175 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
   Timer? _timer;
   String _statusMessage = "";
 
+  // ★ WebSocket 即時面試
+  final InterviewWsService _wsService = InterviewWsService();
+  AudioRecorder? _audioRecorder;
+  bool _isInterviewing = false;
+  bool _isWsConnecting = false;
+  bool _isWaitingProfessor = false;
+  final List<Map<String, String>> _chatMessages = [];
+  final ScrollController _chatScrollController = ScrollController();
+  StreamSubscription<Uint8List>? _audioStreamSub;
+
+  // ★ TTS 音訊播放
+  final AudioPlayer _audioPlayer = AudioPlayer();
+  final List<int> _audioBuffer = [];
+
   @override
   void initState() {
     super.initState();
     _initCamera();
+    _setupWsCallbacks();
+  }
+
+  // ★ 設定 WebSocket 回呼
+  void _setupWsCallbacks() {
+    _wsService.onTranscript = (role, text) {
+      if (mounted) {
+        setState(() {
+          _chatMessages.add({'role': role, 'text': text});
+        });
+        // 滾動到底部
+        Future.delayed(const Duration(milliseconds: 100), () {
+          if (_chatScrollController.hasClients) {
+            _chatScrollController.animateTo(
+              _chatScrollController.position.maxScrollExtent,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeOut,
+            );
+          }
+        });
+      }
+    };
+    _wsService.onInterviewStarted = () {
+      if (mounted) setState(() {
+        _isInterviewing = true;
+        _isWaitingProfessor = false;
+      });
+      _startAudioStream();
+    };
+    _wsService.onInterviewStopped = () {
+      if (mounted) setState(() => _isInterviewing = false);
+      _stopAudioStream();
+    };
+    _wsService.onError = (error) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('面試連線錯誤: $error')),
+        );
+        setState(() {
+          _isInterviewing = false;
+          _isWsConnecting = false;
+        });
+      }
+    };
+    
+    // ★ 處理收到的音訊片段 (存入緩衝區)
+    _wsService.onAudioChunk = (chunk) {
+      if (mounted) {
+        _audioBuffer.addAll(chunk);
+      }
+    };
+
+    // ★ TTS 回覆結束，開始播放
+    _wsService.onTtsDone = () async {
+      if (mounted && _audioBuffer.isNotEmpty) {
+        try {
+          final dir = await getTemporaryDirectory();
+          final file = File('${dir.path}/temp_tts_${DateTime.now().millisecondsSinceEpoch}.wav');
+          await file.writeAsBytes(_audioBuffer);
+          
+          _audioBuffer.clear(); // 存完先清空，準備下一句
+          
+          // 給系統一點時間將檔案寫入硬碟
+          await Future.delayed(const Duration(milliseconds: 100));
+          
+          // 播放寫入的檔案 (AudioPlayers 較新版支援 DeviceFileSource)
+          await _audioPlayer.play(DeviceFileSource(file.path));
+        } catch (e) {
+          print('❌ TTS 播放失敗: $e');
+          _audioBuffer.clear();
+        }
+      }
+      // ★ 教授說完了，解除等待狀態
+      if (mounted) setState(() => _isWaitingProfessor = false);
+    };
+  }
+
+  // ★ 開始即時面試
+  Future<void> _startLiveInterview() async {
+    setState(() => _isWsConnecting = true);
+    final clientId = 'flutter_${DateTime.now().millisecondsSinceEpoch}';
+    await _wsService.connect(clientId);
+
+    if (_wsService.isConnected) {
+      // 根據面試官名稱對應教授類型
+      String professorType = 'warm_industry_professor';
+      if (widget.interviewer == '藍易振') {
+        professorType = 'strict_academic_professor';
+      } else if (widget.interviewer == '林湘霖') {
+        professorType = 'young_global_professor';
+      }
+      _wsService.startInterview(professorType: professorType);
+    } else {
+      if (mounted) {
+        setState(() => _isWsConnecting = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('無法連線到面試伺服器')),
+        );
+      }
+    }
+    setState(() => _isWsConnecting = false);
+  }
+
+  // ★ 停止即時面試
+  void _stopLiveInterview() {
+    _wsService.stopInterview();
+    _stopAudioStream();
+    setState(() {
+      _isInterviewing = false;
+      _isWaitingProfessor = false;
+    });
+  }
+
+  // ★ 告訴後端「我說完了」，觸發教授回應
+  void _signalSpeechEnd() {
+    _wsService.sendSpeechEnd();
+    setState(() => _isWaitingProfessor = true);
+  }
+
+  // ★ 開始麥克風串流
+  Future<void> _startAudioStream() async {
+    try {
+      _audioRecorder ??= AudioRecorder();
+      if (await _audioRecorder!.hasPermission()) {
+        final stream = await _audioRecorder!.startStream(
+          const RecordConfig(
+            encoder: AudioEncoder.pcm16bits,
+            sampleRate: 16000,
+            numChannels: 1,
+          ),
+        );
+        _audioStreamSub = stream.listen((data) {
+          _wsService.sendAudioChunk(data);
+        });
+        print('🎤 麥克風串流已啟動');
+      } else {
+        print('❌ 無麥克風權限');
+      }
+    } catch (e) {
+      print('❌ 麥克風啟動失敗: $e');
+    }
+  }
+
+  // ★ 停止麥克風串流
+  Future<void> _stopAudioStream() async {
+    _audioStreamSub?.cancel();
+    _audioStreamSub = null;
+    if (_audioRecorder != null && await _audioRecorder!.isRecording()) {
+      await _audioRecorder!.stop();
+    }
+    print('⏹ 麥克風串流已停止');
   }
 
   Future<void> _initCamera() async {
@@ -531,7 +986,12 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
           orElse: () => cameras.first,
         );
 
-        _controller = CameraController(frontCam, ResolutionPreset.low);
+        // ★ 關閉 enableAudio 避免跟 AudioRecorder 搶麥克風導致閃退
+        _controller = CameraController(
+          frontCam, 
+          ResolutionPreset.low,
+          enableAudio: false,
+        );
         await _controller!.initialize();
         if (mounted) setState(() {});
       } else {
@@ -547,6 +1007,11 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
   void dispose() {
     _controller?.dispose();
     _timer?.cancel();
+    _wsService.disconnect();
+    _stopAudioStream();
+    _audioRecorder?.dispose();
+    _audioPlayer.dispose();
+    _chatScrollController.dispose();
     super.dispose();
   }
 
@@ -554,11 +1019,27 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
     if (_controller == null || !_controller!.value.isInitialized) return;
 
     try {
+      // ★ 修正：先請求麥克風權限，避免 camera 插件內部觸發 SecurityException
+      final micStatus = await Permission.microphone.request();
+      if (!micStatus.isGranted) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('需要麥克風權限才能錄影')),
+          );
+        }
+        return;
+      }
+
       await _controller!.startVideoRecording();
       setState(() {
         _isRecording = true;
         _sec = 0;
       });
+
+      // ★ 新增：如果還沒開啟語音對答，就自動幫忙開啟
+      if (!_isInterviewing && !_isWsConnecting) {
+        _startLiveInterview();
+      }
 
       _timer = Timer.periodic(const Duration(seconds: 1), (t) {
         if (mounted) setState(() => _sec++);
@@ -573,6 +1054,11 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
 
   Future<void> _stopAndAnalyze() async {
     if (!_isRecording) return;
+
+    // ★ 新增：連帶停止語音對答
+    if (_isInterviewing) {
+      _stopLiveInterview();
+    }
 
     // 停止計時與錄影
     _timer?.cancel();
@@ -603,8 +1089,13 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
       );
 
       request.files.add(await http.MultipartFile.fromPath('video', file.path));
-      // ★ 新增：傳送「是否儲存影片」的設定給後端
+      // ★ 傳送設定給後端
       request.fields['save_video'] = widget.saveVideo ? 'true' : 'false';
+      // ★ 傳送校準基線（如果有）
+      if (widget.baseline != null) {
+        request.fields['baseline'] = jsonEncode(widget.baseline);
+        print('🎯 帶上個人基線: ${widget.baseline}');
+      }
 
       print("★★★ 正在上傳影片... ★★★");
       var streamedResponse = await request.send().timeout(
@@ -762,7 +1253,62 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                     ],
                   ),
                 ),
-                const Spacer(),
+                // ★ 即時對話區（在相機預覽上方）
+                if (_chatMessages.isNotEmpty)
+                  Expanded(
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 12),
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withValues(alpha: 0.5),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: ListView.builder(
+                        controller: _chatScrollController,
+                        itemCount: _chatMessages.length,
+                        itemBuilder: (ctx, i) {
+                          final msg = _chatMessages[i];
+                          final isStudent = msg['role'] == 'student';
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  isStudent ? Icons.person : Icons.school,
+                                  color: isStudent ? Colors.lightBlue : Colors.amber,
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 6),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        isStudent ? '你' : '教授',
+                                        style: TextStyle(
+                                          color: isStudent ? Colors.lightBlue : Colors.amber,
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        msg['text'] ?? '',
+                                        style: const TextStyle(color: Colors.white, fontSize: 14),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  )
+                else
+                  const Spacer(),
+
                 if (_isUploading)
                   const Padding(
                     padding: EdgeInsets.all(30),
@@ -785,33 +1331,117 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                     padding: const EdgeInsets.only(bottom: 40),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        GestureDetector(
-                          onTap: _isRecording
-                              ? _stopAndAnalyze
-                              : _startRecording,
-                          child: Container(
-                            width: 80,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: Colors.white, width: 4),
-                              color: _isRecording
-                                  ? Colors.red
-                                  : Colors.transparent,
-                            ),
-                            child: _isRecording
-                                ? const Icon(
-                                    Icons.stop,
-                                    color: Colors.white,
-                                    size: 40,
-                                  )
-                                : const Icon(
-                                    Icons.circle,
-                                    color: Colors.white,
-                                    size: 60,
+                        // ★ 即時面試按鈕（左邊）
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            GestureDetector(
+                              onTap: _isWsConnecting || _isWaitingProfessor
+                                  ? null
+                                  : (_isInterviewing ? _signalSpeechEnd : _startLiveInterview),
+                              onLongPress: _isInterviewing ? _stopLiveInterview : null,
+                              child: Container(
+                                width: 64,
+                                height: 64,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: _isWaitingProfessor
+                                        ? Colors.orange
+                                        : _isInterviewing ? Colors.green : Colors.white,
+                                    width: 3,
                                   ),
-                          ),
+                                  color: _isWaitingProfessor
+                                      ? Colors.orange.withValues(alpha: 0.3)
+                                      : _isInterviewing
+                                          ? Colors.green.withValues(alpha: 0.3)
+                                          : Colors.transparent,
+                                ),
+                                child: _isWsConnecting || _isWaitingProfessor
+                                    ? const SizedBox(
+                                        width: 24, height: 24,
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white, strokeWidth: 2,
+                                        ),
+                                      )
+                                    : Icon(
+                                        _isInterviewing ? Icons.send : Icons.mic_none,
+                                        color: _isInterviewing ? Colors.green : Colors.white,
+                                        size: 30,
+                                      ),
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              _isWaitingProfessor
+                                  ? "教授思考中"
+                                  : _isInterviewing ? "我說完了" : "開啟對答",
+                              style: TextStyle(
+                                color: _isWaitingProfessor
+                                    ? Colors.orange
+                                    : _isInterviewing ? Colors.green : Colors.white70,
+                                fontSize: 13,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            if (_isInterviewing) ...[
+                              const SizedBox(height: 4),
+                              Text(
+                                '長按結束面試',
+                                style: TextStyle(
+                                  color: Colors.white.withValues(alpha: 0.5),
+                                  fontSize: 10,
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
+
+                        const SizedBox(width: 40),
+
+                        // 錄影按鈕（右邊） — 原本的
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            GestureDetector(
+                              onTap: _isRecording
+                                  ? _stopAndAnalyze
+                                  : _startRecording,
+                              child: Container(
+                                width: 80,
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(color: Colors.white, width: 4),
+                                  color: _isRecording
+                                      ? Colors.red
+                                      : Colors.transparent,
+                                ),
+                                child: _isRecording
+                                    ? const Icon(
+                                        Icons.stop,
+                                        color: Colors.white,
+                                        size: 40,
+                                      )
+                                    : const Icon(
+                                        Icons.circle,
+                                        color: Colors.white,
+                                        size: 60,
+                                      ),
+                              ),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              _isRecording ? "結束分析" : "開始錄影",
+                              style: TextStyle(
+                                color: _isRecording ? Colors.redAccent : Colors.white70,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
