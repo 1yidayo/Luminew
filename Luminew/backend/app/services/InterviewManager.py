@@ -1,6 +1,8 @@
 # app/services/InterviewManager.py
 import asyncio
 import time
+import requests
+import os
 from app.services.yating_stt import YatingSTT
 from app.services.openai_llm import ask_gpt4_1_nano
 from app.services.minimax_tts import MinimaxTTSWS
@@ -31,6 +33,12 @@ class InterviewManager:
         self.pending_student_texts = []
         # 面試運作狀態
         self.interview_running = False
+
+        #  --- 新增 D-ID 專用的設定 --- 
+        self.did_api_key = os.getenv("D_ID_API_KEY", "")
+        self.did_stream_id = None  # 用來記住 D-ID 的會議室代碼
+        self.did_session_id = None # 用來記住通話的 Session
+        #  ---------------------------- 
 
     def start_interview(self):
         """
@@ -153,3 +161,45 @@ class InterviewManager:
         self.interview_running = False
         self.stt.stop_recording()
         print("⏹ 面試完全結束")
+
+    def create_did_stream(self):
+        """向 D-ID 申請開啟 WebRTC 視訊會議室"""
+        print("正在向 D-ID 申請開啟視訊會議室...")
+        username, password = self.did_api_key.split(':')
+        
+        # 讀取 .env 中的 D_ID_URL，如果沒有就用預設的
+        url = os.getenv("D_ID_URL", "https://api.d-id.com/talks/streams")
+        
+        payload = {
+            # 改用你們的教授照片
+            "source_url": "https://raw.githubusercontent.com/1yidayo/Luminew/refs/heads/main/Luminew/backend/assets/images/Paul.jpg" 
+        }
+        
+        headers = {
+            "accept": "application/json",
+            "content-type": "application/json"
+        }
+
+        try:
+            response = requests.post(
+                url, 
+                json=payload, 
+                headers=headers, 
+                auth=(username, password)
+            )
+            
+            if response.status_code == 201:
+                data = response.json()
+                # 把拿到的房間號碼記在經理的腦袋裡，以後要講話才知道去哪間房
+                self.did_stream_id = data.get("id")
+                self.did_session_id = data.get("session_id")
+                
+                print(f"🎉 D-ID 會議室建立成功！房間代碼: {self.did_stream_id}")
+                return data # 將整包包含 offer SDP 的資料回傳，準備交給 Flutter
+            else:
+                print(f"❌ D-ID 建立失敗：{response.text}")
+                return {"error": "Failed to create stream"}
+                
+        except Exception as e:
+            print(f"程式發生錯誤：{e}")
+            return {"error": str(e)}

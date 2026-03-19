@@ -18,7 +18,7 @@ D_ID_URL = os.getenv("D_ID_URL")
 
 # 告訴 D-ID 我們要用哪張照片當教授
 payload = {
-    "source_url": "https://cdn.discordapp.com/attachments/1403250870153510952/1481688665146003507/image.png?ex=69b4399a&is=69b2e81a&hm=d7f03a4cae97ce045beffe828e5a8fde955bb3ffeaa097c4ec4b95a74e0640fe" 
+    "source_url": "https://raw.githubusercontent.com/1yidayo/Luminew/refs/heads/main/Luminew/backend/assets/images/Paul.jpg" 
 }
 
 # ⚠️ 注意這裡：我們把手動轉換密碼的那行刪掉了，只要這兩行就好
@@ -33,7 +33,7 @@ try:
     # 2. 發送 POST 請求
     # 這裡加入 auth=(username, password)，讓 Python 用最標準、最安全的方式幫我們輸入密碼！
     response = requests.post(
-        url, 
+        D_ID_URL, 
         json=payload, 
         headers=headers, 
         auth=(username, password)

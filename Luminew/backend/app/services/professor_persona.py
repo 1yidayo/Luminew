@@ -1,9 +1,9 @@
-# professor_.py
+# professor_persona.py
 
 from dataclasses import dataclass
 
 @dataclass
-class Professor:
+class ProfessorPersona:
     name: str
     prompt: str
     voice_id: str   # 對應 MiniMax voice
@@ -11,9 +11,9 @@ class Professor:
     max_words: int
 
 # --- 定義教授人格 ---
-S = {
+PROFESSOR_PERSONAS = {
 
-    "warm_industry_professor": Professor(
+    "warm_industry_professor": ProfessorPersona(
         name="warm_industry_professor",
         voice_id="Chinese (Mandarin)_Male_Announcer",  # 已確認可用的音色
         min_words=150,
@@ -64,7 +64,7 @@ S = {
 """
     ),
 
-    "strict_academic_professor": Professor(
+    "strict_academic_professor": ProfessorPersona(
         name="strict_academic_professor",
         voice_id="male_strict_voice",
         min_words=80,
@@ -113,7 +113,7 @@ S = {
 """
     ),
 
-    "young_global_professor": Professor(
+    "young_global_professor": ProfessorPersona(
         name="young_global_professor",
         voice_id="young_energetic_voice",
         min_words=150,
@@ -164,8 +164,8 @@ S = {
     ),
 }
 
-def get_professor_(professor_type: str) -> Professor:
+def get_professor_persona(professor_type: str) -> ProfessorPersona:
     """
     取得教授 ，預設回傳 warm_industry_professor
     """
-    return S.get(professor_type, S["warm_industry_professor"])
+    return PROFESSOR_PERSONAS.get(professor_type, PROFESSOR_PERSONAS["warm_industry_professor"])
