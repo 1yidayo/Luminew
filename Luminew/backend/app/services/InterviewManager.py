@@ -132,6 +132,7 @@ class InterviewManager:
             await self.tts.stream_text(
                 text=text,
                 voice_id=self.professor_persona.voice_id,
+                speed=self.professor_persona.speed,  # ★ 傳入教授專屬語速
                 on_chunk=on_chunk  # ★ 傳入回呼收集音訊
             )
         try:

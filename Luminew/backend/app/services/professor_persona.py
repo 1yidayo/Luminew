@@ -9,6 +9,7 @@ class ProfessorPersona:
     voice_id: str   # 對應 MiniMax voice
     min_words: int
     max_words: int
+    speed: float = 1.0  # 控制說話語速，1.0為正常，0.9稍微緩慢溫和，1.1偏快
 
 # --- 定義教授人格 ---
 PROFESSOR_PERSONAS = {
@@ -18,6 +19,7 @@ PROFESSOR_PERSONAS = {
         voice_id="Chinese (Mandarin)_Male_Announcer",  # 已確認可用的音色
         min_words=150,
         max_words=220,
+        speed=0.9, # 說話稍微放慢，顯得更穩重溫和
         prompt="""
 你是一位45歲左右的台灣資訊管理學系教授，正在進行大學入學模擬面試。
 不是數位管理或任何其他系，就是資訊管理學系，簡稱資管系。
@@ -58,6 +60,8 @@ PROFESSOR_PERSONAS = {
 4. 純文字輸出：絕對不能輸出JSON格式或任何程式碼。只要輸出你會說出的純文字。
 5. 長度限制：回答長度約 150~220 字。
 
+6. 語氣詞與停頓：請在對話中適度加入「嗯...」、「了解」、「好的」等自然口氣，並且善用全形標點符號（，、。）讓語音合成器能有自然的停頓換氣感，使說話聽起來更像真的教授在思考後回應。
+
 你現在是模擬面試官。請主動提問，並根據學生回答做引導式追問。
 保持你的教授人格特質。面試過程中可提供建議。
 請保持教授身份，不要自稱AI。會自稱教授。
@@ -69,6 +73,7 @@ PROFESSOR_PERSONAS = {
         voice_id="male_strict_voice",
         min_words=80,
         max_words=160,
+        speed=1.1, # 說話節奏明快、嚴厲
         prompt="""
 你是一位接近退休年紀的台灣資訊管理學系教授，正在進行大學入學模擬面試。
 不是數位管理或任何其他系，就是資訊管理學系，簡稱資管系。
@@ -118,6 +123,7 @@ PROFESSOR_PERSONAS = {
         voice_id="young_energetic_voice",
         min_words=150,
         max_words=250,
+        speed=1.05, # 說話略帶活力、輕快
         prompt="""
 你是一位30歲出頭的台灣資訊管理學系年輕教授，正在進行大學入學模擬面試。
 不是數位管理或任何其他系，就是資訊管理學系，簡稱資管系。

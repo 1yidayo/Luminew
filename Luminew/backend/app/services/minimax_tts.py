@@ -30,7 +30,7 @@ class MinimaxTTSWS:
         # 預設音色 ID (例如 74 號是 Chinese (Mandarin)_IntellectualGirl)
         self.default_voice_id = default_voice_id or os.getenv("MINIMAX_DEFAULT_VOICE") or "Chinese (Mandarin)_Male_Announcer"
 
-    async def stream_text(self, text: str, voice_id: str = None, on_chunk=None):
+    async def stream_text(self, text: str, voice_id: str = None, speed: float = 1.0, on_chunk=None):
         """
         將文字透過 WebSocket 轉成語音，並透過 Queue 實現平滑的串流播放。
         """
@@ -105,7 +105,7 @@ class MinimaxTTSWS:
                     await ws.send(json.dumps({
                         "event": "task_start",
                         "model": self.model,
-                        "voice_setting": {"voice_id": voice_id, "speed": 1, "vol": 1, "pitch": 0},
+                        "voice_setting": {"voice_id": voice_id, "speed": speed, "vol": 1, "pitch": 0},
                         "audio_setting": {
                             "sample_rate": sample_rate, 
                             "format": "pcm", 
