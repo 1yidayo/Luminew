@@ -42,10 +42,12 @@ def ask_gpt4_1_nano(conversation_history, professor_type="warm_industry_professo
 #測試
 if __name__ == "__main__":
 
-    from professor_persona import get_professor_prompt
+    # 修正後的寫法
+    from app.services.professor_persona import get_professor_persona
 
     professor_type = "warm_industry_professor"
-    system_prompt = get_professor_prompt(professor_type)
+    persona = get_professor_persona(professor_type)
+    system_prompt = persona.prompt
 
     # 初始化對話歷史
     conversation_history = [

@@ -1,6 +1,11 @@
 # app/services/InterviewManager.py
 import asyncio
+import io
+import struct
 import time
+import requests
+import os
+from concurrent.futures import ThreadPoolExecutor
 from app.services.yating_stt import YatingSTT
 from app.services.openai_llm import ask_gpt4_1_nano
 from app.services.minimax_tts import MinimaxTTSWS
@@ -8,11 +13,11 @@ from app.services.professor_persona import get_professor_persona
 
 class InterviewManager:
     """
-    管理整場模擬面試流程：
-    1. 教授開場白 (TTS)
+    管理整場模擬面試流程（非同步多線程版本）：
+    1. 教授開場白 (TTS) - 在獨立線程
     2. 自動開啟麥克風 (學生思考/回答)
-    3. 學生手動關閉麥克風 -> LLM 生成教授回答
-    4. 教授回答 (TTS) -> 播放完後自動開啟麥克風 (循環)
+    3. 學生手動關閉麥克風 -> LLM 生成教授回答（在獨立線程）
+    4. 教授回答 (TTS) -> 播放完後自動開啟麥克風（在獨立線程）
     """
 
     def __init__(self, professor_type="warm_industry_professor"):
@@ -31,7 +36,50 @@ class InterviewManager:
         self.pending_student_texts = []
         # 面試運作狀態
         self.interview_running = False
+        
+        # ★★★ 多線程執行器 ★★★
+        self.executor = ThreadPoolExecutor(max_workers=2)
+        self.loop = None
 
+        #  --- 新增 D-ID 專用的設定 --- 
+        self.did_api_key = os.getenv("D_ID_API_KEY", "")
+        self.did_stream_id = None  # 用來記住 D-ID 的會議室代碼
+        self.did_session_id = None # 用來記住通話的 Session
+        #  ---------------------------- 
+
+        # ★★★ 新增：WebSocket 事件回呼 ★★★
+        # 由 interview.py 設定，讓 TTS 音訊和文字能傳回 Flutter
+        self.on_transcript = None      # (role, text) → void
+        self.on_audio_chunk = None     # (bytes) → void
+        self.on_tts_done = None        # () → void
+
+    # ======================== 工具方法 ========================
+
+    @staticmethod
+    def _pcm_to_wav(pcm_data: bytes, sample_rate: int = 32000, channels: int = 1, sample_width: int = 2) -> bytes:
+        """將 PCM raw bytes 轉換為 WAV 格式 bytes"""
+        data_size = len(pcm_data)
+        wav_buf = io.BytesIO()
+        # RIFF header
+        wav_buf.write(b'RIFF')
+        wav_buf.write(struct.pack('<I', 36 + data_size))
+        wav_buf.write(b'WAVE')
+        # fmt chunk
+        wav_buf.write(b'fmt ')
+        wav_buf.write(struct.pack('<I', 16))                    # chunk size
+        wav_buf.write(struct.pack('<H', 1))                     # PCM format
+        wav_buf.write(struct.pack('<H', channels))              # channels
+        wav_buf.write(struct.pack('<I', sample_rate))            # sample rate
+        wav_buf.write(struct.pack('<I', sample_rate * channels * sample_width))  # byte rate
+        wav_buf.write(struct.pack('<H', channels * sample_width))               # block align
+        wav_buf.write(struct.pack('<H', sample_width * 8))      # bits per sample
+        # data chunk
+        wav_buf.write(b'data')
+        wav_buf.write(struct.pack('<I', data_size))
+        wav_buf.write(pcm_data)
+        return wav_buf.getvalue()
+
+    # ======================== 同步版本（WebSocket 使用）========================
     def start_interview(self):
         """
         啟動面試：
@@ -57,8 +105,12 @@ class InterviewManager:
         print(f"👨‍🏫 [教授開場]: {greeting}")
         
         self.conversation_history.append({"role": "professor", "content": greeting})
+
+        # ★ 發送教授文字到 Flutter
+        if self.on_transcript:
+            self.on_transcript("professor", greeting)
         
-        # 播放開場白 (阻塞，直到播完)
+        # 播放開場白 (阻塞，直到播完) → 同時收集音訊傳到 Flutter
         self._sync_play_tts(greeting)
         
         # 播放完畢，自動開啟麥克風
@@ -66,16 +118,36 @@ class InterviewManager:
         self.stt.start_recording()
 
     def _sync_play_tts(self, text):
-        """同步阻塞播放 TTS"""
+        """同步阻塞播放 TTS，同時收集音訊傳給 Flutter"""
         print(f"🔊 [TTS 開始播放] 文字長度: {len(text)}")
+        
+        # ★★★ 收集所有 PCM 音訊片段 ★★★
+        collected_pcm = bytearray()
+
+        def on_chunk(chunk_bytes):
+            if chunk_bytes is not None:
+                collected_pcm.extend(chunk_bytes)
+
         async def _play():
             await self.tts.stream_text(
                 text=text,
-                voice_id=self.professor_persona.voice_id
+                voice_id=self.professor_persona.voice_id,
+                on_chunk=on_chunk  # ★ 傳入回呼收集音訊
             )
         try:
             asyncio.run(_play())
             print("🔊 [TTS 播放結束]")
+            
+            # ★★★ 將收集到的 PCM 轉為 WAV 並發送到 Flutter ★★★
+            if collected_pcm and self.on_audio_chunk:
+                wav_data = self._pcm_to_wav(bytes(collected_pcm), sample_rate=32000)
+                self.on_audio_chunk(wav_data)
+                print(f"📤 已發送 WAV 音訊到 Flutter ({len(wav_data)} bytes)")
+            
+            # ★ 通知 Flutter TTS 播放結束
+            if self.on_tts_done:
+                self.on_tts_done()
+
         except Exception as e:
             print(f"❌ [TTS 播放錯誤]: {e}")
 
@@ -85,6 +157,9 @@ class InterviewManager:
             return
         print(f"🎤 [學生]: {text}")
         self.pending_student_texts.append(text)
+        # ★ 發送學生文字到 Flutter
+        if self.on_transcript:
+            self.on_transcript("student", text)
 
     def process_speech_end(self):
         """
@@ -129,7 +204,11 @@ class InterviewManager:
         print(f"👨‍🏫 [教授]: {reply}")
         self.conversation_history.append({"role": "professor", "content": reply})
 
-        # TTS 播放 (阻塞，播完才往下走)
+        # ★ 發送教授文字到 Flutter
+        if self.on_transcript:
+            self.on_transcript("professor", reply)
+
+        # TTS 播放 (阻塞，播完才往下走) → 同時傳送音訊到 Flutter
         print("🎵 播放教授回答中...")
         self._sync_play_tts(reply)
         print("✅ 播放完畢。")
@@ -152,4 +231,49 @@ class InterviewManager:
     def stop_interview(self):
         self.interview_running = False
         self.stt.stop_recording()
-        print("⏹ 面試完全結束")
+        # 關閉線程池
+        if self.executor:
+            self.executor.shutdown(wait=False)
+        print("⏹ 面試完全結束，線程池已關閉")
+
+    def create_did_stream(self):
+        """向 D-ID 申請開啟 WebRTC 視訊會議室"""
+        print("正在向 D-ID 申請開啟視訊會議室...")
+        username, password = self.did_api_key.split(':')
+        
+        # 讀取 .env 中的 D_ID_URL，如果沒有就用預設的
+        url = os.getenv("D_ID_URL", "https://api.d-id.com/talks/streams")
+        
+        payload = {
+            # 改用你們的教授照片
+            "source_url": "https://raw.githubusercontent.com/1yidayo/Luminew/refs/heads/main/Luminew/backend/assets/images/Paul.jpg" 
+        }
+        
+        headers = {
+            "accept": "application/json",
+            "content-type": "application/json"
+        }
+
+        try:
+            response = requests.post(
+                url, 
+                json=payload, 
+                headers=headers, 
+                auth=(username, password)
+            )
+            
+            if response.status_code == 201:
+                data = response.json()
+                # 把拿到的房間號碼記在經理的腦袋裡，以後要講話才知道去哪間房
+                self.did_stream_id = data.get("id")
+                self.did_session_id = data.get("session_id")
+                
+                print(f"🎉 D-ID 會議室建立成功！房間代碼: {self.did_stream_id}")
+                return data # 將整包包含 offer SDP 的資料回傳，準備交給 Flutter
+            else:
+                print(f"❌ D-ID 建立失敗：{response.text}")
+                return {"error": "Failed to create stream"}
+                
+        except Exception as e:
+            print(f"程式發生錯誤：{e}")
+            return {"error": str(e)}

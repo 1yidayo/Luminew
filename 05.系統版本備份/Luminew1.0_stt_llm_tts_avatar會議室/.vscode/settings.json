@@ -1,0 +1,8 @@
+{
+    "python.languageServer": "Pylance",
+    "python.analysis.extraPaths": [
+        "./backend"
+    ],
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.typeCheckingMode": "basic"
+}

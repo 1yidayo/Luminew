@@ -3,6 +3,7 @@
 
 import os
 import cv2
+import numpy as np
 import torch
 import torch.nn as nn
 from torchvision import transforms, models
@@ -33,20 +34,16 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 if OPENAI_API_KEY:
     print(f"🔑 OpenAI API Key 前十碼: {OPENAI_API_KEY[:10]}...")
     print("✅ OpenAI API 設定成功")
+# 載入人臉辨識器 (使用 OpenCV DNN，比 Haar 準確且避開 mediapipe 路徑 bug)
+PROTOTXT_PATH = os.path.join(PROJECT_DIR, "deploy.prototxt")
+MODEL_WEIGHTS_PATH = os.path.join(PROJECT_DIR, "res10_300x300_ssd_iter_140000_fp16.caffemodel")
+
+if os.path.exists(PROTOTXT_PATH) and os.path.exists(MODEL_WEIGHTS_PATH):
+    print("📂 成功載入 OpenCV DNN 人臉辨識模組")
+    face_net = cv2.dnn.readNetFromCaffe(PROTOTXT_PATH, MODEL_WEIGHTS_PATH)
 else:
-    print("⚠️ 警告：找不到 OPENAI_API_KEY，AI 評語功能將使用本地評語")
-
-# 載入人臉辨識器
-HAAR_PATH = os.path.join(PROJECT_DIR, "haarcascade_frontalface_default.xml")
-if not os.path.exists(HAAR_PATH):
-    print(f"⚠️ 本地找不到 {HAAR_PATH}，嘗試使用 OpenCV 內建路徑...")
-    HAAR_PATH = cv2.data.haarcascades + 'haarcascade_frontalface_default.xml'
-
-print(f"📂 正在載入人臉辨識檔：{HAAR_PATH}")
-face_cascade = cv2.CascadeClassifier(HAAR_PATH)
-
-if face_cascade.empty():
-    print("❌ 嚴重錯誤：無法載入人臉辨識器 (xml 檔案損毀或路徑錯誤)")
+    print("❌ 找不到 OpenCV DNN 模型黨，請確認下載成功")
+    face_net = None
 
 # 載入情緒模型 (ResNet18)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -74,11 +71,11 @@ except Exception as e:
 model = model.to(device)
 model.eval()
 
-# 影像預處理
+# 影像預處理 (還原為模型訓練時的數值)
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
     transforms.ToTensor(),
-    transforms.Normalize([0.5]*3, [0.5]*3)
+    transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
 ])
 
 # ★★★ 建立共用的 ThreadPoolExecutor ★★★
@@ -91,7 +88,7 @@ def get_video_storage_dir():
     return VIDEO_STORAGE_DIR
 
 
-def _analyze_video_sync(video_path: str, save_video: bool) -> dict:
+def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None) -> dict:
     """同步處理影片的核心邏輯 (在獨立線程中執行)"""
     try:
         print(f"🎬 [Worker] 開始處理影片: {video_path}")
@@ -114,7 +111,7 @@ def _analyze_video_sync(video_path: str, save_video: bool) -> dict:
         orig_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
         print(f"🎥 原始影片尺寸: {orig_w} x {orig_h}, FPS: {fps}")
 
-        smooth_queue = deque(maxlen=5)
+        smooth_queue = deque(maxlen=15)  # ★ 把平滑度增加到 15 幀，分數會穩定很多
 
         with torch.no_grad():
             while True:
@@ -129,22 +126,41 @@ def _analyze_video_sync(video_path: str, save_video: bool) -> dict:
                 # 縮小圖片以加快偵測速度
                 h_orig, w_orig = frame.shape[:2]
                 if w_orig > 640:
-                    scale = 640 / w_orig
+                    scale = 640.0 / w_orig
                     frame_small = cv2.resize(frame, (640, int(h_orig * scale)))
                 else:
                     frame_small = frame
                     
-                gray = cv2.cvtColor(frame_small, cv2.COLOR_BGR2GRAY)
-                faces = face_cascade.detectMultiScale(gray, 1.1, 8)
-                
+                # ★ 使用 OpenCV DNN 抓臉
                 found_face_info = None
-                if len(faces) > 0:
-                     if w_orig > 640:
-                        scale_inv = w_orig / 640
-                        faces = [(int(x*scale_inv), int(y*scale_inv), int(w*scale_inv), int(h*scale_inv)) for (x,y,w,h) in faces]
-                        found_face_info = (frame, faces)
-                     else:
-                        found_face_info = (frame, faces)
+                if face_net is not None:
+                    blob = cv2.dnn.blobFromImage(cv2.resize(frame_small, (300, 300)), 1.0, (300, 300), (104.0, 177.0, 123.0))
+                    face_net.setInput(blob)
+                    detections = face_net.forward()
+
+                    faces = []
+                    ih, iw = frame_small.shape[:2]
+                    for i in range(0, detections.shape[2]):
+                        confidence = detections[0, 0, i, 2]
+                        if confidence > 0.5:  # 門檻值 0.5
+                            box = detections[0, 0, i, 3:7] * np.array([iw, ih, iw, ih])
+                            (startX, startY, endX, endY) = box.astype("int")
+                            
+                            # 確保在邊界內
+                            startX, startY = max(0, startX), max(0, startY)
+                            endX, endY = min(iw, endX), min(ih, endY)
+                            
+                            w, h = endX - startX, endY - startY
+                            if w > 0 and h > 0:
+                                faces.append((startX, startY, w, h))
+                    
+                    if len(faces) > 0:
+                         if w_orig > 640:
+                            scale_inv = w_orig / 640.0
+                            faces = [(int(fx*scale_inv), int(fy*scale_inv), int(fw*scale_inv), int(fh*scale_inv)) for (fx, fy, fw, fh) in faces]
+                            found_face_info = (frame, faces)
+                         else:
+                            found_face_info = (frame, faces)
 
                 if found_face_info is None:
                     continue
@@ -153,6 +169,7 @@ def _analyze_video_sync(video_path: str, save_video: bool) -> dict:
                 correct_frame, faces = found_face_info
                 (x, y, w, h) = max(faces, key=lambda f: f[2] * f[3])
 
+                # 裁切臉部（還原為原本精確裁切，避免帶入背景干擾模型）
                 face_crop = correct_frame[y:y+h, x:x+w]
 
                 try:
@@ -164,7 +181,11 @@ def _analyze_video_sync(video_path: str, save_video: bool) -> dict:
                     probs = torch.softmax(outputs, dim=1)[0]
                     
                     smooth_queue.append(probs.cpu())
-                    avg_probs = torch.stack(list(smooth_queue), dim=0).mean(dim=0)
+                    # ★ 加權移動平均（越近的幀影響越大）
+                    n = len(smooth_queue)
+                    weights = torch.linspace(0.5, 1.0, n)
+                    weights = weights / weights.sum()
+                    avg_probs = (torch.stack(list(smooth_queue)) * weights.unsqueeze(1)).sum(dim=0)
 
                     current_emotions = {}
                     for i, cls in enumerate(CLASSES):
@@ -173,12 +194,33 @@ def _analyze_video_sync(video_path: str, save_video: bool) -> dict:
                     session_history.append(current_emotions)
 
                     if frame_count % frame_interval == 0:
+                        t_emotions = {
+                            "c": current_emotions['confidence'] * 100,
+                            "n": current_emotions['nervous'] * 100,
+                            "p": current_emotions['passion'] * 100,
+                            "r": current_emotions['relaxed'] * 100
+                        }
+                        
+                        # ★ 若有 baseline，在時間軸也要套用校準
+                        if baseline:
+                            for k, cls in zip(['c', 'n', 'p', 'r'], CLASSES):
+                                base_val = baseline.get(cls, 0)
+                                # 使用比例調整，避免歸零
+                                if base_val > 0.1:
+                                    t_emotions[k] = t_emotions[k] * (50.0 / max(0.1, base_val))
+                            
+                            # 重新歸一化時間軸
+                            t_total = sum(t_emotions.values())
+                            if t_total > 0:
+                                for k in ['c', 'n', 'p', 'r']:
+                                    t_emotions[k] = (t_emotions[k] / t_total) * 100
+
                         timeline_entry = {
                             "t": round(frame_count / fps, 1),
-                            "c": int(current_emotions['confidence'] * 100),
-                            "n": int(current_emotions['nervous'] * 100),
-                            "p": int(current_emotions['passion'] * 100),
-                            "r": int(current_emotions['relaxed'] * 100)
+                            "c": int(t_emotions['c']),
+                            "n": int(t_emotions['n']),
+                            "p": int(t_emotions['p']),
+                            "r": int(t_emotions['r'])
                         }
                         timeline_data.append(timeline_entry)
 
@@ -200,6 +242,23 @@ def _analyze_video_sync(video_path: str, save_video: bool) -> dict:
         final_scores_float = {}
         for cls in CLASSES:
             final_scores_float[cls] = (avg_scores[cls] / len(session_history)) * 100
+        
+        # ★ 基線校準：使用比例調整而非絕對扣除，防止歸零
+        if baseline:
+            print(f"🎯 套用個人基線校準 (比例法): {baseline}")
+            for cls in CLASSES:
+                baseline_val = baseline.get(cls, 0)
+                # 假設基線狀態代表該情緒的「中性強度」(例如 50%)
+                # 如果目前分數高於基線，就會被放大；低於則縮小
+                if baseline_val > 0.1:
+                    final_scores_float[cls] = final_scores_float[cls] * (50.0 / max(0.1, baseline_val))
+            
+            # 重新歸一化到加總 = 100
+            total = sum(final_scores_float.values())
+            if total > 0:
+                for cls in CLASSES:
+                    final_scores_float[cls] = (final_scores_float[cls] / total) * 100
+            print(f"🎯 校準後分數: {final_scores_float}")
         
         final_scores_int = {k: int(v) for k, v in final_scores_float.items()}
         print(f"📈 結果: {final_scores_int}")
@@ -319,17 +378,19 @@ def _generate_ai_feedback_sync(final_scores_float: dict) -> dict:
         }
 
 
-async def analyze_video(video_path: str, save_video: bool = True) -> dict:
+async def analyze_video(video_path: str, save_video: bool = True, baseline: dict = None) -> dict:
     """
     非同步分析影片
     - 影片處理：在 ThreadPoolExecutor 中執行（不阻塞主線程）
     - AI 評語：也在 ThreadPoolExecutor 中執行
+    - baseline：個人校準基線（可選）
     """
     loop = asyncio.get_event_loop()
     
     # ★★★ 使用 ThreadPoolExecutor 執行影片分析 ★★★
-    # 這樣即使影片處理崩潰，也不會影響主程式
-    video_result = await loop.run_in_executor(executor, _analyze_video_sync, video_path, save_video)
+    video_result = await loop.run_in_executor(
+        executor, _analyze_video_sync, video_path, save_video, baseline
+    )
     
     if "error" in video_result:
         return video_result
@@ -342,6 +403,126 @@ async def analyze_video(video_path: str, save_video: bool = True) -> dict:
     
     video_result["ai_analysis"] = ai_feedback
     return video_result
+
+
+def _calibrate_sync(video_path: str) -> dict:
+    """
+    同步校準：分析短影片，回傳個人情緒基線 (在獨立線程中執行)
+    """
+    try:
+        print(f"🎯 [校準] 開始處理: {video_path}")
+        cap = cv2.VideoCapture(video_path)
+        
+        if not cap.isOpened():
+            return {"error": "無法開啟校準影片"}
+        
+        session_history = []
+        frame_count = 0
+        
+        with torch.no_grad():
+            while True:
+                ret, frame = cap.read()
+                if not ret:
+                    break
+                
+                frame_count += 1
+                if frame_count % 3 != 0:
+                    continue
+                
+                # 縮小圖片
+                h_orig, w_orig = frame.shape[:2]
+                if w_orig > 640:
+                    scale = 640.0 / w_orig
+                    frame_small = cv2.resize(frame, (640, int(h_orig * scale)))
+                else:
+                    frame_small = frame
+                
+                # 人臉偵測
+                if face_net is None:
+                    continue
+                
+                blob = cv2.dnn.blobFromImage(
+                    cv2.resize(frame_small, (300, 300)), 1.0, (300, 300), (104.0, 177.0, 123.0)
+                )
+                face_net.setInput(blob)
+                detections = face_net.forward()
+                
+                ih, iw = frame_small.shape[:2]
+                best_face = None
+                best_area = 0
+                
+                for i in range(detections.shape[2]):
+                    conf = detections[0, 0, i, 2]
+                    if conf > 0.5:
+                        box = detections[0, 0, i, 3:7] * np.array([iw, ih, iw, ih])
+                        (sx, sy, ex, ey) = box.astype("int")
+                        sx, sy = max(0, sx), max(0, sy)
+                        ex, ey = min(iw, ex), min(ih, ey)
+                        w, h = ex - sx, ey - sy
+                        if w * h > best_area:
+                            best_area = w * h
+                            # 還原到原始座標
+                            if w_orig > 640:
+                                inv = w_orig / 640.0
+                                best_face = (int(sx*inv), int(sy*inv), int(w*inv), int(h*inv))
+                            else:
+                                best_face = (sx, sy, w, h)
+                
+                if best_face is None:
+                    continue
+                
+                x, y, w, h = best_face
+                face_crop = frame[y:y+h, x:x+w]
+                
+                try:
+                    img = cv2.cvtColor(face_crop, cv2.COLOR_BGR2RGB)
+                    img = Image.fromarray(img)
+                    img_tensor = transform(img).unsqueeze(0).to(device)
+                    
+                    outputs = model(img_tensor)
+                    probs = torch.softmax(outputs, dim=1)[0]
+                    
+                    emotions = {}
+                    for i, cls in enumerate(CLASSES):
+                        emotions[cls] = probs[i].item()
+                    session_history.append(emotions)
+                except Exception:
+                    pass
+        
+        cap.release()
+        
+        # 刪除暫存影片
+        try:
+            os.remove(video_path)
+        except:
+            pass
+        
+        if not session_history:
+            return {"error": "校準失敗：未偵測到人臉，請確認臉部正對鏡頭"}
+        
+        # 計算基線（各情緒平均值 × 100）
+        baseline = {cls: 0.0 for cls in CLASSES}
+        for entry in session_history:
+            for cls in CLASSES:
+                baseline[cls] += entry[cls]
+        for cls in CLASSES:
+            baseline[cls] = (baseline[cls] / len(session_history)) * 100
+        
+        baseline_int = {k: round(v, 1) for k, v in baseline.items()}
+        print(f"🎯 [校準] 基線結果 ({len(session_history)} 幀): {baseline_int}")
+        
+        return {"success": True, "baseline": baseline_int, "frames_analyzed": len(session_history)}
+    
+    except Exception as e:
+        print(f"❌ [校準] 錯誤: {e}")
+        traceback.print_exc()
+        return {"error": f"校準失敗: {str(e)}"}
+
+
+async def calibrate_baseline(video_path: str) -> dict:
+    """非同步入口 - 在獨立線程中執行校準"""
+    loop = asyncio.get_event_loop()
+    return await loop.run_in_executor(executor, _calibrate_sync, video_path)
 
 
 def _analyze_portfolio_sync(pdf_path: str) -> dict:
