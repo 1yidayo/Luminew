@@ -10,6 +10,7 @@ from app.services.yating_stt import YatingSTT
 from app.services.openai_llm import ask_gpt4_1_nano
 from app.services.minimax_tts import MinimaxTTSWS
 from app.services.professor_persona import get_professor_persona
+from app.services.question_loader import get_random_questions
 
 class InterviewManager:
     """
@@ -20,9 +21,16 @@ class InterviewManager:
     4. 教授回答 (TTS) -> 播放完後自動開啟麥克風（在獨立線程）
     """
 
-    def __init__(self, professor_type="warm_industry_professor"):
+    def __init__(self, professor_type="warm_industry_professor", department="im"):
         self.professor_persona = get_professor_persona(professor_type)
-        self.system_prompt = self.professor_persona.prompt
+        self.department = department
+        
+        # 取得隨機題庫
+        selected_questions = get_random_questions(department=self.department)
+        questions_text = "\n".join([f"{i+1}. {q}" for i, q in enumerate(selected_questions)])
+        
+        # 把題庫偷偷塞進系統提示詞
+        self.system_prompt = self.professor_persona.prompt + f"\n\n【本次面試核心任務】\n請擔任主考官，自然地將以下題目融入對話中（不需要一次問完，也不要照稿念，可根據學生回答動態調整、追問）：\n{questions_text}"
 
         # 初始化服務
         self.stt = YatingSTT()

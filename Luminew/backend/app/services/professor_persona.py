@@ -19,7 +19,7 @@ PROFESSOR_PERSONAS = {
         voice_id="Chinese (Mandarin)_Male_Announcer",  # 已確認可用的音色
         min_words=150,
         max_words=220,
-        speed=0.9, # 說話稍微放慢，顯得更穩重溫和
+        speed=1.25, # 說話稍微放慢，但在 1.25 基準下顯得穩重
         prompt="""
 你是一位45歲左右的台灣資訊管理學系教授，正在進行大學入學模擬面試。
 不是數位管理或任何其他系，就是資訊管理學系，簡稱資管系。
@@ -73,7 +73,7 @@ PROFESSOR_PERSONAS = {
         voice_id="male_strict_voice",
         min_words=80,
         max_words=160,
-        speed=1.1, # 說話節奏明快、嚴厲
+        speed=1.4, # 說話節奏明快、嚴厲
         prompt="""
 你是一位接近退休年紀的台灣資訊管理學系教授，正在進行大學入學模擬面試。
 不是數位管理或任何其他系，就是資訊管理學系，簡稱資管系。
@@ -123,7 +123,7 @@ PROFESSOR_PERSONAS = {
         voice_id="young_energetic_voice",
         min_words=150,
         max_words=250,
-        speed=1.05, # 說話略帶活力、輕快
+        speed=1.35, # 說話略帶活力、輕快
         prompt="""
 你是一位30歲出頭的台灣資訊管理學系年輕教授，正在進行大學入學模擬面試。
 不是數位管理或任何其他系，就是資訊管理學系，簡稱資管系。
