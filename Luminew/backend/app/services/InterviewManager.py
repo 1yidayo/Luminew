@@ -21,7 +21,7 @@ class InterviewManager:
     4. 教授回答 (TTS) -> 播放完後自動開啟麥克風（在獨立線程）
     """
 
-    def __init__(self, professor_type="warm_industry_professor", department="im"):
+    def __init__(self, professor_type="warm_industry_professor", department="im", use_did=False):
         self.professor_persona = get_professor_persona(professor_type)
         self.department = department
         
@@ -53,6 +53,7 @@ class InterviewManager:
         self.did_api_key = os.getenv("D_ID_API_KEY", "")
         self.did_stream_id = None  # 用來記住 D-ID 的會議室代碼
         self.did_session_id = None # 用來記住通話的 Session
+        self.use_did = use_did       # ★ 判斷是否使用 D-ID 的視訊播報
         #  ---------------------------- 
 
         # ★★★ 新增：WebSocket 事件回呼 ★★★
@@ -106,7 +107,15 @@ class InterviewManager:
 
     def _play_opening_greeting(self):
         """生成並播放面試開場白，播放完畢後自動開麥"""
-        opening_prompt = self.system_prompt + "\n\n現在面試剛開始，請你作為面試官，主動向學生打招呼並開始這場面試。請簡短一些。"
+        opening_instruct = (
+            "\n\n現在面試剛開始，請你作為面試官，主動向學生打招呼並拋出第一題。\n"
+            "【開場強制規定】\n"
+            "1. 第一句話請固定說「同學好，歡迎來參加這次的二階面試」，絕對不要說「聊天」或「您好」。\n"
+            "2. 語氣保持教授的專業度，絕對不要在句尾加上「喔」、「呢」、「啊」等不嚴肅的語助詞。\n"
+            "3. 拋出第一題時必須「非常簡短直接」，不要做過多的描述與解釋，也不要一次疊加太多小問題。\n"
+            "4. 如果要加上結尾，最多只能說「方便我們更了解你」，不需要其他贅字。"
+        )
+        opening_prompt = self.system_prompt + opening_instruct
         
         print("🤔 教授正在準備開場白...")
         greeting = ask_gpt4_1_nano(opening_prompt, professor_type=self.professor_persona.name)
@@ -127,8 +136,22 @@ class InterviewManager:
 
     def _sync_play_tts(self, text):
         """同步阻塞播放 TTS，同時收集音訊傳給 Flutter"""
-        print(f"🔊 [TTS 開始播放] 文字長度: {len(text)}")
+        # ★ 修正 TTS 破音字或念錯的詞彙字典 (將容易念錯的字換成同音字給 TTS 讀)
+        tts_text = text.replace("調整", "條整")
+        tts_text = text.replace("挑戰", "窕戰")
+        # 未來有其他念錯的字也可以在這裡繼續 .replace()
         
+        print(f"🔊 [TTS 開始播放] 文字長度: {len(tts_text)}")
+        
+        # ★★★ 如果啟用了 D-ID，則把文字交給 D-ID 發音（網頁播放），本地電腦不播音
+        if getattr(self, "use_did", False) and self.did_stream_id:
+            self.send_did_talk(text)
+            # 依據字數粗略估算影片播放長度 (每字約 0.3 秒)
+            time.sleep(max(3, len(text) * 0.3))
+            if self.on_tts_done:
+                self.on_tts_done()
+            return
+
         # ★★★ 收集所有 PCM 音訊片段 ★★★
         collected_pcm = bytearray()
 
@@ -138,7 +161,7 @@ class InterviewManager:
 
         async def _play():
             await self.tts.stream_text(
-                text=text,
+                text=tts_text,  # ★ 使用修正後的文字
                 voice_id=self.professor_persona.voice_id,
                 speed=self.professor_persona.speed,  # ★ 傳入教授專屬語速
                 on_chunk=on_chunk  # ★ 傳入回呼收集音訊
@@ -286,3 +309,47 @@ class InterviewManager:
         except Exception as e:
             print(f"程式發生錯誤：{e}")
             return {"error": str(e)}
+
+    def submit_did_sdp_answer(self, answer, session_id):
+        """將前端產生的 WebRTC Answer 交回給 D-ID"""
+        print("正在傳送 WebRTC Answer 給 D-ID...")
+        url = f"https://api.d-id.com/talks/streams/{self.did_stream_id}/sdp"
+        username, password = self.did_api_key.split(':')
+        payload = {"answer": answer, "session_id": session_id}
+        headers = {"accept": "application/json", "content-type": "application/json"}
+        response = requests.post(url, json=payload, headers=headers, auth=(username, password))
+        return response.json() if response.ok else {"error": response.text}
+        
+    def submit_did_ice_candidate(self, candidate, sdpMid, sdpMLineIndex, session_id):
+        """將前端產生的 ICE Candidate 交回給 D-ID"""
+        url = f"https://api.d-id.com/talks/streams/{self.did_stream_id}/ice"
+        username, password = self.did_api_key.split(':')
+        payload = {
+            "candidate": candidate,
+            "sdpMid": sdpMid,
+            "sdpMLineIndex": sdpMLineIndex,
+            "session_id": session_id
+        }
+        headers = {"accept": "application/json", "content-type": "application/json"}
+        response = requests.post(url, json=payload, headers=headers, auth=(username, password))
+        return response.json() if response.ok else {"error": response.text}
+        
+    def send_did_talk(self, text):
+        """讓 D-ID 裡的虛擬教授開口說話"""
+        print(f"😎 正在指揮 D-ID 教授說話...")
+        url = f"https://api.d-id.com/talks/streams/{self.did_stream_id}"
+        username, password = self.did_api_key.split(':')
+        payload = {
+            "script": {
+                "type": "text",
+                "input": text,
+                "provider": {
+                    "type": "microsoft",
+                    "voice_id": "zh-TW-YunJheNeural" # 使用微軟中文男聲
+                }
+            },
+            "session_id": self.did_session_id
+        }
+        headers = {"accept": "application/json", "content-type": "application/json"}
+        response = requests.post(url, json=payload, headers=headers, auth=(username, password))
+        return response.json() if response.ok else {"error": response.text}

@@ -1,13 +1,54 @@
 # test_interview_flow_v2.py
 import time
+import threading
+import uvicorn
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from typing import Any
 from app.services.InterviewManager import InterviewManager
 
+# ==========================================
+# 搭建給瀏覽器用的 WebRTC 微型橋樑伺服器
+# ==========================================
+bridge_app = FastAPI()
+bridge_app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_headers=["*"], allow_methods=["*"])
+
+bridge_data = {"manager": None, "offer_info": None}
+
+class AnswerPayload(BaseModel): answer: Any
+class ICEPayload(BaseModel): candidate: str; sdpMid: str; sdpMLineIndex: int
+
+@bridge_app.get("/get_offer")
+def get_offer():
+    return bridge_data["offer_info"] if bridge_data["offer_info"] else {"error": "尚未準備好房間"}
+
+@bridge_app.post("/send_answer")
+def send_answer(p: AnswerPayload):
+    mgr = bridge_data["manager"]
+    return mgr.submit_did_sdp_answer(p.answer, mgr.did_session_id)
+
+@bridge_app.post("/send_ice")
+def send_ice(p: ICEPayload):
+    mgr = bridge_data["manager"]
+    return mgr.submit_did_ice_candidate(p.candidate, p.sdpMid, p.sdpMLineIndex, mgr.did_session_id)
+
+def start_backend_bridge():
+    uvicorn.run(bridge_app, host="127.0.0.1", port=8008, log_level="error")
+
+# ==========================================
+# 終端機主程式
+# ==========================================
 def run_interview_v2():
-    # 1. 初始化面試官
-    manager = InterviewManager(professor_type="warm_industry_professor")
+    # 啟動微型橋樑伺服器
+    threading.Thread(target=start_backend_bridge, daemon=True).start()
+
+    # 1. 初始化面試官 (啟用 D-ID)
+    manager = InterviewManager(professor_type="warm_industry_professor", use_did=True)
+    bridge_data["manager"] = manager
     
     print("\n" + "="*60)
-    print("🎓 AI 面試流程 V2 測試 (同步版本)")
+    print("🎓 AI 面試流程 V2 測試 (含 D-ID 視訊整合)")
     print("="*60)
     print("教授角色:", manager.professor_persona.name)
     print("\n[流程說明]:")
@@ -17,6 +58,17 @@ def run_interview_v2():
     print("4. 教授會思考並回答，回答完後麥克風會【再次自動開啟】。")
     print("5. 持續循環，直到按下 Ctrl+C 結束。")
     print("="*60 + "\n")
+    
+    # 2. 先建立 D-ID 房間
+    print("⏳ 正在向 D-ID 申請視訊會議室，請稍候...")
+    offer_info = manager.create_did_stream()
+    bridge_data["offer_info"] = offer_info
+
+    print("\n" + "⭐"*30)
+    print("👉 房間已準備好！請現在點開 [test_view_did.html] 👈")
+    print("👉 確認網頁上出現教授畫面後，請回到這裡按下 Enter 繼續！👈")
+    print("⭐"*30 + "\n")
+    input("按下 [Enter] 開始面試流程...")
 
     # 啟動面試 (會包含：ASR準備 -> 開場白TTS -> 自動開麥)
     manager.start_interview()
