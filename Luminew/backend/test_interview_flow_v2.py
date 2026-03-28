@@ -2,8 +2,11 @@
 import time
 import threading
 import uvicorn
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from pyngrok import ngrok
 from pydantic import BaseModel
 from typing import Any
 from app.services.InterviewManager import InterviewManager
@@ -34,6 +37,16 @@ def send_ice(p: ICEPayload):
     return mgr.submit_did_ice_candidate(p.candidate, p.sdpMid, p.sdpMLineIndex, mgr.did_session_id)
 
 def start_backend_bridge():
+    # 建立 publicly accessible 的資料夾
+    os.makedirs(os.path.join("app", "public", "audio"), exist_ok=True)
+    bridge_app.mount("/audio", StaticFiles(directory=os.path.join("app", "public", "audio")), name="audio")
+    
+    # 啟動 ngrok
+    print("⏳ 啟動 ngrok 隧道中 (請稍候)...")
+    public_url = ngrok.connect(8008).public_url
+    print(f"🌍 Ngrok 公開網址: {public_url}")
+    bridge_data["public_url"] = public_url
+    
     uvicorn.run(bridge_app, host="127.0.0.1", port=8008, log_level="error")
 
 # ==========================================
@@ -43,8 +56,13 @@ def run_interview_v2():
     # 啟動微型橋樑伺服器
     threading.Thread(target=start_backend_bridge, daemon=True).start()
 
+    # 等待 ngrok 啟動
+    print("⏳ 等待伺服器與 Ngrok 隧道連線建立...")
+    time.sleep(4)
+    
     # 1. 初始化面試官 (啟用 D-ID)
     manager = InterviewManager(professor_type="warm_industry_professor", use_did=True)
+    manager.public_url = bridge_data.get("public_url")
     bridge_data["manager"] = manager
     
     print("\n" + "="*60)

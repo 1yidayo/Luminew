@@ -30,7 +30,7 @@ class MinimaxTTSWS:
         # 預設音色 ID (例如 74 號是 Chinese (Mandarin)_IntellectualGirl)
         self.default_voice_id = default_voice_id or os.getenv("MINIMAX_DEFAULT_VOICE") or "Chinese (Mandarin)_Male_Announcer"
 
-    async def stream_text(self, text: str, voice_id: str = None, speed: float = 1.0, on_chunk=None):
+    async def stream_text(self, text: str, voice_id: str = None, speed: float = 1.0, on_chunk=None, mute: bool = False):
         """
         將文字透過 WebSocket 轉成語音，並透過 Queue 實現平滑的串流播放。
         """
@@ -92,8 +92,7 @@ class MinimaxTTSWS:
                 outdata.fill(0)
 
         try:
-            # 啟動非阻塞播放流
-            with sd.OutputStream(samplerate=sample_rate, channels=1, dtype='int16', callback=audio_callback):
+            async def _ws_loop():
                 async with websockets.connect(self.ws_url, additional_headers=headers, ssl=ssl_context) as ws:
                     # 1. 握手
                     msg = json.loads(await ws.recv())
@@ -134,13 +133,13 @@ class MinimaxTTSWS:
                             if "resume_reading" in str(e): break
                             raise e
 
-                        # 處理音訊數據 (即使是 task_finished 封裝也可能帶有最後一段 data)
                         if "data" in msg and "audio" in msg["data"]:
                             audio_hex = msg["data"]["audio"]
                             if audio_hex:
                                 chunk_bytes = bytes.fromhex(audio_hex)
                                 on_chunk(chunk_bytes)
-                                audio_q.put(np.frombuffer(chunk_bytes, dtype=np.int16))
+                                if not mute:
+                                    audio_q.put(np.frombuffer(chunk_bytes, dtype=np.int16))
 
                         if msg.get("event") == "task_finished":
                             self._task_finished_received = True
@@ -148,11 +147,10 @@ class MinimaxTTSWS:
                         if msg.get("event") == "task_failed":
                             print(f"❌ 任務失敗: {msg}")
                             break
-                    
-                    # 5. 等待播放完畢
-                    # 大幅度增加等候時間，避免長難句被截斷。
-                    # 設定為 1 分鐘上限 (對於面試回答來說應該足夠)
-                    max_wait_loops = 600 # 60 秒 (600 * 0.1s)
+                
+                # 5. 等待播放完畢 (若是靜音模式則不需等待)
+                if not mute:
+                    max_wait_loops = 600
                     wait_count = 0
                     while (not audio_q.empty() or len(self._audio_buffer) > 0) and wait_count < max_wait_loops:
                         await asyncio.sleep(0.1)
@@ -160,8 +158,14 @@ class MinimaxTTSWS:
                     
                     if wait_count >= max_wait_loops:
                         print("⚠️ [TTS 警告] 播放等待逾時，強制結束播放流。")
-                    
-                    await asyncio.sleep(0.3) # 給硬體一點緩衝
+                    await asyncio.sleep(0.3)
+
+            # 根據 mute 決定是否啟用輸出流
+            if mute:
+                await _ws_loop()
+            else:
+                with sd.OutputStream(samplerate=sample_rate, channels=1, dtype='int16', callback=audio_callback):
+                    await _ws_loop()
 
         except Exception as e:
             if "resume_reading" not in str(e):

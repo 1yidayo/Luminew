@@ -135,48 +135,64 @@ class InterviewManager:
         self.stt.start_recording()
 
     def _sync_play_tts(self, text):
-        """同步阻塞播放 TTS，同時收集音訊傳給 Flutter"""
-        # ★ 修正 TTS 破音字或念錯的詞彙字典 (將容易念錯的字換成同音字給 TTS 讀)
+        """同步阻塞播放 TTS，或者將音訊存檔後交給 D-ID"""
         tts_text = text.replace("調整", "條整")
         tts_text = text.replace("挑戰", "窕戰")
         # 未來有其他念錯的字也可以在這裡繼續 .replace()
         
         print(f"🔊 [TTS 開始播放] 文字長度: {len(tts_text)}")
         
-        # ★★★ 如果啟用了 D-ID，則把文字交給 D-ID 發音（網頁播放），本地電腦不播音
-        if getattr(self, "use_did", False) and self.did_stream_id:
-            self.send_did_talk(text)
-            # 依據字數粗略估算影片播放長度 (每字約 0.3 秒)
-            time.sleep(max(3, len(text) * 0.3))
-            if self.on_tts_done:
-                self.on_tts_done()
-            return
+        # 判斷是否使用 D-ID (如果是，則本地電腦靜音)
+        mute_local = getattr(self, "use_did", False) and bool(self.did_stream_id)
 
-        # ★★★ 收集所有 PCM 音訊片段 ★★★
+        # 收集所有 PCM 音訊片段
         collected_pcm = bytearray()
-
         def on_chunk(chunk_bytes):
             if chunk_bytes is not None:
                 collected_pcm.extend(chunk_bytes)
 
         async def _play():
             await self.tts.stream_text(
-                text=tts_text,  # ★ 使用修正後的文字
+                text=tts_text,
                 voice_id=self.professor_persona.voice_id,
-                speed=self.professor_persona.speed,  # ★ 傳入教授專屬語速
-                on_chunk=on_chunk  # ★ 傳入回呼收集音訊
+                speed=self.professor_persona.speed,
+                on_chunk=on_chunk,
+                mute=mute_local # ★ 啟動靜音模式
             )
+            
         try:
             asyncio.run(_play())
-            print("🔊 [TTS 播放結束]")
+            print("🔊 [TTS 處理結束]")
             
-            # ★★★ 將收集到的 PCM 轉為 WAV 並發送到 Flutter ★★★
-            if collected_pcm and self.on_audio_chunk:
+            # 將收集到的 PCM 轉為 WAV
+            if collected_pcm:
                 wav_data = self._pcm_to_wav(bytes(collected_pcm), sample_rate=32000)
-                self.on_audio_chunk(wav_data)
-                print(f"📤 已發送 WAV 音訊到 Flutter ({len(wav_data)} bytes)")
+                
+                # 發送到 Flutter
+                if self.on_audio_chunk:
+                    self.on_audio_chunk(wav_data)
+                    print(f"📤 已發送 WAV 音訊到 Flutter ({len(wav_data)} bytes)")
+                
+                # 若啟用了 D-ID，存成公開的 WAV 並指揮它播放
+                public_url = getattr(self, "public_url", None)
+                if mute_local and public_url:
+                    timestamp = int(time.time() * 1000)
+                    filename = f"speak_{timestamp}.wav"
+                    filepath = os.path.join("app", "public", "audio", filename)
+                    os.makedirs(os.path.dirname(filepath), exist_ok=True)
+                    
+                    with open(filepath, "wb") as f:
+                        f.write(wav_data)
+                    
+                    audio_url = f"{public_url}/audio/{filename}"
+                    print(f"🔗 上傳 Audio URL 給 D-ID: {audio_url}")
+                    self.send_did_talk_audio(audio_url)
+                    
+                    # 依據資料量估算播放長度 (32000 sr, 2 bytes/sample)
+                    duration = len(wav_data) / (32000 * 2)
+                    time.sleep(duration + 1)
             
-            # ★ 通知 Flutter TTS 播放結束
+            # 通知 TTS 完成
             if self.on_tts_done:
                 self.on_tts_done()
 
@@ -335,8 +351,8 @@ class InterviewManager:
         return response.json() if response.ok else {"error": response.text}
         
     def send_did_talk(self, text):
-        """讓 D-ID 裡的虛擬教授開口說話"""
-        print(f"😎 正在指揮 D-ID 教授說話...")
+        """讓 D-ID 裡的虛擬教授開口說話 (微軟預設文字聲音)"""
+        print(f"😎 正在指揮 D-ID 教授說話 (微軟 TTS)...")
         url = f"https://api.d-id.com/talks/streams/{self.did_stream_id}"
         username, password = self.did_api_key.split(':')
         payload = {
@@ -347,6 +363,22 @@ class InterviewManager:
                     "type": "microsoft",
                     "voice_id": "zh-TW-YunJheNeural" # 使用微軟中文男聲
                 }
+            },
+            "session_id": self.did_session_id
+        }
+        headers = {"accept": "application/json", "content-type": "application/json"}
+        response = requests.post(url, json=payload, headers=headers, auth=(username, password))
+        return response.json() if response.ok else {"error": response.text}
+
+    def send_did_talk_audio(self, audio_url):
+        """讓 D-ID 裡的虛擬教授開口說話 (使用自訂音檔 URL)"""
+        print(f"😎 正在指揮 D-ID 教授播報 Minimax 聲音...")
+        url = f"https://api.d-id.com/talks/streams/{self.did_stream_id}"
+        username, password = self.did_api_key.split(':')
+        payload = {
+            "script": {
+                "type": "audio",
+                "audio_url": audio_url,
             },
             "session_id": self.did_session_id
         }
