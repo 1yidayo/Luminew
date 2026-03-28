@@ -21,7 +21,7 @@ class InterviewManager:
     4. 教授回答 (TTS) -> 播放完後自動開啟麥克風（在獨立線程）
     """
 
-    def __init__(self, professor_type="warm_industry_professor", department="im", use_did=False):
+    def __init__(self, professor_type="warm_industry_professor", department="im", use_did=False, use_microphone=True):
         self.professor_persona = get_professor_persona(professor_type)
         self.department = department
         
@@ -33,7 +33,7 @@ class InterviewManager:
         self.system_prompt = self.professor_persona.prompt + f"\n\n【本次面試核心任務】\n請擔任主考官，自然地將以下題目融入對話中（不需要一次問完，也不要照稿念，可根據學生回答動態調整、追問）：\n{questions_text}"
 
         # 初始化服務
-        self.stt = YatingSTT()
+        self.stt = YatingSTT(use_microphone=use_microphone)
         self.tts = MinimaxTTSWS(
             default_voice_id=self.professor_persona.voice_id
         )
@@ -264,6 +264,10 @@ class InterviewManager:
         # 重點：播放完畢自動開麥
         print("🟢 [自動重開錄音] 請學生繼續...")
         self.stt.start_recording()
+
+    def feed_audio(self, chunk_bytes: bytes):
+        """將前端傳來的音訊送給 Yating STT"""
+        self.stt.feed_audio(chunk_bytes)
 
     def _build_llm_prompt(self):
         """建立對話 Prompt"""

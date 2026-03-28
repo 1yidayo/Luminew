@@ -22,8 +22,9 @@ SAMPLE_RATE = 16000
 CHUNK_BYTES = 2000  # 每塊 2000 bytes (~1/16 秒)
 
 class YatingSTT:
-    def __init__(self, pipeline="asr-zh-en-std"):
+    def __init__(self, pipeline="asr-zh-en-std", use_microphone=True):
         self.pipeline = pipeline
+        self.use_microphone = use_microphone
         self.audio_queue = Queue()
         self.stream = None
         self.ws_connection = None
@@ -55,6 +56,11 @@ class YatingSTT:
             return
         pcm16 = (indata * 32767).astype(np.int16).tobytes()
         self.audio_queue.put(pcm16)
+        
+    def feed_audio(self, pcm_bytes: bytes):
+        """提供給 FastAPI WebSocket 呼叫，用來塞入 Flutter 傳來的手機麥克風音訊"""
+        if self.recording_enabled:
+            self.audio_queue.put(pcm_bytes)
 
     # WebSocket 流程
     async def asr_stream_loop(self, on_final_text):
@@ -66,13 +72,15 @@ class YatingSTT:
             self.ws_connection = ws
             print("ASR WebSocket 已連線")
 
-            self.stream = sd.InputStream(
-                samplerate=SAMPLE_RATE,
-                channels=1,
-                dtype='float32',
-                callback=self.audio_callback
-            )
-            self.stream.start()
+            # 若啟用本機麥克風才開啟 sounddevice
+            if self.use_microphone:
+                self.stream = sd.InputStream(
+                    samplerate=SAMPLE_RATE,
+                    channels=1,
+                    dtype='float32',
+                    callback=self.audio_callback
+                )
+                self.stream.start()
 
             async def sender():
                 while True:
