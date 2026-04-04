@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:camera/camera.dart';
 import 'package:http/http.dart' as http;
 import 'package:fl_chart/fl_chart.dart';
@@ -17,6 +18,7 @@ import '../models.dart';
 import '../mock_data.dart';
 import '../sql_service.dart';
 import '../interview_ws_service.dart';
+import '../config.dart';
 
 
 // 全域變數：用來儲存可用的相機列表
@@ -301,7 +303,7 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
     try {
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('http://10.0.2.2:8000/emotion/generate_questions'),
+        Uri.parse('${AppConfig.httpUrl}/emotion/generate_questions'),
       );
       
       request.files.add(await http.MultipartFile.fromPath('pdf', _selectedFile!.path));
@@ -666,7 +668,7 @@ class _CalibrationDialogState extends State<_CalibrationDialog> {
       // 上傳
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('http://10.0.2.2:8000/emotion/calibrate'),
+        Uri.parse('${AppConfig.httpUrl}/emotion/calibrate'),
       );
       request.files.add(await http.MultipartFile.fromPath('video', file.path));
 
@@ -876,17 +878,17 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
     _wsService.onTtsDone = () async {
       if (mounted && _audioBuffer.isNotEmpty) {
         try {
-          final dir = await getTemporaryDirectory();
-          final file = File('${dir.path}/temp_tts_${DateTime.now().millisecondsSinceEpoch}.wav');
-          await file.writeAsBytes(_audioBuffer);
-          
+          // ★ Web 跨平台支援寫法：直接從記憶體播放 BytesSource
+          final bytes = Uint8List.fromList(_audioBuffer);
           _audioBuffer.clear(); // 存完先清空，準備下一句
           
-          // 給系統一點時間將檔案寫入硬碟
-          await Future.delayed(const Duration(milliseconds: 100));
-          
-          // 播放寫入的檔案 (AudioPlayers 較新版支援 DeviceFileSource)
-          await _audioPlayer.play(DeviceFileSource(file.path));
+          if (kIsWeb) {
+            // ★ iOS Safari 在播放原生 Blob Bytes 時常會失敗，改用 Data URI 確保加上 audio/mp3 標籤
+            final base64String = base64Encode(bytes);
+            await _audioPlayer.play(UrlSource('data:audio/mp3;base64,$base64String'));
+          } else {
+            await _audioPlayer.play(BytesSource(bytes));
+          }
         } catch (e) {
           print('❌ TTS 播放失敗: $e');
           _audioBuffer.clear();
@@ -987,9 +989,10 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
         );
 
         // ★ 關閉 enableAudio 避免跟 AudioRecorder 搶麥克風導致閃退
+        // ★ Web 版使用 medium 可避開瀏覽器 low resolution 常常導致的長寬比變形黑螢幕問題
         _controller = CameraController(
           frontCam, 
-          ResolutionPreset.low,
+          ResolutionPreset.medium,
           enableAudio: false,
         );
         await _controller!.initialize();
@@ -1079,7 +1082,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
 
     try {
       // ★★★ IP 設定：請確認這裡改成您電腦的 IP ★★★
-      final apiUrl = 'http://10.0.2.2:8000/emotion/analyze';
+      final apiUrl = '${AppConfig.httpUrl}/emotion/analyze';
       print("★★★ 準備上傳影片到: $apiUrl ★★★");
       print("★★★ 影片路徑: ${file.path} ★★★");
       
@@ -1088,9 +1091,27 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
         Uri.parse(apiUrl),
       );
 
-      request.files.add(await http.MultipartFile.fromPath('video', file.path));
+      if (kIsWeb) {
+        request.files.add(
+          http.MultipartFile.fromBytes(
+            'video', 
+            await file.readAsBytes(), 
+            filename: kIsWeb ? file.name : 'video.mp4'
+          )
+        );
+      } else {
+        request.files.add(await http.MultipartFile.fromPath('video', file.path));
+      }
       // ★ 傳送設定給後端
       request.fields['save_video'] = widget.saveVideo ? 'true' : 'false';
+      request.fields['interviewer'] = widget.interviewer;
+      
+      // ★ 傳送逐字稿給後端
+      if (_chatMessages.isNotEmpty) {
+          request.fields['transcript'] = jsonEncode(_chatMessages);
+          print('💬 已附上逐字稿');
+      }
+
       // ★ 傳送校準基線（如果有）
       if (widget.baseline != null) {
         request.fields['baseline'] = jsonEncode(widget.baseline);
@@ -1115,6 +1136,11 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
         final ai = data['ai_analysis'];
         final timelineList = data['timeline'] ?? [];
 
+        String finalVideoUrl = data['video_url'] ?? '';
+        if (finalVideoUrl.startsWith('/')) {
+          finalVideoUrl = '${AppConfig.httpUrl}$finalVideoUrl';
+        }
+
         // 建立紀錄物件
         final r = InterviewRecord(
           id: 'IR${DateTime.now().millisecondsSinceEpoch}',
@@ -1135,7 +1161,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
           aiComment: ai['comment'] ?? '',
           aiSuggestion: ai['suggestion'] ?? '',
           timelineData: jsonEncode(timelineList),
-          videoUrl: data['video_url'],
+          videoUrl: finalVideoUrl,
           questions: widget.questions ?? [],
           interviewName: widget.interviewName, // ★ 新增：面試名稱
         );
@@ -1161,7 +1187,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                 user: widget.user,
                 aiComment: ai['comment'],
                 aiSuggestion: ai['suggestion'],
-                videoUrl: data['video_url'], // ★ 新增：傳入影片網址
+                videoUrl: file.path, // ★ 使用本地檔案或 Blob 網址，避免 iOS Safari 網路串流 moov 問題
               ),
             ),
           );
@@ -1197,10 +1223,41 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_statusMessage.isNotEmpty) {
+      return Scaffold(
+        backgroundColor: Colors.black,
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.videocam_off, color: Colors.orange, size: 64),
+                const SizedBox(height: 16),
+                Text(
+                  _statusMessage,
+                  style: const TextStyle(color: Colors.white, fontSize: 16),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 24),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() => _statusMessage = "");
+                    _initCamera();
+                  },
+                  child: const Text('重啟相機權限'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
     if (_controller == null || !_controller!.value.isInitialized) {
       return const Scaffold(
         backgroundColor: Colors.black,
-        body: Center(child: CircularProgressIndicator()),
+        body: Center(child: CircularProgressIndicator(color: Colors.white)),
       );
     }
 
@@ -1572,8 +1629,10 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
     if (url != null && url.isNotEmpty && url != 'null') {
       print("🎬 嘗試載入影片: $url");
       
-      if (url.startsWith('http')) {
-        _videoController = VideoPlayerController.networkUrl(Uri.parse(url));
+      if (url.startsWith('http') || url.startsWith('blob:')) {
+        _videoController = VideoPlayerController.networkUrl(
+          Uri.parse(url),
+        );
       } else {
         _videoController = VideoPlayerController.file(File(url));
       }
@@ -1857,7 +1916,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                         child: Column(
                           children: [
                             AspectRatio(
-                              aspectRatio: 9 / 16, // ★ 固定 4:3 比例
+                              aspectRatio: _videoController!.value.aspectRatio, // 自動使用原始影片比例
                               child: VideoPlayer(_videoController!),
                             ),
                             VideoProgressIndicator(

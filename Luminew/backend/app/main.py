@@ -1,7 +1,7 @@
 # main.py
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.staticfiles import StaticFiles
-from app.api import interview, llm, tts, emotion
+from app.api import interview, llm, tts, emotion, sql_proxy
 from app.services.emotion_service import analyze_video, analyze_portfolio
 from app.services.InterviewManager import InterviewManager
 import os
@@ -17,12 +17,21 @@ static_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static")
 os.makedirs(os.path.join(static_dir, "videos"), exist_ok=True)
 app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
+# ★ 設定 Flutter Web 靜態網站目錄
+web_build_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "web_build")
+os.makedirs(web_build_dir, exist_ok=True)
+app.mount("/web", StaticFiles(directory=web_build_dir, html=True), name="web")
+
 # 加入路由
 app.include_router(interview.router, prefix="/interview", tags=["Interview"])
 app.include_router(llm.router, prefix="/llm", tags=["LLM"])
 app.include_router(tts.router, prefix="/tts", tags=["TTS"])
 app.include_router(emotion.router, prefix="/emotion", tags=["Emotion"])
 app.include_router(interview.router, prefix="/interview", tags=["Interview"])
+app.include_router(llm.router, prefix="/llm", tags=["LLM"])
+app.include_router(tts.router, prefix="/tts", tags=["TTS"])
+app.include_router(emotion.router, prefix="/emotion", tags=["Emotion"])
+app.include_router(sql_proxy.router, prefix="/sql", tags=["SQL Proxy"])
 
 @app.get("/")
 def root():

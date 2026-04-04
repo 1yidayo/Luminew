@@ -99,7 +99,7 @@ def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None
 
         timeline_data = []
         fps = cap.get(cv2.CAP_PROP_FPS)
-        if fps == 0 or fps is None:
+        if fps == 0 or fps is None or fps > 100:
             fps = 30
         frame_interval = max(1, int(fps / 3))
 
@@ -267,7 +267,7 @@ def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None
         video_url = None
         if save_video:
             filename = os.path.basename(video_path)
-            video_url = f"http://10.0.2.2:8000/static/videos/{filename}"
+            video_url = f"/static/videos/{filename}"
         else:
             try:
                 os.remove(video_path)
@@ -288,7 +288,7 @@ def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None
         return {"error": f"Error: {str(e)}"}
 
 
-def _generate_ai_feedback_sync(final_scores_float: dict) -> dict:
+def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor") -> dict:
     """同步生成 AI 評語 (在獨立線程中執行)"""
     try:
         if not OPENAI_API_KEY:
@@ -299,31 +299,55 @@ def _generate_ai_feedback_sync(final_scores_float: dict) -> dict:
         relaxed = final_scores_float.get('relaxed', 0)
         nervous = final_scores_float.get('nervous', 0)
         
+        # 取得面試官 Persona
+        from app.services.professor_persona import get_professor_persona
+        persona = get_professor_persona(interviewer)
+        persona_desc = persona.prompt
+        persona_name = persona.name
+        
+        # 整理對話紀錄
+        chat_text = "無對話紀錄"
+        if transcript and len(transcript) > 0:
+            chat_lines = []
+            for msg in transcript:
+                role_name = "面試官" if msg.get("role") == "professor" else "學生"
+                text = msg.get("text", "")
+                chat_lines.append(f"【{role_name}】{text}")
+            chat_text = "\n".join(chat_lines)
+
         # ★★★ 改進版提示詞 ★★★
-        prompt = f"""你是專業的面試培訓教練，正在直接對學生說話。請根據以下面試微表情分析結果，提供詳細且有建設性的評估。
+        prompt = f"""你是專業的面試培訓教練，正在直接對學生說話。
+你這次安排讓學生與扮演「{persona_name}」的 AI 面試官進行面試。
+面試官的性格設定為：{persona_desc}
 
-【重要】請使用「你」直接對學生說話，不要用第三人稱。例如：「你的表現很好」而非「學生表現很好」。
+請根據以下的「面試問答逐字稿」以及「微表情數據分析」，提供詳細、嚴格且客觀的建設性評估。
 
-【情緒數據分析】
+【重要指南】
+- 請使用「你」直接對學生說話。
+- 你的兩大評分依據為：
+  1. 口語回答內容 (佔 70%)：學生是否有針對問題給出具體、有邏輯、符合該職位/科系期待的答案？內容是否貧乏或不知所云？
+  2. 微表情與情緒 (佔 30%)：考量到壓力測試或溫和引導，學生表現出的情緒是否合宜？
+
+【面試問答逐字稿】
+{chat_text}
+
+【情緒微表情數據分析】
 - 自信程度: {confidence:.0f}%
 - 表達熱忱: {passion:.0f}%
 - 放鬆程度: {relaxed:.0f}%
 - 緊張程度: {nervous:.0f}%
 
 【評分標準】（請依此計算 overall_score）
-1. 基礎分 60 分
-2. 自信 ≥30% 加 15 分，≥50% 再加 10 分
-3. 熱忱 ≥30% 加 10 分
-4. 放鬆 ≥30% 加 5 分
-5. 緊張 ≥20% 扣 10 分，≥35% 扣 15 分
-6. 最終分數限制在 40-98 分之間
+1. 若回答內容空洞、答非所問、或幾乎為「無對話紀錄」，分數絕對不得高於 60 分。
+2. 若回答內容優秀且具體、邏輯清晰，且表現出良好的情緒控制，給予 80~98 分。
+3. 最終分數必須為一個介於 40-98 的整數。
 
 【回覆格式】
 請只回傳純 JSON（不要 Markdown 區塊），格式如下：
 {{
-  "overall_score": 計算後的整數分數,
-  "comment": "100-150字的綜合評語，用「你」直接對學生說話，需包含：(1) 你的表現優點 (2) 你需要改進之處 (3) 整體評價",
-  "suggestion": "2-3 條具體可執行的改進建議，用「你」對學生說話，用分號分隔"
+  "overall_score": 綜合上述標準給出嚴格的整數分數,
+  "comment": "150-250字的綜合評語。針對回答的內容盲點、亮點進行深刻剖析，並結合表情數據告訴他哪裡暴露了不自信或太緊張。",
+  "suggestion": "2-3 條具體可執行的改進建議，用分號分隔。例如針對內容該如何補強論點，針對情緒該如何放鬆。"
 }}"""
             
         url = "https://api.openai.com/v1/chat/completions"
@@ -338,7 +362,7 @@ def _generate_ai_feedback_sync(final_scores_float: dict) -> dict:
                 {"role": "user", "content": prompt}
             ],
             "temperature": 0.7,
-            "max_tokens": 512  # ★ 增加 token 上限
+            "max_tokens": 800  # ★ 增加 token 上限以應付更長的逐字稿與評語
         }
         
         print("🤖 呼叫 OpenAI 生成評語 (同步，在獨立線程中)...")
@@ -378,7 +402,7 @@ def _generate_ai_feedback_sync(final_scores_float: dict) -> dict:
         }
 
 
-async def analyze_video(video_path: str, save_video: bool = True, baseline: dict = None) -> dict:
+async def analyze_video(video_path: str, save_video: bool = True, baseline: dict = None, transcript: list = None, interviewer: str = "warm_industry_professor") -> dict:
     """
     非同步分析影片
     - 影片處理：在 ThreadPoolExecutor 中執行（不阻塞主線程）
@@ -399,7 +423,7 @@ async def analyze_video(video_path: str, save_video: bool = True, baseline: dict
     final_scores_float = video_result.pop("final_scores_float", {})
     
     # ★★★ 在獨立線程中呼叫 OpenAI ★★★
-    ai_feedback = await loop.run_in_executor(executor, _generate_ai_feedback_sync, final_scores_float)
+    ai_feedback = await loop.run_in_executor(executor, _generate_ai_feedback_sync, final_scores_float, transcript, interviewer)
     
     video_result["ai_analysis"] = ai_feedback
     return video_result

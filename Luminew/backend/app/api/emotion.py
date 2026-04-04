@@ -21,7 +21,9 @@ router = APIRouter()
 async def api_analyze_video(
     video: UploadFile = File(...),
     save_video: str = Form(default="true"),
-    baseline: str = Form(default="")
+    baseline: str = Form(default=""),
+    transcript: str = Form(default="[]"),
+    interviewer: str = Form(default="warm_industry_professor")
 ):
     """
     分析影片情緒
@@ -35,7 +37,10 @@ async def api_analyze_video(
     """
     # 儲存上傳的影片
     video_dir = get_video_storage_dir()
-    filename = f"{uuid.uuid4()}.mp4"
+    ext = os.path.splitext(video.filename)[1] if video.filename else ".mp4"
+    if not ext:
+        ext = ".mp4"
+    filename = f"{uuid.uuid4()}{ext}"
     video_path = os.path.join(video_dir, filename)
     
     content = await video.read()
@@ -44,7 +49,7 @@ async def api_analyze_video(
     
     print(f"📥 收到影片，已存檔至: {video_path}")
     
-    # ★ 解析 baseline（如果有的話）
+    # 解析 baseline（如果有的話）
     baseline_dict = None
     if baseline and baseline.strip():
         try:
@@ -52,10 +57,19 @@ async def api_analyze_video(
             print(f"🎯 收到個人基線: {baseline_dict}")
         except json.JSONDecodeError:
             print("⚠️ baseline JSON 解析失敗，忽略")
+
+    # 解析 transcript
+    transcript_list = []
+    if transcript and transcript.strip():
+        try:
+            transcript_list = json.loads(transcript)
+            print(f"💬 收到面試逐字稿: 共 {len(transcript_list)} 句")
+        except json.JSONDecodeError:
+            print("⚠️ transcript JSON 解析失敗，忽略")
     
-    # 分析影片（帶上 baseline）
+    # 分析影片（帶上 baseline, transcript, interviewer）
     save_flag = save_video.lower() == "true"
-    result = await analyze_video(video_path, save_flag, baseline_dict)
+    result = await analyze_video(video_path, save_flag, baseline_dict, transcript_list, interviewer)
     
     if "error" in result:
         status = 400 if "No face" in result.get("error", "") else 500

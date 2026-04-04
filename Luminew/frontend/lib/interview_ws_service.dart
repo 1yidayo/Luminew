@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:web_socket_channel/web_socket_channel.dart';
+import 'config.dart';
 
 class InterviewWsService {
   WebSocketChannel? _channel;
@@ -22,7 +23,7 @@ class InterviewWsService {
   /// 連線到後端 WebSocket
   Future<void> connect(String clientId) async {
     try {
-      final uri = Uri.parse('ws://10.0.2.2:8000/interview/ws/$clientId');
+      final uri = Uri.parse('${AppConfig.wsUrl}/interview/ws/$clientId');
       _channel = WebSocketChannel.connect(uri);
 
       // 等待連線建立

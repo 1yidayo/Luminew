@@ -1,144 +1,89 @@
 # app/api/interview.py
-# 完整 FastAPI / Flutter 面試接接端點
+# 即時語音面試 WebSocket API
 import asyncio
 import json
 import threading
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Request
-from pydantic import BaseModel
-from typing import Any, Dict
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from app.services.InterviewManager import InterviewManager
+from app.services.professor_persona import get_professor_persona
 
 router = APIRouter()
 
-# 儲存全域的面試管理員實例 (Key: session_id, Value: manager)
-interview_sessions: Dict[str, InterviewManager] = {}
+# 每個連線的 client 都有自己的 InterviewManager
+clients = {}
 
-class AnswerPayload(BaseModel):
-    answer: Any
-    session_id: str
-
-class ICEPayload(BaseModel):
-    candidate: str
-    sdpMid: str
-    sdpMLineIndex: int
-    session_id: str
-
-@router.post("/start")
-async def start_interview(request: Request):
-    """
-    Flutter 呼叫此 API，後端建立 D-ID 房間，並回傳 WebRTC Offer
-    """
-    try:
-        # 從 main.py 的 app.state 取得公開網址
-        public_url = getattr(request.app.state, "public_url", None)
-        
-        # 初始化面試官 (完全無頭模式：啟用 D-ID、關閉本機麥克風)
-        manager = InterviewManager(
-            professor_type="warm_industry_professor", 
-            use_did=True, 
-            use_microphone=False
-        )
-        manager.public_url = public_url
-        
-        print("⏳ 收到 Flutter 請求，正在申請 D-ID... ")
-        offer_info = manager.create_did_stream()
-        if "error" in offer_info:
-            return {"status": "error", "message": offer_info["error"]}
-            
-        session_id = manager.did_session_id
-        interview_sessions[session_id] = manager
-        
-        return {
-            "status": "success",
-            "session_id": session_id,
-            "offer": offer_info
-        }
-    except Exception as e:
-        return {"status": "error", "message": str(e)}
-
-@router.post("/webrtc-answer")
-async def receive_webrtc_answer(payload: AnswerPayload):
-    manager = interview_sessions.get(payload.session_id)
-    if not manager: return {"error": "Session not found"}
-    result = manager.submit_did_sdp_answer(payload.answer, payload.session_id)
-    return result
-
-@router.post("/webrtc-ice")
-async def receive_webrtc_ice(payload: ICEPayload):
-    manager = interview_sessions.get(payload.session_id)
-    if not manager: return {"error": "Session not found"}
-    result = manager.submit_did_ice_candidate(payload.candidate, payload.sdpMid, payload.sdpMLineIndex, payload.session_id)
-    return result
-
-@router.websocket("/ws/{session_id}")
-async def interview_websocket(websocket: WebSocket, session_id: str):
-    """
-    處理即時推播與音訊串流的 WebSocket 長連線
-    """
+@router.websocket("/ws/{client_id}")
+async def interview_endpoint(websocket: WebSocket, client_id: str):
     await websocket.accept()
-    manager = interview_sessions.get(session_id)
-    if not manager:
-        await websocket.close(code=1008)
-        return
-        
-    print(f"✅ Flutter 成功連線到 WebSocket 房間: {session_id}")
-    
-    event_queue = asyncio.Queue()
-    main_loop = asyncio.get_event_loop()
+    print(f"✅ Client {client_id} 已連線")
 
-    def send_event_from_thread(event_data):
-        main_loop.call_soon_threadsafe(event_queue.put_nowait, event_data)
+    persona = get_professor_persona("warm_industry_professor")
+    manager = InterviewManager(professor_type=persona.name)
+    clients[client_id] = manager
+    manager.interview_running = True
 
-    # 將事件推入佇列準備送給 Flutter
-    manager.on_transcript = lambda role, text: send_event_from_thread({
-        "type": "json", "data": {"event": "transcript", "role": role, "text": text}
-    })
-    manager.on_audio_chunk = lambda chunk_bytes: send_event_from_thread({
-        "type": "binary", "data": chunk_bytes
-    })
-    manager.on_tts_done = lambda: send_event_from_thread({
-        "type": "json", "data": {"event": "tts_done"}
-    })
+    # ★ 設定回呼：讓 InterviewManager 的事件能傳到 WebSocket (非同步呼叫)
+    async def _on_transcript(role, text):
+        await websocket.send_text(json.dumps({
+            "event": "transcript", "role": role, "text": text
+        }))
+    manager.on_transcript = _on_transcript
 
-    # 在背景啟動面試流程 (開場白)
-    threading.Thread(target=manager.start_interview, daemon=True).start()
+    async def _on_audio_chunk(chunk_bytes):
+        await websocket.send_bytes(chunk_bytes)
+    manager.on_audio_chunk = _on_audio_chunk
 
-    async def forward_events():
-        """發送任務到 Flutter"""
+    async def _on_tts_done():
+        await websocket.send_text(json.dumps({"event": "tts_done"}))
+    manager.on_tts_done = _on_tts_done
+
+    # 在背景非同步啟動面試（包含 STT + AI 打招呼）
+    async def run_interview():
         try:
-            while True:
-                event = await event_queue.get()
-                if event is None: break
-                if event["type"] == "json":
-                    await websocket.send_text(json.dumps(event["data"]))
-                elif event["type"] == "binary":
-                    await websocket.send_bytes(event["data"])
-        except asyncio.CancelledError:
-            pass
+            await manager.start_interview()
+        except Exception as e:
+            print(f"❌ 面試啟動失敗: {e}")
+            import traceback
+            traceback.print_exc()
 
-    forward_task = asyncio.create_task(forward_events())
+    asyncio.create_task(run_interview())
+
+    # 通知前端面試已開始
+    await websocket.send_text(json.dumps({
+        "event": "interview_started",
+        "professor": manager.professor_persona.name
+    }))
 
     try:
         while True:
             message = await websocket.receive()
+
             if "text" in message:
                 data = json.loads(message["text"])
-                if data.get("event") == "speech_end":
-                    # 前端告知斷句了，啟動 LLM
-                    threading.Thread(target=manager.process_speech_end, daemon=True).start()
-                elif data.get("event") == "stop_interview":
+                event = data.get("event", "")
+
+                if event == "stop_interview":
+                    manager.stop_interview()
+                    await websocket.send_text(json.dumps({
+                        "event": "interview_stopped"
+                    }))
                     break
-                    
+
+                elif event == "speech_end":
+                    # 前端告知學生說完話了，觸發 LLM 回覆
+                    asyncio.create_task(manager.process_speech_end())
+
             elif "bytes" in message:
-                # 接收 Flutter 每秒鐘傳來的一片音訊 (PCM 16-bit)
-                manager.feed_audio(message["bytes"])
-                
+                # 收到前端傳來的音訊串流，直接餵給 STT
+                manager.stt.feed_audio(message["bytes"])
+
     except WebSocketDisconnect:
-        print(f"❌ Flutter 裝置已斷線: {session_id}")
+        print(f"❌ Client {client_id} 斷線")
+    except Exception as e:
+        print(f"❌ WebSocket 錯誤: {e}")
     finally:
+        manager.interview_running = False
         manager.stop_interview()
-        event_queue.put_nowait(None)
-        forward_task.cancel()
-        if session_id in interview_sessions:
-            del interview_sessions[session_id]
-        print(f"🧹 房間 {session_id} 記憶體清理完畢。")
+        if client_id in clients:
+            del clients[client_id]
+        print(f"🧹 Client {client_id} 清理完成")

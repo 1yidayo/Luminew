@@ -3,8 +3,6 @@
 import asyncio
 import websockets
 import json
-import sounddevice as sd
-import numpy as np
 import requests
 import threading
 from queue import Queue
@@ -22,11 +20,9 @@ SAMPLE_RATE = 16000
 CHUNK_BYTES = 2000  # 每塊 2000 bytes (~1/16 秒)
 
 class YatingSTT:
-    def __init__(self, pipeline="asr-zh-en-std", use_microphone=True):
+    def __init__(self, pipeline="asr-zh-en-std"):
         self.pipeline = pipeline
-        self.use_microphone = use_microphone
         self.audio_queue = Queue()
-        self.stream = None
         self.ws_connection = None
         self.recording_enabled = False
         self.on_final_text_handler = None
@@ -49,13 +45,6 @@ class YatingSTT:
     def stop_recording(self):
         self.recording_enabled = False
         print("⏹ 已停止錄音，等待辨識結果...")
-
-    # 音訊 callback
-    def audio_callback(self, indata, frames, time, status):
-        if not self.recording_enabled:
-            return
-        pcm16 = (indata * 32767).astype(np.int16).tobytes()
-        self.audio_queue.put(pcm16)
         
     def feed_audio(self, pcm_bytes: bytes):
         """提供給 FastAPI WebSocket 呼叫，用來塞入 Flutter 傳來的手機麥克風音訊"""
@@ -71,16 +60,6 @@ class YatingSTT:
         async with websockets.connect(uri) as ws:
             self.ws_connection = ws
             print("ASR WebSocket 已連線")
-
-            # 若啟用本機麥克風才開啟 sounddevice
-            if self.use_microphone:
-                self.stream = sd.InputStream(
-                    samplerate=SAMPLE_RATE,
-                    channels=1,
-                    dtype='float32',
-                    callback=self.audio_callback
-                )
-                self.stream.start()
 
             async def sender():
                 while True:

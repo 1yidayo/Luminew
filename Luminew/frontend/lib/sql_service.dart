@@ -2,6 +2,9 @@
 import 'dart:convert';
 import 'dart:math'; // ★ 必須引入，用於生成 6 位數代碼
 import 'package:sql_conn/sql_conn.dart';
+import 'package:flutter/foundation.dart' show kIsWeb; // ★ 新增判斷是否為 Web
+import 'package:http/http.dart' as http;
+import 'config.dart';
 import 'models.dart';
 
 /// ★ 將 sql_conn 2.0 的回傳值統一轉成 JSON 字串
@@ -29,6 +32,12 @@ class SqlService {
 
   // 連線與重連機制
   static Future<void> connect({bool force = false}) async {
+    if (kIsWeb) {
+      _connected = true;
+      print("✅ Web 模式：啟動虛擬資料庫");
+      return;
+    }
+
     try {
       if (force) {
         try {
@@ -56,6 +65,21 @@ class SqlService {
   }
 
   static Future<String> _safeRead(String sql) async {
+    if (kIsWeb) {
+      // 針對 Web 模式，將 Query 重新導向至 FastAPI SQL Proxy
+      try {
+        final response = await http.post(
+          Uri.parse('${AppConfig.httpUrl}/sql/query'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({'query': sql}),
+        );
+        return response.body;
+      } catch (e) {
+        print("❌ Web SQL Query Error: $e");
+        return "[]";
+      }
+    }
+
     try {
       if (!_connected) await connect();
       var result = await SqlConn.read(_connId, sql);
@@ -69,6 +93,19 @@ class SqlService {
   }
 
   static Future<void> _safeWrite(String sql) async {
+    if (kIsWeb) {
+      try {
+        await http.post(
+          Uri.parse('${AppConfig.httpUrl}/sql/query'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({'query': sql}),
+        );
+      } catch (e) {
+         print("❌ Web SQL Write Error: $e");
+      }
+      return; 
+    }
+
     try {
       if (!_connected) await connect();
       await SqlConn.write(_connId, sql);
@@ -199,7 +236,7 @@ class SqlService {
         "REPLACE(CAST(AIComment AS NVARCHAR(4000)), CHAR(34), CHAR(39)) as AIComment, "
         "REPLACE(CAST(AISuggestion AS NVARCHAR(4000)), CHAR(34), CHAR(39)) as AISuggestion, "
         "REPLACE(CAST(TimelineData AS NVARCHAR(4000)), CHAR(34), CHAR(39)) as TimelineData, "
-        "VideoUrl, "
+        "CAST(VideoUrl AS NVARCHAR(4000)) as VideoUrl, "
         "REPLACE(CAST(Questions AS NVARCHAR(4000)), CHAR(34), CHAR(39)) as Questions, "
         "InterviewName";
 
@@ -391,8 +428,12 @@ class SqlService {
 
   // 評論與學習歷程
   static Future<List<Comment>> getComments(String recordId) async {
+    // ★ 防止 Flutter 本地產生的暫時 ID (IR開頭) 傳給 SQL 造成型別轉換錯誤
+    if (recordId.startsWith('IR')) {
+      return [];
+    }
     String sql =
-        "SELECT c.*, u.Name as SenderName FROM RecordComments c JOIN Users u ON c.SenderID = u.UserID WHERE c.RecordID = $recordId ORDER BY c.SentAt ASC";
+        "SELECT c.*, u.Name as SenderName FROM RecordComments c JOIN Users u ON c.SenderID = u.UserID WHERE c.RecordID = '$recordId' ORDER BY c.SentAt ASC";
     try {
       var res = await _safeRead(sql);
       if (res.isEmpty || res == "[]") return [];
