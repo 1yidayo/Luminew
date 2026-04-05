@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'sql_service.dart';
+import 'api_service.dart';
 import 'models.dart';
 import 'screens/auth_screen.dart';
 import 'screens/student_screens.dart';
@@ -7,7 +7,7 @@ import 'screens/teacher_screens.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  //SqlService.connect();
+  //// ApiService.connect();
   runApp(const LuminewApp());
 }
 
@@ -24,7 +24,16 @@ class _LuminewAppState extends State<LuminewApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Luminew',
-      theme: ThemeData(primarySwatch: Colors.indigo, useMaterial3: true),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFFAD9DC7),
+          primary: const Color(0xFFAD9DC7),
+          surface: Colors.white,
+          surfaceTint: Colors.transparent,
+        ),
+        scaffoldBackgroundColor: const Color(0xFFF5F3FF),
+        useMaterial3: true,
+      ),
       home: _currentUser == null
           ? AuthScreen(onAuthSuccess: (u) => setState(() => _currentUser = u))
           : _currentUser!.role == 'Teacher'

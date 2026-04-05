@@ -1,16 +1,88 @@
 # app/api/interview.py
-# 即時語音面試 WebSocket API
+# 即時語音面試 WebSocket API + D-ID REST API
 import asyncio
 import json
 import threading
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+import uuid
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Request
+from pydantic import BaseModel
+from typing import Any, Dict
 from app.services.InterviewManager import InterviewManager
 from app.services.professor_persona import get_professor_persona
 
 router = APIRouter()
 
-# 每個連線的 client 都有自己的 InterviewManager
+# 每個 WebSocket 連線的 client 都有自己的 InterviewManager
 clients = {}
+
+# D-ID REST API 工作階段
+interview_sessions = {}
+
+
+# ─────────────────────────────
+# D-ID REST API 端點
+# ─────────────────────────────
+
+class AnswerPayload(BaseModel):
+    answer: Any
+    session_id: str
+
+class ICEPayload(BaseModel):
+    candidate: str
+    sdpMid: str
+    sdpMLineIndex: int
+    session_id: str
+
+@router.post("/start")
+async def start_interview(request: Request):
+    """
+    Flutter 呼叫此 API，後端建立 D-ID 房間，並回傳 WebRTC Offer
+    """
+    try:
+        # 從 main.py 的 app.state 取得公開網址
+        public_url = getattr(request.app.state, "public_url", None)
+        
+        # 初始化面試官 (完全無頭模式：啟用 D-ID、關閉本機麥克風)
+        manager = InterviewManager(
+            professor_type="warm_industry_professor", 
+            use_did=True
+        )
+        manager.public_url = public_url
+        
+        print("⏳ 收到 Flutter 請求，正在申請 D-ID... ")
+        offer_info = manager.create_did_stream()
+        if "error" in offer_info:
+            return {"status": "error", "message": offer_info["error"]}
+            
+        session_id = str(uuid.uuid4())
+        interview_sessions[session_id] = manager
+        
+        return {
+            "status": "success",
+            "session_id": session_id,
+            "offer": offer_info
+        }
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@router.post("/webrtc-answer")
+async def receive_webrtc_answer(payload: AnswerPayload):
+    manager = interview_sessions.get(payload.session_id)
+    if not manager: return {"error": "Session not found"}
+    result = manager.submit_did_sdp_answer(payload.answer)
+    return result
+
+@router.post("/webrtc-ice")
+async def receive_webrtc_ice(payload: ICEPayload):
+    manager = interview_sessions.get(payload.session_id)
+    if not manager: return {"error": "Session not found"}
+    result = manager.submit_did_ice_candidate(payload.candidate, payload.sdpMid, payload.sdpMLineIndex)
+    return result
+
+
+# ─────────────────────────────
+# WebSocket 即時串流端點
+# ─────────────────────────────
 
 @router.websocket("/ws/{client_id}")
 async def interview_endpoint(websocket: WebSocket, client_id: str):

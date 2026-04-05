@@ -49,6 +49,7 @@ class YatingSTT:
     def feed_audio(self, pcm_bytes: bytes):
         """提供給 FastAPI WebSocket 呼叫，用來塞入 Flutter 傳來的手機麥克風音訊"""
         if self.recording_enabled:
+            print(f"📥 ASR 佇列塞入: {len(pcm_bytes)} bytes")
             self.audio_queue.put(pcm_bytes)
 
     # WebSocket 流程
@@ -57,32 +58,43 @@ class YatingSTT:
         self.token = self.get_one_time_token()
         uri = f"{ASR_WS_URL}{self.token}"
 
-        async with websockets.connect(uri) as ws:
-            self.ws_connection = ws
-            print("ASR WebSocket 已連線")
+        try:
+            print(f"🔗 正在連線 ASR WebSocket: {ASR_WS_URL}...")
+            async with websockets.connect(uri) as ws:
+                self.ws_connection = ws
+                print("✅ ASR WebSocket 已連線")
 
-            async def sender():
-                while True:
-                    chunk = await asyncio.get_event_loop().run_in_executor(None, self.audio_queue.get)
-                    await ws.send(chunk)
+                async def sender():
+                    while True:
+                        chunk = await asyncio.get_event_loop().run_in_executor(None, self.audio_queue.get)
+                        await ws.send(chunk)
 
-            asyncio.create_task(sender())
+                sender_task = asyncio.create_task(sender())
 
-            async for message in ws:
-                try:
-                    data = json.loads(message)
-                except:
-                    continue
-                pipe = data.get("pipe", {})
-                if pipe.get("asr_final") is True:
-                    final_text = pipe.get("asr_sentence", "")
-                    print("[ASR final]", final_text)
-                    threading.Thread(target=self.on_final_text_handler, args=(final_text,)).start()
+                async for message in ws:
+                    try:
+                        data = json.loads(message)
+                        pipe = data.get("pipe", {})
+                        if pipe.get("asr_final") is True:
+                            final_text = pipe.get("asr_sentence", "")
+                            print(f"🎯 [ASR 辨識成功]: {final_text}")
+                            if self.on_final_text_handler:
+                                threading.Thread(target=self.on_final_text_handler, args=(final_text,)).start()
+                    except Exception as e:
+                        print(f"📥 [ASR Receiver ERROR]: {e}")
+                        continue
+                
+                sender_task.cancel()
+        except Exception as e:
+            print(f"❌ [ASR WebSocket 錯誤]: {e}")
 
     # 後台啟動 ASR
     def start_asr_background(self, on_final_text):
         def run_asyncio():
-            asyncio.run(self.asr_stream_loop(on_final_text))
+            try:
+                asyncio.run(self.asr_stream_loop(on_final_text))
+            except Exception as e:
+                print(f"❌ [ASR 執行緒崩潰]: {e}")
         threading.Thread(target=run_asyncio, daemon=True).start()
 
 

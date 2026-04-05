@@ -2,16 +2,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../models.dart';
-import '../sql_service.dart';
+import '../api_service.dart';
 import 'common_screens.dart';
 import 'chat_screens.dart';
 import 'interview_screens.dart';
 
 // UI 常數
-const Color kPrimaryColor = Color(0xFF3F51B5);
-const Color kBackgroundColor = Color(0xFFF8F9FB);
+const Color kLuminewMainPurple = Color(0xFFAD9DC7);
+const Color kLuminewPalePurple = Color(0xFFF5F3FF);
+const Color kLuminewDeepIndigo = Color(0xFF675B83);
 const Color kCardColor = Colors.white;
-const double kRadius = 16.0;
+const double kRadius = 20.0;
 
 // 主架構
 class TeacherMainScaffold extends StatefulWidget {
@@ -46,7 +47,7 @@ class _TeacherMainScaffoldState extends State<TeacherMainScaffold> {
     ];
 
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: kLuminewPalePurple,
       appBar: _idx == 2
           ? null
           : AppBar(
@@ -60,7 +61,7 @@ class _TeacherMainScaffoldState extends State<TeacherMainScaffold> {
               centerTitle: true,
               elevation: 0,
               backgroundColor: Colors.white,
-              foregroundColor: Colors.black87,
+              foregroundColor: kLuminewDeepIndigo,
               actions: [
                 IconButton(
                   icon: const Icon(Icons.notifications_none_rounded),
@@ -80,7 +81,7 @@ class _TeacherMainScaffoldState extends State<TeacherMainScaffold> {
         onDestinationSelected: (i) => setState(() => _idx = i),
         backgroundColor: Colors.white,
         elevation: 2,
-        indicatorColor: kPrimaryColor.withOpacity(0.1),
+        indicatorColor: kLuminewMainPurple.withOpacity(0.1),
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.class_outlined),
@@ -136,7 +137,7 @@ class _TeacherClassScreenState extends State<TeacherClassScreen> {
     setState(() => _isLoading = true);
     try {
       await Future.delayed(const Duration(milliseconds: 300));
-      var data = await SqlService.getTeacherClasses(widget.user.email);
+      var data = await ApiService.getTeacherClasses(widget.user.email);
       if (mounted) setState(() => _list = data);
     } catch (e) {
       print("讀取失敗: $e");
@@ -180,8 +181,8 @@ class _TeacherClassScreenState extends State<TeacherClassScreen> {
               setState(() => _isLoading = true);
               
               try {
-                // 3. 請求資料庫建立 (這裡會呼叫 sql_service.dart 去 INSERT Classes)
-                await SqlService.createClass(c.text, widget.user.email);
+                // 3. 請求資料庫建立 (這裡會呼叫 api_service.dart 去 INSERT Classes)
+                await ApiService.createClass(c.text, widget.user.email);
 
                 // 4. ★★★ 關鍵：等待 0.5 秒讓資料庫寫入完成 ★★★
                 await Future.delayed(const Duration(milliseconds: 500));
@@ -212,7 +213,7 @@ class _TeacherClassScreenState extends State<TeacherClassScreen> {
               }
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: kPrimaryColor,
+              backgroundColor: kLuminewMainPurple,
               foregroundColor: Colors.white,
             ),
             child: const Text("建立"),
@@ -225,16 +226,16 @@ class _TeacherClassScreenState extends State<TeacherClassScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: kLuminewPalePurple,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _createClass,
         icon: const Icon(Icons.add),
         label: const Text("新增班級"),
-        backgroundColor: kPrimaryColor,
+        backgroundColor: kLuminewMainPurple,
       ),
       body: RefreshIndicator(
         onRefresh: _load,
-        color: kPrimaryColor,
+        color: kLuminewMainPurple,
         child: _isLoading && _list.isEmpty
             ? const Center(child: CircularProgressIndicator())
             : _list.isEmpty
@@ -275,12 +276,12 @@ class _TeacherClassScreenState extends State<TeacherClassScreen> {
                     leading: Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: kPrimaryColor.withOpacity(0.1),
+                        color: kLuminewMainPurple.withOpacity(0.1),
                         shape: BoxShape.circle,
                       ),
                       child: const Icon(
                         Icons.school_rounded,
-                        color: kPrimaryColor,
+                        color: kLuminewMainPurple,
                       ),
                     ),
                     title: Text(
@@ -345,7 +346,7 @@ class _TeacherClassDetailScreenState extends State<TeacherClassDetailScreen> {
   Future<void> _loadStudents() async {
     setState(() => _isLoading = true);
     try {
-      var list = await SqlService.getClassStudents(widget.cls.id);
+      var list = await ApiService.getClassStudents(widget.cls.id);
       if (mounted)
         setState(() {
           _students = list;
@@ -406,7 +407,7 @@ class _TeacherClassDetailScreenState extends State<TeacherClassDetailScreen> {
             onPressed: () async {
               Navigator.pop(ctx);
               try {
-                await SqlService.sendBulkInvitations(
+                await ApiService.sendBulkInvitations(
                   widget.user.email,
                   _selectedIds.toList(),
                   msgCtrl.text,
@@ -425,7 +426,7 @@ class _TeacherClassDetailScreenState extends State<TeacherClassDetailScreen> {
               }
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: kPrimaryColor,
+              backgroundColor: kLuminewMainPurple,
               foregroundColor: Colors.white,
             ),
             child: const Text("發送"),
@@ -440,15 +441,15 @@ class _TeacherClassDetailScreenState extends State<TeacherClassDetailScreen> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: kBackgroundColor,
+        backgroundColor: kLuminewPalePurple,
         appBar: AppBar(
           title: Text(widget.cls.name),
           elevation: 0,
           backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
+          foregroundColor: kLuminewDeepIndigo,
           bottom: const TabBar(
-            indicatorColor: kPrimaryColor,
-            labelColor: kPrimaryColor,
+            indicatorColor: kLuminewMainPurple,
+            labelColor: kLuminewDeepIndigo,
             unselectedLabelColor: Colors.grey,
             tabs: [
               Tab(text: '名單管理'),
@@ -471,7 +472,7 @@ class _TeacherClassDetailScreenState extends State<TeacherClassDetailScreen> {
                     children: [
                       const Text(
                         "班級邀請碼",
-                        style: TextStyle(color: Colors.indigo, fontSize: 12),
+                        style: TextStyle(color: kLuminewDeepIndigo, fontSize: 12),
                       ),
                       const SizedBox(height: 8),
                       InkWell(
@@ -489,7 +490,7 @@ class _TeacherClassDetailScreenState extends State<TeacherClassDetailScreen> {
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 5,
-                            color: kPrimaryColor,
+                            color: kLuminewMainPurple,
                           ),
                         ),
                       ),
@@ -507,7 +508,7 @@ class _TeacherClassDetailScreenState extends State<TeacherClassDetailScreen> {
                       Checkbox(
                         value: _isAllSelected,
                         onChanged: _students.isEmpty ? null : _toggleSelectAll,
-                        activeColor: kPrimaryColor,
+                        activeColor: kLuminewMainPurple,
                       ),
                       const Text(
                         "全選學生",
@@ -523,7 +524,7 @@ class _TeacherClassDetailScreenState extends State<TeacherClassDetailScreen> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: _selectedIds.isEmpty
                               ? Colors.grey[300]
-                              : kPrimaryColor,
+                              : kLuminewMainPurple,
                           foregroundColor: Colors.white,
                           elevation: 0,
                         ),
@@ -552,7 +553,7 @@ class _TeacherClassDetailScreenState extends State<TeacherClassDetailScreen> {
                                 leading: Checkbox(
                                   value: isChecked,
                                   onChanged: (v) => _toggleSingle(s.id),
-                                  activeColor: kPrimaryColor,
+                                  activeColor: kLuminewMainPurple,
                                 ),
                                 title: Text(s.name),
                                 subtitle: const Text("尚未進行面試"),
@@ -597,7 +598,7 @@ class _TeacherScheduleScreenState extends State<TeacherScheduleScreen> {
   Future<void> _loadSlots() async {
     setState(() => _isLoading = true);
     try {
-      final data = await SqlService.getTeacherSlots(widget.user.email);
+      final data = await ApiService.getTeacherSlots(widget.user.email);
       if (mounted) setState(() => _slots = data);
     } catch (e) {
       print(e);
@@ -629,7 +630,7 @@ class _TeacherScheduleScreenState extends State<TeacherScheduleScreen> {
       time.minute,
     );
     final end = start.add(const Duration(minutes: 30));
-    await SqlService.addInterviewSlot(widget.user.email, start, end);
+    await ApiService.addInterviewSlot(widget.user.email, start, end);
     if (mounted)
       ScaffoldMessenger.of(
         context,
@@ -638,7 +639,7 @@ class _TeacherScheduleScreenState extends State<TeacherScheduleScreen> {
   }
 
   Future<void> _deleteSlot(String id) async {
-    await SqlService.deleteSlot(id);
+    await ApiService.deleteSlot(id);
     _loadSlots();
   }
 
@@ -659,12 +660,12 @@ class _TeacherScheduleScreenState extends State<TeacherScheduleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: kLuminewPalePurple,
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _addSlotDialog,
         icon: const Icon(Icons.add),
         label: const Text("新增時段"),
-        backgroundColor: kPrimaryColor,
+        backgroundColor: kLuminewMainPurple,
       ),
       body: RefreshIndicator(
         onRefresh: _loadSlots,
@@ -698,7 +699,7 @@ class _TeacherScheduleScreenState extends State<TeacherScheduleScreen> {
                       borderRadius: BorderRadius.circular(kRadius),
                       border: Border.all(
                         color: slot.isBooked
-                            ? kPrimaryColor
+                            ? kLuminewMainPurple
                             : Colors.transparent,
                         width: 1.5,
                       ),
@@ -787,7 +788,7 @@ class TeacherNotificationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: kLuminewPalePurple,
       appBar: AppBar(
         title: const Text("邀請紀錄"),
         backgroundColor: Colors.white,
@@ -795,7 +796,7 @@ class TeacherNotificationsScreen extends StatelessWidget {
         elevation: 0,
       ),
       body: FutureBuilder<List<Invitation>>(
-        future: SqlService.getInvitations(user.id, true),
+        future: ApiService.getInvitations(user.id, true),
         builder: (ctx, snap) {
           if (!snap.hasData)
             return const Center(child: CircularProgressIndicator());

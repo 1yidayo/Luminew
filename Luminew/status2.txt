@@ -1,0 +1,310 @@
+﻿On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/.vscode/settings.json"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/README.md"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/app/public/audio/speak_1774715944666.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/app/public/audio/speak_1774716031007.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/.gitignore"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/.gitkeep"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/LuminewDB_schema.sql"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/README.md"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/api/__init__.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/api/db_routes.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/api/emotion.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/api/interview.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/api/llm.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/api/stt.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/api/tts.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/core/__init__.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/core/config.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/core/state.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/data/questions/general.json"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/data/questions/im.json"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/database/db.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/main.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/models/__init__.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775234198901.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775269593588.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775277742558.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775277872554.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775277975887.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775288419635.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775291237795.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775292480819.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775292907483.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775293503001.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775293697471.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775294657061.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775295005737.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775295223077.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775295360511.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775295811562.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775296323895.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775296799222.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775296924778.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775297310901.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775298985975.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775320232088.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775322297765.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775324433193.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775324726889.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775325063261.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775325432437.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775325749709.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775326135369.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775326661895.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775327445087.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775328070062.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775328371740.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775328463354.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775366219786.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775366268454.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775366310629.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775377489609.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775377516538.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775378432822.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775378744504.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775379792173.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775379926730.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775379951222.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775391079087.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775391294614.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775391476871.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775391509610.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/InterviewManager.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/__init__.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/_pdf_worker.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/did_avatar.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/emotion_service.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/minimax_tts.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/openai_llm.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/professor_persona.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/question_generator.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/question_loader.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/yating_stt.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/yating_tts.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/assets/images/Paul.jpg"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/assets/professor.png"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/deploy.prototxt"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/did_demo.html"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/fix_python.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/haarcascade_frontalface_default.xml"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/main.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/requirements.txt"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/res10_300x300_ssd_iter_140000_fp16.caffemodel"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_audio_device.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_did.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_interview_flow_v2.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_interviews.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_minimax.py"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_output.mp3"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_output.wav"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_tts.mp3"
+	new file:   "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_view_did.html"
+	new file:   backend/app/api/db_routes.py
+	new file:   backend/app/database/db.py
+	new file:   backend/app/public/audio/speak_1775234198901.wav
+	new file:   backend/app/public/audio/speak_1775269593588.wav
+	new file:   backend/app/public/audio/speak_1775277742558.wav
+	new file:   backend/app/public/audio/speak_1775277872554.wav
+	new file:   backend/app/public/audio/speak_1775277975887.wav
+	new file:   backend/app/public/audio/speak_1775288419635.wav
+	new file:   backend/app/public/audio/speak_1775291237795.wav
+	new file:   backend/app/public/audio/speak_1775292480819.wav
+	new file:   backend/app/public/audio/speak_1775292907483.wav
+	new file:   backend/app/public/audio/speak_1775293503001.wav
+	new file:   backend/app/public/audio/speak_1775293697471.wav
+	new file:   backend/app/public/audio/speak_1775294657061.wav
+	new file:   backend/app/public/audio/speak_1775295005737.wav
+	new file:   backend/app/public/audio/speak_1775295223077.wav
+	new file:   backend/app/public/audio/speak_1775295360511.wav
+	new file:   backend/app/public/audio/speak_1775295811562.wav
+	new file:   backend/app/public/audio/speak_1775296323895.wav
+	new file:   backend/app/public/audio/speak_1775296799222.wav
+	new file:   backend/app/public/audio/speak_1775296924778.wav
+	new file:   backend/app/public/audio/speak_1775297310901.wav
+	new file:   backend/app/public/audio/speak_1775298985975.wav
+	new file:   backend/app/public/audio/speak_1775320232088.wav
+	new file:   backend/app/public/audio/speak_1775322297765.wav
+	new file:   backend/app/public/audio/speak_1775324433193.wav
+	new file:   backend/app/public/audio/speak_1775324726889.wav
+	new file:   backend/app/public/audio/speak_1775325063261.wav
+	new file:   backend/app/public/audio/speak_1775325432437.wav
+	new file:   backend/app/public/audio/speak_1775325749709.wav
+	new file:   backend/app/public/audio/speak_1775326135369.wav
+	new file:   backend/app/public/audio/speak_1775326661895.wav
+	new file:   backend/app/public/audio/speak_1775327445087.wav
+	new file:   backend/app/public/audio/speak_1775328070062.wav
+	new file:   backend/app/public/audio/speak_1775328371740.wav
+	new file:   backend/app/public/audio/speak_1775328463354.wav
+	new file:   backend/app/public/audio/speak_1775366219786.wav
+	new file:   backend/app/public/audio/speak_1775366268454.wav
+	new file:   backend/app/public/audio/speak_1775366310629.wav
+	new file:   backend/app/public/audio/speak_1775377489609.wav
+	new file:   backend/app/public/audio/speak_1775377516538.wav
+	new file:   backend/app/public/audio/speak_1775378432822.wav
+	new file:   backend/app/public/audio/speak_1775378744504.wav
+	new file:   backend/app/public/audio/speak_1775379792173.wav
+	new file:   backend/app/public/audio/speak_1775379926730.wav
+	new file:   backend/app/public/audio/speak_1775379951222.wav
+	new file:   backend/app/public/audio/speak_1775391079087.wav
+	new file:   backend/app/public/audio/speak_1775391294614.wav
+	new file:   backend/app/public/audio/speak_1775391476871.wav
+	new file:   backend/app/public/audio/speak_1775391509610.wav
+	new file:   backend/assets/professor.png
+	new file:   backend/fix_python.py
+	modified:   backend/main.py
+	modified:   backend/requirements.txt
+	new file:   backend/static/videos/0d1c8d51-3910-4579-8f40-3ccb40a9b46a.mp4
+	new file:   backend/static/videos/43e726a7-8b33-474c-a015-2b0fd9869aa8.mp4
+	new file:   backend/static/videos/4d9b4c33-055c-4462-b37e-b32e05b77cbe.mp4
+	new file:   backend/static/videos/6bc924d4-8aa8-44ed-97aa-353168b29d81.mp4
+	new file:   backend/static/videos/7db8b397-285a-4b25-b362-510c228da016.mp4
+	new file:   backend/static/videos/af1c9fd3-8b21-4999-9197-4c94c26cc3ef.mp4
+	new file:   frontend/assets/professor.png
+	new file:   frontend/fix_dart.py
+	modified:   frontend/ios/Runner/Info.plist
+	new file:   frontend/lib/api_service.dart
+	new file:   frontend/lib/did_interview_service.dart
+	modified:   frontend/lib/main.dart
+	modified:   frontend/lib/models.dart
+	modified:   frontend/lib/screens/auth_screen.dart
+	modified:   frontend/lib/screens/chat_screens.dart
+	modified:   frontend/lib/screens/common_screens.dart
+	modified:   frontend/lib/screens/student_screens.dart
+	modified:   frontend/lib/screens/teacher_screens.dart
+	new file:   frontend/lib/test_interview_screen.dart
+	new file:   frontend/lib/widgets/did_video_widget.dart
+	modified:   frontend/linux/flutter/generated_plugin_registrant.cc
+	modified:   frontend/linux/flutter/generated_plugins.cmake
+	modified:   frontend/macos/Flutter/GeneratedPluginRegistrant.swift
+	modified:   frontend/pubspec.lock
+	modified:   frontend/pubspec.yaml
+	modified:   frontend/windows/flutter/generated_plugin_registrant.cc
+	modified:   frontend/windows/flutter/generated_plugins.cmake
+
+Unmerged paths:
+  (use "git restore --staged <file>..." to unstage)
+  (use "git add <file>..." to mark resolution)
+	both modified:   backend/app/api/emotion.py
+	both modified:   backend/app/api/interview.py
+	both modified:   backend/app/services/InterviewManager.py
+	both modified:   backend/app/services/emotion_service.py
+	both modified:   backend/app/services/yating_stt.py
+	both modified:   frontend/lib/interview_ws_service.dart
+	both modified:   frontend/lib/screens/interview_screens.dart
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/.vscode/settings.json"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/README.md"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/app/public/audio/speak_1774715944666.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/app/public/audio/speak_1774716031007.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/.gitignore"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/.gitkeep"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/LuminewDB_schema.sql"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/README.md"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/api/__init__.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/api/db_routes.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/api/interview.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/api/llm.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/api/stt.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/api/tts.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/core/__init__.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/core/config.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/core/state.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/data/questions/general.json"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/data/questions/im.json"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/database/db.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/main.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/models/__init__.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775234198901.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775269593588.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775277742558.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775277872554.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775277975887.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775288419635.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775291237795.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775292480819.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775292907483.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775293503001.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775293697471.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775294657061.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775295005737.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775295223077.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775295360511.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775295811562.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775296323895.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775296799222.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775296924778.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775297310901.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775298985975.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775320232088.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775322297765.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775324433193.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775324726889.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775325063261.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775325432437.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775325749709.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775326135369.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775326661895.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775327445087.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775328070062.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775328371740.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775328463354.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775366219786.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775366268454.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775366310629.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775377489609.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775377516538.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775378432822.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775378744504.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775379792173.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775379926730.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775379951222.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775391079087.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775391294614.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775391476871.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/public/audio/speak_1775391509610.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/__init__.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/_pdf_worker.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/did_avatar.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/minimax_tts.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/openai_llm.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/professor_persona.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/question_generator.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/question_loader.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/app/services/yating_tts.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/assets/images/Paul.jpg"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/assets/professor.png"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/deploy.prototxt"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/did_demo.html"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/fix_python.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/haarcascade_frontalface_default.xml"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/main.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/requirements.txt"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/res10_300x300_ssd_iter_140000_fp16.caffemodel"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_audio_device.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_did.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_interview_flow_v2.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_interviews.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_minimax.py"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_output.mp3"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_output.wav"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_tts.mp3"
+	deleted:    "../05.\347\263\273\347\265\261\347\211\210\346\234\254\345\202\231\344\273\275/0405/Luminew/backend/test_view_did.html"
+	modified:   frontend/linux/flutter/generated_plugin_registrant.cc
+	modified:   frontend/linux/flutter/generated_plugins.cmake
+	modified:   frontend/macos/Flutter/GeneratedPluginRegistrant.swift
+	modified:   frontend/windows/flutter/generated_plugin_registrant.cc
+	modified:   frontend/windows/flutter/generated_plugins.cmake
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	status.txt
+	status2.txt
+

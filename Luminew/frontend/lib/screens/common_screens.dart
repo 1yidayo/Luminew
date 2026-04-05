@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models.dart';
-import '../sql_service.dart';
+import '../api_service.dart';
 
 // 通知中心
 class NotificationCenter extends StatelessWidget {
@@ -15,9 +15,15 @@ class NotificationCenter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("通知中心")),
+      backgroundColor: const Color(0xFFF5F3FF),
+      appBar: AppBar(
+        title: const Text("通知中心"),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        foregroundColor: const Color(0xFF675B83),
+      ),
       body: FutureBuilder<List<Invitation>>(
-        future: SqlService.getInvitations(user.id, isTeacher),
+        future: ApiService.getInvitations(user.id, isTeacher),
         builder: (ctx, snap) {
           if (!snap.hasData) {
             return const Center(child: CircularProgressIndicator());
@@ -49,7 +55,7 @@ class NotificationCenter extends StatelessWidget {
                                 color: Colors.green,
                               ),
                               onPressed: () async {
-                                await SqlService.updateInvitation(
+                                await ApiService.updateInvitation(
                                   inv.id,
                                   'Accepted',
                                 );
@@ -59,7 +65,7 @@ class NotificationCenter extends StatelessWidget {
                             IconButton(
                               icon: const Icon(Icons.close, color: Colors.red),
                               onPressed: () async {
-                                await SqlService.updateInvitation(
+                                await ApiService.updateInvitation(
                                   inv.id,
                                   'Rejected',
                                 );
@@ -85,19 +91,32 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('設定')),
+      backgroundColor: const Color(0xFFF5F3FF),
+      appBar: AppBar(
+        title: const Text('設定'),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        foregroundColor: const Color(0xFF675B83),
+      ),
       body: ListView(
         children: [
           UserAccountsDrawerHeader(
             accountName: Text("${user.name} (${user.role})"),
             accountEmail: Text(user.email),
-            currentAccountPicture: CircleAvatar(child: Text(user.name[0])),
-            decoration: const BoxDecoration(color: Colors.indigo),
+            currentAccountPicture: CircleAvatar(
+              backgroundColor: Colors.white,
+              child: Text(user.name[0], style: const TextStyle(color: Color(0xFF675B83))),
+            ),
+            decoration: const BoxDecoration(color: Color(0xFF675B83)),
           ),
           ListTile(
             title: const Text("訂閱狀態"),
             subtitle: Text(user.subscription),
-            trailing: ElevatedButton(onPressed: () {}, child: const Text("升級")),
+            trailing: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFFAD9DC7), foregroundColor: Colors.white),
+              child: const Text("升級"),
+            ),
           ),
           const Divider(),
           ListTile(

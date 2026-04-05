@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../sql_service.dart';
+import '../api_service.dart';
 import '../models.dart';
 
 enum UserRole { student, teacher }
@@ -45,7 +45,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
       if (_isLoggingIn) {
         // 🟢 登入模式
-        AppUser? user = await SqlService.login(email, password);
+        AppUser? user = await ApiService.login(email, password);
         if (user != null) {
           widget.onAuthSuccess(user);
         } else {
@@ -61,10 +61,10 @@ class _AuthScreenState extends State<AuthScreen> {
             : 'Teacher';
 
         // 1. 寫入資料庫
-        await SqlService.registerUser(email, password, name, roleStr);
+        await ApiService.registerUser(email, password, name, roleStr);
 
         // 2. 註冊成功後，自動執行登入
-        AppUser? user = await SqlService.login(email, password);
+        AppUser? user = await ApiService.login(email, password);
         if (user != null) {
           widget.onAuthSuccess(user);
         }
@@ -82,9 +82,13 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F3FF),
       appBar: AppBar(
         title: Text(_isLoggingIn ? '登入系統' : '註冊帳號'),
         centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        foregroundColor: const Color(0xFFAD9DC7),
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -209,7 +213,7 @@ class _AuthScreenState extends State<AuthScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [BoxShadow(color: Colors.grey.shade300, blurRadius: 5)],
+        boxShadow: [BoxShadow(color: const Color(0xFFAD9DC7).withOpacity(0.1), blurRadius: 10)],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -36,8 +36,15 @@ class _ClassChatRoomState extends State<ClassChatRoom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F4F7), // 仿通訊軟體底色
-      appBar: widget.showAppBar ? AppBar(title: Text(widget.title)) : null,
+      backgroundColor: const Color(0xFFF5F3FF), // 質感淺紫底色
+      appBar: widget.showAppBar
+          ? AppBar(
+              title: Text(widget.title),
+              backgroundColor: Colors.white,
+              elevation: 0,
+              foregroundColor: const Color(0xFF675B83),
+            )
+          : null,
       body: Column(
         children: [
           Expanded(
@@ -97,7 +104,7 @@ class _ClassChatRoomState extends State<ClassChatRoom> {
                               ),
                               decoration: BoxDecoration(
                                 color: isMe
-                                    ? const Color(0xFF89D961)
+                                    ? const Color(0xFFAD9DC7)
                                     : Colors.white,
                                 borderRadius: BorderRadius.only(
                                   topLeft: const Radius.circular(18),
@@ -130,9 +137,9 @@ class _ClassChatRoomState extends State<ClassChatRoom> {
                                     ),
                                   Text(
                                     content,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontSize: 15,
-                                      color: Colors.black,
+                                      color: isMe ? Colors.white : Colors.black,
                                     ),
                                   ),
                                 ],
@@ -173,7 +180,7 @@ class _ClassChatRoomState extends State<ClassChatRoom> {
                   ),
                   const SizedBox(width: 8),
                   CircleAvatar(
-                    backgroundColor: Colors.indigo,
+                    backgroundColor: const Color(0xFFAD9DC7),
                     child: IconButton(
                       icon: const Icon(
                         Icons.send,

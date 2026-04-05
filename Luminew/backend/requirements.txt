@@ -8,6 +8,7 @@ numpy            # Required by sounddevice
 pydub            # MP3 / WAV processing
 python-dotenv    # Load .env file
 pydantic         # FastAPI data validation
+pyngrok          # Ngrok tunnel
 
 # === Emotion Analysis ===
 torch            # PyTorch deep learning

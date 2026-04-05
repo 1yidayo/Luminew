@@ -23,7 +23,9 @@ class InterviewWsService {
   /// 連線到後端 WebSocket
   Future<void> connect(String clientId) async {
     try {
-      final uri = Uri.parse('${AppConfig.wsUrl}/interview/ws/$clientId');
+      final rootUrl = ApiService.rootUrl.replaceAll('http://', '').replaceAll('https://', '');
+      final isSecure = ApiService.rootUrl.startsWith('https');
+      final uri = Uri.parse('${isSecure ? "wss" : "ws"}://$rootUrl/interview/ws/$clientId');
       _channel = WebSocketChannel.connect(uri);
 
       // 等待連線建立

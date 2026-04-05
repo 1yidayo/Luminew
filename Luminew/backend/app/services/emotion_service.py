@@ -88,7 +88,7 @@ def get_video_storage_dir():
     return VIDEO_STORAGE_DIR
 
 
-def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None) -> dict:
+def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None, public_url: str = None) -> dict:
     """同步處理影片的核心邏輯 (在獨立線程中執行)"""
     try:
         print(f"🎬 [Worker] 開始處理影片: {video_path}")
@@ -263,7 +263,7 @@ def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None
         final_scores_int = {k: int(v) for k, v in final_scores_float.items()}
         print(f"📈 結果: {final_scores_int}")
 
-        # 處理影片 URL (先回傳，AI 評語稍後處理)
+        # 處理影片 URL (使用公開網址而非 10.0.2.2)
         video_url = None
         if save_video:
             filename = os.path.basename(video_path)
@@ -356,9 +356,9 @@ def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None
             "Content-Type": "application/json"
         }
         payload = {
-            "model": "gpt-3.5-turbo",
+            "model": "gpt-4o-mini",  # ★ 升級為 4o-mini，品質更好
             "messages": [
-                {"role": "system", "content": "你是專業面試教練，擅長分析微表情並給予具體建議。請只回傳 JSON，不要使用 Markdown。"},
+                {"role": "system", "content": "你是 Luminew 專業面試專家。請直接回傳 JSON。"},
                 {"role": "user", "content": prompt}
             ],
             "temperature": 0.7,
@@ -408,12 +408,13 @@ async def analyze_video(video_path: str, save_video: bool = True, baseline: dict
     - 影片處理：在 ThreadPoolExecutor 中執行（不阻塞主線程）
     - AI 評語：也在 ThreadPoolExecutor 中執行
     - baseline：個人校準基線（可選）
+    - public_url: Ngrok 公開網址
     """
     loop = asyncio.get_event_loop()
     
     # ★★★ 使用 ThreadPoolExecutor 執行影片分析 ★★★
     video_result = await loop.run_in_executor(
-        executor, _analyze_video_sync, video_path, save_video, baseline
+        executor, _analyze_video_sync, video_path, save_video, baseline, public_url
     )
     
     if "error" in video_result:

@@ -65,7 +65,7 @@ class Student {
 }
 
 class InterviewRecord {
-  final String id;
+  String id;
   final String studentId;
   final DateTime date;
   final int durationSec;

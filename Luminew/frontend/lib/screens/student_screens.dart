@@ -4,14 +4,15 @@ import 'package:file_picker/file_picker.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../models.dart';
-import '../sql_service.dart';
+import '../api_service.dart';
 import 'common_screens.dart';
 import 'interview_screens.dart';
 import 'chat_screens.dart';
 
-const Color kPrimaryColor = Color(0xFF3F51B5);
-const Color kBackgroundColor = Color(0xFFF8F9FB);
-const double kRadius = 16.0;
+const Color kLuminewMainPurple = Color(0xFFAD9DC7);
+const Color kLuminewPalePurple = Color(0xFFF5F3FF);
+const Color kLuminewDeepIndigo = Color(0xFF675B83);
+const double kRadius = 20.0;
 
 // ==========================================
 // 1. 學生端主架構
@@ -48,13 +49,13 @@ class _StudentMainScaffoldState extends State<StudentMainScaffold> {
     ];
 
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: kLuminewPalePurple,
       appBar: _index == 1
           ? AppBar(
               title: const Text('公共交流區'),
               backgroundColor: Colors.white,
               elevation: 0,
-              foregroundColor: Colors.black,
+              foregroundColor: kLuminewDeepIndigo,
             )
           : null,
       body: screens[_index],
@@ -104,11 +105,11 @@ class InterviewHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: kLuminewPalePurple,
       appBar: AppBar(
         title: const Text('主頁', style: TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        foregroundColor: kLuminewDeepIndigo,
         elevation: 0,
         actions: [
           IconButton(
@@ -132,7 +133,7 @@ class InterviewHomePage extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
-                color: Colors.black87,
+                color: kLuminewDeepIndigo,
               ),
             ),
             const SizedBox(height: 5),
@@ -147,7 +148,7 @@ class InterviewHomePage extends StatelessWidget {
               title: '開始模擬面試 (AI)',
               icon: Icons.smart_toy,
               subtitle: '與 AI 機器人練習',
-              color: kPrimaryColor,
+              color: kLuminewMainPurple,
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -274,7 +275,7 @@ class _StudentBookingScreenState extends State<StudentBookingScreen> {
     if (_teacherEmailCtrl.text.isEmpty) return;
     setState(() => _isLoading = true);
     try {
-      var list = await SqlService.getAvailableSlots(_teacherEmailCtrl.text);
+      var list = await ApiService.getAvailableSlots(_teacherEmailCtrl.text);
       setState(() => _slots = list);
     } catch (e) {
       ScaffoldMessenger.of(
@@ -287,7 +288,7 @@ class _StudentBookingScreenState extends State<StudentBookingScreen> {
 
   Future<void> _book(String slotId) async {
     try {
-      await SqlService.bookSlot(slotId, widget.user.email);
+      await ApiService.bookSlot(slotId, widget.user.email);
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text("✅ 預約成功！")));
@@ -302,11 +303,11 @@ class _StudentBookingScreenState extends State<StudentBookingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: kLuminewPalePurple,
       appBar: AppBar(
         title: const Text("預約面試"),
         backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        foregroundColor: kLuminewDeepIndigo,
         elevation: 0,
       ),
       body: Column(
@@ -334,7 +335,7 @@ class _StudentBookingScreenState extends State<StudentBookingScreen> {
                 ElevatedButton(
                   onPressed: _search,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: kPrimaryColor,
+                    backgroundColor: kLuminewMainPurple,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(
                       horizontal: 24,
@@ -437,7 +438,7 @@ class StudentNotificationsScreen extends StatefulWidget {
 class _StudentNotificationsScreenState
     extends State<StudentNotificationsScreen> {
   Future<void> _respond(String id, String status) async {
-    await SqlService.updateInvitation(id, status);
+    await ApiService.updateInvitation(id, status);
     setState(() {});
   }
 
@@ -458,15 +459,15 @@ class _StudentNotificationsScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: kLuminewPalePurple,
       appBar: AppBar(
         title: const Text("通知中心"),
         backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        foregroundColor: kLuminewDeepIndigo,
         elevation: 0,
       ),
       body: FutureBuilder<List<Invitation>>(
-        future: SqlService.getInvitations(widget.user.id, false),
+        future: ApiService.getInvitations(widget.user.id, false),
         builder: (ctx, snap) {
           if (!snap.hasData)
             return const Center(child: CircularProgressIndicator());
@@ -497,7 +498,7 @@ class _StudentNotificationsScreenState
                         children: [
                           const Icon(
                             Icons.mail_outline_rounded,
-                            color: kPrimaryColor,
+                            color: kLuminewMainPurple,
                           ),
                           const SizedBox(width: 8),
                           Text(
@@ -530,7 +531,7 @@ class _StudentNotificationsScreenState
                             ElevatedButton(
                               onPressed: () => _respond(inv.id, 'Accepted'),
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: kPrimaryColor,
+                                backgroundColor: kLuminewMainPurple,
                                 foregroundColor: Colors.white,
                                 elevation: 0,
                               ),
@@ -592,7 +593,7 @@ class _StudentClassScreenState extends State<StudentClassScreen> {
   Future<void> _load() async {
     setState(() => _isLoading = true);
     try {
-      _classes = await SqlService.getStudentClasses(widget.user.email);
+      _classes = await ApiService.getStudentClasses(widget.user.email);
     } catch (e) {
       // ignore
     }
@@ -602,7 +603,7 @@ class _StudentClassScreenState extends State<StudentClassScreen> {
   Future<void> _join() async {
     if (_codeCtrl.text.isEmpty) return;
     try {
-      await SqlService.joinClass(_codeCtrl.text, widget.user.email);
+      await ApiService.joinClass(_codeCtrl.text, widget.user.email);
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text("成功加入")));
@@ -616,11 +617,11 @@ class _StudentClassScreenState extends State<StudentClassScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: kLuminewPalePurple,
       appBar: AppBar(
         title: const Text('我的班級'),
         backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        foregroundColor: kLuminewDeepIndigo,
         elevation: 0,
       ),
       body: Column(
@@ -648,7 +649,7 @@ class _StudentClassScreenState extends State<StudentClassScreen> {
                 ElevatedButton(
                   onPressed: _join,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: kPrimaryColor,
+                    backgroundColor: kLuminewMainPurple,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(
                       horizontal: 24,
@@ -678,7 +679,7 @@ class _StudentClassScreenState extends State<StudentClassScreen> {
                         contentPadding: const EdgeInsets.all(12),
                         leading: const Icon(
                           Icons.school,
-                          color: kPrimaryColor,
+                          color: kLuminewMainPurple,
                           size: 32,
                         ),
                         title: Text(
@@ -767,7 +768,7 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
       // 建立 multipart request
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('http://10.0.2.2:8000/emotion/analyze_portfolio'),
+        Uri.parse('${ApiService.rootUrl}/emotion/analyze_portfolio'),
       );
 
       request.files.add(http.MultipartFile.fromBytes(
@@ -813,11 +814,11 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: kLuminewPalePurple,
       appBar: AppBar(
         title: const Text('學習歷程 AI 分析'),
         backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
+        foregroundColor: kLuminewDeepIndigo,
         elevation: 0,
       ),
       body: SingleChildScrollView(
