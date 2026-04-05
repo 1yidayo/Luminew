@@ -18,6 +18,10 @@ import '../models.dart';
 import '../mock_data.dart';
 import '../sql_service.dart';
 import '../interview_ws_service.dart';
+import '../api_service.dart';
+import '../did_interview_service.dart';
+import '../config.dart';
+import '../widgets/did_video_widget.dart';
 
 
 // 全域變數：用來儲存可用的相機列表
@@ -799,33 +803,13 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
       }
     };
     _didService.onTtsDone = () {
+      // ★ 教授說完了，解除等待狀態，自動開啟麥克風收取回答
       if (mounted) {
-        _audioBuffer.addAll(chunk);
-      }
-    };
-
-    // ★ TTS 回覆結束，開始播放
-    _wsService.onTtsDone = () async {
-      if (mounted && _audioBuffer.isNotEmpty) {
-        try {
-          final dir = await getTemporaryDirectory();
-          final file = File('${dir.path}/temp_tts_${DateTime.now().millisecondsSinceEpoch}.wav');
-          await file.writeAsBytes(_audioBuffer);
-          
-          _audioBuffer.clear(); // 存完先清空，準備下一句
-          
-          // 給系統一點時間將檔案寫入硬碟
-          await Future.delayed(const Duration(milliseconds: 100));
-          
-          // 播放寫入的檔案 (AudioPlayers 較新版支援 DeviceFileSource)
-          await _audioPlayer.play(DeviceFileSource(file.path));
-        } catch (e) {
-          print('❌ TTS 播放失敗: $e');
-          _audioBuffer.clear();
+        setState(() => _isWaitingProfessor = false);
+        if (_isInterviewing) {
+          _startAudioStream();
         }
       }
-      // ★ 教授說完了，解除等待狀態
-      if (mounted) setState(() => _isWaitingProfessor = false);
     };
   }
 
@@ -952,8 +936,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
     }
 
     try {
-      // ★★★ IP 設定：請確認這裡改成您電腦的 IP ★★★
-      final apiUrl = 'http://10.0.2.2:8000/emotion/analyze';
+      final apiUrl = '${ApiService.rootUrl}/emotion/analyze';
       print("★★★ 準備上傳影片到: $apiUrl ★★★");
       print("★★★ 影片路徑: ${file.path} ★★★");
       
@@ -1003,6 +986,11 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
+
+        if (data.containsKey('error')) {
+          throw Exception(data['error']);
+        }
+
         final emotions = data['emotions'];
         final ai = data['ai_analysis'];
         final timelineList = data['timeline'] ?? [];
@@ -1508,6 +1496,12 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
         if (mounted) setState(() => _videoLoadFailed = true);
       }
     }
+  }
+
+  List<Color> _getScoreGradient(int score) {
+    if (score >= 90) return [Colors.green.shade400, Colors.teal];
+    if (score >= 61) return [Colors.orange.shade400, Colors.deepOrange];
+    return [Colors.red.shade400, Colors.redAccent];
   }
 
   void _loadComments() async {

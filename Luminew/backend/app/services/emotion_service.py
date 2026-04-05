@@ -88,7 +88,7 @@ def get_video_storage_dir():
     return VIDEO_STORAGE_DIR
 
 
-def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None, public_url: str = None) -> dict:
+def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None) -> dict:
     """同步處理影片的核心邏輯 (在獨立線程中執行)"""
     try:
         print(f"🎬 [Worker] 開始處理影片: {video_path}")
@@ -414,7 +414,7 @@ async def analyze_video(video_path: str, save_video: bool = True, baseline: dict
     
     # ★★★ 使用 ThreadPoolExecutor 執行影片分析 ★★★
     video_result = await loop.run_in_executor(
-        executor, _analyze_video_sync, video_path, save_video, baseline, public_url
+        executor, _analyze_video_sync, video_path, save_video, baseline
     )
     
     if "error" in video_result:

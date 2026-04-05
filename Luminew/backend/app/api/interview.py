@@ -89,16 +89,26 @@ async def interview_endpoint(websocket: WebSocket, client_id: str):
     await websocket.accept()
     print(f"✅ Client {client_id} 已連線")
 
-    persona = get_professor_persona("warm_industry_professor")
-    manager = InterviewManager(professor_type=persona.name)
+    # ★ 取得 D-ID 面試所建立的 manager，避免重新建立一個預設（無 D-ID）的版本
+    if client_id in interview_sessions:
+        manager = interview_sessions[client_id]
+        print(f"✅ 找到對應的 D-ID 面試 session_id: {client_id}")
+    else:
+        print(f"⚠️ 找不到對應的 D-ID 面試 session_id: {client_id}，建立預設版本...")
+        persona = get_professor_persona("warm_industry_professor")
+        manager = InterviewManager(professor_type=persona.name)
+        
     clients[client_id] = manager
     manager.interview_running = True
 
     # ★ 設定回呼：讓 InterviewManager 的事件能傳到 WebSocket (非同步呼叫)
     async def _on_transcript(role, text):
-        await websocket.send_text(json.dumps({
-            "event": "transcript", "role": role, "text": text
-        }))
+        try:
+            await websocket.send_text(json.dumps({
+                "event": "transcript", "role": role, "text": text
+            }))
+        except Exception:
+            pass
     manager.on_transcript = _on_transcript
 
     async def _on_audio_chunk(chunk_bytes):
@@ -106,7 +116,10 @@ async def interview_endpoint(websocket: WebSocket, client_id: str):
     manager.on_audio_chunk = _on_audio_chunk
 
     async def _on_tts_done():
-        await websocket.send_text(json.dumps({"event": "tts_done"}))
+        try:
+            await websocket.send_text(json.dumps({"event": "tts_done"}))
+        except Exception:
+            pass
     manager.on_tts_done = _on_tts_done
 
     # 在背景非同步啟動面試（包含 STT + AI 打招呼）

@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'config.dart';
+import 'api_service.dart';
 
 class InterviewWsService {
   WebSocketChannel? _channel;

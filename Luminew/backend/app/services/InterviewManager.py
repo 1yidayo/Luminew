@@ -64,6 +64,11 @@ class InterviewManager:
         self.on_audio_chunk = None     # async (bytes) → void
         self.on_tts_done = None        # async () → void
 
+        try:
+            self.main_loop = asyncio.get_running_loop()
+        except RuntimeError:
+            self.main_loop = None
+
     @staticmethod
     def _pcm_to_wav(pcm_data: bytes, sample_rate: int = 32000, channels: int = 1, sample_width: int = 2) -> bytes:
         data_size = len(pcm_data)
@@ -94,16 +99,16 @@ class InterviewManager:
 
     def _on_student_text_sync(self, text):
         """ASR 的文字回呼，因為跑在其它線程，我們需要用 asyncio 去呼叫 WS 回呼"""
-        if not self.interview_running:
+        if not getattr(self, "interview_running", False):
             return
         print(f"🎤 [學生]: {text}")
+        if not hasattr(self, "pending_student_texts"): return
         self.pending_student_texts.append(text)
-        if self.on_transcript:
+        if hasattr(self, "on_transcript") and self.on_transcript and getattr(self, "main_loop", None):
             try:
-                loop = asyncio.get_running_loop()
-                loop.create_task(self.on_transcript("student", text))
-            except RuntimeError:
-                pass
+                asyncio.run_coroutine_threadsafe(self.on_transcript("student", text), self.main_loop)
+            except Exception as e:
+                print(f"❌ _on_student_text_sync 錯誤: {e}")
 
     async def _play_opening_greeting(self):
         opening_instruct = (
@@ -324,6 +329,10 @@ class InterviewManager:
         }
         headers = {"accept": "application/json", "content-type": "application/json"}
         response = self.session.post(url, json=payload, headers=headers)
+        if not response.ok:
+            print(f"❌ [D-ID 說話失敗]: {response.status_code} - {response.text}")
+        else:
+            print(f"✅ [D-ID 說話成功]")
         return response.json() if response.ok else {"error": response.text}
 
     def send_did_talk_audio(self, audio_url):

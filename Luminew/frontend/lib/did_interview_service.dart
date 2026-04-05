@@ -9,6 +9,8 @@ import 'package:flutter_webrtc/flutter_webrtc.dart';
 import 'package:record/record.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:permission_handler/permission_handler.dart'; // ★ 必加
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
 class DidInterviewService {
   // 後端網址 (可以傳入 ngrok 網址，或如果是在 Android 模擬器測本地端請填 'http://10.0.2.2:8000')
@@ -24,6 +26,7 @@ class DidInterviewService {
   final AudioRecorder _audioRecorder = AudioRecorder();
   StreamSubscription<Uint8List>? _audioStreamSubscription;
   final AudioPlayer _audioPlayer = AudioPlayer(); // ★ 用來播放後端傳來的 WAV 片段
+  final List<int> _audioBuffer = []; // ★ 集中緩存音檔片段區
   
   // ============ 狀態變數 ============
   bool isRecording = false;
@@ -37,9 +40,17 @@ class DidInterviewService {
 
   DidInterviewService({required this.backendUrl});
 
-  /// 0. UI 初始化時必須立刻呼叫這隻
   Future<void> init() async {
     await localRenderer.initialize();
+    try {
+      await Helper.setSpeakerphoneOn(true); // ★ 強制將 WebRTC 的聲音改從擴音喇叭播出，避免只在聽筒
+    } catch(e) {
+      print('Speakerphone Error: $e');
+    }
+    _audioPlayer.onPlayerComplete.listen((_) {
+      print('✅ [DEBUG] 語音播放完畢，執行後續動作 (例如開啟麥克風)');
+      onTtsDone?.call();
+    });
   }
 
   /// 釋放記憶體 (離開面試頁面時呼叫)
@@ -156,15 +167,12 @@ class DidInterviewService {
               print('🎯 [DEBUG] 收到字幕: ${data['role']} - ${data['text']}');
               onTranscript?.call(data['role'] ?? '', data['text'] ?? '');
             } else if (event == 'tts_done') {
-              print('✅ [DEBUG] 教授說話完畢');
-              onTtsDone?.call();
+              print('✅ [DEBUG] 教授說話 (接收) 完畢');
+              _playBufferedAudio();
             }
           } else if (message is Uint8List) {
-            // ★ 接收到二進位音訊 (WAV)，立刻播放！
-            print('🔊 [DEBUG] 接收到音訊片段: ${message.length} bytes');
-            _audioPlayer.play(BytesSource(message)).catchError((e) {
-               print('❌ [DEBUG] AudioPlayer 播放失敗: $e');
-            });
+            // ★ 接收到二進位音訊 (WAV片段)，先存進 buffer 避免直接播放導致解析失敗！
+            _audioBuffer.addAll(message);
           }
         },
         onError: (e) {
@@ -178,6 +186,27 @@ class DidInterviewService {
     } catch (e) {
       print('❌ 面試初始化失敗: $e');
       onError?.call(e.toString());
+    }
+  }
+
+  Future<void> _playBufferedAudio() async {
+    if (_audioBuffer.isEmpty) {
+      onTtsDone?.call(); // 保底呼叫
+      return;
+    }
+    try {
+      final dir = await getTemporaryDirectory();
+      final file = File('${dir.path}/temp_tts_${DateTime.now().millisecondsSinceEpoch}.wav');
+      await file.writeAsBytes(_audioBuffer);
+      _audioBuffer.clear(); // 存完先清空，準備下一句
+      
+      await Future.delayed(const Duration(milliseconds: 100)); // 緩解 IO
+      print('🔊 [DEBUG] 正在播放合成語音檔: ${file.path}');
+      await _audioPlayer.play(DeviceFileSource(file.path));
+    } catch (e) {
+      print('❌ TTS 播放失敗: $e');
+      _audioBuffer.clear();
+      onTtsDone?.call(); // 若播放失敗，還是得繼續流程
     }
   }
 
