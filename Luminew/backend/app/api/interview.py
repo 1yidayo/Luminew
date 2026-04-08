@@ -17,6 +17,10 @@ clients = {}
 
 # D-ID REST API 工作階段
 interview_sessions = {}
+# ★ D-ID Stream ID 到內部 Session ID 的映射，用於 Webhook 尋人
+stream_to_session = {}
+# ★ 新增：暫存 D-ID 透過 Webhook 送來的 ICE Candidates (WebSocket 尚未連線時使用)
+pending_ice_candidates = {}  # session_id → [ice_data, ...]
 
 
 # ─────────────────────────────
@@ -50,12 +54,16 @@ async def start_interview(request: Request):
         manager.public_url = public_url
         
         print("⏳ 收到 Flutter 請求，正在申請 D-ID... ")
-        offer_info = manager.create_did_stream()
+        offer_info = await asyncio.to_thread(manager.create_did_stream)
         if "error" in offer_info:
             return {"status": "error", "message": offer_info["error"]}
             
         session_id = str(uuid.uuid4())
         interview_sessions[session_id] = manager
+        
+        # ★ 註冊映射，讓 Webhook 知道 D-ID 提到的是哪個面試
+        if manager.did_stream_id:
+            stream_to_session[manager.did_stream_id] = session_id
         
         return {
             "status": "success",
@@ -69,15 +77,68 @@ async def start_interview(request: Request):
 async def receive_webrtc_answer(payload: AnswerPayload):
     manager = interview_sessions.get(payload.session_id)
     if not manager: return {"error": "Session not found"}
-    result = manager.submit_did_sdp_answer(payload.answer)
+    result = await manager.submit_did_sdp_answer(payload.answer)
     return result
 
 @router.post("/webrtc-ice")
 async def receive_webrtc_ice(payload: ICEPayload):
     manager = interview_sessions.get(payload.session_id)
     if not manager: return {"error": "Session not found"}
-    result = manager.submit_did_ice_candidate(payload.candidate, payload.sdpMid, payload.sdpMLineIndex)
+    result = await manager.submit_did_ice_candidate(payload.candidate, payload.sdpMid, payload.sdpMLineIndex)
     return result
+
+@router.post("/did-webhook")
+async def did_webhook(request: Request):
+    """
+    接收來自 D-ID 的 Webhook 通知 (包含 ICE 候選人)
+    """
+    try:
+        data = await request.json()
+        print(f"🔔 [D-ID Webhook] 收到事件: {json.dumps(data)}")
+        
+        # D-ID 的事件結構通常包含 stream_id 
+        stream_id = data.get("stream_id") or data.get("id")
+        if not stream_id:
+            return {"status": "ignored"}
+
+        # 找到對應的面試 Session
+        session_id = stream_to_session.get(stream_id)
+        if not session_id:
+            print(f"⚠️ Webhook 找不到對應的 Session: stream_id={stream_id}")
+            return {"status": "not_found"}
+
+        event_kind = data.get("kind", "")
+        print(f"🔔 [D-ID Webhook] session={session_id}, kind={event_kind}")
+        print(f"📡 [DEBUG Webhook] Payload: {json.dumps(data)}")
+        
+        if event_kind == "ice":
+            ice = data.get("ice", {})
+            
+            if session_id in clients:
+                # ✅ WebSocket 已連線，直接轉發
+                manager = clients[session_id]
+                print(f"📡 [D-ID ICE] 直接轉發給前端 (WebSocket 已連線): {session_id}")
+                if hasattr(manager, "on_did_ice") and manager.on_did_ice:
+                    await manager.on_did_ice(ice)
+            else:
+                # ⏳ WebSocket 尚未連線，先緩存 ICE Candidate
+                if session_id not in pending_ice_candidates:
+                    pending_ice_candidates[session_id] = []
+                pending_ice_candidates[session_id].append(ice)
+                print(f"📦 [D-ID ICE] 緩存 ICE Candidate (WebSocket 尚未連線), 累計 {len(pending_ice_candidates[session_id])} 個")
+        
+        elif event_kind == "talk/completed":
+            print(f"✅ [D-ID Webhook] 偵測到教授說話完畢 (talk/completed): {session_id}")
+            if session_id in clients:
+                manager = clients[session_id]
+                # 觸發 manager 的說話完畢事件
+                if hasattr(manager, "handle_did_talk_completed"):
+                    await manager.handle_did_talk_completed()
+
+        return {"status": "ok"}
+    except Exception as e:
+        print(f"❌ Webhook 處理失敗: {e}")
+        return {"status": "error"}
 
 
 # ─────────────────────────────
@@ -101,6 +162,27 @@ async def interview_endpoint(websocket: WebSocket, client_id: str):
     clients[client_id] = manager
     manager.interview_running = True
 
+    # ★ 補送 WebSocket 連線前已緩存的 D-ID ICE Candidates
+    if client_id in pending_ice_candidates:
+        buffered = pending_ice_candidates.pop(client_id)
+        print(f"📬 [ICE 補送] 找到 {len(buffered)} 個緩存的 D-ID ICE Candidates，即將補送...")
+        async def _flush_pending_ice():
+            for ice in buffered:
+                await asyncio.sleep(0.1)  # 小延遲避免前端還沒準備好
+                try:
+                    await websocket.send_text(json.dumps({
+                        "event": "did_ice",
+                        "candidate": ice.get("candidate"),
+                        "sdpMid": ice.get("sdpMid"),
+                        "sdpMLineIndex": ice.get("sdpMLineIndex")
+                    }))
+                    print(f"📬 [ICE 補送] 已送出 ICE 給前端: {str(ice)[:60]}...")
+                except Exception as e:
+                    print(f"❌ [ICE 補送] 送出失敗: {e}")
+        asyncio.create_task(_flush_pending_ice())
+    else:
+        print(f"ℹ️ [ICE 補送] 無緩存 ICE (session_id={client_id})")
+
     # ★ 設定回呼：讓 InterviewManager 的事件能傳到 WebSocket (非同步呼叫)
     async def _on_transcript(role, text):
         try:
@@ -115,12 +197,32 @@ async def interview_endpoint(websocket: WebSocket, client_id: str):
         await websocket.send_bytes(chunk_bytes)
     manager.on_audio_chunk = _on_audio_chunk
 
+    async def _on_did_ice(ice_data):
+        """轉發 D-ID 端的 ICE Candidate 到前端"""
+        try:
+            await websocket.send_text(json.dumps({
+                "event": "did_ice",
+                "candidate": ice_data.get("candidate"),
+                "sdpMid": ice_data.get("sdpMid"),
+                "sdpMLineIndex": ice_data.get("sdpMLineIndex")
+            }))
+        except Exception:
+            pass
+    manager.on_did_ice = _on_did_ice
+
     async def _on_tts_done():
         try:
             await websocket.send_text(json.dumps({"event": "tts_done"}))
         except Exception:
             pass
     manager.on_tts_done = _on_tts_done
+
+    async def _on_tts_start():
+        try:
+            await websocket.send_text(json.dumps({"event": "tts_start"}))
+        except Exception:
+            pass
+    manager.on_tts_start = _on_tts_start
 
     # 在背景非同步啟動面試（包含 STT + AI 打招呼）
     async def run_interview():

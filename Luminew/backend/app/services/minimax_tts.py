@@ -103,6 +103,19 @@ class MinimaxTTSWS:
         finally:
             on_chunk(None)
 
+    async def generate_audio_bytes(self, text: str, voice_id: str = None, speed: float = 1.0) -> bytes:
+        """
+        將文字轉為語音，但不進行串流播放，而是收集所有字節後一次回傳。
+        這對於需要將音訊存成檔案傳給 D-ID 的場景非常有用。
+        """
+        all_bytes = bytearray()
+        def collect_chunk(chunk):
+            if chunk:
+                all_bytes.extend(chunk)
+        
+        await self.stream_text(text, voice_id=voice_id, speed=speed, on_chunk=collect_chunk)
+        return bytes(all_bytes)
+
 if __name__ == "__main__":
     async def test():
         tts = MinimaxTTSWS()

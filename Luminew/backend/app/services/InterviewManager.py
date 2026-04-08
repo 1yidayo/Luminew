@@ -26,6 +26,7 @@ class InterviewManager:
         self.professor_persona = get_professor_persona(professor_type)
         self.department = department
         self.use_did = use_did
+        self.mode = "did" if use_did else "minimax"
 
         # 取得隨機題庫
         selected_questions = get_random_questions(department=self.department)
@@ -58,11 +59,18 @@ class InterviewManager:
         # D-ID 專用的狀態變數
         self.did_stream_id = None    # 用來記住 D-ID 的會議室代碼
         self.did_session_id = None   # 用來記住通話的 Session
+        self.on_send_audio = None
+        self.on_did_ice = None
+        
+        # ★ 用於追蹤 D-ID 說話狀態
+        self._did_talk_event = asyncio.Event()
+        self._is_professor_speaking = False
 
         # WebSocket 事件回呼 (都是 async function)
         self.on_transcript = None      # async (role, text) → void
         self.on_audio_chunk = None     # async (bytes) → void
         self.on_tts_done = None        # async () → void
+        self.on_tts_start = None       # async () → void
 
         try:
             self.main_loop = asyncio.get_running_loop()
@@ -130,20 +138,88 @@ class InterviewManager:
             await self.on_transcript("professor", greeting)
 
         await self._async_play_tts(greeting)
-
-        print("🟢 [等待語音] 請前端發送學生音訊...")
+        
+        # ★ 延遲收音轉向，給 D-ID 一點時間穩定
+        print("🟢 [等待語音] 正在緩衝 (3秒)...")
+        await asyncio.sleep(3.0)
         self.stt.start_recording()
 
-    async def _async_play_tts(self, text):
-        tts_text = text.replace("調整", "條整").replace("挑戰", "窕戰")
+    async def handle_did_talk_completed(self):
+        """由 Webhook 觸發：通知 D-ID 說話已完成"""
+        self._did_talk_event.set()
+        self._is_professor_speaking = False
+
+    async def _async_play_tts(self, tts_text, tts_audio=None):
+        # ★ 新增：如果是第一次播放，稍微多等一下
+        if not getattr(self, "_first_tts_done", False):
+            print("⏳ [D-ID] 第一次播放，額外等待 2 秒確保連線穩定...")
+            await asyncio.sleep(2.0)
+            self._first_tts_done = True
+
+        tts_text = tts_text.replace("調整", "條整").replace("挑戰", "窕戰")
         print(f"🔊 [TTS 準備播放] 文字長度: {len(tts_text)}")
 
         if getattr(self, "use_did", False) and self.did_stream_id:
-            await asyncio.to_thread(self.send_did_talk, text)
-            await asyncio.sleep(max(3, len(text) * 0.3))
-            if self.on_tts_done:
-                await self.on_tts_done()
-            return
+            # 1. 將 Minimax 生成的音訊存成檔案
+            print(f"🔊 [D-ID] 正在生成高品質 Minimax 音訊檔案...")
+            pcm_bytes = await self.tts.generate_audio_bytes(tts_text, voice_id=self.professor_persona.voice_id)
+            if pcm_bytes:
+                wav_data = self._pcm_to_wav(pcm_bytes, sample_rate=32000)
+                
+                # ★★★ 終極修復：不論是否為 D-ID 模式，都向前端推送一份原始音訊 ★★★
+                # 這是針對 Sony/Android WebRTC 硬體放音失敗的「降級備案」
+                if self.on_audio_chunk:
+                    await self.on_audio_chunk(wav_data)
+
+                filename = f"speak_{int(time.time()*1000)}.wav"
+                filepath = os.path.join("app", "public", "audio", filename)
+                os.makedirs(os.path.dirname(filepath), exist_ok=True)
+                with open(filepath, "wb") as f:
+                    f.write(wav_data)
+                
+                # 2. 取得公開網址並傳給 D-ID
+                public_url = getattr(self, "public_url", None)
+                if public_url:
+                    # ★ 淨化網址：移除末尾斜槓，避免產生 //audio/
+                    base_url = public_url.rstrip("/")
+                    audio_url = f"{base_url}/audio/{filename}"
+                    print(f"🔗 [D-ID] 送出音訊 URL: {audio_url}")
+                    
+                    # ★ 立即通知前端可以開始放音 (備援路徑)
+                    if self.on_tts_start:
+                        await self.on_tts_start()
+                    
+                    # 直接指揮 D-ID 使用高品質音訊，不再進行會導致超時的自我檢測
+                    await asyncio.to_thread(self.send_did_talk_audio, audio_url)
+                else:
+                    # 退而求其次使用文字
+                    print("⚠️ 找不到 public_url，改用文字模式 (D-ID 預設語音)")
+                    await asyncio.to_thread(self.send_did_talk, tts_text)
+            
+                # [D-ID 串流模式] 狀態管理
+                self._did_talk_event.clear()
+                self._is_professor_speaking = True
+                # 已統一使用 send_did_talk_audio 在上方由 tts_text 或音訊觸發
+                pass
+                
+                # 使用 Event 等待 Webhook 通知，若超過預估時間則強制釋放
+                # (中文字 0.3~0.4s/字，英文稍快，但 D-ID 還有緩存延遲)
+                char_count = len(tts_text)
+                estimated_duration = max(4.0, char_count * 0.4) + 2.0 # 基底 4s + 0.4s/字 + 2s 緩衝
+                
+                print(f"⏳ [D-ID] 等待教授說話中 (Webhook 監聽中，預估 {estimated_duration:.1f} 秒)...")
+                
+                try:
+                    # 優先等待 Webhook 通知 (talk/completed)
+                    await asyncio.wait_for(self._did_talk_event.wait(), timeout=estimated_duration)
+                    print(f"✅ [D-ID] 精準接收 Webhook (talk/completed)，說話完畢")
+                except asyncio.TimeoutError:
+                    print(f"⚠️ [D-ID] Webhook 超時 ({estimated_duration}s)，強制送出 tts_done")
+                
+                self._is_professor_speaking = False
+                if self.on_tts_done:
+                    await self.on_tts_done()
+                return
 
         def on_chunk_sync(chunk_bytes):
             if chunk_bytes is not None and self.on_audio_chunk:
@@ -218,6 +294,26 @@ class InterviewManager:
     # ─────────────────────────────
     # D-ID 相關方法
     # ─────────────────────────────
+    def _is_url_reachable(self, url):
+        """檢查外部 URL 是否可被下載 (增加超時容忍度至 10.0s)"""
+        try:
+            # 透過 HEAD 請求快速檢查 200 OK
+            res = requests.head(url, timeout=10.0)
+            if res.status_code == 200:
+                return True
+            else:
+                print(f"📡 [偵測] 網址連通但狀態碼非 200: {res.status_code}")
+                return False
+        except Exception as e:
+            print(f"📡 [偵測] 網址檢測失敗: {e}")
+            return False
+
+    def _update_did_cookies(self, sid):
+        """同步 D-ID 的 AWSALB Cookie，維持 Session 持續性"""
+        if not sid: return
+        self.session.cookies.set("AWSALB", sid, domain="api.d-id.com")
+        self.session.cookies.set("AWSALBCORS", sid, domain="api.d-id.com")
+        print(f"🍪 [DEBUG] 已同步 D-ID Cookies: {self.session.cookies.get_dict()}")
 
     def create_did_stream(self):
         print("正在向 D-ID 申請開啟視訊會議室...")
@@ -231,6 +327,30 @@ class InterviewManager:
             # 改用你們的教授照片
             "source_url": "https://raw.githubusercontent.com/1yidayo/Luminew/refs/heads/main/Luminew/backend/assets/images/Paul.jpg"
         }
+        
+        # ★ 自動偵測 ngrok 網址 (如果沒有手動設定)
+        if not getattr(self, "public_url", None):
+            try:
+                import requests
+                # ngrok 預設會在本地 4040 埠開放 API 查詢其公網網址
+                ngrok_res = requests.get("http://127.0.0.1:4040/api/tunnels", timeout=1)
+                if ngrok_res.ok:
+                    tunnels = ngrok_res.json().get("tunnels", [])
+                    for t in tunnels:
+                        if t.get("proto") == "https":
+                            self.public_url = t.get("public_url")
+                            print(f"📡 [DEBUG] 自動偵測到 ngrok 網址: {self.public_url}")
+                            break
+            except Exception:
+                pass
+
+        # ★ 如果有提供公開網址，就請求 D-ID 使用 Webhook 回傳連線資訊
+        public_url = getattr(self, "public_url", None)
+        if public_url:
+            payload["webhook"] = f"{public_url}/interview/did-webhook"
+            print(f"🔗 [D-ID] 已設定 Webhook 回傳地址 (請確認 ngrok 正常): {payload['webhook']}")
+        else:
+            print("⚠️ [D-ID] 警告：找不到 public_url，D-ID 將無法回傳路徑 (ICE)，連線可能卡住")
 
         headers = {
             "accept": "application/json",
@@ -247,18 +367,10 @@ class InterviewManager:
                 self.did_stream_id = data.get("id")
                 self.did_session_id = data.get("session_id", "")
 
-                # ★ 最終修復：使用 Cookie Jar 處理 AWSALB，避免手動更新 Header 造成衝突
-                if "AWSALB" in self.did_session_id:
-                    print("🍪 偵測到 Cookie 型 SessionID，正在同步到 Cookie Jar...")
-                    for part in self.did_session_id.split(';'):
-                        part = part.strip()
-                        if '=' in part:
-                            k, v = part.split('=', 1)
-                            # 只存關鍵 Token
-                            if k.upper() in ["AWSALB", "AWSALBCORS"]:
-                                self.session.cookies.set(k, v, domain="api.d-id.com")
+                # ★ 強制提取並同步最初的 AWSALB Cookie
+                self._update_did_cookies(self.did_session_id)
 
-                print(f"✅ D-ID 會議室建立成功！StreamID: {self.did_stream_id}, SessionID: {self.did_session_id}")
+                print(f"✅ [D-ID] 串流已建立: {self.did_stream_id}")
                 return data
             else:
                 print(f"❌ D-ID 建立失敗 ({response.status_code}): {response.text}")
@@ -267,13 +379,13 @@ class InterviewManager:
         except Exception as e:
             return {"error": str(e)}
 
-    def submit_did_sdp_answer(self, answer, session_id=None):
+    async def submit_did_sdp_answer(self, answer, session_id=None):
         """將前端產生的 WebRTC Answer 交回給 D-ID"""
         target_sid = session_id or self.did_session_id
 
-        # ★ 嘗試：先稍微等待 D-ID 後台準備好，避免 500 Stream Error
-        print("⏳ 等待 D-ID 後台準備 (3秒)...")
-        time.sleep(3)
+        # ★ 修正：不再死等 2 秒，避免 D-ID 端判定超時或狀態不對
+        # print("⏳ 等待 D-ID 後台準備 (2.0秒)...")
+        # await asyncio.sleep(2.0)
 
         url = f"https://api.d-id.com/talks/streams/{self.did_stream_id}/sdp"
 
@@ -283,17 +395,27 @@ class InterviewManager:
             "session_id": target_sid
         }
 
+        # 打印 Answer SDP 與 Cookies 給 AI 診斷
+        print(f"📡 [DEBUG] 正在提交 Answer SDP...")
+        print(f"🍪 [DEBUG] 目前 Session Cookies: {self.session.cookies.get_dict()}")
+
         headers = {"accept": "application/json", "content-type": "application/json"}
-        response = self.session.post(url, json=payload, headers=headers)
+        response = await asyncio.to_thread(self.session.post, url, json=payload, headers=headers)
 
         if not response.ok:
             print(f"❌ [D-ID] SDP Answer 提交失敗 ({response.status_code}): {response.text}")
-            print(f"📡 [DEBUG] 提交的 Payload: {json.dumps(payload)[:200]}...")
+            # ★ 重要：印出完整 SDP 以便診斷 M-line 拒絕問題
+            full_sdp = payload.get("answer", {}).get("sdp", "")
+            print(f"📡 [FULL SDP DEBUG]:\n{full_sdp}")
         else:
-            print(f"✅ [D-ID] SDP Answer 提交成功: {response.text}")
+            print(f"✅ [D-ID] SDP Answer 提交成功! 回應: {response.text}")
+            # ★ 每次請求後更新 Cookie，維持 Session 持續性
+            res_data = response.json()
+            if res_data.get("session_id"):
+                self._update_did_cookies(res_data["session_id"])
         return response.json() if response.ok else {"error": response.text}
 
-    def submit_did_ice_candidate(self, candidate, sdpMid, sdpMLineIndex, session_id=None):
+    async def submit_did_ice_candidate(self, candidate, sdpMid, sdpMLineIndex, session_id=None):
         """將前端產生的 ICE Candidate 交回給 D-ID"""
         target_sid = session_id or self.did_session_id
         url = f"https://api.d-id.com/talks/streams/{self.did_stream_id}/ice"
@@ -305,12 +427,16 @@ class InterviewManager:
         }
 
         headers = {"accept": "application/json", "content-type": "application/json"}
-        # ★ 送出請求，self.session 會自動帶上我們剛剛設定的 AWSALB Cookies
-        response = self.session.post(url, json=payload, headers=headers)
+        # ★ 送出請求，使用 asyncio.to_thread 避免 Requests 擋住 Event Loop
+        response = await asyncio.to_thread(self.session.post, url, json=payload, headers=headers)
         if not response.ok:
             print(f"❌ [D-ID] ICE 提交失敗 ({response.status_code}): {response.text}")
         else:
-            print(f"✅ [D-ID] ICE 提交成功")
+            print(f"✅ [D-ID] ICE 提交成功! 回應: {response.text}")
+            # ★ ICE 提交後也可能更新 Cookie
+            res_data = response.json()
+            if res_data.get("session_id"):
+                self._update_did_cookies(res_data["session_id"])
         return response.json() if response.ok else {"error": response.text}
 
     def send_did_talk(self, text):
@@ -348,4 +474,13 @@ class InterviewManager:
         }
         headers = {"accept": "application/json", "content-type": "application/json"}
         response = self.session.post(url, json=payload, headers=headers)
+        if response.ok:
+            print(f"✅ [D-ID 音訊說話成功] 狀態碼: {response.status_code}")
+        else:
+            print(f"❌ [D-ID 音訊說話失敗] 狀態碼: {response.status_code}, 回應: {response.text}")
         return response.json() if response.ok else {"error": response.text}
+
+    async def handle_did_talk_completed(self):
+        """當 D-ID Webhook 通知說話完畢時觸發"""
+        print(f"🎬 [D-ID] 收到 talk/completed，解鎖等待事件")
+        self._did_talk_event.set()
