@@ -37,8 +37,11 @@ class ICEPayload(BaseModel):
     sdpMLineIndex: int
     session_id: str
 
+class StartInterviewPayload(BaseModel):
+    professor_type: str = "warm_industry_professor"
+
 @router.post("/start")
-async def start_interview(request: Request):
+async def start_interview(payload: StartInterviewPayload, request: Request):
     """
     Flutter 呼叫此 API，後端建立 D-ID 房間，並回傳 WebRTC Offer
     """
@@ -46,9 +49,12 @@ async def start_interview(request: Request):
         # 從 main.py 的 app.state 取得公開網址
         public_url = getattr(request.app.state, "public_url", None)
         
+        professor_type = payload.professor_type
+        print(f"[INIT] 正在啟動面試官: {professor_type}")
+
         # 初始化面試官 (完全無頭模式：啟用 D-ID、關閉本機麥克風)
         manager = InterviewManager(
-            professor_type="warm_industry_professor", 
+            professor_type=professor_type, 
             use_did=True
         )
         manager.public_url = public_url

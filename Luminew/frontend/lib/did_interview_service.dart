@@ -62,12 +62,15 @@ class DidInterviewService {
     await _audioPlayer.dispose();
   }
 
-  Future<void> startInterview() async {
+  Future<void> startInterview(String professorType) async {
     try {
-      print('🚀 [DEBUG] 正在呼叫後端 /start API...');
-      final startRes = await http
-          .post(Uri.parse('$backendUrl/api/interview/start'))
-          .timeout(const Duration(seconds: 30));
+      print('🚀 [DEBUG] 正在呼叫後端 /start API (教授: $professorType)...');
+      final startRes = await http.post(
+        Uri.parse('$backendUrl/api/interview/start'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'professor_type': professorType}),
+      ).timeout(const Duration(seconds: 30));
+      
       final startData = jsonDecode(startRes.body);
       if (startData['status'] == 'error') throw Exception(startData['message']);
 

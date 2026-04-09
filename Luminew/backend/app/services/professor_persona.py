@@ -16,7 +16,7 @@ PROFESSOR_PERSONAS = {
 
     "warm_industry_professor": ProfessorPersona(
         name="warm_industry_professor",
-        voice_id="Chinese (Mandarin)_Male_Announcer",  # 已確認可用的音色
+        voice_id="Chinese (Mandarin)_Sincere_Adult",  # 已確認可用的音色
         min_words=150,
         max_words=220,
         speed=1.25, # 說話稍微放慢，但在 1.25 基準下顯得穩重
@@ -115,7 +115,7 @@ PROFESSOR_PERSONAS = {
 
     "young_global_professor": ProfessorPersona(
         name="young_global_professor",
-        voice_id="Chinese (Mandarin)_Male_Announcer", # 暫時先用同一個音色避免報錯
+        voice_id="Chinese (Mandarin)_Kind-hearted_Antie", # 暫時先用同一個音色避免報錯
         min_words=150,
         max_words=250,
         speed=1.35, # 說話略帶活力、輕快

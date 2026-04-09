@@ -26,6 +26,7 @@ load_dotenv()
 # ---------------------------
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 MODEL_PATH = os.path.join(PROJECT_DIR, "models", "test_best_.pth")
+VIDEO_STORAGE_DIR = os.path.join(PROJECT_DIR, "static", "videos")
 os.makedirs(VIDEO_STORAGE_DIR, exist_ok=True)
 
 # [FIX] 背景處理執行緒池

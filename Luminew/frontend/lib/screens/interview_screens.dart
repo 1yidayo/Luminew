@@ -26,17 +26,21 @@ Widget _buildPremiumCard({
   required String title,
   required IconData icon,
   required Widget child,
-  Color? titleColor,
+  bool isError = false,
+  GlobalKey? key,
 }) {
+  final accentColor = isError ? Colors.redAccent : kLuminewMainPurple;
   return Container(
+    key: key,
     width: double.infinity,
     padding: const EdgeInsets.all(20),
     decoration: BoxDecoration(
       color: kLuminewSurface,
       borderRadius: BorderRadius.circular(kLuminewRadius),
+      border: isError ? Border.all(color: Colors.redAccent, width: 2) : null,
       boxShadow: [
         BoxShadow(
-          color: kLuminewMainPurple.withOpacity(0.05),
+          color: accentColor.withOpacity(0.05),
           blurRadius: 20,
           spreadRadius: 2,
           offset: const Offset(0, 4),
@@ -48,12 +52,12 @@ Widget _buildPremiumCard({
       children: [
         Row(
           children: [
-            Icon(icon, color: kLuminewMainPurple, size: 20),
+            Icon(icon, color: accentColor, size: 20),
             const SizedBox(width: 8),
             Text(
               title,
               style: TextStyle(
-                color: titleColor ?? kLuminewDeepIndigo,
+                color: isError ? Colors.redAccent : kLuminewDeepIndigo,
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),
@@ -305,6 +309,11 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
   // ★ 新增：面試名稱（必填）
   final TextEditingController _nameController = TextEditingController();
   String? _nameError;
+  bool _pdfError = false; // ★ 檔案未填錯誤狀態
+
+  final ScrollController _setupScrollController = ScrollController();
+  final GlobalKey _nameCardKey = GlobalKey();
+  final GlobalKey _pdfCardKey = GlobalKey();
 
   // 檔案上傳相關
   File? _selectedFile;
@@ -323,8 +332,17 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
     // 預設展開校準數據？
   }
 
+  void _scrollTo(GlobalKey key) {
+    Scrollable.ensureVisible(
+      key.currentContext!,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
+
   @override
   void dispose() {
+    _setupScrollController.dispose();
     _nameController.dispose();
     super.dispose();
   }
@@ -402,6 +420,7 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
       setState(() {
         _selectedFile = File(result.files.single.path!);
         _selectedFileName = result.files.single.name;
+        _pdfError = false; // ★ 檔案選好了，清除紅字提示
         _generatedQuestions = []; // 清除舊問題
       });
 
@@ -479,14 +498,17 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
         iconTheme: const IconThemeData(color: kLuminewDeepIndigo),
       ),
       body: SingleChildScrollView(
+        controller: _setupScrollController,
         padding: const EdgeInsets.all(24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // ★ 名稱與類型設定
             _buildPremiumCard(
+              key: _nameCardKey,
               title: "面試基本資訊",
               icon: Icons.edit_note,
+              isError: _nameError != null,
               child: Column(
                 children: [
                   TextField(
@@ -495,9 +517,10 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
                       hintText: "面試名稱",
                       hintStyle: TextStyle(color: Colors.grey.withOpacity(0.7)),
                       errorText: _nameError,
-                      prefixIcon: const Icon(
+                      errorStyle: const TextStyle(color: Colors.redAccent),
+                      prefixIcon: Icon(
                         Icons.title,
-                        color: kLuminewMainPurple,
+                        color: _nameError != null ? Colors.redAccent : kLuminewMainPurple,
                       ),
                     ),
                     onChanged: (v) {
@@ -512,14 +535,8 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
                     ['通用型', '資管專業', '學習歷程'],
                     (val) => setState(() {
                       _type = val!;
-                      // 選擇學習歷程時提示需要檔案
-                      if (_type == '學習歷程' && _selectedFile == null) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('啟動「學習歷程」模式需要先上傳 PDF 檔案'),
-                          ),
-                        );
-                      }
+                      // 僅在類型切換時重設錯誤狀態，不自動變紅
+                      _pdfError = false;
                     }),
                     _type,
                   ),
@@ -567,16 +584,17 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
 
             // ★ 檔案上傳卡片
             _buildPremiumCard(
+              key: _pdfCardKey,
               title: _type == '學習歷程' ? "個人化資料 (必填)" : "個人化資料 (選填)",
-              titleColor: _type == '學習歷程' ? Colors.redAccent : null,
               icon: Icons.upload_file,
+              isError: _pdfError,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     _type == '學習歷程' ? "請務必上傳檔案，AI 方能針對內容提問" : "上傳學習歷程或自傳，AI 會針對內容提問",
                     style: TextStyle(
-                      color: _type == '學習歷程' ? Colors.redAccent.withOpacity(0.8) : Colors.grey, 
+                      color: _pdfError ? Colors.redAccent : Colors.grey, 
                       fontSize: 13
                     ),
                   ),
@@ -696,17 +714,16 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
               height: 64,
               child: ElevatedButton(
                 onPressed: () {
+                  // 1. 校驗名稱
                   if (_nameController.text.trim().isEmpty) {
                     setState(() => _nameError = "請輸入面試名稱");
+                    _scrollTo(_nameCardKey);
                     return;
                   }
+                  // 2. 校驗檔案
                   if (_type == '學習歷程' && _selectedFile == null) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('啟動 [學習歷程] 模式必須上傳 PDF 檔案！'),
-                        backgroundColor: Colors.redAccent,
-                      ),
-                    );
+                    setState(() => _pdfError = true);
+                    _scrollTo(_pdfCardKey);
                     return;
                   }
                   // 進入正式面試
@@ -1023,7 +1040,8 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
           // _startAudioStream(); // 不要立刻收音，等 1 秒
         });
 
-        Timer(const Duration(seconds: 1), () {
+        // ★ 恢復穩定邏輯：教授說完後，多等 1.2 秒才亮起按鈕，確保後端麥克風已完全就緒
+        Timer(const Duration(milliseconds: 1200), () {
           if (mounted) {
             setState(() => _canStudentSpeak = true);
             if (_isInterviewing) {
@@ -1062,7 +1080,8 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
       _startRecording();
     }
 
-    await _didService.startInterview();
+    print('🎙️ [Interview] 開始建立與 D-ID 的 WebRTC 連線 (教授: ${widget.interviewer})...');
+    await _didService.startInterview(widget.interviewer);
     if (mounted)
       setState(() {
         _isInterviewing = true;
@@ -1794,12 +1813,8 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
               borderRadius: BorderRadius.circular(16),
               child: Stack(
                 children: [
-                  // 學生自拍預覽：水平翻轉（Mirror）
-                  Transform(
-                    alignment: Alignment.center,
-                    transform: Matrix4.rotationY(3.14159), // 水平翻轉
-                    child: CameraPreview(_controller!),
-                  ),
+                  // 學生自拍預覽：移除手動翻轉，嘗試預設視角
+                  CameraPreview(_controller!),
                   // 加上一個微弱的陰影邊界以便區分背景
                   Container(
                     decoration: BoxDecoration(
@@ -2182,8 +2197,12 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                           children: [
                             AspectRatio(
                               aspectRatio: 9 / 16,
-                              // ★ 使用者要求：回放不需要鏡像，還原為正常視角
-                              child: VideoPlayer(_videoController!),
+                              // ★ 使用者要求：回放也要跟 PIP/後台一樣維持鏡像
+                              child: Transform(
+                                alignment: Alignment.center,
+                                transform: Matrix4.rotationY(3.14159), // 還原翻轉
+                                child: VideoPlayer(_videoController!),
+                              ),
                             ),
                             VideoProgressIndicator(
                               _videoController!,

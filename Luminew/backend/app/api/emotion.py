@@ -4,6 +4,8 @@
 from fastapi import APIRouter, UploadFile, File, Form, Request
 from fastapi.responses import FileResponse, StreamingResponse, JSONResponse
 from app.services.emotion_service import (
+    analyze_video,
+    analyze_portfolio,
     calibrate_baseline,
     get_video_storage_dir,
     flip_video_async
@@ -73,6 +75,10 @@ async def api_analyze_video(
         status = 200 if "No face" in result.get("error", "") else 500
         return JSONResponse(content=result, status_code=status)
     
+    # [FIX] 使用者要求：還原翻轉處理，以跟 PIP 方向一致
+    if save_flag:
+        flip_video_async(video_path)
+        
     return result
 
 

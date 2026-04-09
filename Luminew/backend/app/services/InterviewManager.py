@@ -156,7 +156,7 @@ class InterviewManager:
             await asyncio.sleep(2.0)
             self._first_tts_done = True
 
-        tts_text = tts_text.replace("調整", "條整").replace("挑戰", "窕戰")
+        tts_text = tts_text.replace("調整", "條整").replace("挑戰", "窕戰").replace("專長", "專常")
         print(f"[AUDIO] [TTS 準備播放] 文字長度: {len(tts_text)}")
 
         if getattr(self, "use_did", False) and self.did_stream_id:
@@ -217,6 +217,12 @@ class InterviewManager:
                     print(f"[WARN] [D-ID] Webhook 超時 ({estimated_duration}s)，強制送出 tts_done")
                 
                 self._is_professor_speaking = False
+                
+                # [FIX] 穩定邏輯：在說話完全結束後（或超時後）才真正啟動麥克風
+                print("[READY] [錄音預熱] 啟動背景收音 (等候 1.8 秒)...")
+                self.stt.start_recording()
+                await asyncio.sleep(1.8)
+
                 if self.on_tts_done:
                     await self.on_tts_done()
                 return
@@ -238,6 +244,7 @@ class InterviewManager:
                 on_chunk=on_chunk_sync,
             )
             print("[AUDIO] [TTS 播放結束]")
+            
             if self.on_tts_done:
                 await self.on_tts_done()
         except Exception as e:
@@ -256,8 +263,7 @@ class InterviewManager:
             await self._process_and_reply()
             self.pending_student_texts = []
         else:
-            print("[WARN] 未偵測到有效的學生發言。提示學生重複說一次。")
-            fallback_msg = "不好意思，我剛剛沒聽清楚，能請您再說一次嗎？"
+            fallback_msg = "不好意思，我剛剛沒聽清楚，能請你再說一次嗎？"
             
             if self.on_transcript:
                 await self.on_transcript("professor", fallback_msg)
