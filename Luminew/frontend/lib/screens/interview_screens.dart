@@ -520,7 +520,9 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
                       errorStyle: const TextStyle(color: Colors.redAccent),
                       prefixIcon: Icon(
                         Icons.title,
-                        color: _nameError != null ? Colors.redAccent : kLuminewMainPurple,
+                        color: _nameError != null
+                            ? Colors.redAccent
+                            : kLuminewMainPurple,
                       ),
                     ),
                     onChanged: (v) {
@@ -592,10 +594,12 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _type == '學習歷程' ? "請務必上傳檔案，AI 方能針對內容提問" : "上傳學習歷程或自傳，AI 會針對內容提問",
+                    _type == '學習歷程'
+                        ? "請務必上傳檔案，AI 方能針對內容提問"
+                        : "上傳學習歷程或自傳，AI 會針對內容提問",
                     style: TextStyle(
-                      color: _pdfError ? Colors.redAccent : Colors.grey, 
-                      fontSize: 13
+                      color: _pdfError ? Colors.redAccent : Colors.grey,
+                      fontSize: 13,
                     ),
                   ),
                   const SizedBox(height: 15),
@@ -1040,8 +1044,8 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
           // _startAudioStream(); // 不要立刻收音，等 1 秒
         });
 
-        // ★ 恢復穩定邏輯：教授說完後，多等 1.2 秒才亮起按鈕，確保後端麥克風已完全就緒
-        Timer(const Duration(milliseconds: 1200), () {
+        // ★ 移除重複長延時：後端已經預留 1.8 秒熱機時間，前端只需極短延遲亮燈
+        Timer(const Duration(milliseconds: 50), () {
           if (mounted) {
             setState(() => _canStudentSpeak = true);
             if (_isInterviewing) {
@@ -1080,7 +1084,9 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
       _startRecording();
     }
 
-    print('🎙️ [Interview] 開始建立與 D-ID 的 WebRTC 連線 (教授: ${widget.interviewer})...');
+    print(
+      '🎙️ [Interview] 開始建立與 D-ID 的 WebRTC 連線 (教授: ${widget.interviewer})...',
+    );
     await _didService.startInterview(widget.interviewer);
     if (mounted)
       setState(() {
@@ -2073,13 +2079,17 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                           children: [
                             const Row(
                               children: [
-                                Icon(Icons.smart_toy, color: Colors.indigo),
+                                Icon(
+                                  Icons.psychology,
+                                  color: kLuminewDeepIndigo,
+                                ),
                                 SizedBox(width: 8),
                                 Text(
-                                  "AI 教練短評",
+                                  "AI 短評",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
+                                    color: kLuminewDeepIndigo,
                                   ),
                                 ),
                               ],
@@ -2092,13 +2102,17 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                             const Divider(height: 24),
                             const Row(
                               children: [
-                                Icon(Icons.lightbulb, color: Colors.orange),
+                                Icon(
+                                  Icons.lightbulb,
+                                  color: kLuminewDeepIndigo,
+                                ),
                                 SizedBox(width: 8),
                                 Text(
                                   "改進建議",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16,
+                                    color: kLuminewDeepIndigo,
                                   ),
                                 ),
                               ],
@@ -2122,6 +2136,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                     child: Text(
                       "微表情數據分析",
                       style: TextStyle(
+                        color: kLuminewDeepIndigo,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -2159,6 +2174,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                       child: Text(
                         "情緒平均佔比",
                         style: TextStyle(
+                          color: kLuminewDeepIndigo,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -2177,6 +2193,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                       child: Text(
                         "面試影片回放",
                         style: TextStyle(
+                          color: kLuminewDeepIndigo,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -2208,12 +2225,12 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                               _videoController!,
                               allowScrubbing: true,
                               colors: const VideoProgressColors(
-                                playedColor: Colors.red,
+                                playedColor: kLuminewDeepIndigo,
                               ),
                             ),
                             // 播放控制列
                             Container(
-                              color: Colors.black,
+                              color: Color(0xFFAD9DC7),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -2313,6 +2330,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                       child: Text(
                         "情緒波動曲線",
                         style: TextStyle(
+                          color: kLuminewDeepIndigo,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),

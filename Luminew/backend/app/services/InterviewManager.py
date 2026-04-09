@@ -139,10 +139,8 @@ class InterviewManager:
 
         await self._async_play_tts(greeting)
         
-        # ★ 延遲收音轉向，給 D-ID 一點時間穩定
-        print("[READY] [等待語音] 正在緩衝 (3秒)...")
-        await asyncio.sleep(3.0)
-        self.stt.start_recording()
+        # --- [大掃除] 移除此處的多餘錄製邏輯，統一由 _async_play_tts 處理 ---
+        pass
 
     async def handle_did_talk_completed(self):
         """由 Webhook 觸發：通知 D-ID 說話已完成"""
@@ -156,7 +154,7 @@ class InterviewManager:
             await asyncio.sleep(2.0)
             self._first_tts_done = True
 
-        tts_text = tts_text.replace("調整", "條整").replace("挑戰", "窕戰").replace("專長", "專常")
+        tts_text = tts_text.replace("調整", "條整").replace("挑戰", "窕戰").replace("專長", "專常").replace("挫折", "錯折")
         print(f"[AUDIO] [TTS 準備播放] 文字長度: {len(tts_text)}")
 
         if getattr(self, "use_did", False) and self.did_stream_id:
@@ -202,26 +200,21 @@ class InterviewManager:
                 # 已統一使用 send_did_talk_audio 在上方由 tts_text 或音訊觸發
                 pass
                 
-                # 使用 Event 等待 Webhook 通知，若超過預估時間則強制釋放
-                # (中文字 0.3~0.4s/字，英文稍快，但 D-ID 還有緩存延遲)
-                char_count = len(tts_text)
-                estimated_duration = max(4.0, char_count * 0.4) + 2.0 # 基底 4s + 0.4s/字 + 2s 緩衝
+                # [測試] 註解掉所有等待邏輯，發完指令立刻釋放
+                # char_count = len(tts_text)
+                # estimated_duration = max(4.0, char_count * 0.4) + 2.0 
+                # print(f"[WAIT] [D-ID] 等待教授說話中 (Webhook 監聽中，預估 {estimated_duration:.1f} 秒)...")
                 
-                print(f"[WAIT] [D-ID] 等待教授說話中 (Webhook 監聽中，預估 {estimated_duration:.1f} 秒)...")
-                
-                try:
-                    # 優先等待 Webhook 通知 (talk/completed)
-                    await asyncio.wait_for(self._did_talk_event.wait(), timeout=estimated_duration)
-                    print(f"[OK] [D-ID] 精準接收 Webhook (talk/completed)，說話完畢")
-                except asyncio.TimeoutError:
-                    print(f"[WARN] [D-ID] Webhook 超時 ({estimated_duration}s)，強制送出 tts_done")
+                # try:
+                #     await asyncio.wait_for(self._did_talk_event.wait(), timeout=estimated_duration)
+                #     print(f"[OK] [D-ID] 精準接收 Webhook (talk/completed)，說話完畢")
+                # except asyncio.TimeoutError:
+                #     print(f"[WARN] [D-ID] Webhook 超時 ({estimated_duration}s)，強制送出 tts_done")
                 
                 self._is_professor_speaking = False
                 
-                # [FIX] 穩定邏輯：在說話完全結束後（或超時後）才真正啟動麥克風
-                print("[READY] [錄音預熱] 啟動背景收音 (等候 1.8 秒)...")
+                # --- [測試] 拔除所有預熱延遲，直接啟動並亮燈 ---
                 self.stt.start_recording()
-                await asyncio.sleep(1.8)
 
                 if self.on_tts_done:
                     await self.on_tts_done()
@@ -245,6 +238,9 @@ class InterviewManager:
             )
             print("[AUDIO] [TTS 播放結束]")
             
+            # --- [測試] 拔除所有預熱延遲 ---
+            self.stt.start_recording()
+
             if self.on_tts_done:
                 await self.on_tts_done()
         except Exception as e:
@@ -259,21 +255,22 @@ class InterviewManager:
 
         await asyncio.sleep(1.0)
 
-        if self.pending_student_texts:
-            await self._process_and_reply()
-            self.pending_student_texts = []
-        else:
+        student_text = " ".join(self.pending_student_texts).strip()
+
+        # [加固檢查] 如果辨識內容太短或為空，視為沒聽清楚，觸發 fallback
+        if len(student_text) < 2:
+            print("[WARN] 偵測到無效或過短的回答，觸發重啟錄音流程...")
             fallback_msg = "不好意思，我剛剛沒聽清楚，能請你再說一次嗎？"
             
             if self.on_transcript:
                 await self.on_transcript("professor", fallback_msg)
             
-            # 使用備份語音播放這句話
             await self._async_play_tts(fallback_msg)
-            
-            # 重新開啟錄音
-            print("[READY] [等待語音] 請再試一次...")
-            self.stt.start_recording()
+            # 這裡也會繼承 _async_play_tts 內部的穩定延遲
+            self.pending_student_texts = []
+        else:
+            await self._process_and_reply()
+            self.pending_student_texts = []
 
     async def _process_and_reply(self):
         student_text = " ".join(self.pending_student_texts)
