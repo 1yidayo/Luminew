@@ -16,6 +16,7 @@ import uuid
 import json
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
+import subprocess
 
 # 載入環境變數
 load_dotenv()
@@ -25,8 +26,44 @@ load_dotenv()
 # ---------------------------
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 MODEL_PATH = os.path.join(PROJECT_DIR, "models", "test_best_.pth")
-VIDEO_STORAGE_DIR = os.path.join(PROJECT_DIR, "static", "videos")
 os.makedirs(VIDEO_STORAGE_DIR, exist_ok=True)
+
+# [FIX] 背景處理執行緒池
+video_executor = ThreadPoolExecutor(max_workers=2)
+
+def flip_video_horizontally(video_path: str):
+    """
+    使用 FFmpeg 將影片水平翻轉 (鏡像)
+    """
+    if not os.path.exists(video_path):
+        print(f"[WARN] [Flip] 檔案不存在: {video_path}")
+        return
+        
+    temp_path = video_path + ".temp.mp4"
+    try:
+        print(f"[FIX] [Flip] 開始背景翻轉影片: {video_path}")
+        # -vf hflip: 水平翻轉
+        cmd = [
+            'ffmpeg', '-y', '-i', video_path,
+            '-vf', 'hflip',
+            '-c:a', 'copy',
+            temp_path
+        ]
+        # 使用 subprocess 執行
+        subprocess.run(cmd, check=True, capture_output=True)
+        # 覆蓋原檔
+        os.replace(temp_path, video_path)
+        print(f"[OK] [Flip] 影片鏡像完成: {video_path}")
+    except Exception as e:
+        print(f"[ERROR] [Flip] 影片翻轉失敗: {e}")
+        if os.path.exists(temp_path):
+            os.remove(temp_path)
+
+def flip_video_async(video_path: str):
+    """
+    在背景非同步執行翻轉任務
+    """
+    video_executor.submit(flip_video_horizontally, video_path)
 
 # OpenAI API Key
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -86,6 +123,32 @@ executor = ThreadPoolExecutor(max_workers=4)
 def get_video_storage_dir():
     """取得影片儲存目錄"""
     return VIDEO_STORAGE_DIR
+
+
+def flip_video_horizontally(video_path: str):
+    """
+    使用 ffmpeg 將影片水平翻轉 (hflip)
+    這會直接覆蓋原檔案，確保後台儲存的影片也是鏡像的
+    """
+    try:
+        temp_path = video_path.replace(".mp4", "_temp.mp4")
+        # -vf hflip: 水平翻轉; -c:a copy: 音訊不重新編碼以加快速度
+        cmd = [
+            'ffmpeg', '-y', '-i', video_path, 
+            '-vf', 'hflip', 
+            '-c:a', 'copy', 
+            temp_path
+        ]
+        print(f"🎬 [FFmpeg] 正在翻轉影片: {video_path}")
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        
+        if result.returncode == 0 and os.path.exists(temp_path):
+            os.replace(temp_path, video_path)
+            print("✅ 影片翻轉成功並已覆蓋原檔")
+        else:
+            print(f"❌ [FFmpeg] 翻轉失敗: {result.stderr}")
+    except Exception as e:
+        print(f"⚠️ [FFmpeg] 執行拋出異常: {e}")
 
 
 def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None) -> dict:

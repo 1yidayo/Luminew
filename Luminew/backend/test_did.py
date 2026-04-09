@@ -11,12 +11,12 @@ load_dotenv()
 from app.services.InterviewManager import InterviewManager
 
 def test_did_stream():
-    print("🚀 測試 D-ID 視訊會議室申請...")
+    print("[START] 測試 D-ID 視訊會議室申請...")
     manager = InterviewManager()
     
     result = manager.create_did_stream()
     
-    print("\n✅ 回傳結果：")
+    print("\n[OK] 回傳結果：")
     print(result)
     
 if __name__ == "__main__":

@@ -26,6 +26,7 @@ Widget _buildPremiumCard({
   required String title,
   required IconData icon,
   required Widget child,
+  Color? titleColor,
 }) {
   return Container(
     width: double.infinity,
@@ -51,8 +52,8 @@ Widget _buildPremiumCard({
             const SizedBox(width: 8),
             Text(
               title,
-              style: const TextStyle(
-                color: kLuminewDeepIndigo,
+              style: TextStyle(
+                color: titleColor ?? kLuminewDeepIndigo,
                 fontWeight: FontWeight.bold,
                 fontSize: 16,
               ),
@@ -509,23 +510,36 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
                   _buildDropdown(
                     "面試類型",
                     ['通用型', '資管專業', '學習歷程'],
-                    (val) => setState(() => _type = val!),
+                    (val) => setState(() {
+                      _type = val!;
+                      // 選擇學習歷程時提示需要檔案
+                      if (_type == '學習歷程' && _selectedFile == null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('啟動「學習歷程」模式需要先上傳 PDF 檔案'),
+                          ),
+                        );
+                      }
+                    }),
                     _type,
                   ),
                   const SizedBox(height: 12),
                   _buildDropdown(
                     "面試教授",
-                    ['保羅', '莎拉', '大衛'],
+                    ['引導型教授', '親和型教授', '嚴謹型教授'],
                     (val) => setState(() => _interviewer = val!),
                     _interviewer,
                   ),
                   const SizedBox(height: 12),
-                  _buildDropdown(
-                    "語言設定",
-                    ['中文', '英文'],
-                    (val) => setState(() => _lang = val!),
-                    _lang,
-                  ),
+                  _buildDropdown("語言設定", ['中文', '英文 (暫不開放)'], (val) {
+                    if (val == '英文 (暫不開放)') {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('英文模式正在開發中，暫不開放')),
+                      );
+                      return;
+                    }
+                    setState(() => _lang = val!);
+                  }, _lang == '英文' ? '英文 (暫不開放)' : _lang),
                 ],
               ),
             ),
@@ -553,14 +567,18 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
 
             // ★ 檔案上傳卡片
             _buildPremiumCard(
-              title: "個人化資料 (選填)",
+              title: _type == '學習歷程' ? "個人化資料 (必填)" : "個人化資料 (選填)",
+              titleColor: _type == '學習歷程' ? Colors.redAccent : null,
               icon: Icons.upload_file,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "上傳學習歷程或自傳，AI 會針對內容提問",
-                    style: TextStyle(color: Colors.grey, fontSize: 13),
+                  Text(
+                    _type == '學習歷程' ? "請務必上傳檔案，AI 方能針對內容提問" : "上傳學習歷程或自傳，AI 會針對內容提問",
+                    style: TextStyle(
+                      color: _type == '學習歷程' ? Colors.redAccent.withOpacity(0.8) : Colors.grey, 
+                      fontSize: 13
+                    ),
                   ),
                   const SizedBox(height: 15),
                   InkWell(
@@ -682,6 +700,15 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
                     setState(() => _nameError = "請輸入面試名稱");
                     return;
                   }
+                  if (_type == '學習歷程' && _selectedFile == null) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('啟動 [學習歷程] 模式必須上傳 PDF 檔案！'),
+                        backgroundColor: Colors.redAccent,
+                      ),
+                    );
+                    return;
+                  }
                   // 進入正式面試
                   Navigator.push(
                     context,
@@ -715,6 +742,20 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
                     fontWeight: FontWeight.bold,
                     letterSpacing: 1.5,
                   ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            // ★ 修改後的免責聲明
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text(
+                '將錄製使用者影像以供後續回顧表情使用，現階段的測試者若同意錄製即代表同意授權影像做模型微調與研究，研究過後將刪除資料，不會用於其他用途與公開發佈。',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 11,
+                  color: Colors.grey.withOpacity(0.8),
+                  fontStyle: FontStyle.italic,
                 ),
               ),
             ),
@@ -1462,8 +1503,8 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                       borderRadius: BorderRadius.circular(20),
                       child: Stack(
                         children: [
-                          // A. 教授影像
-                          DidVideoWidget(renderer: _didService.localRenderer),
+                          // A. 教授影像 (使用遠端渲染器)
+                          DidVideoWidget(renderer: _didService.remoteRenderer),
 
                           // B. 載入中遮罩
                           if (_isWaitingProfessor)
@@ -1753,7 +1794,12 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
               borderRadius: BorderRadius.circular(16),
               child: Stack(
                 children: [
-                  CameraPreview(_controller!),
+                  // 學生自拍預覽：水平翻轉（Mirror）
+                  Transform(
+                    alignment: Alignment.center,
+                    transform: Matrix4.rotationY(3.14159), // 水平翻轉
+                    child: CameraPreview(_controller!),
+                  ),
                   // 加上一個微弱的陰影邊界以便區分背景
                   Container(
                     decoration: BoxDecoration(
@@ -2135,7 +2181,8 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                         child: Column(
                           children: [
                             AspectRatio(
-                              aspectRatio: 9 / 16, // ★ 固定 4:3 比例
+                              aspectRatio: 9 / 16,
+                              // ★ 使用者要求：回放不需要鏡像，還原為正常視角
                               child: VideoPlayer(_videoController!),
                             ),
                             VideoProgressIndicator(

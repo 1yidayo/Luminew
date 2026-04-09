@@ -47,7 +47,7 @@ class MinimaxTTSWS:
                 # 1. 握手
                 msg = json.loads(await ws.recv())
                 if msg.get("event") != "connected_success":
-                    print("❌ 連線失敗")
+                    print("[ERROR] 連線失敗")
                     return
 
                 # 2. 任務啟動
@@ -66,7 +66,7 @@ class MinimaxTTSWS:
                 
                 msg = json.loads(await ws.recv())
                 if msg.get("event") != "task_started":
-                    print("❌ 任務啟動失敗")
+                    print("[ERROR] 任務啟動失敗")
                     return
 
                 # 3. 發送文字
@@ -94,12 +94,12 @@ class MinimaxTTSWS:
                     if msg.get("event") == "task_finished":
                         break
                     if msg.get("event") == "task_failed":
-                        print(f"❌ 任務失敗: {msg}")
+                        print(f"[ERROR] 任務失敗: {msg}")
                         break
 
         except Exception as e:
             if "resume_reading" not in str(e):
-                print(f"❌ TTS Error: {e}")
+                print(f"[ERROR] TTS Error: {e}")
         finally:
             on_chunk(None)
 

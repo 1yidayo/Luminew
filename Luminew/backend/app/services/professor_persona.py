@@ -165,6 +165,20 @@ PROFESSOR_PERSONAS = {
 
 def get_professor_persona(professor_type: str) -> ProfessorPersona:
     """
-    取得教授 ，預設回傳 warm_industry_professor
+    取得教授人格，支援前端傳過來的中文名稱與後端內部的 key
     """
-    return PROFESSOR_PERSONAS.get(professor_type, PROFESSOR_PERSONAS["warm_industry_professor"])
+    # 定義前端名稱與後端內部 Key 的對應關係
+    mapping = {
+        "引導型教授": "warm_industry_professor",
+        "嚴謹型教授": "strict_academic_professor",
+        "親和型教授": "young_global_professor",
+        # 備份舊名稱
+        "保羅": "warm_industry_professor",
+        "莎拉": "young_global_professor",
+        "大衛": "strict_academic_professor"
+    }
+    
+    # 轉換成內部的 Key，如果沒匹配到則原本的字串就是 Key
+    persona_key = mapping.get(professor_type, professor_type)
+    
+    return PROFESSOR_PERSONAS.get(persona_key, PROFESSOR_PERSONAS["warm_industry_professor"])

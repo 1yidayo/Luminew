@@ -42,9 +42,9 @@ def start_backend_bridge():
     bridge_app.mount("/audio", StaticFiles(directory=os.path.join("app", "public", "audio")), name="audio")
     
     # 啟動 ngrok
-    print("⏳ 啟動 ngrok 隧道中 (請稍候)...")
+    print("[WAIT] 啟動 ngrok 隧道中 (請稍候)...")
     public_url = ngrok.connect(8008).public_url
-    print(f"🌍 Ngrok 公開網址: {public_url}")
+    print(f"[URL] Ngrok 公開網址: {public_url}")
     bridge_data["public_url"] = public_url
     
     uvicorn.run(bridge_app, host="127.0.0.1", port=8008, log_level="error")
@@ -57,7 +57,7 @@ def run_interview_v2():
     threading.Thread(target=start_backend_bridge, daemon=True).start()
 
     # 等待 ngrok 啟動
-    print("⏳ 等待伺服器與 Ngrok 隧道連線建立...")
+    print("[WAIT] 等待伺服器與 Ngrok 隧道連線建立...")
     time.sleep(4)
     
     # 1. 初始化面試官 (啟用 D-ID)
@@ -66,7 +66,7 @@ def run_interview_v2():
     bridge_data["manager"] = manager
     
     print("\n" + "="*60)
-    print("🎓 AI 面試流程 V2 測試 (含 D-ID 視訊整合)")
+    print("[ACAD] AI 面試流程 V2 測試 (含 D-ID 視訊整合)")
     print("="*60)
     print("教授角色:", manager.professor_persona.name)
     print("\n[流程說明]:")
@@ -78,14 +78,14 @@ def run_interview_v2():
     print("="*60 + "\n")
     
     # 2. 先建立 D-ID 房間
-    print("⏳ 正在向 D-ID 申請視訊會議室，請稍候...")
+    print("[WAIT] 正在向 D-ID 申請視訊會議室，請稍候...")
     offer_info = manager.create_did_stream()
     bridge_data["offer_info"] = offer_info
 
-    print("\n" + "⭐"*30)
-    print("👉 房間已準備好！請現在點開 [test_view_did.html] 👈")
-    print("👉 確認網頁上出現教授畫面後，請回到這裡按下 Enter 繼續！👈")
-    print("⭐"*30 + "\n")
+    print("\n" + "[STAR]"*30)
+    print(" [SYMBOL]  房間已準備好！請現在點開 [test_view_did.html]  [SYMBOL] ")
+    print(" [SYMBOL]  確認網頁上出現教授畫面後，請回到這裡按下 Enter 繼續！ [SYMBOL] ")
+    print("[STAR]"*30 + "\n")
     input("按下 [Enter] 開始面試流程...")
 
     # 啟動面試 (會包含：ASR準備 -> 開場白TTS -> 自動開麥)
@@ -97,10 +97,10 @@ def run_interview_v2():
             print(f"\n" + "="*20)
             print(f"   [對話第 {round_count} 輪]   ")
             print("="*20)
-            print("💡 提示：現在麥克風是開啟的，您可以開始說話。")
-            input(f"🎤 如果您講完了，請按 [Enter] 鍵結束錄音並送出...")
+            print("[IDEA] 提示：現在麥克風是開啟的，您可以開始說話。")
+            input(f"[MIC] 如果您講完了，請按 [Enter] 鍵結束錄音並送出...")
             
-            print("\n🚀 [動作] 偵測到 Enter，正在請求教授回應...")
+            print("\n[START] [動作] 偵測到 Enter，正在請求教授回應...")
             # 手動觸發關麥與生成回應
             manager.process_speech_end()
             
@@ -109,7 +109,7 @@ def run_interview_v2():
             round_count += 1
 
     except KeyboardInterrupt:
-        print("\n⏹ 外力介入，面試終止。")
+        print("\n[STOP] 外力介入，面試終止。")
     finally:
         manager.stop_interview()
         time.sleep(1) # 等待一些背景執行緒關閉

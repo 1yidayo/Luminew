@@ -4,10 +4,9 @@
 from fastapi import APIRouter, UploadFile, File, Form, Request
 from fastapi.responses import FileResponse, StreamingResponse, JSONResponse
 from app.services.emotion_service import (
-    analyze_video, 
-    analyze_portfolio, 
     calibrate_baseline,
-    get_video_storage_dir
+    get_video_storage_dir,
+    flip_video_async
 )
 from app.services.question_generator import analyze_pdf_and_generate_questions
 import uuid
@@ -48,16 +47,16 @@ async def api_analyze_video(
     with open(video_path, "wb") as f:
         f.write(content)
     
-    print(f"📥 收到影片，已存檔至: {video_path}")
+    print(f"[INPUT] 收到影片，已存檔至: {video_path}")
     
     # 解析 baseline（如果有的話）
     baseline_dict = None
     if baseline and baseline.strip():
         try:
             baseline_dict = json.loads(baseline)
-            print(f"🎯 收到個人基線: {baseline_dict}")
+            print(f"[TARGET] 收到個人基線: {baseline_dict}")
         except json.JSONDecodeError:
-            print("⚠️ baseline JSON 解析失敗，忽略")
+            print("[WARN] baseline JSON 解析失敗，忽略")
 
     # 解析 transcript
     try:
@@ -97,7 +96,7 @@ async def api_calibrate(
     with open(video_path, "wb") as f:
         f.write(content)
     
-    print(f"🎯 收到校準影片，已存檔至: {video_path}")
+    print(f"[TARGET] 收到校準影片，已存檔至: {video_path}")
     
     result = await calibrate_baseline(video_path)
     
@@ -127,7 +126,7 @@ async def api_analyze_portfolio(pdf: UploadFile = File(...)):
     with open(pdf_path, "wb") as f:
         f.write(content)
     
-    print(f"📄 收到 PDF: {pdf.filename}")
+    print(f"[FILE] 收到 PDF: {pdf.filename}")
     
     # 分析 PDF
     result = await analyze_portfolio(pdf_path)
@@ -162,7 +161,7 @@ async def api_generate_questions(
     with open(pdf_path, "wb") as f:
         f.write(content)
     
-    print(f"📄 收到問題生成請求: {pdf.filename} (類型: {interview_type})")
+    print(f"[FILE] 收到問題生成請求: {pdf.filename} (類型: {interview_type})")
     
     # 分析 PDF 並生成問題
     result = await analyze_pdf_and_generate_questions(pdf_path, interview_type)

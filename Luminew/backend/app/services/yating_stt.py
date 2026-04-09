@@ -39,17 +39,17 @@ class YatingSTT:
     # 開始錄音
     def start_recording(self):
         self.recording_enabled = True
-        print("🎤 開始錄音...")
+        print("[MIC] 開始錄音...")
 
     # 停止錄音
     def stop_recording(self):
         self.recording_enabled = False
-        print("⏹ 已停止錄音，等待辨識結果...")
+        print("[STOP] 已停止錄音，等待辨識結果...")
         
     def feed_audio(self, pcm_bytes: bytes):
         """提供給 FastAPI WebSocket 呼叫，用來塞入 Flutter 傳來的手機麥克風音訊"""
         if self.recording_enabled:
-            print(f"📥 ASR 佇列塞入: {len(pcm_bytes)} bytes")
+            print(f"[INPUT] ASR 佇列塞入: {len(pcm_bytes)} bytes")
             self.audio_queue.put(pcm_bytes)
 
     # WebSocket 流程
@@ -59,10 +59,10 @@ class YatingSTT:
         uri = f"{ASR_WS_URL}{self.token}"
 
         try:
-            print(f"🔗 正在連線 ASR WebSocket: {ASR_WS_URL}...")
+            print(f"[LINK] 正在連線 ASR WebSocket: {ASR_WS_URL}...")
             async with websockets.connect(uri) as ws:
                 self.ws_connection = ws
-                print("✅ ASR WebSocket 已連線")
+                print("[OK] ASR WebSocket 已連線")
 
                 async def sender():
                     while True:
@@ -77,16 +77,16 @@ class YatingSTT:
                         pipe = data.get("pipe", {})
                         if pipe.get("asr_final") is True:
                             final_text = pipe.get("asr_sentence", "")
-                            print(f"🎯 [ASR 辨識成功]: {final_text}")
+                            print(f"[TARGET] [ASR 辨識成功]: {final_text}")
                             if self.on_final_text_handler:
                                 threading.Thread(target=self.on_final_text_handler, args=(final_text,)).start()
                     except Exception as e:
-                        print(f"📥 [ASR Receiver ERROR]: {e}")
+                        print(f"[INPUT] [ASR Receiver ERROR]: {e}")
                         continue
                 
                 sender_task.cancel()
         except Exception as e:
-            print(f"❌ [ASR WebSocket 錯誤]: {e}")
+            print(f"[ERROR] [ASR WebSocket 錯誤]: {e}")
 
     # 後台啟動 ASR
     def start_asr_background(self, on_final_text):
@@ -94,7 +94,7 @@ class YatingSTT:
             try:
                 asyncio.run(self.asr_stream_loop(on_final_text))
             except Exception as e:
-                print(f"❌ [ASR 執行緒崩潰]: {e}")
+                print(f"[ERROR] [ASR 執行緒崩潰]: {e}")
         threading.Thread(target=run_asyncio, daemon=True).start()
 
 

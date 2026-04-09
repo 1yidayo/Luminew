@@ -22,7 +22,7 @@ def get_random_questions(department="im", general_count=1, dept_count=2):
                 general_q = json.load(f)
                 questions.extend(random.sample(general_q, min(general_count, len(general_q))))
             except Exception as e:
-                print(f"❌ 讀取通用題庫失敗: {e}")
+                print(f"[ERROR] 讀取通用題庫失敗: {e}")
                 
     # 讀取科系專業題並隨機抽取
     if os.path.exists(dept_file):
@@ -31,6 +31,6 @@ def get_random_questions(department="im", general_count=1, dept_count=2):
                 dept_q = json.load(f)
                 questions.extend(random.sample(dept_q, min(dept_count, len(dept_q))))
             except Exception as e:
-                print(f"❌ 讀取科系題庫失敗: {e}")
+                print(f"[ERROR] 讀取科系題庫失敗: {e}")
                 
     return questions

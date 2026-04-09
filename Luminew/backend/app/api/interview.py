@@ -53,7 +53,7 @@ async def start_interview(request: Request):
         )
         manager.public_url = public_url
         
-        print("⏳ 收到 Flutter 請求，正在申請 D-ID... ")
+        print("[WAIT] 收到 Flutter 請求，正在申請 D-ID... ")
         offer_info = await asyncio.to_thread(manager.create_did_stream)
         if "error" in offer_info:
             return {"status": "error", "message": offer_info["error"]}
@@ -94,7 +94,7 @@ async def did_webhook(request: Request):
     """
     try:
         data = await request.json()
-        print(f"🔔 [D-ID Webhook] 收到事件: {json.dumps(data)}")
+        print(f" [SYMBOL]  [D-ID Webhook] 收到事件: {json.dumps(data)}")
         
         # D-ID 的事件結構通常包含 stream_id 
         stream_id = data.get("stream_id") or data.get("id")
@@ -104,31 +104,31 @@ async def did_webhook(request: Request):
         # 找到對應的面試 Session
         session_id = stream_to_session.get(stream_id)
         if not session_id:
-            print(f"⚠️ Webhook 找不到對應的 Session: stream_id={stream_id}")
+            print(f"[WARN] Webhook 找不到對應的 Session: stream_id={stream_id}")
             return {"status": "not_found"}
 
         event_kind = data.get("kind", "")
-        print(f"🔔 [D-ID Webhook] session={session_id}, kind={event_kind}")
-        print(f"📡 [DEBUG Webhook] Payload: {json.dumps(data)}")
+        print(f" [SYMBOL]  [D-ID Webhook] session={session_id}, kind={event_kind}")
+        print(f"[SIGNAL] [DEBUG Webhook] Payload: {json.dumps(data)}")
         
         if event_kind == "ice":
             ice = data.get("ice", {})
             
             if session_id in clients:
-                # ✅ WebSocket 已連線，直接轉發
+                # [OK] WebSocket 已連線，直接轉發
                 manager = clients[session_id]
-                print(f"📡 [D-ID ICE] 直接轉發給前端 (WebSocket 已連線): {session_id}")
+                print(f"[SIGNAL] [D-ID ICE] 直接轉發給前端 (WebSocket 已連線): {session_id}")
                 if hasattr(manager, "on_did_ice") and manager.on_did_ice:
                     await manager.on_did_ice(ice)
             else:
-                # ⏳ WebSocket 尚未連線，先緩存 ICE Candidate
+                # [WAIT] WebSocket 尚未連線，先緩存 ICE Candidate
                 if session_id not in pending_ice_candidates:
                     pending_ice_candidates[session_id] = []
                 pending_ice_candidates[session_id].append(ice)
-                print(f"📦 [D-ID ICE] 緩存 ICE Candidate (WebSocket 尚未連線), 累計 {len(pending_ice_candidates[session_id])} 個")
+                print(f" [SYMBOL]  [D-ID ICE] 緩存 ICE Candidate (WebSocket 尚未連線), 累計 {len(pending_ice_candidates[session_id])} 個")
         
         elif event_kind == "talk/completed":
-            print(f"✅ [D-ID Webhook] 偵測到教授說話完畢 (talk/completed): {session_id}")
+            print(f"[OK] [D-ID Webhook] 偵測到教授說話完畢 (talk/completed): {session_id}")
             if session_id in clients:
                 manager = clients[session_id]
                 # 觸發 manager 的說話完畢事件
@@ -137,7 +137,7 @@ async def did_webhook(request: Request):
 
         return {"status": "ok"}
     except Exception as e:
-        print(f"❌ Webhook 處理失敗: {e}")
+        print(f"[ERROR] Webhook 處理失敗: {e}")
         return {"status": "error"}
 
 
@@ -148,14 +148,14 @@ async def did_webhook(request: Request):
 @router.websocket("/ws/{client_id}")
 async def interview_endpoint(websocket: WebSocket, client_id: str):
     await websocket.accept()
-    print(f"✅ Client {client_id} 已連線")
+    print(f"[OK] Client {client_id} 已連線")
 
     # ★ 取得 D-ID 面試所建立的 manager，避免重新建立一個預設（無 D-ID）的版本
     if client_id in interview_sessions:
         manager = interview_sessions[client_id]
-        print(f"✅ 找到對應的 D-ID 面試 session_id: {client_id}")
+        print(f"[OK] 找到對應的 D-ID 面試 session_id: {client_id}")
     else:
-        print(f"⚠️ 找不到對應的 D-ID 面試 session_id: {client_id}，建立預設版本...")
+        print(f"[WARN] 找不到對應的 D-ID 面試 session_id: {client_id}，建立預設版本...")
         persona = get_professor_persona("warm_industry_professor")
         manager = InterviewManager(professor_type=persona.name)
         
@@ -165,7 +165,7 @@ async def interview_endpoint(websocket: WebSocket, client_id: str):
     # ★ 補送 WebSocket 連線前已緩存的 D-ID ICE Candidates
     if client_id in pending_ice_candidates:
         buffered = pending_ice_candidates.pop(client_id)
-        print(f"📬 [ICE 補送] 找到 {len(buffered)} 個緩存的 D-ID ICE Candidates，即將補送...")
+        print(f" [SYMBOL]  [ICE 補送] 找到 {len(buffered)} 個緩存的 D-ID ICE Candidates，即將補送...")
         async def _flush_pending_ice():
             for ice in buffered:
                 await asyncio.sleep(0.1)  # 小延遲避免前端還沒準備好
@@ -176,9 +176,9 @@ async def interview_endpoint(websocket: WebSocket, client_id: str):
                         "sdpMid": ice.get("sdpMid"),
                         "sdpMLineIndex": ice.get("sdpMLineIndex")
                     }))
-                    print(f"📬 [ICE 補送] 已送出 ICE 給前端: {str(ice)[:60]}...")
+                    print(f" [SYMBOL]  [ICE 補送] 已送出 ICE 給前端: {str(ice)[:60]}...")
                 except Exception as e:
-                    print(f"❌ [ICE 補送] 送出失敗: {e}")
+                    print(f"[ERROR] [ICE 補送] 送出失敗: {e}")
         asyncio.create_task(_flush_pending_ice())
     else:
         print(f"ℹ️ [ICE 補送] 無緩存 ICE (session_id={client_id})")
@@ -229,7 +229,7 @@ async def interview_endpoint(websocket: WebSocket, client_id: str):
         try:
             await manager.start_interview()
         except Exception as e:
-            print(f"❌ 面試啟動失敗: {e}")
+            print(f"[ERROR] 面試啟動失敗: {e}")
             import traceback
             traceback.print_exc()
 
@@ -265,12 +265,12 @@ async def interview_endpoint(websocket: WebSocket, client_id: str):
                 manager.stt.feed_audio(message["bytes"])
 
     except WebSocketDisconnect:
-        print(f"❌ Client {client_id} 斷線")
+        print(f"[ERROR] Client {client_id} 斷線")
     except Exception as e:
-        print(f"❌ WebSocket 錯誤: {e}")
+        print(f"[ERROR] WebSocket 錯誤: {e}")
     finally:
         manager.interview_running = False
         manager.stop_interview()
         if client_id in clients:
             del clients[client_id]
-        print(f"🧹 Client {client_id} 清理完成")
+        print(f" [SYMBOL]  Client {client_id} 清理完成")

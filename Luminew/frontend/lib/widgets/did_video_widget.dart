@@ -11,9 +11,13 @@ class DidVideoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RTCVideoView(
-      renderer,
-      objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
+    return Container(
+      color: Colors.black,
+      child: RTCVideoView(
+        renderer,
+        objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
+        mirror: false, // 教授畫面絕對不能鏡像
+      ),
     );
   }
 }

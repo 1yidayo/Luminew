@@ -16,7 +16,7 @@ class DidInterviewService {
   final String backendUrl;
 
   RTCPeerConnection? _peerConnection;
-  RTCVideoRenderer localRenderer = RTCVideoRenderer();
+  RTCVideoRenderer remoteRenderer = RTCVideoRenderer();
   MediaStream? _remoteStream;
   WebSocketChannel? _wsChannel;
   final AudioRecorder _audioRecorder = AudioRecorder();
@@ -38,7 +38,7 @@ class DidInterviewService {
   DidInterviewService({required this.backendUrl});
 
   Future<void> init() async {
-    await localRenderer.initialize();
+    await remoteRenderer.initialize();
     await _forceSpeakerOn();
     _audioPlayer.onPlayerComplete.listen((_) {
       print('✅ [DEBUG] WAV 語音播放完畢');
@@ -57,7 +57,7 @@ class DidInterviewService {
 
   Future<void> dispose() async {
     await stopInterview();
-    await localRenderer.dispose();
+    await remoteRenderer.dispose();
     await _audioRecorder.dispose();
     await _audioPlayer.dispose();
   }
@@ -105,8 +105,9 @@ class DidInterviewService {
         print('📡 [WebRTC] 接收軌道: ${event.track.kind}');
         if (event.track.kind == 'video') {
           if (event.streams.isNotEmpty) {
-            localRenderer.srcObject = event.streams[0];
+            remoteRenderer.srcObject = event.streams[0];
             _remoteStream = event.streams[0];
+            print('📺 [WebRTC] 視訊流已掛載至 renderer');
           }
           event.track.enabled = true;
           onVideoTrack?.call();
@@ -135,20 +136,29 @@ class DidInterviewService {
       final localSdp = await _peerConnection!.getLocalDescription();
       String sdpString = localSdp?.sdp ?? '';
 
-      // ★ 極簡修正：僅解決 m=video 0 的問題，不再插入 candidate
+      // ★ 強力修正：精準定位 a=mid:0 並且補上 Sony 最相容的參數
       if (sdpString.contains('m=video 0')) {
-        print('🔧 [SDP Fix] 偵測到 m=video 0，修正為 m=video 9 以啟動 D-ID...');
+        print('🔧 [SDP Fix] 執行深度 SDP 修復 (Sony/D-ID Compatibility)...');
         sdpString = sdpString.replaceAll('m=video 0 UDP/TLS/RTP/SAVPF 0', 'm=video 9 UDP/TLS/RTP/SAVPF 100');
-        // 補上 H.264 的基本宣告，確保 D-ID 接受
-        if (!sdpString.contains('a=rtpmap:100 H264/90000')) {
-           sdpString = sdpString.replaceFirst('a=mid:0', 'a=mid:0\na=rtpmap:100 H264/90000\na=fmtp:100 packetization-mode=1;profile-level-id=42e01f');
-        }
+        
+        // 使用更精準的 H.264 宣告，包含 packetization-mode 與 profile-level-id
+        String h264Params = 'a=rtpmap:100 H264/90000\r\n'
+                          'a=fmtp:100 packetization-mode=1;profile-level-id=42e01f;level-asymmetry-allowed=1\r\n'
+                          'a=rtcp-fb:100 nack\r\n'
+                          'a=rtcp-fb:100 nack pli\r\n'
+                          'a=msid:Luminew-Video-Stream Luminew-Video-Track\r\n';
+        
+        // 確保在 mid:0 之後插入
+        sdpString = sdpString.replaceFirst(RegExp(r'a=mid:0\r?\n'), 'a=mid:0\r\n$h264Params');
       }
 
       // 修正連線角色為 active
       if (sdpString.contains('a=setup:actpass')) {
         sdpString = sdpString.replaceAll('a=setup:actpass', 'a=setup:active');
       }
+
+      // ★ 全域 IP 洗滌：將 127.0.0.1 換成虛擬公網 IP，避免 D-ID 報錯
+      sdpString = sdpString.replaceAll('127.0.0.1', '1.1.1.1');
 
       // 連接 WebSocket
       final wsUrl = backendUrl.replaceFirst('http', 'ws').replaceFirst('https', 'wss');

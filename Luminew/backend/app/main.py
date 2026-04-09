@@ -82,11 +82,11 @@ async def complete_interview(
         with open(pdf_path, "wb") as f:
             f.write(pdf_content)
         
-        print(f"📄 收到 PDF: {pdf.filename}")
+        print(f"[FILE] 收到 PDF: {pdf.filename}")
         portfolio_result = await analyze_portfolio(pdf_path)
         
         # ========== Step 2: 進行面試（非同步多線程）==========
-        print("🎓 啟動面試流程...")
+        print("[ACAD] 啟動面試流程...")
         manager = InterviewManager(professor_type=professor_type)
         manager.start_interview()
         
@@ -98,7 +98,7 @@ async def complete_interview(
         with open(video_path, "wb") as f:
             f.write(video_content)
         
-        print(f"📥 收到影片，已存檔至: {video_path}")
+        print(f"[INPUT] 收到影片，已存檔至: {video_path}")
         interview_result = await analyze_video(video_path, save_video=True)
         
         # ========== Step 4: 整合所有結果 ==========
@@ -119,7 +119,7 @@ async def complete_interview(
         }
         
     except Exception as e:
-        print(f"❌ 統合面試流程錯誤: {e}")
+        print(f"[ERROR] 統合面試流程錯誤: {e}")
         import traceback
         traceback.print_exc()
         return {

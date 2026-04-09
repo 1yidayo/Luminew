@@ -40,25 +40,35 @@ app.include_router(emotion_router, prefix="/emotion", tags=["Emotion"])
 async def startup_event():
     """伺服器啟動時，自動建立 Ngrok 隧道"""
     print("\n" + "="*50)
-    print("⏳ 正在啟動伺服器與 Ngrok 隧道...")
+    print("[WAIT] 正在啟動伺服器與 Ngrok 隧道...")
     try:
+        # 強制結束舊的 ngrok 進程 (防止 ERR_NGROK_334)
+        print("[FIX] 正在清理舊的 Ngrok 連線...")
+        ngrok.kill() 
+        
         # 檢查並設定 authtoken
         auth_token = os.getenv("NGROK_AUTHTOKEN")
         if auth_token and auth_token.strip():
             ngrok.set_auth_token(auth_token.strip())
-            print("🔑 Ngrok Authtoken 已載入")
-        
-        # 設定區域 (日本)
-        conf.get_default().region = "jp"
+            print("[KEY] Ngrok Authtoken 已載入")
         
         # ngrok 預設開啟 port 8000
+        # 如果有固定域名，ngrok 會自動捕捉設定檔中的 domain
         public_url = ngrok.connect(8000).public_url
-        print(f"🌍 外部公開網址 (Flutter 用): {public_url}")
+        print(f"[URL] 外部公開網址 (Flutter 用): {public_url}")
         print("="*50 + "\n")
         # 存進狀態中讓 API 拿得到
         app.state.public_url = public_url
     except Exception as e:
-        print(f"❌ Ngrok 啟動失敗 ({e})\n請確認是否已註冊 Authtoken。")
+        print(f"[ERROR] Ngrok 啟動失敗 ({e})")
+        # 即使 Ngrok 失敗，也嘗試抓取看看是否有既存的隧道 URL
+        try:
+            tunnels = ngrok.get_tunnels()
+            if tunnels:
+                app.state.public_url = tunnels[0].public_url
+                print(f"[REUSE] 偵測到既存隧道，正在沿用: {app.state.public_url}")
+        except:
+            pass
 
 if __name__ == "__main__":
     # 使用 uvicorn 啟動

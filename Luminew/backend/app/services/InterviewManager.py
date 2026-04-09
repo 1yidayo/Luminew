@@ -100,7 +100,7 @@ class InterviewManager:
     async def start_interview(self):
         """啟動面試（非同步版）"""
         self.interview_running = True
-        print(f"🎓 面試啟動（教授: {self.professor_persona.name}）")
+        print(f"[ACAD] 面試啟動（教授: {self.professor_persona.name}）")
 
         self.stt.start_asr_background(self._on_student_text_sync)
         await self._play_opening_greeting()
@@ -109,14 +109,14 @@ class InterviewManager:
         """ASR 的文字回呼，因為跑在其它線程，我們需要用 asyncio 去呼叫 WS 回呼"""
         if not getattr(self, "interview_running", False):
             return
-        print(f"🎤 [學生]: {text}")
+        print(f"[MIC] [學生]: {text}")
         if not hasattr(self, "pending_student_texts"): return
         self.pending_student_texts.append(text)
         if hasattr(self, "on_transcript") and self.on_transcript and getattr(self, "main_loop", None):
             try:
                 asyncio.run_coroutine_threadsafe(self.on_transcript("student", text), self.main_loop)
             except Exception as e:
-                print(f"❌ _on_student_text_sync 錯誤: {e}")
+                print(f"[ERROR] _on_student_text_sync 錯誤: {e}")
 
     async def _play_opening_greeting(self):
         opening_instruct = (
@@ -128,9 +128,9 @@ class InterviewManager:
         )
         opening_prompt = self.system_prompt + opening_instruct
 
-        print("🤔 教授正在準備開場白...")
+        print("[THINK] 教授正在準備開場白...")
         greeting = await asyncio.to_thread(ask_gpt4_1_nano, opening_prompt, self.professor_persona.name)
-        print(f"👨‍🏫 [教授開場]: {greeting}")
+        print(f"[PROF] [教授開場]: {greeting}")
 
         self.conversation_history.append({"role": "professor", "content": greeting})
 
@@ -140,7 +140,7 @@ class InterviewManager:
         await self._async_play_tts(greeting)
         
         # ★ 延遲收音轉向，給 D-ID 一點時間穩定
-        print("🟢 [等待語音] 正在緩衝 (3秒)...")
+        print("[READY] [等待語音] 正在緩衝 (3秒)...")
         await asyncio.sleep(3.0)
         self.stt.start_recording()
 
@@ -152,16 +152,16 @@ class InterviewManager:
     async def _async_play_tts(self, tts_text, tts_audio=None):
         # ★ 新增：如果是第一次播放，稍微多等一下
         if not getattr(self, "_first_tts_done", False):
-            print("⏳ [D-ID] 第一次播放，額外等待 2 秒確保連線穩定...")
+            print("[WAIT] [D-ID] 第一次播放，額外等待 2 秒確保連線穩定...")
             await asyncio.sleep(2.0)
             self._first_tts_done = True
 
         tts_text = tts_text.replace("調整", "條整").replace("挑戰", "窕戰")
-        print(f"🔊 [TTS 準備播放] 文字長度: {len(tts_text)}")
+        print(f"[AUDIO] [TTS 準備播放] 文字長度: {len(tts_text)}")
 
         if getattr(self, "use_did", False) and self.did_stream_id:
             # 1. 將 Minimax 生成的音訊存成檔案
-            print(f"🔊 [D-ID] 正在生成高品質 Minimax 音訊檔案...")
+            print(f"[AUDIO] [D-ID] 正在生成高品質 Minimax 音訊檔案...")
             pcm_bytes = await self.tts.generate_audio_bytes(tts_text, voice_id=self.professor_persona.voice_id)
             if pcm_bytes:
                 wav_data = self._pcm_to_wav(pcm_bytes, sample_rate=32000)
@@ -183,7 +183,7 @@ class InterviewManager:
                     # ★ 淨化網址：移除末尾斜槓，避免產生 //audio/
                     base_url = public_url.rstrip("/")
                     audio_url = f"{base_url}/audio/{filename}"
-                    print(f"🔗 [D-ID] 送出音訊 URL: {audio_url}")
+                    print(f"[LINK] [D-ID] 送出音訊 URL: {audio_url}")
                     
                     # ★ 立即通知前端可以開始放音 (備援路徑)
                     if self.on_tts_start:
@@ -193,7 +193,7 @@ class InterviewManager:
                     await asyncio.to_thread(self.send_did_talk_audio, audio_url)
                 else:
                     # 退而求其次使用文字
-                    print("⚠️ 找不到 public_url，改用文字模式 (D-ID 預設語音)")
+                    print("[WARN] 找不到 public_url，改用文字模式 (D-ID 預設語音)")
                     await asyncio.to_thread(self.send_did_talk, tts_text)
             
                 # [D-ID 串流模式] 狀態管理
@@ -207,14 +207,14 @@ class InterviewManager:
                 char_count = len(tts_text)
                 estimated_duration = max(4.0, char_count * 0.4) + 2.0 # 基底 4s + 0.4s/字 + 2s 緩衝
                 
-                print(f"⏳ [D-ID] 等待教授說話中 (Webhook 監聽中，預估 {estimated_duration:.1f} 秒)...")
+                print(f"[WAIT] [D-ID] 等待教授說話中 (Webhook 監聽中，預估 {estimated_duration:.1f} 秒)...")
                 
                 try:
                     # 優先等待 Webhook 通知 (talk/completed)
                     await asyncio.wait_for(self._did_talk_event.wait(), timeout=estimated_duration)
-                    print(f"✅ [D-ID] 精準接收 Webhook (talk/completed)，說話完畢")
+                    print(f"[OK] [D-ID] 精準接收 Webhook (talk/completed)，說話完畢")
                 except asyncio.TimeoutError:
-                    print(f"⚠️ [D-ID] Webhook 超時 ({estimated_duration}s)，強制送出 tts_done")
+                    print(f"[WARN] [D-ID] Webhook 超時 ({estimated_duration}s)，強制送出 tts_done")
                 
                 self._is_professor_speaking = False
                 if self.on_tts_done:
@@ -237,17 +237,17 @@ class InterviewManager:
                 speed=self.professor_persona.speed,
                 on_chunk=on_chunk_sync,
             )
-            print("🔊 [TTS 播放結束]")
+            print("[AUDIO] [TTS 播放結束]")
             if self.on_tts_done:
                 await self.on_tts_done()
         except Exception as e:
-            print(f"❌ [TTS 播放錯誤]: {e}")
+            print(f"[ERROR] [TTS 播放錯誤]: {e}")
 
     async def process_speech_end(self):
         if not self.interview_running:
             return
 
-        print("⏹ [學生演講結束] 正在處理學生回答並產出教授回應...")
+        print("[STOP] [學生演講結束] 正在處理學生回答並產出教授回應...")
         self.stt.stop_recording()
 
         await asyncio.sleep(1.0)
@@ -256,18 +256,28 @@ class InterviewManager:
             await self._process_and_reply()
             self.pending_student_texts = []
         else:
-            print("⚠️ 未偵測到有效的學生發言。繼續收音")
+            print("[WARN] 未偵測到有效的學生發言。提示學生重複說一次。")
+            fallback_msg = "不好意思，我剛剛沒聽清楚，能請您再說一次嗎？"
+            
+            if self.on_transcript:
+                await self.on_transcript("professor", fallback_msg)
+            
+            # 使用備份語音播放這句話
+            await self._async_play_tts(fallback_msg)
+            
+            # 重新開啟錄音
+            print("[READY] [等待語音] 請再試一次...")
             self.stt.start_recording()
 
     async def _process_and_reply(self):
         student_text = " ".join(self.pending_student_texts)
         self.conversation_history.append({"role": "student", "content": student_text})
 
-        print("🤔 教授正在思考中...")
+        print("[THINK] 教授正在思考中...")
         prompt = self._build_llm_prompt()
         reply = await asyncio.to_thread(ask_gpt4_1_nano, prompt, self.professor_persona.name)
 
-        print(f"👨‍🏫 [教授]: {reply}")
+        print(f"[PROF] [教授]: {reply}")
         self.conversation_history.append({"role": "professor", "content": reply})
 
         if self.on_transcript:
@@ -275,7 +285,7 @@ class InterviewManager:
 
         await self._async_play_tts(reply)
 
-        print("🟢 [等待語音] 請前端串流繼續...")
+        print("[READY] [等待語音] 請前端串流繼續...")
         self.stt.start_recording()
 
     def _build_llm_prompt(self):
@@ -289,7 +299,7 @@ class InterviewManager:
     def stop_interview(self):
         self.interview_running = False
         self.stt.stop_recording()
-        print("⏹ 面試完全結束")
+        print("[STOP] 面試完全結束")
 
     # ─────────────────────────────
     # D-ID 相關方法
@@ -302,10 +312,10 @@ class InterviewManager:
             if res.status_code == 200:
                 return True
             else:
-                print(f"📡 [偵測] 網址連通但狀態碼非 200: {res.status_code}")
+                print(f"[SIGNAL] [偵測] 網址連通但狀態碼非 200: {res.status_code}")
                 return False
         except Exception as e:
-            print(f"📡 [偵測] 網址檢測失敗: {e}")
+            print(f"[SIGNAL] [偵測] 網址檢測失敗: {e}")
             return False
 
     def _update_did_cookies(self, sid):
@@ -313,7 +323,7 @@ class InterviewManager:
         if not sid: return
         self.session.cookies.set("AWSALB", sid, domain="api.d-id.com")
         self.session.cookies.set("AWSALBCORS", sid, domain="api.d-id.com")
-        print(f"🍪 [DEBUG] 已同步 D-ID Cookies: {self.session.cookies.get_dict()}")
+        print(f" [SYMBOL]  [DEBUG] 已同步 D-ID Cookies: {self.session.cookies.get_dict()}")
 
     def create_did_stream(self):
         print("正在向 D-ID 申請開啟視訊會議室...")
@@ -339,7 +349,7 @@ class InterviewManager:
                     for t in tunnels:
                         if t.get("proto") == "https":
                             self.public_url = t.get("public_url")
-                            print(f"📡 [DEBUG] 自動偵測到 ngrok 網址: {self.public_url}")
+                            print(f"[SIGNAL] [DEBUG] 自動偵測到 ngrok 網址: {self.public_url}")
                             break
             except Exception:
                 pass
@@ -348,9 +358,9 @@ class InterviewManager:
         public_url = getattr(self, "public_url", None)
         if public_url:
             payload["webhook"] = f"{public_url}/interview/did-webhook"
-            print(f"🔗 [D-ID] 已設定 Webhook 回傳地址 (請確認 ngrok 正常): {payload['webhook']}")
+            print(f"[LINK] [D-ID] 已設定 Webhook 回傳地址 (請確認 ngrok 正常): {payload['webhook']}")
         else:
-            print("⚠️ [D-ID] 警告：找不到 public_url，D-ID 將無法回傳路徑 (ICE)，連線可能卡住")
+            print("[WARN] [D-ID] 警告：找不到 public_url，D-ID 將無法回傳路徑 (ICE)，連線可能卡住")
 
         headers = {
             "accept": "application/json",
@@ -361,8 +371,8 @@ class InterviewManager:
 
             if response.status_code == 201:
                 data = response.json()
-                print(f"📡 [DEBUG] D-ID Stream Creation Response: {json.dumps(data)}")
-                print(f"📄 [DEBUG] D-ID Response Headers: {dict(response.headers)}")
+                print(f"[SIGNAL] [DEBUG] D-ID Stream Creation Response: {json.dumps(data)}")
+                print(f"[FILE] [DEBUG] D-ID Response Headers: {dict(response.headers)}")
 
                 self.did_stream_id = data.get("id")
                 self.did_session_id = data.get("session_id", "")
@@ -370,10 +380,10 @@ class InterviewManager:
                 # ★ 強制提取並同步最初的 AWSALB Cookie
                 self._update_did_cookies(self.did_session_id)
 
-                print(f"✅ [D-ID] 串流已建立: {self.did_stream_id}")
+                print(f"[OK] [D-ID] 串流已建立: {self.did_stream_id}")
                 return data
             else:
-                print(f"❌ D-ID 建立失敗 ({response.status_code}): {response.text}")
+                print(f"[ERROR] D-ID 建立失敗 ({response.status_code}): {response.text}")
                 return {"error": response.text}
 
         except Exception as e:
@@ -384,7 +394,7 @@ class InterviewManager:
         target_sid = session_id or self.did_session_id
 
         # ★ 修正：不再死等 2 秒，避免 D-ID 端判定超時或狀態不對
-        # print("⏳ 等待 D-ID 後台準備 (2.0秒)...")
+        # print("[WAIT] 等待 D-ID 後台準備 (2.0秒)...")
         # await asyncio.sleep(2.0)
 
         url = f"https://api.d-id.com/talks/streams/{self.did_stream_id}/sdp"
@@ -396,19 +406,19 @@ class InterviewManager:
         }
 
         # 打印 Answer SDP 與 Cookies 給 AI 診斷
-        print(f"📡 [DEBUG] 正在提交 Answer SDP...")
-        print(f"🍪 [DEBUG] 目前 Session Cookies: {self.session.cookies.get_dict()}")
+        print(f"[SIGNAL] [DEBUG] 正在提交 Answer SDP...")
+        print(f" [SYMBOL]  [DEBUG] 目前 Session Cookies: {self.session.cookies.get_dict()}")
 
         headers = {"accept": "application/json", "content-type": "application/json"}
         response = await asyncio.to_thread(self.session.post, url, json=payload, headers=headers)
 
         if not response.ok:
-            print(f"❌ [D-ID] SDP Answer 提交失敗 ({response.status_code}): {response.text}")
+            print(f"[ERROR] [D-ID] SDP Answer 提交失敗 ({response.status_code}): {response.text}")
             # ★ 重要：印出完整 SDP 以便診斷 M-line 拒絕問題
             full_sdp = payload.get("answer", {}).get("sdp", "")
-            print(f"📡 [FULL SDP DEBUG]:\n{full_sdp}")
+            print(f"[SIGNAL] [FULL SDP DEBUG]:\n{full_sdp}")
         else:
-            print(f"✅ [D-ID] SDP Answer 提交成功! 回應: {response.text}")
+            print(f"[OK] [D-ID] SDP Answer 提交成功! 回應: {response.text}")
             # ★ 每次請求後更新 Cookie，維持 Session 持續性
             res_data = response.json()
             if res_data.get("session_id"):
@@ -430,9 +440,9 @@ class InterviewManager:
         # ★ 送出請求，使用 asyncio.to_thread 避免 Requests 擋住 Event Loop
         response = await asyncio.to_thread(self.session.post, url, json=payload, headers=headers)
         if not response.ok:
-            print(f"❌ [D-ID] ICE 提交失敗 ({response.status_code}): {response.text}")
+            print(f"[ERROR] [D-ID] ICE 提交失敗 ({response.status_code}): {response.text}")
         else:
-            print(f"✅ [D-ID] ICE 提交成功! 回應: {response.text}")
+            print(f"[OK] [D-ID] ICE 提交成功! 回應: {response.text}")
             # ★ ICE 提交後也可能更新 Cookie
             res_data = response.json()
             if res_data.get("session_id"):
@@ -440,7 +450,7 @@ class InterviewManager:
         return response.json() if response.ok else {"error": response.text}
 
     def send_did_talk(self, text):
-        print(f"😎 正在指揮 D-ID 教授說話...")
+        print(f" [SYMBOL]  正在指揮 D-ID 教授說話...")
         url = f"https://api.d-id.com/talks/streams/{self.did_stream_id}"
         payload = {
             "script": {
@@ -456,14 +466,14 @@ class InterviewManager:
         headers = {"accept": "application/json", "content-type": "application/json"}
         response = self.session.post(url, json=payload, headers=headers)
         if not response.ok:
-            print(f"❌ [D-ID 說話失敗]: {response.status_code} - {response.text}")
+            print(f"[ERROR] [D-ID 說話失敗]: {response.status_code} - {response.text}")
         else:
-            print(f"✅ [D-ID 說話成功]")
+            print(f"[OK] [D-ID 說話成功]")
         return response.json() if response.ok else {"error": response.text}
 
     def send_did_talk_audio(self, audio_url):
         """讓 D-ID 裡的虛擬教授開口說話 (使用自訂音檔 URL)"""
-        print(f"😎 正在指揮 D-ID 教授播報 Minimax 聲音...")
+        print(f" [SYMBOL]  正在指揮 D-ID 教授播報 Minimax 聲音...")
         url = f"https://api.d-id.com/talks/streams/{self.did_stream_id}"
         payload = {
             "script": {
@@ -475,12 +485,12 @@ class InterviewManager:
         headers = {"accept": "application/json", "content-type": "application/json"}
         response = self.session.post(url, json=payload, headers=headers)
         if response.ok:
-            print(f"✅ [D-ID 音訊說話成功] 狀態碼: {response.status_code}")
+            print(f"[OK] [D-ID 音訊說話成功] 狀態碼: {response.status_code}")
         else:
-            print(f"❌ [D-ID 音訊說話失敗] 狀態碼: {response.status_code}, 回應: {response.text}")
+            print(f"[ERROR] [D-ID 音訊說話失敗] 狀態碼: {response.status_code}, 回應: {response.text}")
         return response.json() if response.ok else {"error": response.text}
 
     async def handle_did_talk_completed(self):
         """當 D-ID Webhook 通知說話完畢時觸發"""
-        print(f"🎬 [D-ID] 收到 talk/completed，解鎖等待事件")
+        print(f"[VIDEO] [D-ID] 收到 talk/completed，解鎖等待事件")
         self._did_talk_event.set()
