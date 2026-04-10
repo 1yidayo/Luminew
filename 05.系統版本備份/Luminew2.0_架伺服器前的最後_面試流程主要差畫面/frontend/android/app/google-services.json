@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "978902478304",
+    "project_id": "luminew-45ee8",
+    "storage_bucket": "luminew-45ee8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978902478304:android:e13ccd817feba461720f85",
+        "android_client_info": {
+          "package_name": "com.example.luminew_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSstA1Aq-pea6qkxLdD-gVYxGMMirFIOI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,22 @@
+fastapi          # Backend API framework
+uvicorn[standard]          # FastAPI server
+requests         # HTTP requests for OpenAI / Yating API
+httpx            # Async HTTP client
+websockets       # Realtime voice / ASR WebSocket
+sounddevice      # Audio playback
+numpy            # Required by sounddevice
+pydub            # MP3 / WAV processing
+python-dotenv    # Load .env file
+pydantic         # FastAPI data validation
+pyngrok          # Ngrok tunnel
+
+# === Emotion Analysis ===
+torch            # PyTorch deep learning
+torchvision      # Computer vision models
+opencv-python    # Face detection
+mediapipe        # Google 高精度人臉偵測 (取代原本的 haarcascade)
+Pillow           # Image processing
+openai           # OpenAI API
+pdfplumber       # PDF text extraction
+python-multipart # FastAPI file upload
+PyPDF2
