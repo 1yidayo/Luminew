@@ -17,7 +17,6 @@ class DidInterviewService {
 
   RTCPeerConnection? _peerConnection;
   RTCVideoRenderer remoteRenderer = RTCVideoRenderer();
-  MediaStream? _remoteStream;
   WebSocketChannel? _wsChannel;
   final AudioRecorder _audioRecorder = AudioRecorder();
   StreamSubscription<Uint8List>? _audioStreamSubscription;
@@ -109,7 +108,6 @@ class DidInterviewService {
         if (event.track.kind == 'video') {
           if (event.streams.isNotEmpty) {
             remoteRenderer.srcObject = event.streams[0];
-            _remoteStream = event.streams[0];
             print('📺 [WebRTC] 視訊流已掛載至 renderer');
           }
           event.track.enabled = true;

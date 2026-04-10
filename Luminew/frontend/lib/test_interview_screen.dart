@@ -45,7 +45,7 @@ class _TestInterviewScreenState extends State<TestInterviewScreen> {
 
     // 初始化並啟動連線
     _didService.init().then((_) {
-      _didService.startInterview();
+      _didService.startInterview('warm_industry_professor');
       if (mounted) setState(() {});
     });
   }
@@ -65,8 +65,8 @@ class _TestInterviewScreenState extends State<TestInterviewScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // 秀出我們寫的影片積木
-            DidVideoWidget(renderer: _didService.localRenderer),
+            // 秀出我們寫的影片積木，綁定遠端教授的畫面
+            DidVideoWidget(renderer: _didService.remoteRenderer),
             
             const SizedBox(height: 30),
             
