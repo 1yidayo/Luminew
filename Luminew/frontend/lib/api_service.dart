@@ -9,7 +9,7 @@ import 'models.dart';
 /// ========================================================
 class ApiService {
   // TODO: 將這裡換成你從 main.py 啟動後拿到的 https://xxxx.ngrok.app
-  static String rootUrl = "https://unobviable-oralee-unsicker.ngrok-free.dev";
+  static String rootUrl = "http://140.136.155.145:8000";
   static String baseUrl = "$rootUrl/api/db";
 
   static Future<http.Response> _post(String endpoint, Map<String, dynamic> body) async {

@@ -1,10 +1,10 @@
 import pyodbc
 
 # SQL Server 設定 (與原本 Flutter 的設定相同)
-DB_HOST = "127.0.0.1"
+DB_HOST = "140.136.155.145"
 DB_PORT = "1433"
 DB_NAME = "LuminewDB"
-DB_USER = "sa"
+DB_USER = "TeamUser"
 DB_PASS = "!%IM43Luminew%!"
 
 def get_db_connection():

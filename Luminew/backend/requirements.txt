@@ -9,6 +9,7 @@ pydub            # MP3 / WAV processing
 python-dotenv    # Load .env file
 pydantic         # FastAPI data validation
 pyngrok          # Ngrok tunnel
+pyodbc           # MS SQL Server Driver
 
 # === Emotion Analysis ===
 torch            # PyTorch deep learning

@@ -438,7 +438,7 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
     try {
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('http://10.0.2.2:8000/emotion/generate_questions'),
+        Uri.parse('http://140.136.155.145:8000/emotion/generate_questions'),
       );
 
       request.files.add(
@@ -838,7 +838,7 @@ class _CalibrationDialogState extends State<_CalibrationDialog> {
       // 上傳
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse('http://10.0.2.2:8000/emotion/calibrate'),
+        Uri.parse('http://140.136.155.145:8000/emotion/calibrate'),
       );
       request.files.add(await http.MultipartFile.fromPath('video', file.path));
 

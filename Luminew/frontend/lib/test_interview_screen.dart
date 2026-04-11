@@ -26,7 +26,7 @@ class _TestInterviewScreenState extends State<TestInterviewScreen> {
   void initState() {
     super.initState();
     // 💡 重要：請把這裡換成你剛剛在終端機看到的 Ngrok 網址
-    _didService = DidInterviewService(backendUrl: 'https://你的ngrok網址');
+    _didService = DidInterviewService(backendUrl: 'http://140.136.155.145:8000');
     
     // 當後端有新字幕傳來時，更新畫面
     _didService.onTranscript = (role, text) {
