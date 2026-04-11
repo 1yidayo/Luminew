@@ -12,11 +12,17 @@ class DidVideoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
+      width: 320,
+      height: 320,
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(
+        color: Colors.black,
+        borderRadius: BorderRadius.circular(16),
+      ),
       child: RTCVideoView(
         renderer,
         objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
-        mirror: false, // 教授畫面絕對不能鏡像
+        mirror: false,
       ),
     );
   }

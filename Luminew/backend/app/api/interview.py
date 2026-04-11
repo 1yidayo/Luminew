@@ -265,6 +265,17 @@ async def interview_endpoint(websocket: WebSocket, client_id: str):
                 elif event == "speech_end":
                     # 前端告知學生說完話了，觸發 LLM 回覆
                     asyncio.create_task(manager.process_speech_end())
+                
+                elif event == "did_ice":
+                    # 前端找到了它的網路路徑，我們必須轉發給 D-ID！
+                    if getattr(manager, "use_did", False) and getattr(manager, "did_stream_id", None):
+                        candidate_data = {
+                            "candidate": data.get("candidate"),
+                            "sdpMid": data.get("sdpMid"),
+                            "sdpMLineIndex": data.get("sdpMLineIndex"),
+                            "session_id": manager.did_session_id
+                        }
+                        asyncio.create_task(manager.submit_did_ice(candidate_data))
 
             elif "bytes" in message:
                 # 收到前端傳來的音訊串流，直接餵給 STT

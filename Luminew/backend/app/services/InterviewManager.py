@@ -428,6 +428,31 @@ class InterviewManager:
                 self._update_did_cookies(res_data["session_id"])
         return response.json() if response.ok else {"error": response.text}
 
+    async def submit_did_ice(self, candidate_data):
+        """將前端的 ICE Candidate 轉發交還給 D-ID"""
+        target_sid = candidate_data.get("session_id") or self.did_session_id
+        if not self.did_stream_id:
+            return False
+
+        url = f"https://api.d-id.com/talks/streams/{self.did_stream_id}/ice"
+        payload = {
+            "candidate": candidate_data.get("candidate"),
+            "sdpMid": candidate_data.get("sdpMid"),
+            "sdpMLineIndex": candidate_data.get("sdpMLineIndex"),
+            "session_id": target_sid
+        }
+        headers = {"accept": "application/json", "content-type": "application/json"}
+        
+        try:
+            print(f"[SIGNAL] [DEBUG] 正在提交 ICE Candidate 到 D-ID...")
+            response = await asyncio.to_thread(self.session.post, url, json=payload, headers=headers)
+            if not response.ok:
+                print(f"[ERROR] [D-ID] ICE 提交失敗 ({response.status_code}): {response.text}")
+            return response.ok
+        except Exception as e:
+            print(f"[ERROR] [D-ID] ICE 提交拋出異常: {e}")
+            return False
+
     async def submit_did_ice_candidate(self, candidate, sdpMid, sdpMLineIndex, session_id=None):
         """將前端產生的 ICE Candidate 交回給 D-ID"""
         target_sid = session_id or self.did_session_id

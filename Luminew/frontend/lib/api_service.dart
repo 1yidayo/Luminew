@@ -9,18 +9,23 @@ import 'models.dart';
 /// ========================================================
 class ApiService {
   // TODO: 將這裡換成你從 main.py 啟動後拿到的 https://xxxx.ngrok.app
-  static String rootUrl = "http://140.136.155.145:8000";
+  static String rootUrl = "https://unobviable-oralee-unsicker.ngrok-free.dev";
   static String baseUrl = "$rootUrl/api/db";
 
-  static Future<http.Response> _post(String endpoint, Map<String, dynamic> body) async {
+  static Future<http.Response> _post(
+    String endpoint,
+    Map<String, dynamic> body,
+  ) async {
     final res = await http.post(
       Uri.parse('$baseUrl$endpoint'),
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode(body)
+      body: jsonEncode(body),
     );
     if (res.statusCode != 200) {
       String detail = 'API Server Error';
-      try { detail = jsonDecode(res.body)['detail'] ?? detail; } catch(e) {}
+      try {
+        detail = jsonDecode(res.body)['detail'] ?? detail;
+      } catch (e) {}
       throw Exception(detail);
     }
     return res;
@@ -40,8 +45,18 @@ class ApiService {
     }
   }
 
-  static Future<void> registerUser(String email, String password, String name, String role) async {
-    await _post('/registerUser', {'email': email, 'password': password, 'name': name, 'role': role});
+  static Future<void> registerUser(
+    String email,
+    String password,
+    String name,
+    String role,
+  ) async {
+    await _post('/registerUser', {
+      'email': email,
+      'password': password,
+      'name': name,
+      'role': role,
+    });
   }
 
   // ==========================
@@ -60,7 +75,9 @@ class ApiService {
   static Future<List<Student>> getClassStudents(String classId) async {
     final res = await _post('/getClassStudents', {'classId': classId});
     final List list = jsonDecode(res.body);
-    return list.map((j) => Student(id: j['id'].toString(), name: j['name'])).toList();
+    return list
+        .map((j) => Student(id: j['id'].toString(), name: j['name']))
+        .toList();
   }
 
   static Future<List<Class>> getStudentClasses(String email) async {
@@ -77,8 +94,14 @@ class ApiService {
   // ==========================
   // 面試紀錄
   // ==========================
-  static Future<List<InterviewRecord>> getRecords(String userId, String filter) async {
-    final res = await _post('/getRecords', {'userId': userId, 'filter': filter});
+  static Future<List<InterviewRecord>> getRecords(
+    String userId,
+    String filter,
+  ) async {
+    final res = await _post('/getRecords', {
+      'userId': userId,
+      'filter': filter,
+    });
     final List list = jsonDecode(res.body);
     return list.map((d) {
       if (d['ScoresDetail'] is String) d['ScoresDetail'] = d['ScoresDetail'];
@@ -114,51 +137,89 @@ class ApiService {
   // ==========================
   // 邀請與時段
   // ==========================
-  static Future<void> sendInvitation(String teacherEmail, String studentId, String msg) async {
-    await _post('/sendInvitation', {'teacherEmail': teacherEmail, 'studentId': studentId, 'msg': msg});
+  static Future<void> sendInvitation(
+    String teacherEmail,
+    String studentId,
+    String msg,
+  ) async {
+    await _post('/sendInvitation', {
+      'teacherEmail': teacherEmail,
+      'studentId': studentId,
+      'msg': msg,
+    });
   }
 
-  static Future<void> sendBulkInvitations(String teacherEmail, List<String> studentIds, String msg) async {
-    await _post('/sendBulkInvitations', {'teacherEmail': teacherEmail, 'studentIds': studentIds, 'msg': msg});
+  static Future<void> sendBulkInvitations(
+    String teacherEmail,
+    List<String> studentIds,
+    String msg,
+  ) async {
+    await _post('/sendBulkInvitations', {
+      'teacherEmail': teacherEmail,
+      'studentIds': studentIds,
+      'msg': msg,
+    });
   }
 
-  static Future<List<Invitation>> getInvitations(String userId, bool isTeacher) async {
-    final res = await _post('/getInvitations', {'userId': userId, 'isTeacher': isTeacher});
+  static Future<List<Invitation>> getInvitations(
+    String userId,
+    bool isTeacher,
+  ) async {
+    final res = await _post('/getInvitations', {
+      'userId': userId,
+      'isTeacher': isTeacher,
+    });
     final List list = jsonDecode(res.body);
-    return list.map((x) => Invitation(
-      id: x['InvitationID'].toString(),
-      teacherName: x['TeacherName'] ?? '',
-      studentName: x['StudentName'] ?? '',
-      message: x['Message'],
-      status: x['Status'],
-      date: x['SentAt'].toString(),
-    )).toList();
+    return list
+        .map(
+          (x) => Invitation(
+            id: x['InvitationID'].toString(),
+            teacherName: x['TeacherName'] ?? '',
+            studentName: x['StudentName'] ?? '',
+            message: x['Message'],
+            status: x['Status'],
+            date: x['SentAt'].toString(),
+          ),
+        )
+        .toList();
   }
 
   static Future<void> updateInvitation(String id, String status) async {
     await _post('/updateInvitation', {'id': id, 'status': status});
   }
 
-  static Future<void> addInterviewSlot(String teacherEmail, DateTime start, DateTime end) async {
+  static Future<void> addInterviewSlot(
+    String teacherEmail,
+    DateTime start,
+    DateTime end,
+  ) async {
     await _post('/addInterviewSlot', {
       'teacherEmail': teacherEmail,
       'start': start.toIso8601String(),
-      'end': end.toIso8601String()
+      'end': end.toIso8601String(),
     });
   }
 
-  static Future<List<InterviewSlot>> getTeacherSlots(String teacherEmail) async {
+  static Future<List<InterviewSlot>> getTeacherSlots(
+    String teacherEmail,
+  ) async {
     final res = await _post('/getTeacherSlots', {'email': teacherEmail});
-    return (jsonDecode(res.body) as List).map((x) => InterviewSlot.fromMap(x)).toList();
+    return (jsonDecode(res.body) as List)
+        .map((x) => InterviewSlot.fromMap(x))
+        .toList();
   }
 
   static Future<void> deleteSlot(String slotId) async {
     await _post('/deleteSlot', {'slotId': slotId});
   }
 
-  static Future<List<InterviewSlot>> getAvailableSlots(String teacherEmail) async {
+  static Future<List<InterviewSlot>> getAvailableSlots(
+    String teacherEmail,
+  ) async {
     final res = await _post('/getAvailableSlots', {'email': teacherEmail});
-    return (jsonDecode(res.body) as List).map((x) => InterviewSlot.fromMap(x)).toList();
+    return (jsonDecode(res.body) as List)
+        .map((x) => InterviewSlot.fromMap(x))
+        .toList();
   }
 
   static Future<void> bookSlot(String slotId, String studentEmail) async {
@@ -170,16 +231,28 @@ class ApiService {
   // ==========================
   static Future<List<Comment>> getComments(String recordId) async {
     final res = await _post('/getComments', {'recordId': recordId});
-    return (jsonDecode(res.body) as List).map((x) => Comment(
-      id: x['CommentID'].toString(),
-      senderName: x['SenderName'],
-      content: x['Content'],
-      date: x['SentAt'].toString(),
-    )).toList();
+    return (jsonDecode(res.body) as List)
+        .map(
+          (x) => Comment(
+            id: x['CommentID'].toString(),
+            senderName: x['SenderName'],
+            content: x['Content'],
+            date: x['SentAt'].toString(),
+          ),
+        )
+        .toList();
   }
 
-  static Future<void> sendComment(String recordId, String userEmail, String content) async {
-    await _post('/sendComment', {'recordId': recordId, 'userEmail': userEmail, 'content': content});
+  static Future<void> sendComment(
+    String recordId,
+    String userEmail,
+    String content,
+  ) async {
+    await _post('/sendComment', {
+      'recordId': recordId,
+      'userEmail': userEmail,
+      'content': content,
+    });
   }
 
   static Future<void> updatePrivacy(String recordId, String privacy) async {
@@ -188,11 +261,15 @@ class ApiService {
 
   static Future<List<LearningPortfolio>> getPortfolios(String email) async {
     final res = await _post('/getPortfolios', {'email': email});
-    return (jsonDecode(res.body) as List).map((x) => LearningPortfolio(
-      id: x['PortfolioID'].toString(),
-      title: x['Title'],
-      uploadDate: x['UploadDate'].toString(),
-    )).toList();
+    return (jsonDecode(res.body) as List)
+        .map(
+          (x) => LearningPortfolio(
+            id: x['PortfolioID'].toString(),
+            title: x['Title'],
+            uploadDate: x['UploadDate'].toString(),
+          ),
+        )
+        .toList();
   }
 
   static Future<void> addPortfolio(String email, String title) async {

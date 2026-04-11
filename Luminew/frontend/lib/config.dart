@@ -1,3 +1,3 @@
 class AppConfig {
-  static const String httpUrl = "http://140.136.155.145:8000";
+  static const String httpUrl = "https://unobviable-oralee-unsicker.ngrok-free.dev";
 }

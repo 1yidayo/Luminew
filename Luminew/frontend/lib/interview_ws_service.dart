@@ -4,7 +4,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:web_socket_channel/web_socket_channel.dart';
-import 'config.dart';
 import 'api_service.dart';
 
 class InterviewWsService {
@@ -13,20 +12,24 @@ class InterviewWsService {
 
   // 回呼
   Function(String role, String text)? onTranscript; // 學生/教授文字
-  Function(Uint8List audioChunk)? onAudioChunk;     // TTS 音訊
-  Function()? onTtsDone;                            // TTS 播放結束
-  Function()? onInterviewStarted;                   // 面試開始確認
-  Function()? onInterviewStopped;                   // 面試結束確認
-  Function(String error)? onError;                  // 錯誤
+  Function(Uint8List audioChunk)? onAudioChunk; // TTS 音訊
+  Function()? onTtsDone; // TTS 播放結束
+  Function()? onInterviewStarted; // 面試開始確認
+  Function()? onInterviewStopped; // 面試結束確認
+  Function(String error)? onError; // 錯誤
 
   bool get isConnected => _isConnected;
 
   /// 連線到後端 WebSocket
   Future<void> connect(String clientId) async {
     try {
-      final rootUrl = ApiService.rootUrl.replaceAll('http://', '').replaceAll('https://', '');
+      final rootUrl = ApiService.rootUrl
+          .replaceAll('http://', '')
+          .replaceAll('https://', '');
       final isSecure = ApiService.rootUrl.startsWith('https');
-      final uri = Uri.parse('${isSecure ? "wss" : "ws"}://$rootUrl/interview/ws/$clientId');
+      final uri = Uri.parse(
+        '${isSecure ? "wss" : "ws"}://$rootUrl/interview/ws/$clientId',
+      );
       _channel = WebSocketChannel.connect(uri);
 
       // 等待連線建立
@@ -64,10 +67,7 @@ class InterviewWsService {
 
   /// 發送開始面試指令
   void startInterview({String professorType = 'warm_industry_professor'}) {
-    _sendJson({
-      'event': 'start_interview',
-      'professor_type': professorType,
-    });
+    _sendJson({'event': 'start_interview', 'professor_type': professorType});
   }
 
   /// 發送結束面試指令
