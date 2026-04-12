@@ -89,12 +89,21 @@ def saveRecord(req: SaveRecordReq):
     safeSuggestion = req.aiSuggestion.replace("'", "''")
     safeTimeline = req.timelineData.replace("'", "''")
     questionsJson = json.dumps(req.questions).replace("'", "''")
+    safeStudentId = req.studentId.replace("'", "''")
+    safeType = req.type.replace("'", "''")
+    safeInterviewer = req.interviewer.replace("'", "''")
+    safeLang = req.language.replace("'", "''")
+    safePrivacy = req.privacy.replace("'", "''")
+    safeVideoUrl = req.videoUrl.replace("'", "''")
     safeName = req.interviewName.replace("'", "''")
+
     sql = f"""INSERT INTO InterviewRecords (StudentID, Date, DurationSeconds, Type, Interviewer, Language, OverallScore, ScoresDetail, Privacy, AIComment, AISuggestion, TimelineData, VideoUrl, Questions, InterviewName)
     OUTPUT INSERTED.RecordID
-    VALUES ((SELECT UserID FROM Users WHERE Email = '{req.studentId}'), GETDATE(), {req.durationSec}, N'{req.type}', N'{req.interviewer}', N'{req.language}', {req.overallScore}, '{scoresJson}', '{req.privacy}', N'{safeComment}', N'{safeSuggestion}', '{safeTimeline}', '{req.videoUrl}', N'{questionsJson}', N'{safeName}')"""
+    VALUES ((SELECT UserID FROM Users WHERE Email = '{safeStudentId}'), GETDATE(), {req.durationSec}, N'{safeType}', N'{safeInterviewer}', N'{safeLang}', {req.overallScore}, '{scoresJson}', N'{safePrivacy}', N'{safeComment}', N'{safeSuggestion}', '{safeTimeline}', N'{safeVideoUrl}', N'{questionsJson}', N'{safeName}')"""
     res = execute_read(sql)
-    return {"status": "ok", "recordId": str(res[0]['RecordID'])} if res else {"status": "ok"}
+    if not res:
+        raise HTTPException(status_code=404, detail=f"找不到使用者: {req.studentId}. 請確認已登入且帳號正確。")
+    return {"status": "ok", "recordId": str(res[0]['RecordID'])}
 
 # --- 4. 邀請與時段 ---
 class SendInvitationReq(BaseModel): teacherEmail: str; studentId: str; msg: str

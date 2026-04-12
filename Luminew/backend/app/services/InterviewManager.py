@@ -360,7 +360,7 @@ class InterviewManager:
         # ★ 如果有提供公開網址，就請求 D-ID 使用 Webhook 回傳連線資訊
         public_url = getattr(self, "public_url", None)
         if public_url:
-            payload["webhook"] = f"{public_url}/interview/did-webhook"
+            payload["webhook"] = f"{public_url}/api/interview/did-webhook"
             print(f"[LINK] [D-ID] 已設定 Webhook 回傳地址 (請確認 ngrok 正常): {payload['webhook']}")
         else:
             print("[WARN] [D-ID] 警告：找不到 public_url，D-ID 將無法回傳路徑 (ICE)，連線可能卡住")

@@ -21,3 +21,11 @@ openai           # OpenAI API
 pdfplumber       # PDF text extraction
 python-multipart # FastAPI file upload
 PyPDF2
+ffmpeg-python    # FFmpeg wrapper
+opencv-python
+numpy
+torch 
+torchvision
+Pillow
+httpx
+python-dotenv

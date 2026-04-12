@@ -201,6 +201,16 @@ class DidInterviewService {
 
   Future<void> _playBufferedAudio() async {
     if (_audioBuffer.isEmpty) return;
+
+    // 如果 WebRTC 穩定連線，則捨棄備援音訊，避免雙重回音！
+    final iceState = _peerConnection?.iceConnectionState;
+    if (iceState == RTCIceConnectionState.RTCIceConnectionStateConnected ||
+        iceState == RTCIceConnectionState.RTCIceConnectionStateCompleted) {
+      print('✅ [DEBUG] WebRTC 已接管音訊，捨棄 WebSocket 備援音檔');
+      _audioBuffer.clear();
+      return;
+    }
+
     try {
       final dir = await getTemporaryDirectory();
       final file = File('${dir.path}/temp_tts_${DateTime.now().millisecondsSinceEpoch}.wav');
