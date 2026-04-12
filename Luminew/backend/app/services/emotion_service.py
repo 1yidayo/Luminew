@@ -70,7 +70,7 @@ def flip_video_async(video_path: str):
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 if OPENAI_API_KEY:
-    print(f"🔑 OpenAI API Key 前十碼: {OPENAI_API_KEY[:10]}...")
+    print(f"[AUTH] OpenAI API Key: {OPENAI_API_KEY[:10]}...")
     print("✅ OpenAI API 設定成功")
 # 載入人臉辨識器 (使用 OpenCV DNN，比 Haar 準確且避開 mediapipe 路徑 bug)
 PROTOTXT_PATH = os.path.join(PROJECT_DIR, "deploy.prototxt")
