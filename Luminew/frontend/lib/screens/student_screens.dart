@@ -8,11 +8,16 @@ import '../api_service.dart';
 import 'common_screens.dart';
 import 'interview_screens.dart';
 import 'chat_screens.dart';
+import '../widgets/luminew_header.dart'; // 導入標頭組件
 
 const Color kLuminewMainPurple = Color(0xFFAD9DC7);
-const Color kLuminewPalePurple = Color(0xFFF5F3FF);
+const Color kLuminewGooseYellow = Color(0xFFFFFDF0);
 const Color kLuminewDeepIndigo = Color(0xFF675B83);
-const double kRadius = 20.0;
+
+const double kRadiusL = 24.0;
+const double kRadiusM = 16.0;
+const double kRadiusS = 10.0;
+const double kRadius = 20.0; // 相容舊代碼
 
 // ==========================================
 // 1. 學生端主架構
@@ -37,59 +42,107 @@ class _StudentMainScaffoldState extends State<StudentMainScaffold> {
   Widget build(BuildContext context) {
     final screens = [
       InterviewHomePage(user: widget.user),
-      ClassChatRoom(
-        chatKey: 'public',
-        userEmail: widget.user.email,
-        title: '公共交流',
-        showAppBar: false,
-      ),
+      ClassForumScreen(userEmail: widget.user.email),
       InterviewRecordListScreen(user: widget.user),
       StudentClassScreen(user: widget.user),
       SettingsScreen(onLogout: widget.onLogout, user: widget.user),
     ];
 
     return Scaffold(
-      backgroundColor: kLuminewPalePurple,
-      appBar: _index == 1
-          ? AppBar(
-              title: const Text('公共交流區'),
-              backgroundColor: Colors.white,
-              elevation: 0,
-              foregroundColor: kLuminewDeepIndigo,
-            )
-          : null,
+      backgroundColor: kLuminewGooseYellow,
+      appBar: null,
       body: screens[_index],
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: _index,
-        onDestinationSelected: (i) => setState(() => _index = i),
-        backgroundColor: Colors.white,
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home),
-            label: '主頁',
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: kLuminewMainPurple.withOpacity(0.8), // 調輕底色至 80%
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(kRadius),
+            topRight: Radius.circular(kRadius),
           ),
-          NavigationDestination(
-            icon: Icon(Icons.chat_bubble_outline),
-            selectedIcon: Icon(Icons.chat_bubble),
-            label: '交流',
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              blurRadius: 10,
+              offset: Offset(0, -2),
+            ),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(kRadius),
+            topRight: Radius.circular(kRadius),
           ),
-          NavigationDestination(
-            icon: Icon(Icons.video_library_outlined),
-            selectedIcon: Icon(Icons.video_library),
-            label: '紀錄',
+          child: SafeArea(
+            bottom: true, // 確保適配各種螢幕底部
+            child: Container(
+              height: 75,
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  _buildNavItem(0, Icons.home_outlined, Icons.home, '主頁'),
+                  _buildNavItem(
+                    1,
+                    Icons.chat_bubble_outline,
+                    Icons.chat_bubble,
+                    '交流',
+                  ),
+                  _buildNavItem(
+                    2,
+                    Icons.video_library_outlined,
+                    Icons.video_library,
+                    '紀錄',
+                  ),
+                  _buildNavItem(3, Icons.school_outlined, Icons.school, '班級'),
+                  _buildNavItem(
+                    4,
+                    Icons.settings_outlined,
+                    Icons.settings,
+                    '設定',
+                  ),
+                ],
+              ),
+            ),
           ),
-          NavigationDestination(
-            icon: Icon(Icons.school_outlined),
-            selectedIcon: Icon(Icons.school),
-            label: '班級',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.settings_outlined),
-            selectedIcon: Icon(Icons.settings),
-            label: '設定',
-          ),
-        ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNavItem(
+    int index,
+    IconData icon,
+    IconData activeIcon,
+    String label,
+  ) {
+    final isSelected = _index == index;
+    return GestureDetector(
+      onTap: () => setState(() => _index = index),
+      behavior: HitTestBehavior.opaque,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: isSelected
+              ? Colors.white.withOpacity(0.2)
+              : Colors.transparent, // 包裹文字與圖示的選取框
+          borderRadius: BorderRadius.circular(kRadiusS), // 正方形導角
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(isSelected ? activeIcon : icon, color: Colors.white, size: 24),
+            const SizedBox(height: 4),
+            Text(
+              label,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 11,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -105,87 +158,97 @@ class InterviewHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kLuminewPalePurple,
-      appBar: AppBar(
-        title: const Text('主頁', style: TextStyle(fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.white,
-        foregroundColor: kLuminewDeepIndigo,
-        elevation: 0,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_none_rounded),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => StudentNotificationsScreen(user: user),
-              ),
+      backgroundColor: kLuminewGooseYellow,
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(
+              24.0,
+              110.0,
+              24.0,
+              20.0,
+            ), // 頂部預留標頭空間
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'Hello, ${user.name}',
+                  style: const TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: kLuminewDeepIndigo,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  '準備好開始練習了嗎？',
+                  style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                ),
+                const SizedBox(height: 30),
+
+                _buildCard(
+                  context,
+                  title: '開始模擬面試 (AI)',
+                  icon: Icons.smart_toy,
+                  subtitle: '與 AI 機器人練習',
+                  color: kLuminewMainPurple.withOpacity(0.85), // 稍微調淺 8%
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => MockInterviewSetupScreen(user: user),
+                    ),
+                  ),
+                ),
+
+                _buildCard(
+                  context,
+                  title: '預約 Live 面試',
+                  icon: Icons.calendar_today_rounded,
+                  subtitle: '搶約老師時段',
+                  color: kLuminewMainPurple.withOpacity(0.65), // 70% 實色
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => StudentBookingScreen(user: user),
+                    ),
+                  ),
+                ),
+
+                _buildCard(
+                  context,
+                  title: '學習歷程 AI 分析',
+                  icon: Icons.auto_awesome,
+                  subtitle: 'AI 智慧評價您的 PDF',
+                  color: kLuminewMainPurple.withOpacity(0.45), // 40% 實色
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => PortfolioAnalysisScreen(user: user),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
+          // --- 統一懸浮標頭 ---
+          LuminewHeader(
+            title: 'Luminew',
+            actions: [
+              IconButton(
+                icon: const Icon(
+                  Icons.notifications_none_rounded,
+                  color: kLuminewDeepIndigo,
+                ),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => StudentNotificationsScreen(user: user),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'Hello, ${user.name}',
-              style: const TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: kLuminewDeepIndigo,
-              ),
-            ),
-            const SizedBox(height: 5),
-            Text(
-              '準備好開始練習了嗎？',
-              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
-            ),
-            const SizedBox(height: 30),
-
-            _buildCard(
-              context,
-              title: '開始模擬面試 (AI)',
-              icon: Icons.smart_toy,
-              subtitle: '與 AI 機器人練習',
-              color: kLuminewMainPurple,
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => MockInterviewSetupScreen(user: user),
-                ),
-              ),
-            ),
-
-            _buildCard(
-              context,
-              title: '預約 Live 面試',
-              icon: Icons.calendar_today_rounded,
-              subtitle: '搶約老師時段',
-              color: Colors.orange,
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => StudentBookingScreen(user: user),
-                ),
-              ),
-            ),
-
-            _buildCard(
-              context,
-              title: '學習歷程 AI 分析',
-              icon: Icons.auto_awesome,
-              subtitle: 'AI 智慧評價您的 PDF',
-              color: Colors.green,
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => PortfolioAnalysisScreen(user: user),
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -195,7 +258,7 @@ class InterviewHomePage extends StatelessWidget {
     required String title,
     required IconData icon,
     required String subtitle,
-    Color? color,
+    required Color color,
     required VoidCallback onTap,
   }) {
     return GestureDetector(
@@ -204,11 +267,11 @@ class InterviewHomePage extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 20.0),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: color ?? Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          color: color,
+          borderRadius: BorderRadius.circular(kRadiusM),
           boxShadow: [
             BoxShadow(
-              color: (color ?? Colors.black).withOpacity(0.15),
+              color: color.withOpacity(0.2),
               blurRadius: 10,
               offset: const Offset(0, 5),
             ),
@@ -219,35 +282,39 @@ class InterviewHomePage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
+                color: Colors.white.withOpacity(0.25),
                 shape: BoxShape.circle,
               ),
               child: Icon(icon, color: Colors.white, size: 28),
             ),
             const SizedBox(width: 16),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Colors.white,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  subtitle,
-                  style: const TextStyle(color: Colors.white70, fontSize: 14),
-                ),
-              ],
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.9),
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
+              ),
             ),
-            const Spacer(),
             const Icon(
               Icons.arrow_forward_ios_rounded,
-              color: Colors.white54,
-              size: 18,
+              color: Colors.white,
+              size: 16,
             ),
           ],
         ),
@@ -303,7 +370,7 @@ class _StudentBookingScreenState extends State<StudentBookingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kLuminewPalePurple,
+      backgroundColor: kLuminewGooseYellow,
       appBar: AppBar(
         title: const Text("預約面試"),
         backgroundColor: Colors.white,
@@ -459,7 +526,7 @@ class _StudentNotificationsScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kLuminewPalePurple,
+      backgroundColor: kLuminewGooseYellow,
       appBar: AppBar(
         title: const Text("通知中心"),
         backgroundColor: Colors.white,
@@ -616,98 +683,140 @@ class _StudentClassScreenState extends State<StudentClassScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: kLuminewPalePurple,
-      appBar: AppBar(
-        title: const Text('我的班級'),
-        backgroundColor: Colors.white,
-        foregroundColor: kLuminewDeepIndigo,
-        elevation: 0,
-      ),
-      body: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            color: Colors.white,
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _codeCtrl,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      labelText: "輸入 6 位數邀請碼",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
+    return Stack(
+      children: [
+        Column(
+          children: [
+            const SizedBox(height: 110), // 為 Header 留白
+            // V10: 極簡通透功能條
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 4,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.transparent, // 極淡紫底色
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: kLuminewMainPurple.withOpacity(0.2), // 淺紫細邊框
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.vpn_key_outlined,
+                      size: 18,
+                      color: kLuminewDeepIndigo,
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: TextField(
+                        controller: _codeCtrl,
+                        style: const TextStyle(
+                          color: kLuminewDeepIndigo,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18, // 放大字體至 18
+                        ),
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          hintText: "輸入邀請碼",
+                          hintStyle: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15, // 放大提示字至 15
+                          ),
+                          border: InputBorder.none,
+                        ),
                       ),
-                      filled: true,
-                      fillColor: Colors.grey[50],
                     ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: _join,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: kLuminewMainPurple,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 24,
-                      vertical: 16,
+                    TextButton(
+                      onPressed: _join,
+                      style: TextButton.styleFrom(
+                        foregroundColor: kLuminewMainPurple,
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: const Text(
+                        "加入班級",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ), // 放大按鈕字體
+                      ),
                     ),
-                  ),
-                  child: const Text("加入"),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-          Expanded(
-            child: _isLoading
-                ? const Center(child: CircularProgressIndicator())
-                : _classes.isEmpty
-                ? const Center(child: Text("尚未加入班級"))
-                : ListView.builder(
-                    padding: const EdgeInsets.all(16),
-                    itemCount: _classes.length,
-                    itemBuilder: (ctx, i) => Container(
-                      margin: const EdgeInsets.only(bottom: 12),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16),
+            Expanded(
+              child: _isLoading
+                  ? const Center(child: CircularProgressIndicator())
+                  : _classes.isEmpty
+                  ? const Center(
+                      child: Text(
+                        "尚未加入班級",
+                        style: TextStyle(color: Color(0xFF5A5A5A)),
                       ),
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.all(12),
-                        leading: const Icon(
-                          Icons.school,
-                          color: kLuminewMainPurple,
-                          size: 32,
+                    )
+                  : ListView.builder(
+                      padding: const EdgeInsets.all(16),
+                      itemCount: _classes.length,
+                      itemBuilder: (ctx, i) => Container(
+                        margin: const EdgeInsets.only(bottom: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.05),
+                              blurRadius: 10,
+                            ),
+                          ],
                         ),
-                        title: Text(
-                          _classes[i].name,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        subtitle: const Text("點擊進入聊天室"),
-                        trailing: const Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                          color: Colors.grey,
-                        ),
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => ClassChatRoom(
-                              chatKey: _classes[i].id,
-                              userEmail: widget.user.email,
-                              title: _classes[i].name,
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.all(12),
+                          leading: const Icon(
+                            Icons.school,
+                            color: kLuminewMainPurple,
+                            size: 32,
+                          ),
+                          title: Text(
+                            _classes[i].name,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF675B83),
+                            ),
+                          ),
+                          subtitle: const Text(
+                            "點擊進入聊天室",
+                            style: TextStyle(color: Colors.grey, fontSize: 13),
+                          ),
+                          trailing: const Icon(
+                            Icons.arrow_forward_ios,
+                            size: 16,
+                            color: Colors.grey,
+                          ),
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ClassChatRoom(
+                                chatKey: _classes[i].id,
+                                userEmail: widget.user.email,
+                                title: _classes[i].name,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-          ),
-        ],
-      ),
+            ),
+          ],
+        ),
+        const LuminewHeader(title: '我的班級'),
+      ],
     );
   }
 }
@@ -719,7 +828,8 @@ class PortfolioAnalysisScreen extends StatefulWidget {
   final AppUser user;
   const PortfolioAnalysisScreen({super.key, required this.user});
   @override
-  State<PortfolioAnalysisScreen> createState() => _PortfolioAnalysisScreenState();
+  State<PortfolioAnalysisScreen> createState() =>
+      _PortfolioAnalysisScreenState();
 }
 
 class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
@@ -771,11 +881,13 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
         Uri.parse('${ApiService.rootUrl}/emotion/analyze_portfolio'),
       );
 
-      request.files.add(http.MultipartFile.fromBytes(
-        'pdf',
-        _selectedFile!.bytes!,
-        filename: _selectedFile!.name,
-      ));
+      request.files.add(
+        http.MultipartFile.fromBytes(
+          'pdf',
+          _selectedFile!.bytes!,
+          filename: _selectedFile!.name,
+        ),
+      );
 
       // 發送請求
       var streamedResponse = await request.send().timeout(
@@ -814,7 +926,7 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kLuminewPalePurple,
+      backgroundColor: kLuminewGooseYellow,
       appBar: AppBar(
         title: const Text('學習歷程 AI 分析'),
         backgroundColor: Colors.white,
@@ -842,7 +954,9 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: _selectedFile != null ? Colors.green : Colors.grey[300]!,
+                    color: _selectedFile != null
+                        ? Colors.green
+                        : Colors.grey[300]!,
                     width: 2,
                   ),
                   boxShadow: [
@@ -855,17 +969,23 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
                 child: Column(
                   children: [
                     Icon(
-                      _selectedFile != null ? Icons.check_circle : Icons.upload_file,
+                      _selectedFile != null
+                          ? Icons.check_circle
+                          : Icons.upload_file,
                       size: 48,
                       color: _selectedFile != null ? Colors.green : Colors.grey,
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      _selectedFile != null ? _selectedFile!.name : '點擊選擇 PDF 檔案',
+                      _selectedFile != null
+                          ? _selectedFile!.name
+                          : '點擊選擇 PDF 檔案',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
-                        color: _selectedFile != null ? Colors.green : Colors.grey[600],
+                        color: _selectedFile != null
+                            ? Colors.green
+                            : Colors.grey[600],
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -885,12 +1005,17 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
 
             // 分析按鈕
             ElevatedButton.icon(
-              onPressed: _isAnalyzing || _selectedFile == null ? null : _analyzePortfolio,
+              onPressed: _isAnalyzing || _selectedFile == null
+                  ? null
+                  : _analyzePortfolio,
               icon: _isAnalyzing
                   ? const SizedBox(
                       width: 20,
                       height: 20,
-                      child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: Colors.white,
+                      ),
                     )
                   : const Icon(Icons.auto_awesome),
               label: Text(_isAnalyzing ? '分析中，請稍候...' : '開始 AI 分析'),
@@ -952,10 +1077,7 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 15,
-          ),
+          BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 15),
         ],
       ),
       child: Column(
@@ -968,14 +1090,14 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
               const SizedBox(width: 8),
               const Text(
                 'AI 分析結果',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const Spacer(),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
                   color: _getScoreColor(score),
                   borderRadius: BorderRadius.circular(20),
@@ -1000,14 +1122,19 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
               children: [
                 Icon(Icons.thumb_up, color: Colors.green, size: 18),
                 SizedBox(width: 6),
-                Text('優點', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                Text(
+                  '優點',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
               ],
             ),
             const SizedBox(height: 8),
-            ...strengths.map((s) => Padding(
-              padding: const EdgeInsets.only(left: 24, bottom: 4),
-              child: Text('• $s', style: const TextStyle(fontSize: 14)),
-            )),
+            ...strengths.map(
+              (s) => Padding(
+                padding: const EdgeInsets.only(left: 24, bottom: 4),
+                child: Text('• $s', style: const TextStyle(fontSize: 14)),
+              ),
+            ),
             const SizedBox(height: 16),
           ],
 
@@ -1017,14 +1144,19 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
               children: [
                 Icon(Icons.warning_amber, color: Colors.orange, size: 18),
                 SizedBox(width: 6),
-                Text('需改進', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                Text(
+                  '需改進',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
               ],
             ),
             const SizedBox(height: 8),
-            ...weaknesses.map((w) => Padding(
-              padding: const EdgeInsets.only(left: 24, bottom: 4),
-              child: Text('• $w', style: const TextStyle(fontSize: 14)),
-            )),
+            ...weaknesses.map(
+              (w) => Padding(
+                padding: const EdgeInsets.only(left: 24, bottom: 4),
+                child: Text('• $w', style: const TextStyle(fontSize: 14)),
+              ),
+            ),
             const SizedBox(height: 16),
           ],
 
@@ -1034,7 +1166,10 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
               children: [
                 Icon(Icons.chat, color: Colors.blue, size: 18),
                 SizedBox(width: 6),
-                Text('整體評語', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                Text(
+                  '整體評語',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
               ],
             ),
             const SizedBox(height: 8),
@@ -1055,35 +1190,46 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
               children: [
                 Icon(Icons.lightbulb, color: Colors.amber, size: 18),
                 SizedBox(width: 6),
-                Text('改進建議', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                Text(
+                  '改進建議',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
               ],
             ),
             const SizedBox(height: 8),
-            ...suggestions.asMap().entries.map((entry) => Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 24,
-                    height: 24,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.amber[100],
-                      shape: BoxShape.circle,
+            ...suggestions.asMap().entries.map(
+              (entry) => Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 24,
+                      height: 24,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Colors.amber[100],
+                        shape: BoxShape.circle,
+                      ),
+                      child: Text(
+                        '${entry.key + 1}',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                        ),
+                      ),
                     ),
-                    child: Text(
-                      '${entry.key + 1}',
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        entry.value,
+                        style: const TextStyle(fontSize: 14),
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(entry.value, style: const TextStyle(fontSize: 14)),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            )),
+            ),
           ],
         ],
       ),

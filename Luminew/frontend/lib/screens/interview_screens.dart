@@ -17,6 +17,7 @@ import '../api_service.dart';
 import '../did_interview_service.dart';
 import '../config.dart';
 import '../widgets/did_video_widget.dart';
+import '../widgets/luminew_header.dart'; // 導入統一標頭
 
 // 全域變數：用來儲存可用的相機列表
 List<CameraDescription> cameras = [];
@@ -36,8 +37,10 @@ Widget _buildPremiumCard({
     padding: const EdgeInsets.all(20),
     decoration: BoxDecoration(
       color: kLuminewSurface,
-      borderRadius: BorderRadius.circular(kLuminewRadius),
-      border: isError ? Border.all(color: Colors.redAccent, width: 2) : null,
+      borderRadius: BorderRadius.circular(kRadiusM),
+      border: isError 
+          ? Border.all(color: Colors.redAccent, width: 2) 
+          : Border.all(color: kLuminewMainPurple.withOpacity(0.05)),
       boxShadow: [
         BoxShadow(
           color: accentColor.withOpacity(0.05),
@@ -72,16 +75,20 @@ Widget _buildPremiumCard({
 }
 
 const kLuminewMainPurple = Color(0xFFAD9DC7); // 核心紫色
-const kLuminewPalePurple = Color(0xFFF5F3FF); // 背景淡紫色
-const kLuminewDeepIndigo = Color(0xFF675B83); // 文字部分採用較深的紫色，提升閱讀性
-const kLuminewSurface = Colors.white; // 卡片與表面
-const kLuminewSuccess = Color(0xFFA5F3E0); // 莫蘭迪綠
-const kLuminewWarning = Color(0xFFFDE68A); // 莫蘭迪黃
-const kLuminewConfident = Color(0xFFFDE68A); // 自信 (黃)
-const kLuminewNervous = Color(0xFF93C5FD); // 緊張 (藍)
-const kLuminewPassion = Color(0xFFFDA4AF); // 熱忱 (粉)
-const kLuminewRelaxed = Color(0xFFA5F3E0); // 沈穩 (綠)
-const kLuminewRadius = 20.0; // 統一導角
+const kLuminewGooseYellow = Color(0xFFFFFDF0); // 背景鵝黃色
+const kLuminewDeepIndigo = Color(0xFF675B83); // 文字深紫色
+const kLuminewSurface = Colors.white; // 卡片表面
+const kLuminewSuccess = Color(0xFFA5F3E0);
+const kLuminewWarning = Color(0xFFFDE68A);
+const kLuminewConfident = Color(0xFFFDE68A);
+const kLuminewNervous = Color(0xFF93C5FD);
+const kLuminewPassion = Color(0xFFFDA4AF);
+const kLuminewRelaxed = Color(0xFFA5F3E0);
+
+const double kRadiusL = 24.0;
+const double kRadiusM = 16.0;
+const double kRadiusS = 10.0;
+const kLuminewRadius = 20.0; // 舊的導角，維持部分相容
 
 // ★ 質感風下拉選單
 Widget _buildDropdown(
@@ -106,12 +113,22 @@ Widget _buildDropdown(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: kLuminewMainPurple.withOpacity(0.2)),
+          borderRadius: BorderRadius.circular(kRadiusM),
+          border: Border.all(color: kLuminewMainPurple.withOpacity(0.15)),
+          boxShadow: [
+            BoxShadow(
+              color: kLuminewDeepIndigo.withOpacity(0.03),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
         child: DropdownButtonHideUnderline(
           child: DropdownButton<String>(
             isExpanded: true,
+            borderRadius: BorderRadius.circular(kRadiusM),
+            dropdownColor: Colors.white,
+            icon: const Icon(Icons.keyboard_arrow_down_rounded, color: kLuminewMainPurple),
             value: items.contains(currentValue) ? currentValue : items.first,
             items: items
                 .map(
@@ -148,140 +165,128 @@ class _InterviewRecordListScreenState extends State<InterviewRecordListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kLuminewPalePurple, // 背景淡紫
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: const Text(
-          '面試紀錄回顧',
-          style: TextStyle(
-            color: kLuminewDeepIndigo,
-            fontWeight: FontWeight.bold,
+      backgroundColor: kLuminewGooseYellow,
+      body: Stack(
+        children: [
+          FutureBuilder<List<InterviewRecord>>(
+            future: ApiService.getRecords(widget.user.id, 'All'),
+            builder: (ctx, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(color: kLuminewMainPurple),
+                );
+              }
+
+              if (snapshot.hasError) {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.error_outline, size: 64, color: Colors.grey),
+                      const SizedBox(height: 16),
+                      Text("載入失敗: ${snapshot.error}"),
+                      const SizedBox(height: 20),
+                      ElevatedButton(
+                        onPressed: () => setState(() {}),
+                        child: const Text("再試一次"),
+                      ),
+                    ],
+                  ),
+                );
+              }
+
+              final records = snapshot.data ?? [];
+              if (records.isEmpty) {
+                return const Center(
+                  child: Text(
+                    "目前沒有面試紀錄",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                );
+              }
+
+              return ListView.builder(
+                padding: const EdgeInsets.fromLTRB(16, 100, 16, 20), // 預留標頭空間
+                itemCount: records.length,
+                itemBuilder: (ctx, i) {
+                  final rec = records[i];
+                  return _buildRecordItem(rec);
+                },
+              );
+            },
           ),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh, color: kLuminewDeepIndigo),
-            onPressed: () => setState(() {}),
+          LuminewHeader(
+            title: '面試紀錄', // 簡化標題
+            showBackButton: false, // 移除返回鍵以防誤觸退出
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.refresh, color: kLuminewDeepIndigo),
+                onPressed: () => setState(() {}),
+              ),
+            ],
           ),
         ],
       ),
-      body: FutureBuilder<List<InterviewRecord>>(
-        future: ApiService.getRecords(widget.user.id, 'All'),
-        builder: (ctx, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(color: kLuminewMainPurple),
-            );
-          }
-
-          if (snapshot.hasError) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.error_outline, size: 64, color: Colors.grey),
-                  const SizedBox(height: 16),
-                  Text(
-                    "載入失敗: ${snapshot.error}",
-                    style: const TextStyle(color: Colors.grey),
-                  ),
-                  TextButton(
-                    onPressed: () => setState(() {}),
-                    child: const Text("重試"),
-                  ),
-                ],
+    );
+  }
+  Widget _buildRecordItem(InterviewRecord r) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      decoration: BoxDecoration(
+        color: kLuminewSurface,
+        borderRadius: BorderRadius.circular(kRadiusM),
+        boxShadow: [
+          BoxShadow(
+            color: kLuminewMainPurple.withOpacity(0.04),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        leading: Container(
+          width: 54,
+          height: 54,
+          decoration: BoxDecoration(
+            color: kLuminewGooseYellow,
+            shape: BoxShape.circle,
+            border: Border.all(color: kLuminewMainPurple.withOpacity(0.2)),
+          ),
+          child: Center(
+            child: Text(
+              "${r.overallScore}",
+              style: const TextStyle(
+                color: kLuminewMainPurple,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
               ),
-            );
-          }
-
-          final records = snapshot.data ?? [];
-          if (records.isEmpty) {
-            return const Center(
-              child: Text('尚無紀錄', style: TextStyle(color: Colors.grey)),
-            );
-          }
-
-          return ListView.builder(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            itemCount: records.length,
-            itemBuilder: (ctx, i) {
-              final r = records[i];
-              return Container(
-                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                decoration: BoxDecoration(
-                  color: kLuminewSurface,
-                  borderRadius: BorderRadius.circular(kLuminewRadius),
-                  boxShadow: [
-                    BoxShadow(
-                      color: kLuminewMainPurple.withOpacity(0.04),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: ListTile(
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 8,
-                  ),
-                  leading: Container(
-                    width: 54,
-                    height: 54,
-                    decoration: BoxDecoration(
-                      color: kLuminewPalePurple,
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: kLuminewMainPurple.withOpacity(0.2),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "${r.overallScore}",
-                        style: const TextStyle(
-                          color: kLuminewMainPurple,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  title: Text(
-                    r.interviewName.isNotEmpty
-                        ? r.interviewName
-                        : '${r.type} 面試',
-                    style: const TextStyle(
-                      color: kLuminewDeepIndigo,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  subtitle: Padding(
-                    padding: const EdgeInsets.only(top: 4),
-                    child: Text(
-                      '${r.date.year}/${r.date.month}/${r.date.day} | ${r.interviewer} 教授',
-                      style: const TextStyle(color: Colors.grey, fontSize: 12),
-                    ),
-                  ),
-                  trailing: const Icon(
-                    Icons.chevron_right,
-                    color: kLuminewMainPurple,
-                  ),
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => InterviewResultScreen(
-                        record: r,
-                        user: widget.user,
-                        aiComment: r.aiComment,
-                        aiSuggestion: r.aiSuggestion,
-                      ),
-                    ),
-                  ),
-                ),
-              );
-            },
-          );
-        },
+            ),
+          ),
+        ),
+        title: Text(
+          r.interviewName.isNotEmpty ? r.interviewName : '${r.type} 面試',
+          style: const TextStyle(color: kLuminewDeepIndigo, fontWeight: FontWeight.bold),
+        ),
+        subtitle: Padding(
+          padding: const EdgeInsets.only(top: 4),
+          child: Text(
+            '${r.date.year}/${r.date.month}/${r.date.day} | ${r.interviewer} 教授',
+            style: const TextStyle(color: Colors.grey, fontSize: 12),
+          ),
+        ),
+        trailing: const Icon(Icons.chevron_right, color: kLuminewMainPurple),
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => InterviewResultScreen(
+              record: r,
+              user: widget.user,
+              aiComment: r.aiComment,
+              aiSuggestion: r.aiSuggestion,
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -486,7 +491,7 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kLuminewPalePurple, // 改用淡紫色背景
+      backgroundColor: kLuminewGooseYellow, // 改用淡紫色背景
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -611,7 +616,7 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
                       padding: const EdgeInsets.symmetric(vertical: 20),
                       width: double.infinity,
                       decoration: BoxDecoration(
-                        color: kLuminewPalePurple.withOpacity(0.5),
+                        color: kLuminewGooseYellow.withOpacity(0.5),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
                           color: kLuminewMainPurple.withOpacity(0.2),
@@ -1433,7 +1438,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
     }
 
     return Scaffold(
-      backgroundColor: kLuminewPalePurple,
+      backgroundColor: kLuminewGooseYellow,
       body: Stack(
         children: [
           SafeArea(
@@ -1964,7 +1969,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        backgroundColor: kLuminewPalePurple,
+        backgroundColor: kLuminewGooseYellow,
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -2019,59 +2024,30 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
             // Tab 1: AI 分析報告 (顯示圖表與評語)
             // ------------------------------------
             SingleChildScrollView(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 children: [
-                  // 原本的總分卡片
-                  Container(
-                    padding: const EdgeInsets.all(24),
-                    decoration: BoxDecoration(
-                      // ★ 改成動態顏色
-                      gradient: LinearGradient(
-                        colors: _getScoreGradient(widget.record.overallScore),
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
+                  // --- 頂部總分圓環區塊 ---
+                  _buildScoreHeader(),
+                  const SizedBox(height: 30),
+
+                  // --- 五維度雷達圖 ---
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 4),
+                      child: Text(
+                        "核心能力分佈",
+                        style: TextStyle(
+                          color: kLuminewDeepIndigo,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: _getScoreGradient(
-                            widget.record.overallScore,
-                          ).last.withOpacity(0.4),
-                          blurRadius: 10,
-                          offset: const Offset(0, 5),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        const Text(
-                          'AI 綜合評分',
-                          style: TextStyle(color: Colors.white70),
-                        ),
-                        Text(
-                          '${widget.record.overallScore}',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 60,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        // ★★★ 順便把評語文字也改成對應的 ★★★
-                        Text(
-                          widget.record.overallScore >= 90
-                              ? '表現完美！'
-                              : widget.record.overallScore >= 61
-                              ? '表現不錯！'
-                              : '加油，再接再厲',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
                     ),
                   ),
+                  _buildRadarChart(),
+                  const SizedBox(height: 30),
                   const SizedBox(height: 20),
                   if (widget.aiComment != null) ...[
                     Card(
@@ -2203,131 +2179,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    if (_isVideoInitialized && _videoController != null)
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 20),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: [
-                            BoxShadow(color: Colors.black26, blurRadius: 10),
-                          ],
-                        ),
-                        clipBehavior: Clip.hardEdge,
-                        child: Column(
-                          children: [
-                            AspectRatio(
-                              aspectRatio: 9 / 16,
-                              // ★ 使用者要求：回放也要跟 PIP/後台一樣維持鏡像
-                              child: Transform(
-                                alignment: Alignment.center,
-                                transform: Matrix4.rotationY(3.14159), // 還原翻轉
-                                child: VideoPlayer(_videoController!),
-                              ),
-                            ),
-                            VideoProgressIndicator(
-                              _videoController!,
-                              allowScrubbing: true,
-                              colors: const VideoProgressColors(
-                                playedColor: kLuminewDeepIndigo,
-                              ),
-                            ),
-                            // 播放控制列
-                            Container(
-                              color: Color(0xFFAD9DC7),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  IconButton(
-                                    icon: Icon(
-                                      _videoController!.value.isPlaying
-                                          ? Icons.pause
-                                          : Icons.play_arrow,
-                                      color: Colors.white,
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        _videoController!.value.isPlaying
-                                            ? _videoController!.pause()
-                                            : _videoController!.play();
-                                      });
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    else if (widget.record.videoUrl != null &&
-                        widget.record.videoUrl != 'null')
-                      // 有網址但載入失敗或載入中
-                      _videoLoadFailed
-                          ? Container(
-                              margin: const EdgeInsets.only(bottom: 20),
-                              padding: const EdgeInsets.all(30),
-                              decoration: BoxDecoration(
-                                color: Colors.grey[100],
-                                borderRadius: BorderRadius.circular(16),
-                                border: Border.all(color: Colors.grey[300]!),
-                              ),
-                              child: const Column(
-                                children: [
-                                  Icon(
-                                    Icons.videocam_off,
-                                    size: 48,
-                                    color: Colors.grey,
-                                  ),
-                                  SizedBox(height: 8),
-                                  Text(
-                                    '影片載入失敗',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
-                                ],
-                              ),
-                            )
-                          : Container(
-                              margin: const EdgeInsets.only(bottom: 20),
-                              padding: const EdgeInsets.all(30),
-                              child: const CircularProgressIndicator(),
-                            )
-                    else
-                      // 沒有儲存影片
-                      Container(
-                        margin: const EdgeInsets.only(bottom: 20),
-                        padding: const EdgeInsets.all(30),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[100],
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: Colors.grey[300]!),
-                        ),
-                        child: const Column(
-                          children: [
-                            Icon(
-                              Icons.videocam_off,
-                              size: 48,
-                              color: Colors.grey,
-                            ),
-                            SizedBox(height: 8),
-                            Text(
-                              '未儲存影片',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 16,
-                              ),
-                            ),
-                            SizedBox(height: 4),
-                            Text(
-                              '可在面試設定中開啟「儲存錄影」功能',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
+                    _buildVideoPlayerSection(),
                     const SizedBox(height: 20),
                     const Align(
                       alignment: Alignment.centerLeft,
@@ -2554,6 +2406,14 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
             // ------------------------------------
             Column(
               children: [
+                if (_isVideoInitialized && _videoController != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: SizedBox(
+                      height: 250, // 討論區影片放小一點
+                      child: _buildVideoPlayerSection(),
+                    ),
+                  ),
                 Expanded(
                   child: _comments.isEmpty
                       ? const Center(child: Text("尚無留言，快來搶頭香！"))
@@ -2824,7 +2684,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
           LinearProgressIndicator(
             value: score / 100,
             color: color,
-            backgroundColor: kLuminewPalePurple,
+            backgroundColor: kLuminewGooseYellow,
             minHeight: 8,
             borderRadius: BorderRadius.circular(4),
           ),
@@ -2967,6 +2827,236 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
       barWidth: 3,
       dotData: const FlDotData(show: false),
       belowBarData: BarAreaData(show: false),
+    );
+  }
+
+  Widget _buildScoreHeader() {
+    final score = widget.record.overallScore;
+    final scoreColor = _getScoreGradient(score).last;
+    
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: kLuminewSurface,
+        borderRadius: BorderRadius.circular(kRadiusL),
+        boxShadow: [
+          BoxShadow(
+            color: kLuminewDeepIndigo.withOpacity(0.05),
+            blurRadius: 20,
+            offset: const Offset(0, 8),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          // 左側圓環 (3px 線條)
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              SizedBox(
+                width: 100,
+                height: 100,
+                child: CircularProgressIndicator(
+                  value: score / 100,
+                  strokeWidth: 3,
+                  color: scoreColor,
+                  backgroundColor: kLuminewGooseYellow,
+                ),
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "$score",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: scoreColor,
+                    ),
+                  ),
+                  const Text(
+                    "綜合評分",
+                    style: TextStyle(fontSize: 10, color: Colors.grey),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(width: 24),
+          // 右側描述
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  score >= 90 ? "頂尖表現" : score >= 75 ? "表現優異" : score >= 60 ? "表現穩健" : "尚有進步空間",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: scoreColor,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  score >= 90
+                      ? "您在所有維度上都展現了極高的專業度，尤其是情緒穩定性令人印象深刻。"
+                      : score >= 60
+                          ? "整體表現平穩，但在某些細節（如切題率或熱忱度）仍有優化空間。"
+                          : "建議針對 AI 提供的改進建議進行專項練習，提升面試自信心。",
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: kLuminewDeepIndigo,
+                    height: 1.4,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildRadarChart() {
+    final double emotionManagement = (widget.record.scores['emotion_management'] ?? 0).toDouble();
+    final double relevance = (widget.record.scores['relevance'] ?? 0).toDouble();
+    final double confidence = (widget.record.scores['confidence'] ?? 0).toDouble();
+    final double passion = (widget.record.scores['passion'] ?? 0).toDouble();
+    final double relaxed = (widget.record.scores['relaxed'] ?? 0).toDouble();
+
+    return Container(
+      height: 380, // 加大尺寸
+      width: double.infinity,
+      padding: const EdgeInsets.all(10),
+      child: RadarChart(
+        RadarChartData(
+          radarShape: RadarShape.polygon,
+          radarBorderData: const BorderSide(color: Colors.transparent),
+          radarBackgroundColor: kLuminewGooseYellow.withOpacity(0.5),
+          titlePositionPercentageOffset: 0.2, // 調整標題位置
+          titleTextStyle: const TextStyle(
+            color: kLuminewDeepIndigo,
+            fontSize: 14, // 放大維度標籤
+            fontWeight: FontWeight.bold,
+          ),
+          getTitle: (index, angle) {
+            switch (index) {
+              case 0: return RadarChartTitle(text: '表情管理');
+              case 1: return RadarChartTitle(text: '切題率');
+              case 2: return RadarChartTitle(text: '自信度');
+              case 3: return RadarChartTitle(text: '熱忱度');
+              case 4: return RadarChartTitle(text: '沈穩度');
+              default: return const RadarChartTitle(text: '');
+            }
+          },
+          tickCount: 5,
+          ticksTextStyle: const TextStyle(color: Colors.transparent),
+          gridBorderData: BorderSide(color: kLuminewMainPurple.withOpacity(0.2), width: 1),
+          dataSets: [
+            RadarDataSet(
+              fillColor: kLuminewMainPurple.withOpacity(0.3),
+              borderColor: kLuminewMainPurple,
+              entryRadius: 4,
+              dataEntries: [
+                RadarEntry(value: emotionManagement),
+                RadarEntry(value: relevance),
+                RadarEntry(value: confidence),
+                RadarEntry(value: passion),
+                RadarEntry(value: relaxed),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildVideoPlayerSection() {
+    if (_isVideoInitialized && _videoController != null) {
+      return Container(
+        margin: const EdgeInsets.only(bottom: 16),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(kRadiusM),
+          boxShadow: [
+            BoxShadow(
+              color: kLuminewDeepIndigo.withOpacity(0.1),
+              blurRadius: 15,
+              offset: const Offset(0, 5),
+            ),
+          ],
+        ),
+        clipBehavior: Clip.hardEdge,
+        child: Column(
+          children: [
+            Expanded(
+              child: AspectRatio(
+                aspectRatio: 9 / 16,
+                child: Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.rotationY(3.14159),
+                  child: VideoPlayer(_videoController!),
+                ),
+              ),
+            ),
+            VideoProgressIndicator(
+              _videoController!,
+              allowScrubbing: true,
+              colors: const VideoProgressColors(
+                playedColor: kLuminewDeepIndigo,
+                bufferedColor: Colors.white24,
+                backgroundColor: kLuminewMainPurple,
+              ),
+            ),
+            Container(
+              height: 48,
+              color: kLuminewMainPurple,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    iconSize: 24,
+                    icon: Icon(
+                      _videoController!.value.isPlaying ? Icons.pause : Icons.play_arrow,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _videoController!.value.isPlaying ? _videoController!.pause() : _videoController!.play();
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    } else if (widget.record.videoUrl != null && widget.record.videoUrl != 'null') {
+      return _videoLoadFailed
+          ? _buildVideoPlaceholder(Icons.videocam_off, '影片載入失敗')
+          : const Center(child: CircularProgressIndicator());
+    } else {
+      return _buildVideoPlaceholder(Icons.videocam_off, '未儲存影片');
+    }
+  }
+
+  Widget _buildVideoPlaceholder(IconData icon, String text) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16),
+      padding: const EdgeInsets.all(30),
+      decoration: BoxDecoration(
+        color: kLuminewGooseYellow.withOpacity(0.5),
+        borderRadius: BorderRadius.circular(kRadiusM),
+        border: Border.all(color: kLuminewMainPurple.withOpacity(0.1)),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 48, color: Colors.grey),
+          const SizedBox(height: 8),
+          Text(text, style: const TextStyle(color: Colors.grey)),
+        ],
+      ),
     );
   }
 }
