@@ -55,11 +55,13 @@ class LuminewHeader extends StatelessWidget {
                   children: [
                     if (showBackButton)
                       Padding(
-                        padding: const EdgeInsets.only(right: 8),
+                        padding: const EdgeInsets.only(right: 12),
                         child: IconButton(
-                          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 22), // 換個更圓潤的圖標
+                          icon: const Icon(Icons.arrow_back_ios, size: 20),
                           onPressed: () => Navigator.pop(context),
                           color: textColor ?? const Color(0xFF675B83),
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
                         ),
                       ),
                     Expanded(
