@@ -31,7 +31,7 @@ class LuminewHeader extends StatelessWidget {
           child: Container(
             height: 90,
             decoration: BoxDecoration(
-              color: const Color(0xFFAD9DC7).withOpacity(0.6), 
+              color: const Color(0xFFAD9DC7).withOpacity(0.6),
               borderRadius: borderRadius,
               border: Border(
                 bottom: BorderSide(
@@ -59,7 +59,7 @@ class LuminewHeader extends StatelessWidget {
                         child: IconButton(
                           icon: const Icon(Icons.arrow_back_ios, size: 20),
                           onPressed: () => Navigator.pop(context),
-                          color: textColor ?? const Color(0xFF675B83), 
+                          color: textColor ?? const Color(0xFF675B83),
                           padding: EdgeInsets.zero,
                           constraints: const BoxConstraints(),
                         ),
@@ -67,9 +67,11 @@ class LuminewHeader extends StatelessWidget {
                     Expanded(
                       child: Text(
                         title,
-                        textAlign: centerTitle ? TextAlign.center : TextAlign.start,
+                        textAlign: centerTitle
+                            ? TextAlign.center
+                            : TextAlign.start,
                         style: TextStyle(
-                          color: textColor ?? const Color(0xFF675B83), 
+                          color: textColor ?? const Color(0xFF675B83),
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                           letterSpacing: 1.2,
@@ -77,7 +79,9 @@ class LuminewHeader extends StatelessWidget {
                       ),
                     ),
                     if (actions != null) ...actions!,
-                    if (centerTitle && showBackButton && (actions == null || actions!.isEmpty))
+                    if (centerTitle &&
+                        showBackButton &&
+                        (actions == null || actions!.isEmpty))
                       const SizedBox(width: 32),
                   ],
                 ),

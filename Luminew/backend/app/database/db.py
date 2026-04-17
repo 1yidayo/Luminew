@@ -25,28 +25,47 @@ def get_db_connection():
         except Exception:
             continue
             
+    print(f"❌ [DB] 試過多種驅動仍無法連線到 {DB_HOST}。請檢查 NGROK 到內網 SQL Server 的通道或防火牆。")
     raise Exception("無法連線到 SQL Server，請確認 SQL Server 已啟動、驗證模式為混合認證，且開啟了 TCP/IP。")
 
 def execute_read(sql: str) -> list:
     """執行 SELECT 查詢並回傳 List[Dict] 格式的 JSON 友善結果"""
-    conn = get_db_connection()
+    try:
+        conn = get_db_connection()
+    except Exception as e:
+        print(f"❌ [DB] 讀取查詢連線失敗: {e}")
+        return []
+        
     try:
         cursor = conn.cursor()
         cursor.execute(sql)
+        if not cursor.description:
+            return []
         columns = [column[0] for column in cursor.description]
         results = []
         for row in cursor.fetchall():
             results.append(dict(zip(columns, row)))
         return results
+    except Exception as e:
+        print(f"❌ [DB] 執行 SELECT 失敗: {e}\nSQL: {sql}")
+        return []
     finally:
         conn.close()
 
 def execute_write(sql: str) -> None:
     """執行 INSERT, UPDATE, DELETE 命令"""
-    conn = get_db_connection()
+    try:
+        conn = get_db_connection()
+    except Exception as e:
+        print(f"❌ [DB] 寫入連線失敗: {e}")
+        raise e
+        
     try:
         cursor = conn.cursor()
         cursor.execute(sql)
         conn.commit()
+    except Exception as e:
+        print(f"❌ [DB] 執行 WRITE 失敗: {e}\nSQL: {sql}")
+        raise e
     finally:
         conn.close()

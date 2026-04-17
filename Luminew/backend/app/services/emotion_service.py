@@ -140,14 +140,16 @@ def flip_video_horizontally(video_path: str):
             '-c:a', 'copy', 
             temp_path
         ]
-        print(f"🎬 [FFmpeg] 正在翻轉影片: {video_path}")
-        result = subprocess.run(cmd, capture_output=True, text=True)
+        print(f"🎬 [FFmpeg] 正在執行翻轉: {' '.join(cmd)}")
+        # Windows 下有時需要 shell=True 才能抓到 PATH 中的 ffmpeg
+        result = subprocess.run(cmd, capture_output=True, text=True, shell=True)
         
         if result.returncode == 0 and os.path.exists(temp_path):
             os.replace(temp_path, video_path)
-            print("✅ 影片翻轉成功並已覆蓋原檔")
+            print("✅ 影片翻轉成功")
         else:
-            print(f"❌ [FFmpeg] 翻轉失敗: {result.stderr}")
+            print(f"⚠️ [FFmpeg] 翻轉不支援或找不到: {result.stderr}")
+            if os.path.exists(temp_path): os.remove(temp_path)
     except Exception as e:
         print(f"⚠️ [FFmpeg] 執行拋出異常: {e}")
 

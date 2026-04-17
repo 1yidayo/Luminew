@@ -65,12 +65,31 @@ def joinClass(req: JoinClassReq):
 class GetRecordsReq(BaseModel): userId: str; filter: str
 @router.post("/getRecords")
 def getRecords(req: GetRecordsReq):
-    safeSelect = "RecordID, StudentID, Date, DurationSeconds, Type, Interviewer, Language, OverallScore, REPLACE(CAST(ScoresDetail AS NVARCHAR(4000)), CHAR(34), CHAR(39)) as ScoresDetail, Privacy, REPLACE(CAST(AIComment AS NVARCHAR(4000)), CHAR(34), CHAR(39)) as AIComment, REPLACE(CAST(AISuggestion AS NVARCHAR(4000)), CHAR(34), CHAR(39)) as AISuggestion, REPLACE(CAST(TimelineData AS NVARCHAR(4000)), CHAR(34), CHAR(39)) as TimelineData, VideoUrl, REPLACE(CAST(Questions AS NVARCHAR(4000)), CHAR(34), CHAR(39)) as Questions, InterviewName"
-    if '@' in req.userId:
-        sql = f"SELECT {safeSelect} FROM InterviewRecords WHERE StudentID = (SELECT UserID FROM Users WHERE Email = '{req.userId}') ORDER BY Date DESC"
-    else:
-        sql = f"SELECT {safeSelect} FROM InterviewRecords WHERE StudentID = '{req.userId}' ORDER BY Date DESC"
-    return execute_read(sql)
+    print(f"🔍 [GetRecords] 診斷模式啟動: UserID='{req.userId}'")
+    safeSelect = "RecordID, StudentID, Date, DurationSeconds, Type, Interviewer, Language, OverallScore, CAST(ScoresDetail AS NVARCHAR(4000)) as ScoresDetail, Privacy, CAST(AIComment AS NVARCHAR(4000)) as AIComment, CAST(AISuggestion AS NVARCHAR(4000)) as AISuggestion, CAST(TimelineData AS NVARCHAR(4000)) as TimelineData, VideoUrl, CAST(Questions AS NVARCHAR(4000)) as Questions, InterviewName"
+    
+    # [診斷日誌 1] 掃描全表前 10 筆數據，看看到底存了什麼
+    try:
+        full_scan = execute_read("SELECT TOP 10 RecordID, StudentID FROM InterviewRecords ORDER BY Date DESC")
+        print(f"📊 [診斷] 全表最近 10 筆 StudentID: {[(r['RecordID'], r['StudentID']) for r in full_scan]}")
+    except: pass
+
+    try:
+        # 單一 SQL：同時比對 StudentID 是 ID 數字、Email 字串，或是對應 Email 的 UserID
+        sql = f"""
+        SELECT {safeSelect} FROM InterviewRecords 
+        WHERE StudentID = '{req.userId}'
+        OR StudentID = '{req.userId.strip()}'
+        OR StudentID = (SELECT CAST(UserID AS NVARCHAR) FROM Users WHERE Email = '{req.userId}')
+        OR (ISNUMERIC('{req.userId}') = 1 AND StudentID = CAST('{req.userId}' AS INT))
+        ORDER BY Date DESC
+        """
+        res = execute_read(sql)
+        print(f"✅ [GetRecords] 查詢成功，找到 {len(res)} 筆紀錄")
+        return res
+    except Exception as e:
+        print(f"❌ [GetRecords] 查詢失敗: {e}")
+        return []
 
 class RecordIdReq(BaseModel): recordId: str
 @router.post("/deleteRecord")
@@ -84,12 +103,25 @@ class SaveRecordReq(BaseModel):
     studentId: str; durationSec: int; type: str; interviewer: str; language: str; overallScore: int; scores: dict; privacy: str; aiComment: str; aiSuggestion: str; timelineData: str; videoUrl: str; questions: list; interviewName: str
 @router.post("/saveRecord")
 def saveRecord(req: SaveRecordReq):
+    # 1. 先確認使用者是否存在，並取得 UserID
+    safeEmail = req.studentId.replace("'", "''")
+    userRes = execute_read(f"SELECT UserID FROM Users WHERE Email = '{safeEmail}'")
+    if not userRes:
+        print(f"⚠️ [SaveRecord] 找不到使用者 Email: {req.studentId}")
+        raise HTTPException(
+            status_code=404, 
+            detail=f"資料庫中找不到帳號 {req.studentId}，請確認是否已註冊或正確登入。"
+        )
+    
+    userId = userRes[0]['UserID']
+    print(f"✅ [SaveRecord] 準備為 UserID: {userId} ({req.studentId}) 儲存紀錄")
+
+    # 2. 準備安全數據
     scoresJson = json.dumps(req.scores).replace("'", "''")
     safeComment = req.aiComment.replace("'", "''")
     safeSuggestion = req.aiSuggestion.replace("'", "''")
     safeTimeline = req.timelineData.replace("'", "''")
     questionsJson = json.dumps(req.questions).replace("'", "''")
-    safeStudentId = req.studentId.replace("'", "''")
     safeType = req.type.replace("'", "''")
     safeInterviewer = req.interviewer.replace("'", "''")
     safeLang = req.language.replace("'", "''")
@@ -97,13 +129,38 @@ def saveRecord(req: SaveRecordReq):
     safeVideoUrl = req.videoUrl.replace("'", "''")
     safeName = req.interviewName.replace("'", "''")
 
-    sql = f"""INSERT INTO InterviewRecords (StudentID, Date, DurationSeconds, Type, Interviewer, Language, OverallScore, ScoresDetail, Privacy, AIComment, AISuggestion, TimelineData, VideoUrl, Questions, InterviewName)
+    # 3. 執行插入 (使用剛剛取得的 userId)
+    sql = f"""
+    INSERT INTO InterviewRecords (
+        StudentID, Date, DurationSeconds, Type, Interviewer, Language, 
+        OverallScore, ScoresDetail, Privacy, AIComment, AISuggestion, 
+        TimelineData, VideoUrl, Questions, InterviewName
+    )
     OUTPUT INSERTED.RecordID
-    VALUES ((SELECT UserID FROM Users WHERE Email = '{safeStudentId}'), GETDATE(), {req.durationSec}, N'{safeType}', N'{safeInterviewer}', N'{safeLang}', {req.overallScore}, '{scoresJson}', N'{safePrivacy}', N'{safeComment}', N'{safeSuggestion}', '{safeTimeline}', N'{safeVideoUrl}', N'{questionsJson}', N'{safeName}')"""
-    res = execute_read(sql)
-    if not res:
-        raise HTTPException(status_code=404, detail=f"找不到使用者: {req.studentId}. 請確認已登入且帳號正確。")
-    return {"status": "ok", "recordId": str(res[0]['RecordID'])}
+    VALUES (
+        {userId}, GETDATE(), {req.durationSec}, N'{safeType}', N'{safeInterviewer}', 
+        N'{safeLang}', {req.overallScore}, '{scoresJson}', N'{safePrivacy}', 
+        N'{safeComment}', N'{safeSuggestion}', '{safeTimeline}', 
+        N'{safeVideoUrl}', N'{questionsJson}', N'{safeName}'
+    )
+    """
+    
+    try:
+        res = execute_read(sql)
+        if res:
+            newId = res[0]['RecordID']
+            print(f"✨ [SaveRecord] 成功建立紀錄 ID: {newId}")
+            # UI Refinement: Radar Chart configuration
+            # radarShape: RadarShape.circle, 
+            # radarBorderData: const BorderSide(color: Colors.transparent),
+            # radarBackgroundColor: Colors.transparent, // 強制全透明
+            # titlePositionPercentageOffset: 0.1, 
+            return {"status": "ok", "recordId": str(newId)}
+        else:
+            raise Exception("SQL 執行成功但未傳回 RecordID (INSERTED.RecordID)")
+    except Exception as e:
+        print(f"❌ [SaveRecord] 資料庫寫入異常: {e}")
+        raise HTTPException(status_code=500, detail=f"伺服器資料庫寫入失敗: {e}")
 
 # --- 4. 邀請與時段 ---
 class SendInvitationReq(BaseModel): teacherEmail: str; studentId: str; msg: str

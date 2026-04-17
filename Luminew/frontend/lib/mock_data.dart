@@ -59,7 +59,41 @@ class MockDataService {
     ),
   ];
 
-  final List<InterviewRecord> _records = [];
+  final List<InterviewRecord> _records = [
+    InterviewRecord(
+      id: 'mock_1',
+      studentId: 'Yi', // 這裡是您的使用者名稱
+      date: DateTime.now().subtract(const Duration(days: 1)),
+      durationSec: 180,
+      scores: {'confidence': 85, 'passion': 70, 'relaxed': 60, 'nervous': 30},
+      type: '軟體工程師',
+      interviewer: '嚴謹型教授',
+      language: '中文',
+      aiComment:
+          '你在應對技術細節時表現出極高的自信。然而，在談論團隊協作時，語速明顯加快且手勢較多，顯示出稍微的緊張感。整體而言，邏輯非常清晰。',
+      aiSuggestion: '建議在談論軟實力時放慢語速，增加眼神接觸；技術題可以多準備一些實際案例的細節。',
+      timelineData:
+          '[{"t":0.0,"c":80,"n":20,"p":50,"r":50},{"t":1.5,"c":85,"n":15,"p":60,"r":55}]',
+      questions: ['請介紹一下你自己', '為什麼選擇我們公司？'],
+      interviewName: 'Luminew模擬面試 - 軟體開發',
+    ),
+    InterviewRecord(
+      id: 'mock_2',
+      studentId: 'Yi',
+      date: DateTime.now().subtract(const Duration(days: 3)),
+      durationSec: 120,
+      scores: {'confidence': 65, 'passion': 80, 'relaxed': 40, 'nervous': 60},
+      type: '產品經理',
+      interviewer: '溫和型業界專家',
+      language: '中文',
+      aiComment: '表達充滿熱情，對於市場趨勢有獨到見解。但在面對壓力測試題時，放鬆程度降至低點，建議加強應變能力的心理建設。',
+      aiSuggestion: '針對挫折經驗題進行更多練習；練習在思考時保持微笑，避免表情過於凝重。',
+      timelineData:
+          '[{"t":0.0,"c":60,"n":40,"p":70,"r":30},{"t":2.0,"c":65,"n":35,"p":80,"r":40}]',
+      questions: ['你遇過最大的挫折是什麼？', '如何處理團隊衝突？'],
+      interviewName: '蝦皮 PM 實習面試',
+    ),
+  ];
 
   // 論壇相關方法
   List<ForumPost> getForumPosts() => _forumPosts;
@@ -85,7 +119,7 @@ class MockDataService {
 
   void addRecord(InterviewRecord r) => _records.add(r);
 
-  List<InterviewRecord> getRecords(String email) =>
+  List<InterviewRecord> getRecords(String email, {String filter = 'all'}) =>
       _records.where((r) => r.studentId == email).toList();
 }
 

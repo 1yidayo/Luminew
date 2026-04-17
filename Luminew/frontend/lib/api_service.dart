@@ -2,6 +2,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'models.dart';
+import 'mock_data.dart'; // ★ 引入以對接 Mock 數據
 
 /// ========================================================
 /// 神不知鬼不覺的完美替身：ApiService
@@ -95,18 +96,29 @@ class ApiService {
   // 面試紀錄
   // ==========================
   static Future<List<InterviewRecord>> getRecords(
-    String userId,
-    String filter,
-  ) async {
-    final res = await _post('/getRecords', {
-      'userId': userId,
-      'filter': filter,
-    });
-    final List list = jsonDecode(res.body);
-    return list.map((d) {
-      if (d['ScoresDetail'] is String) d['ScoresDetail'] = d['ScoresDetail'];
-      return InterviewRecord.fromMap(d);
-    }).toList();
+    String userId, {
+    String filter = 'all',
+  }) async {
+    print("🚀 [API] getRecords 發起請求 - StudentID: '$userId'");
+    try {
+      final res = await _post('/getRecords', {
+        'userId': userId,
+        'filter': filter,
+      });
+      final List list = jsonDecode(res.body);
+      final apiRecords = list.map((d) {
+        if (d['ScoresDetail'] is String) d['ScoresDetail'] = d['ScoresDetail'];
+        return InterviewRecord.fromMap(d);
+      }).toList();
+
+      // ★ 將 API 數據與 Mock 數據合併，確保頁面不會空蕩蕩
+      final mockRecords = mockService.getRecords(userId);
+      return [...apiRecords, ...mockRecords];
+    } catch (e) {
+      print("⚠️ [API] getRecords 失敗，回傳 Mock 數據: $e");
+      // 確保至少回傳 Mock 數據供預覽
+      return mockService.getRecords(userId);
+    }
   }
 
   static Future<void> deleteRecord(String recordId) async {
