@@ -39,6 +39,9 @@ class _StudentProfileEditScreenState extends State<StudentProfileEditScreen> {
       await ApiService.updateUserProfile(widget.user.email, _nameController.text);
       
       if (mounted) {
+        // [修正] 立即同步本機 User 物件，確保 UI 即時反映
+        widget.user.name = _nameController.text;
+
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text('個人檔案已成功更新！'),

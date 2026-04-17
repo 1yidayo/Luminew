@@ -88,11 +88,16 @@ class NotificationCenter extends StatelessWidget {
 
 // ... (previous classes omitted for brevity in replace_file_content)
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   final VoidCallback onLogout;
   final AppUser user;
   const SettingsScreen({super.key, required this.user, required this.onLogout});
 
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,7 +143,7 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      user.name,
+                      widget.user.name,
                       style: const TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
@@ -147,7 +152,7 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      user.email,
+                      widget.user.email,
                       style: TextStyle(
                         fontSize: 16,
                         color: const Color(
@@ -173,7 +178,7 @@ class SettingsScreen extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        user.role == 'Student' ? '學生帳號' : '教師帳號',
+                        widget.user.role == 'Student' ? '學生帳號' : '教師帳號',
                         style: TextStyle(
                           color: const Color(
                             0xFF675B83,
@@ -197,15 +202,18 @@ class SettingsScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => StudentProfileEditScreen(user: user),
+                      builder: (_) => StudentProfileEditScreen(user: widget.user),
                     ),
-                  );
+                  ).then((_) {
+                    // 返回後重新整理畫面，確保名字即時變更
+                    setState(() {});
+                  });
                 },
               ),
               _buildDivider(),
               _buildSettingsItem(
                 Icons.star_outline_rounded,
-                '訂閱方案：${user.subscription}',
+                '訂閱方案：${widget.user.subscription}',
                 Colors.orange,
                 () {},
               ),
@@ -225,7 +233,7 @@ class SettingsScreen extends StatelessWidget {
               ),
               _buildDivider(),
               _buildSettingsItem(Icons.logout, '登出帳號', Colors.redAccent, () {
-                onLogout(); // 修正：調用正規登出回呼
+                widget.onLogout(); // 修正：調用正規登出回呼
               }),
             ],
           ),
