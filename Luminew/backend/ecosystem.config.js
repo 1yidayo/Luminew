@@ -1,17 +1,23 @@
 module.exports = {
-  apps: [{
-    name: "LuminewBackend",
-    script: "./luminew_env/Scripts/uvicorn.exe",
-    args: "app.main:app --host 0.0.0.0 --port 8000",
-    cwd: "./",
-    env: {
-      NODE_ENV: "production",
-      PYTHONUTF8: "1"
+  apps: [
+    {
+      name: "luminew-backend",
+      script: "python",
+      args: "main.py",
+      cwd: "./",
+      interpreter: "python",
+      watch: false,
+      max_memory_restart: "2G",
+      env: {
+        NODE_ENV: "production",
+        PORT: 8000
+      },
+      log_date_format: "YYYY-MM-DD HH:mm Z",
+      error_file: "./logs/pm2-error.log",
+      out_file: "./logs/pm2-out.log",
+      merge_logs: true,
+      autorestart: true,
+      restart_delay: 4000
     }
-  }, {
-    name: "LuminewTunnel",
-    script: "ngrok",
-    args: "http --domain=unobviable-oralee-unsicker.ngrok-free.dev 8000",
-    exec_mode: "fork"
-  }]
-}
+  ]
+};

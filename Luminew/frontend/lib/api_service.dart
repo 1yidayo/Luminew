@@ -9,8 +9,8 @@ import 'mock_data.dart'; // ★ 引入以對接 Mock 數據
 /// 直接取代原本危險的 sql_service.dart，轉接所有邏輯到後端伺服器！
 /// ========================================================
 class ApiService {
-  // TODO: 將這裡換成你從 main.py 啟動後拿到的 https://xxxx.ngrok.app
-  static String rootUrl = "https://unobviable-oralee-unsicker.ngrok-free.dev";
+  // [SERVER] 校園 GPU 工作站連線
+  static String rootUrl = "http://140.136.155.145:8000";
   static String baseUrl = "$rootUrl/api/db";
 
   static Future<http.Response> _post(
@@ -57,6 +57,13 @@ class ApiService {
       'password': password,
       'name': name,
       'role': role,
+    });
+  }
+
+  static Future<void> updateUserProfile(String email, String name) async {
+    await _post('/updateUserProfile', {
+      'email': email,
+      'name': name,
     });
   }
 

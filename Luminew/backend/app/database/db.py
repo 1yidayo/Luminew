@@ -45,6 +45,9 @@ def execute_read(sql: str) -> list:
         results = []
         for row in cursor.fetchall():
             results.append(dict(zip(columns, row)))
+        
+        # [FIX] 即使是讀取，如果有變動也必須 Commit，否則 INSERT ... OUTPUT 會被撤銷
+        conn.commit()
         return results
     except Exception as e:
         print(f"❌ [DB] 執行 SELECT 失敗: {e}\nSQL: {sql}")

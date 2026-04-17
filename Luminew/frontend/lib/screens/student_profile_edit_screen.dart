@@ -1,7 +1,7 @@
 // fileName: lib/screens/student_profile_edit_screen.dart
 import 'package:flutter/material.dart';
 import '../models.dart';
-// import '../api_service.dart'; // 之後補上 API 串接
+import '../api_service.dart'; // [OK] 補上 API 串接
 
 const Color kLuminewMainPurple = Color(0xFFAD9DC7);
 const Color kLuminewDeepIndigo = Color(0xFF675B83);
@@ -34,14 +34,31 @@ class _StudentProfileEditScreenState extends State<StudentProfileEditScreen> {
   Future<void> _handleSave() async {
     setState(() => _isSaving = true);
     
-    // TODO: 之後串接 ApiService.updateUserProfile
-    await Future.delayed(const Duration(seconds: 1)); 
-    
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('個人檔案已更新 (模擬)')),
-      );
-      Navigator.pop(context);
+    try {
+      // [實作] 串接 ApiService.updateUserProfile
+      await ApiService.updateUserProfile(widget.user.email, _nameController.text);
+      
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('個人檔案已成功更新！'),
+            backgroundColor: Colors.green,
+          ),
+        );
+        // 更新成功後返回上層，上層重載後就會看到新名字
+        Navigator.pop(context);
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('更新失敗: ${e.toString()}'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isSaving = false);
     }
   }
 

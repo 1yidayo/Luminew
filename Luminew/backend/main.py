@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 from app.api.interview import router as interview_router
 from app.api.db_routes import router as db_router
 from app.api.emotion import router as emotion_router
+import torch
+import datetime
 
 # 載入 .env 變數
 load_dotenv()
@@ -34,6 +36,28 @@ app.mount("/static/videos", StaticFiles(directory=VIDEO_STORAGE_DIR), name="vide
 # 引入面試的 Router 與 Database Router
 app.include_router(interview_router, prefix="/api/interview", tags=["Interview"])
 app.include_router(db_router, prefix="/api/db", tags=["Database"])
+
+@app.get("/health")
+async def health_check():
+    """
+    【內測診斷工具】
+    回傳伺服器健康狀況與 GPU 負載情形
+    """
+    gpu_data = {"status": "Not Available"}
+    if torch.cuda.is_available():
+        gpu_data = {
+            "status": "Available",
+            "name": torch.cuda.get_device_name(0),
+            "vram_total_mb": int(torch.cuda.get_device_properties(0).total_memory / (1024**2)),
+            "vram_allocated_mb": int(torch.cuda.memory_allocated(0) / (1024**2)),
+            "time": datetime.datetime.now().isoformat()
+        }
+    return {
+        "status": "online",
+        "server": "Luminew-GPU-Workstation (Root)",
+        "gpu": gpu_data
+    }
+
 app.include_router(emotion_router, prefix="/emotion", tags=["Emotion"])
 
 @app.on_event("startup")

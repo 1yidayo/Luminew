@@ -22,6 +22,20 @@ def registerUser(req: RegisterReq):
     execute_write(sql)
     return {"status": "ok"}
 
+# --- 新增：更新個人資料 ---
+class UpdateProfileReq(BaseModel):
+    email: str
+    name: str
+
+@router.post("/updateUserProfile")
+def updateUserProfile(req: UpdateProfileReq):
+    """
+    實作個人資料更新，目前支援姓名修改
+    """
+    sql = f"UPDATE Users SET Name = N'{req.name}' WHERE Email = '{req.email}'"
+    execute_write(sql)
+    return {"status": "ok"}
+
 # --- 2. 班級管理 ---
 class EmailReq(BaseModel): email: str
 @router.post("/getTeacherClasses")

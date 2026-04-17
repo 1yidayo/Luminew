@@ -79,6 +79,11 @@ MODEL_WEIGHTS_PATH = os.path.join(PROJECT_DIR, "res10_300x300_ssd_iter_140000_fp
 if os.path.exists(PROTOTXT_PATH) and os.path.exists(MODEL_WEIGHTS_PATH):
     print("📂 成功載入 OpenCV DNN 人臉辨識模組")
     face_net = cv2.dnn.readNetFromCaffe(PROTOTXT_PATH, MODEL_WEIGHTS_PATH)
+    # [GPU 加速] 讓 OpenCV DNN 也跑在顯卡上
+    if torch.cuda.is_available():
+        face_net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+        face_net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
+        print("⚡ OpenCV DNN 已切換至 CUDA GPU 模式")
 else:
     print("❌ 找不到 OpenCV DNN 模型黨，請確認下載成功")
     face_net = None
