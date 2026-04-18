@@ -5,8 +5,17 @@ module.exports = {
       script: "main.py",
       cwd: "C:/Users/Luminew/Desktop/Luminew/Luminew/Luminew/backend",
       interpreter: "C:/Users/Luminew/Desktop/Luminew/Luminew/Luminew/backend/luminew_env/Scripts/pythonw.exe",
-      watch: ["main.py", "app"], // 監控代碼變動，一旦您同步代碼就會自動重啟
-      ignore_watch: ["logs", "static", ".env", "**/__pycache__"], // 絕對要無視日誌與影片資料夾，避免無限重啟
+      watch: ["main.py", "app"],
+      ignore_watch: [
+        "logs", 
+        "static", 
+        ".env", 
+        "**/__pycache__", 
+        "*.pdf", 
+        "*.wav", 
+        "*.json",
+        "app/public/audio"
+      ],
       max_memory_restart: "2G",
       env: {
         NODE_ENV: "production",

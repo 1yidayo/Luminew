@@ -492,9 +492,7 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
     try {
       var request = http.MultipartRequest(
         'POST',
-        Uri.parse(
-          '${AppConfig.httpUrl}/emotion/generate_questions',
-        ),
+        Uri.parse('${AppConfig.httpUrl}/emotion/generate_questions'),
       );
 
       // ★ 跳過 Ngrok 警告頁面，確保 MultipartRequest 也能直接獲得 JSON 回應
