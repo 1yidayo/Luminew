@@ -9,8 +9,8 @@ import 'mock_data.dart'; // ★ 引入以對接 Mock 數據
 /// 直接取代原本危險的 sql_service.dart，轉接所有邏輯到後端伺服器！
 /// ========================================================
 class ApiService {
-  // [SERVER] 校園 GPU 工作站連線
-  static String rootUrl = "http://140.136.155.145:8000";
+  // [SERVER] 校園 GPU 工作站連線 (暫時切回 Ngrok 備援)
+  static String rootUrl = "https://unobviable-oralee-unsicker.ngrok-free.dev";
   static String baseUrl = "$rootUrl/api/db";
 
   static Future<http.Response> _post(

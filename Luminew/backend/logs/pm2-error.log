@@ -67,3 +67,4 @@
 2026-04-18 15:31 +08:00: INFO:     Started server process [33976]
 2026-04-18 15:31 +08:00: INFO:     Waiting for application startup.
 2026-04-18 15:31 +08:00: INFO:     Application startup complete.
+2026-04-18 18:12 +08:00: WARNING:  WatchFiles detected changes in 'main.py'. Reloading...
