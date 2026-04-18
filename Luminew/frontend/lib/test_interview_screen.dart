@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'did_interview_service.dart';
 import 'widgets/did_video_widget.dart';
+import 'config.dart';
 
 // 這個獨立的 main 函式讓你可以不用管資料庫，直接在這裡執行測試
 void main() {
@@ -27,9 +28,9 @@ class _TestInterviewScreenState extends State<TestInterviewScreen> {
   @override
   void initState() {
     super.initState();
-    // 💡 重要：請把這裡換成你剛剛在終端機看到的 Ngrok 網址
+    // 💡 已切換至學校固定 IP
     _didService = DidInterviewService(
-      backendUrl: 'https://unobviable-oralee-unsicker.ngrok-free.dev',
+      backendUrl: AppConfig.httpUrl,
     );
 
     // 當後端有新字幕傳來時，更新畫面

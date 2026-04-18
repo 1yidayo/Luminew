@@ -493,7 +493,7 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
       var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-          'https://unobviable-oralee-unsicker.ngrok-free.dev/emotion/generate_questions',
+          '${AppConfig.httpUrl}/emotion/generate_questions',
         ),
       );
 

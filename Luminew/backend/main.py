@@ -62,37 +62,34 @@ app.include_router(emotion_router, prefix="/emotion", tags=["Emotion"])
 
 @app.on_event("startup")
 async def startup_event():
-    """伺服器啟動時，自動建立 Ngrok 隧道"""
+    """伺服器啟動時的初始化 (支援固定 IP 與 Ngrok 備援切換)"""
     print("\n" + "="*50)
-    print("[WAIT] 正在啟動伺服器與 Ngrok 隧道...")
-    try:
-        # 強制結束舊的 ngrok 進程 (防止 ERR_NGROK_334)
-        print("[FIX] 正在清理舊的 Ngrok 連線...")
-        ngrok.kill() 
-        
-        # 檢查並設定 authtoken
-        auth_token = os.getenv("NGROK_AUTHTOKEN")
-        if auth_token and auth_token.strip():
-            ngrok.set_auth_token(auth_token.strip())
-            print("[KEY] Ngrok Authtoken 已載入")
-        
-        # ngrok 預設開啟 port 8000
-        # 如果有固定域名，ngrok 會自動捕捉設定檔中的 domain
-        public_url = ngrok.connect(8000).public_url
-        print(f"[URL] 外部公開網址 (Flutter 用): {public_url}")
-        print("="*50 + "\n")
-        # 存進狀態中讓 API 拿得到
-        app.state.public_url = public_url
-    except Exception as e:
-        print(f"[ERROR] Ngrok 啟動失敗 ({e})")
-        # 即使 Ngrok 失敗，也嘗試抓取看看是否有既存的隧道 URL
+    
+    # 從 .env 讀取開關，預設為 False (使用固定 IP)
+    use_ngrok = os.getenv("USE_NGROK", "False").lower() == "true"
+    
+    if use_ngrok:
+        print("[MODE] 備援模式：啟動 Ngrok 隧道...")
         try:
-            tunnels = ngrok.get_tunnels()
-            if tunnels:
-                app.state.public_url = tunnels[0].public_url
-                print(f"[REUSE] 偵測到既存隧道，正在沿用: {app.state.public_url}")
-        except:
-            pass
+            print("[FIX] 正在清理舊的 Ngrok 連線...")
+            ngrok.kill() 
+            auth_token = os.getenv("NGROK_AUTHTOKEN")
+            if auth_token and auth_token.strip():
+                ngrok.set_auth_token(auth_token.strip())
+                print("[KEY] Ngrok Authtoken 已載入")
+            
+            public_url = ngrok.connect(8000).public_url
+            print(f"[URL] 外部公開網址 (Flutter 用): {public_url}")
+            app.state.public_url = public_url
+        except Exception as e:
+            print(f"[ERROR] Ngrok 啟動失敗 ({e})，切換回預設固定 IP")
+            app.state.public_url = "http://140.136.155.145:8000"
+    else:
+        print("[MODE] 正式營運模式：使用固定 IP (8000 埠口)")
+        app.state.public_url = "http://140.136.155.145:8000"
+        
+    print(f"[FINAL] 目前對外 API 位址: {app.state.public_url}")
+    print("="*50 + "\n")
 
 if __name__ == "__main__":
     # 使用 uvicorn 啟動

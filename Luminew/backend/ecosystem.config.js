@@ -4,7 +4,7 @@ module.exports = {
       name: "luminew-backend",
       script: "main.py",
       cwd: "C:/Users/Luminew/Desktop/Luminew/Luminew/Luminew/backend",
-      interpreter: "C:/Users/Luminew/Desktop/Luminew/Luminew/Luminew/backend/luminew_env/Scripts/python.exe",
+      interpreter: "C:/Users/Luminew/Desktop/Luminew/Luminew/Luminew/backend/luminew_env/Scripts/pythonw.exe",
       watch: false,
       max_memory_restart: "2G",
       env: {
