@@ -40,22 +40,33 @@ app.include_router(db_router, prefix="/api/db", tags=["Database"])
 @app.get("/health")
 async def health_check():
     """
-    【內測診斷工具】
-    回傳伺服器健康狀況與 GPU 負載情形
+    【內測診斷工具 V2】
+    檢查主機、GPU 以及最重要的「資料庫連線」
     """
+    # 1. GPU 檢查
     gpu_data = {"status": "Not Available"}
     if torch.cuda.is_available():
         gpu_data = {
             "status": "Available",
             "name": torch.cuda.get_device_name(0),
-            "vram_total_mb": int(torch.cuda.get_device_properties(0).total_memory / (1024**2)),
-            "vram_allocated_mb": int(torch.cuda.memory_allocated(0) / (1024**2)),
-            "time": datetime.datetime.now().isoformat()
+            "vram_total_mb": int(torch.cuda.get_device_properties(0).total_memory / (1024**2))
         }
+
+    # 2. 資料庫檢查
+    db_status = "Checking..."
+    try:
+        from app.database.db import execute_read
+        res = execute_read("SELECT 1 as test")
+        db_status = "Connected" if res else "Connection Failed (Empty Result)"
+    except Exception as e:
+        db_status = f"Connection Error: {str(e)}"
+
     return {
         "status": "online",
         "server": "Luminew-GPU-Workstation (Root)",
-        "gpu": gpu_data
+        "db": db_status,
+        "gpu": gpu_data,
+        "time": datetime.datetime.now().isoformat()
     }
 
 app.include_router(emotion_router, prefix="/emotion", tags=["Emotion"])
@@ -92,5 +103,6 @@ async def startup_event():
     print("="*50 + "\n")
 
 if __name__ == "__main__":
-    # 使用 uvicorn 啟動
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    # 在生產環境 (學校電腦) 務必將 reload 設為 False 
+    # 這樣才不會因為寫入日誌導致 Ngrok 無限重啟
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)

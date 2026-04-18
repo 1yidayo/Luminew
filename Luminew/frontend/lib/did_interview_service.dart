@@ -67,7 +67,10 @@ class DidInterviewService {
       final startRes = await http
           .post(
             Uri.parse('$backendUrl/api/interview/start'),
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+              'Content-Type': 'application/json',
+              'ngrok-skip-browser-warning': 'true', // 跳過 Ngrok 警告
+            },
             body: jsonEncode({'professor_type': professorType}),
           )
           .timeout(const Duration(seconds: 30));
@@ -217,7 +220,10 @@ class DidInterviewService {
       print('📡 [DEBUG] 傳送 Answer SDP...');
       await http.post(
         Uri.parse('$backendUrl/api/interview/webrtc-answer'),
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true', // 跳過 Ngrok 警告
+        },
         body: jsonEncode({
           'session_id': _sessionId,
           'answer': {'type': 'answer', 'sdp': sdpString},
@@ -296,7 +302,10 @@ class DidInterviewService {
     try {
       await http.post(
         Uri.parse('$backendUrl/api/interview/webrtc-ice'),
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'ngrok-skip-browser-warning': 'true', // 跳過 Ngrok 警告
+        },
         body: jsonEncode({
           'session_id': _sessionId,
           'candidate': candidate.candidate,

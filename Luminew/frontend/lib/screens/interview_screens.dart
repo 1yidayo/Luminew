@@ -497,6 +497,9 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
         ),
       );
 
+      // ★ 跳過 Ngrok 警告頁面，確保 MultipartRequest 也能直接獲得 JSON 回應
+      request.headers['ngrok-skip-browser-warning'] = 'true';
+
       request.files.add(
         await http.MultipartFile.fromPath('pdf', _selectedFile!.path),
       );

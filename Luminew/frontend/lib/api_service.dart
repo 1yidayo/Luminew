@@ -3,14 +3,15 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'models.dart';
 import 'mock_data.dart'; // ★ 引入以對接 Mock 數據
+import 'config.dart';
 
 /// ========================================================
 /// 神不知鬼不覺的完美替身：ApiService
 /// 直接取代原本危險的 sql_service.dart，轉接所有邏輯到後端伺服器！
 /// ========================================================
 class ApiService {
-  // [SERVER] 校園 GPU 工作站連線 (暫時切回 Ngrok 備援)
-  static String rootUrl = "https://unobviable-oralee-unsicker.ngrok-free.dev";
+  // [SERVER] 統一引用 AppConfig 的位址，避免多處修改遺漏
+  static String rootUrl = AppConfig.httpUrl;
   static String baseUrl = "$rootUrl/api/db";
 
   static Future<http.Response> _post(
@@ -19,14 +20,23 @@ class ApiService {
   ) async {
     final res = await http.post(
       Uri.parse('$baseUrl$endpoint'),
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true', // ★ 這是繞過 Ngrok 藍色警告頁面的關鍵
+      },
       body: jsonEncode(body),
     );
     if (res.statusCode != 200) {
-      String detail = 'API Server Error';
+      String detail = 'API Server Error (${res.statusCode})';
       try {
-        detail = jsonDecode(res.body)['detail'] ?? detail;
-      } catch (e) {}
+        final data = jsonDecode(res.body);
+        detail = data['detail'] ?? detail;
+      } catch (e) {
+        // 解析 JSON 失敗時才列印原始訊息，幫助維護
+        print(
+          "⚠️ [ApiService] Server returned Non-JSON: ${res.body.length > 100 ? res.body.substring(0, 100) : res.body}",
+        );
+      }
       throw Exception(detail);
     }
     return res;
@@ -61,10 +71,7 @@ class ApiService {
   }
 
   static Future<void> updateUserProfile(String email, String name) async {
-    await _post('/updateUserProfile', {
-      'email': email,
-      'name': name,
-    });
+    await _post('/updateUserProfile', {'email': email, 'name': name});
   }
 
   // ==========================

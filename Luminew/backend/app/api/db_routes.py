@@ -11,8 +11,13 @@ router = APIRouter()
 class LoginReq(BaseModel): email: str; password: str
 @router.post("/login")
 def login(req: LoginReq):
+    print(f"📥 [Login] 收到登入請求: Email='{req.email}'") # ★ 加入追蹤日誌
     sql = f"SELECT * FROM Users WHERE Email = '{req.email}' AND PasswordHash = '{req.password}'"
     res = execute_read(sql)
+    if res:
+        print(f"✅ [Login] 驗證成功: {req.email}")
+    else:
+        print(f"⚠️ [Login] 驗證失敗: {req.email}")
     return res[0] if res else None
 
 class RegisterReq(BaseModel): email: str; password: str; name: str; role: str

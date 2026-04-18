@@ -1,11 +1,17 @@
 import pyodbc
+import os
+from dotenv import load_dotenv
 
-# SQL Server 設定 (與原本 Flutter 的設定相同)
-DB_HOST = "140.136.155.145"
-DB_PORT = "1433"
-DB_NAME = "LuminewDB"
-DB_USER = "TeamUser"
-DB_PASS = "!%IM43Luminew%!"
+# 讀取環境變數
+load_dotenv()
+
+# SQL Server 設定
+# 重點：在學校電腦本機執行時，應使用 127.0.0.1 以避開防火牆攔截
+DB_HOST = os.getenv("DB_HOST", "140.136.155.145")
+DB_PORT = os.getenv("DB_PORT", "1433")
+DB_NAME = os.getenv("DB_NAME", "LuminewDB")
+DB_USER = os.getenv("DB_USER", "TeamUser")
+DB_PASS = os.getenv("DB_PASS", "!%IM43Luminew%!")
 
 def get_db_connection():
     """嘗試不同的 ODBC 驅動程式，以應付不同版本的 Windows 與 SSMS 安裝"""

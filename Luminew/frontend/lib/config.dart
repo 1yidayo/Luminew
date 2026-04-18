@@ -1,3 +1,3 @@
 class AppConfig {
-  static const String httpUrl = "https://unobviable-oralee-unsicker.ngrok-free.dev";
+  static const String httpUrl = "https://pesky-savior-widely.ngrok-free.dev";
 }
