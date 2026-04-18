@@ -64,12 +64,14 @@ class DidInterviewService {
   Future<void> startInterview(String professorType) async {
     try {
       print('🚀 [DEBUG] 正在呼叫後端 /start API (教授: $professorType)...');
-      final startRes = await http.post(
-        Uri.parse('$backendUrl/api/interview/start'),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'professor_type': professorType}),
-      ).timeout(const Duration(seconds: 30));
-      
+      final startRes = await http
+          .post(
+            Uri.parse('$backendUrl/api/interview/start'),
+            headers: {'Content-Type': 'application/json'},
+            body: jsonEncode({'professor_type': professorType}),
+          )
+          .timeout(const Duration(seconds: 30));
+
       final startData = jsonDecode(startRes.body);
       if (startData['status'] == 'error') throw Exception(startData['message']);
 
@@ -77,7 +79,13 @@ class DidInterviewService {
       final offerMap = startData['offer'];
 
       final configuration = {
-        'iceServers': (offerMap['ice_servers'] as List?)?.map((e) => e as Map<String, dynamic>).toList() ?? [{'urls': 'stun:stun.l.google.com:19302'}],
+        'iceServers':
+            (offerMap['ice_servers'] as List?)
+                ?.map((e) => e as Map<String, dynamic>)
+                .toList() ??
+            [
+              {'urls': 'stun:stun.l.google.com:19302'},
+            ],
         'sdpSemantics': 'unified-plan',
       };
       _peerConnection = await createPeerConnection(configuration);
@@ -99,7 +107,7 @@ class DidInterviewService {
         print('📡 [WebRTC] ICE 狀態: $stateStr');
         onConnectionState?.call(stateStr);
         if (stateStr == 'connected' || stateStr == 'completed') {
-           _forceSpeakerOn();
+          _forceSpeakerOn();
         }
       };
 
@@ -118,12 +126,18 @@ class DidInterviewService {
         }
       };
 
-      await _peerConnection!.setRemoteDescription(RTCSessionDescription(offerMap['offer']['sdp'], offerMap['offer']['type']));
+      await _peerConnection!.setRemoteDescription(
+        RTCSessionDescription(
+          offerMap['offer']['sdp'],
+          offerMap['offer']['type'],
+        ),
+      );
 
       // ★ 核心穩定點：明確告知 WebRTC 我們只要接收影像與音訊，即使沒有本地攝像頭
       var transceivers = await _peerConnection!.getTransceivers();
       for (var t in transceivers) {
-        if (t.receiver.track?.kind == 'video' || t.receiver.track?.kind == 'audio') {
+        if (t.receiver.track?.kind == 'video' ||
+            t.receiver.track?.kind == 'audio') {
           t.setDirection(TransceiverDirection.RecvOnly);
         }
       }
@@ -140,17 +154,24 @@ class DidInterviewService {
       // ★ 強力修正：精準定位 a=mid:0 並且補上 Sony 最相容的參數
       if (sdpString.contains('m=video 0')) {
         print('🔧 [SDP Fix] 執行深度 SDP 修復 (Sony/D-ID Compatibility)...');
-        sdpString = sdpString.replaceAll('m=video 0 UDP/TLS/RTP/SAVPF 0', 'm=video 9 UDP/TLS/RTP/SAVPF 100');
-        
+        sdpString = sdpString.replaceAll(
+          'm=video 0 UDP/TLS/RTP/SAVPF 0',
+          'm=video 9 UDP/TLS/RTP/SAVPF 100',
+        );
+
         // 使用更精準的 H.264 宣告，包含 packetization-mode 與 profile-level-id
-        String h264Params = 'a=rtpmap:100 H264/90000\r\n'
-                          'a=fmtp:100 packetization-mode=1;profile-level-id=42e01f;level-asymmetry-allowed=1\r\n'
-                          'a=rtcp-fb:100 nack\r\n'
-                          'a=rtcp-fb:100 nack pli\r\n'
-                          'a=msid:Luminew-Video-Stream Luminew-Video-Track\r\n';
-        
+        String h264Params =
+            'a=rtpmap:100 H264/90000\r\n'
+            'a=fmtp:100 packetization-mode=1;profile-level-id=42e01f;level-asymmetry-allowed=1\r\n'
+            'a=rtcp-fb:100 nack\r\n'
+            'a=rtcp-fb:100 nack pli\r\n'
+            'a=msid:Luminew-Video-Stream Luminew-Video-Track\r\n';
+
         // 確保在 mid:0 之後插入
-        sdpString = sdpString.replaceFirst(RegExp(r'a=mid:0\r?\n'), 'a=mid:0\r\n$h264Params');
+        sdpString = sdpString.replaceFirst(
+          RegExp(r'a=mid:0\r?\n'),
+          'a=mid:0\r\n$h264Params',
+        );
       }
 
       // 修正連線角色為 active
@@ -162,8 +183,12 @@ class DidInterviewService {
       sdpString = sdpString.replaceAll('127.0.0.1', '1.1.1.1');
 
       // 連接 WebSocket
-      final wsUrl = backendUrl.replaceFirst('http', 'ws').replaceFirst('https', 'wss');
-      _wsChannel = WebSocketChannel.connect(Uri.parse('$wsUrl/api/interview/ws/$_sessionId'));
+      final wsUrl = backendUrl
+          .replaceFirst('http', 'ws')
+          .replaceFirst('https', 'wss');
+      _wsChannel = WebSocketChannel.connect(
+        Uri.parse('$wsUrl/api/interview/ws/$_sessionId'),
+      );
       _wsChannel!.stream.listen((message) {
         if (message is String) {
           final data = jsonDecode(message);
@@ -174,7 +199,13 @@ class DidInterviewService {
             print('🔊 [DEBUG] 啟動備援音訊播放...');
             _playBufferedAudio();
           } else if (event == 'did_ice') {
-            _peerConnection?.addCandidate(RTCIceCandidate(data['candidate'], data['sdpMid'], data['sdpMLineIndex']));
+            _peerConnection?.addCandidate(
+              RTCIceCandidate(
+                data['candidate'],
+                data['sdpMid'],
+                data['sdpMLineIndex'],
+              ),
+            );
           }
         } else if (message is Uint8List) {
           _audioBuffer.addAll(message);
@@ -187,7 +218,10 @@ class DidInterviewService {
       await http.post(
         Uri.parse('$backendUrl/api/interview/webrtc-answer'),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'session_id': _sessionId, 'answer': {'type': 'answer', 'sdp': sdpString}}),
+        body: jsonEncode({
+          'session_id': _sessionId,
+          'answer': {'type': 'answer', 'sdp': sdpString},
+        }),
       );
 
       _isAnswerSubmitted = true;
@@ -213,7 +247,9 @@ class DidInterviewService {
 
     try {
       final dir = await getTemporaryDirectory();
-      final file = File('${dir.path}/temp_tts_${DateTime.now().millisecondsSinceEpoch}.wav');
+      final file = File(
+        '${dir.path}/temp_tts_${DateTime.now().millisecondsSinceEpoch}.wav',
+      );
       await file.writeAsBytes(_audioBuffer);
       _audioBuffer.clear();
       await _audioPlayer.play(DeviceFileSource(file.path));
@@ -227,8 +263,16 @@ class DidInterviewService {
   Future<void> startRecording() async {
     if (await Permission.microphone.request().isGranted) {
       isRecording = true;
-      final stream = await _audioRecorder.startStream(const RecordConfig(encoder: AudioEncoder.pcm16bits, sampleRate: 16000, numChannels: 1));
-      _audioStreamSubscription = stream.listen((data) => _wsChannel?.sink.add(data));
+      final stream = await _audioRecorder.startStream(
+        const RecordConfig(
+          encoder: AudioEncoder.pcm16bits,
+          sampleRate: 16000,
+          numChannels: 1,
+        ),
+      );
+      _audioStreamSubscription = stream.listen(
+        (data) => _wsChannel?.sink.add(data),
+      );
     }
   }
 
@@ -250,7 +294,8 @@ class DidInterviewService {
 
   Future<void> _sendIceCandidate(RTCIceCandidate candidate) async {
     try {
-      await http.post(Uri.parse('$backendUrl/api/interview/webrtc-ice'),
+      await http.post(
+        Uri.parse('$backendUrl/api/interview/webrtc-ice'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
           'session_id': _sessionId,
@@ -259,13 +304,17 @@ class DidInterviewService {
           'sdpMLineIndex': candidate.sdpMLineIndex,
         }),
       );
-    } catch (e) { print('ICE Error: $e'); }
+    } catch (e) {
+      print('ICE Error: $e');
+    }
   }
 
   Future<void> _flushIceCandidates() async {
     if (_iceBuffer.isNotEmpty) {
       await Future.delayed(const Duration(seconds: 1));
-      for (var c in _iceBuffer) _sendIceCandidate(c);
+      for (var c in _iceBuffer) {
+        _sendIceCandidate(c);
+      }
       _iceBuffer.clear();
     }
   }

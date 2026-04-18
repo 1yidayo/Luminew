@@ -2,14 +2,14 @@ module.exports = {
   apps: [
     {
       name: "luminew-backend",
-      script: "python",
-      args: "main.py",
-      cwd: "./",
-      interpreter: "python",
+      script: "main.py",
+      cwd: "C:/Users/Luminew/Desktop/Luminew/Luminew/Luminew/backend",
+      interpreter: "C:/Users/Luminew/Desktop/Luminew/Luminew/Luminew/backend/luminew_env/Scripts/python.exe",
       watch: false,
       max_memory_restart: "2G",
       env: {
         NODE_ENV: "production",
+        PYTHONIOENCODING: "utf-8",
         PORT: 8000
       },
       log_date_format: "YYYY-MM-DD HH:mm Z",
