@@ -2318,6 +2318,11 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                     _buildIndexCountView(),
                   ],
                   const SizedBox(height: 40),
+                  _EmailResultWidget(
+                    record: widget.record,
+                    studentName: widget.user.name,
+                  ),
+                  const SizedBox(height: 40),
                   SizedBox(
                     width: double.infinity,
                     child: TextButton.icon(
@@ -3340,4 +3345,106 @@ class __KeepAliveWrapperState extends State<_KeepAliveWrapper>
 
   @override
   bool get wantKeepAlive => true; // 永遠保持存活
+}
+
+// ==========================================
+// ★ 新增功能：寄信小工具 (Email Result Widget)
+// ==========================================
+class _EmailResultWidget extends StatefulWidget {
+  final InterviewRecord record;
+  final String studentName;
+  const _EmailResultWidget({Key? key, required this.record, required this.studentName}) : super(key: key);
+
+  @override
+  State<_EmailResultWidget> createState() => _EmailResultWidgetState();
+}
+
+class _EmailResultWidgetState extends State<_EmailResultWidget> {
+  final _emailCtrl = TextEditingController();
+  bool _isSending = false;
+
+  void _sendEmail() async {
+    final email = _emailCtrl.text.trim();
+    if (email.isEmpty || !email.contains('@')) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('請輸入有效的信箱格式')),
+      );
+      return;
+    }
+    setState(() => _isSending = true);
+    try {
+      await ApiService.sendInterviewResultEmail(
+        recipientEmail: email,
+        studentName: widget.studentName,
+        overallScore: widget.record.overallScore,
+        comment: widget.record.aiComment.isNotEmpty ? widget.record.aiComment : '尚無評語',
+        suggestion: widget.record.aiSuggestion.isNotEmpty ? widget.record.aiSuggestion : '尚無建議',
+        timelineText: "(詳細情緒波動數據請回 Luminew 平台查看)",
+      );
+      if (mounted) {
+         ScaffoldMessenger.of(context).showSnackBar(
+           const SnackBar(content: Text('✅ 寄送成功！請去信箱確認', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)), backgroundColor: Colors.green),
+         );
+         _emailCtrl.clear();
+      }
+    } catch(e) {
+      if (mounted) {
+         ScaffoldMessenger.of(context).showSnackBar(
+           SnackBar(content: Text('寄信失敗：$e', style: const TextStyle(color: Colors.white)), backgroundColor: Colors.red),
+         );
+      }
+    } finally {
+      if (mounted) setState(() => _isSending = false);
+    }
+  }
+
+  @override
+  void dispose() {
+    _emailCtrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Text("📨 寄送成績與分析報表至信箱", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: kLuminewDeepIndigo)),
+        const SizedBox(height: 12),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.5),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: kLuminewMainPurple, width: 1.5),
+          ),
+          child: Row(
+            children: [
+              const Icon(Icons.email_outlined, color: kLuminewMainPurple),
+              const SizedBox(width: 12),
+              Expanded(
+                child: TextField(
+                  controller: _emailCtrl,
+                  decoration: const InputDecoration(
+                    hintText: '輸入你的電子信箱',
+                    border: InputBorder.none,
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+              ),
+              if (_isSending) 
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: kLuminewMainPurple)),
+                )
+              else
+                IconButton(
+                  icon: const Icon(Icons.send_rounded, color: kLuminewMainPurple),
+                  onPressed: _sendEmail,
+                ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 }

@@ -1,7 +1,7 @@
 # main.py
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.staticfiles import StaticFiles
-from app.api import interview, llm, tts, emotion, sql_proxy
+from app.api import interview, llm, tts, emotion, sql_proxy, db_routes
 from app.services.emotion_service import analyze_video, analyze_portfolio
 from app.services.InterviewManager import InterviewManager
 import os
@@ -28,6 +28,7 @@ app.include_router(llm.router, prefix="/llm", tags=["LLM"])
 app.include_router(tts.router, prefix="/tts", tags=["TTS"])
 app.include_router(emotion.router, prefix="/emotion", tags=["Emotion"])
 app.include_router(sql_proxy.router, prefix="/sql", tags=["SQL Proxy"])
+app.include_router(db_routes.router, prefix="/api/db", tags=["DB Routes"])
 
 @app.get("/")
 def root():
