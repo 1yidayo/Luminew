@@ -313,7 +313,7 @@ AI 綜合評分：{req.overallScore} 分
 
         msg = MIMEText(body, 'plain', 'utf-8')
         msg['Subject'] = subject
-        msg['From'] = f"Luminew AI <{sender_email}>"
+        msg['From'] = f"Luminew <{sender_email}>"
         msg['To'] = req.recipientEmail
 
         # 連線至 Gmail SMTP
