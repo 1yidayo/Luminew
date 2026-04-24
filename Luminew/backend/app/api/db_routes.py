@@ -262,6 +262,7 @@ def updatePrivacy(req: UpdatePrivacyReq):
     execute_write(f"UPDATE InterviewRecords SET Privacy = '{req.privacy}' WHERE RecordID = '{req.recordId}'")
     return {"status": "ok"}
 
+
 @router.post("/getPortfolios")
 def getPortfolios(req: EmailReq):
     return execute_read(f"SELECT * FROM LearningPortfolios WHERE StudentID = (SELECT UserID FROM Users WHERE Email = '{req.email}') ORDER BY UploadDate DESC")
@@ -271,3 +272,58 @@ class AddPortfolioReq(BaseModel): email: str; title: str
 def addPortfolio(req: AddPortfolioReq):
     execute_write(f"INSERT INTO LearningPortfolios (StudentID, Title) VALUES ((SELECT UserID FROM Users WHERE Email = '{req.email}'), N'{req.title}')")
     return {"status": "ok"}
+
+# --- EMAIL 發送路由 ---
+import os
+import smtplib
+from email.mime.text import MIMEText
+
+class SendEmailReq(BaseModel):
+    recipientEmail: str
+    studentName: str
+    overallScore: int
+    comment: str
+    suggestion: str
+    timelineText: str
+
+@router.post("/send_email")
+def send_email(req: SendEmailReq):
+    try:
+        sender_email = os.getenv("SMTP_EMAIL")
+        sender_pwd = os.getenv("SMTP_PASSWORD")
+        if not sender_email or not sender_pwd:
+             raise HTTPException(status_code=500, detail="Server SMTP configuration missing")
+
+        subject = f"[Luminew] {req.studentName} 的 AI 面試分析報告"
+        body = f"""你好！這是來自 Luminew 系統的面試分析報告：
+
+面試受試者：{req.studentName}
+AI 綜合評分：{req.overallScore} 分
+
+【綜合評語】
+{req.comment}
+
+【改善建議】
+{req.suggestion}
+
+{req.timelineText}
+
+感謝使用 Luminew 平台進行面試模擬，祝你順利錄取！
+"""
+
+        msg = MIMEText(body, 'plain', 'utf-8')
+        msg['Subject'] = subject
+        msg['From'] = f"Luminew <{sender_email}>"
+        msg['To'] = req.recipientEmail
+
+        # 連線至 Gmail SMTP
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login(sender_email, sender_pwd)
+            server.send_message(msg)
+
+        print(f"✅ 信件已成功寄送至 {req.recipientEmail}")
+        return {"status": "ok", "message": "Email sent"}
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"寄信失敗: {str(e)}")

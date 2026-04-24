@@ -56,6 +56,24 @@ class ApiService {
     }
   }
 
+  static Future<void> sendInterviewResultEmail({
+    required String recipientEmail,
+    required String studentName,
+    required int overallScore,
+    required String comment,
+    required String suggestion,
+    required String timelineText,
+  }) async {
+    await _post('/send_email', {
+      'recipientEmail': recipientEmail,
+      'studentName': studentName,
+      'overallScore': overallScore,
+      'comment': comment,
+      'suggestion': suggestion,
+      'timelineText': timelineText,
+    });
+  }
+
   static Future<void> registerUser(
     String email,
     String password,
