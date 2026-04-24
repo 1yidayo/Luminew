@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>D-ID 快速測試</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        #videoElement { width: 400px; height: 400px; border-radius: 50%; object-fit: cover; background: #000; margin: 20px auto; display: block; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; background: #4CAF50; color: white; border: none; border-radius: 5px; }
+        button:disabled { background: #ccc; }
+        #status { margin-top: 10px; color: #666; }
+    </style>
+</head>
+<body>
+
+    <h1>👨‍🏫 D-ID 教授視訊測試 👨‍🏫</h1>
+    
+    <!-- 取代為你的 API KEY (username:password 格式) -->
+    <input type="text" id="apiKey" placeholder="貼上你的 D-ID API Key..." style="width:300px; padding:5px;"><br><br>
+    
+    <!-- 替換為你在 GitHub 上那張教授圖片的網址 -->
+    <input type="text" id="sourceUrl" value="https://raw.githubusercontent.com/1yidayo/Luminew/refs/heads/main/Luminew/backend/assets/images/Paul.jpg" style="width:300px; padding:5px;" disabled><br><br>
+
+    <button id="connectBtn">1. 連線開麥 (建立會議室)</button>
+    <button id="talkBtn" disabled>2. 讓教授講話</button>
+    <button id="destroyBtn" disabled>3. 關閉會議室</button>
+
+    <div id="status">準備就緒</div>
+
+    <video id="videoElement" autoplay playsinline></video>
+
+<script>
+    const RTCPeerConnection = (window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection).bind(window);
+    
+    let peerConnection;
+    let streamId;
+    let sessionId;
+    let sessionClientAnswer;
+    const videoElement = document.getElementById('videoElement');
+
+    const connectBtn = document.getElementById('connectBtn');
+    const talkBtn = document.getElementById('talkBtn');
+    const apiKeyInput = document.getElementById('apiKey');
+    const sourceUrlInput = document.getElementById('sourceUrl');
+    const statusDiv = document.getElementById('status');
+
+    async function fetchWithApiKey(url, options) {
+        const apiKey = apiKeyInput.value.trim();
+        return fetch(url, {
+            ...options,
+            headers: {
+                ...options.headers,
+                'Authorization': `Basic ${btoa(apiKey)}`,
+                'Content-Type': 'application/json',
+            }
+        });
+    }
+
+    // 1. 建立連線
+    connectBtn.onclick = async () => {
+        if (!apiKeyInput.value.trim()) { alert("請先輸入 API Key！"); return; }
+        
+        statusDiv.innerText = "⏳ 正在向 D-ID 申請房間...";
+        connectBtn.disabled = true;
+
+        try {
+            // A. 向 D-ID 申請開啟實境串流
+            const sessionResponse = await fetchWithApiKey('https://api.d-id.com/talks/streams', {
+                method: 'POST',
+                body: JSON.stringify({ source_url: sourceUrlInput.value })
+            });
+
+            const sessionData = await sessionResponse.json();
+            if(!sessionData.id) {
+                 statusDiv.innerText = "❌ 建立失敗，可能是 API Key 錯誤或是額度不足。";
+                 connectBtn.disabled = false; return;
+            }
+            
+            streamId = sessionData.id;
+            sessionId = sessionData.session_id;
+
+            // B. 建立本地端的 WebRTC Receiver
+            peerConnection = new RTCPeerConnection({ iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] });
+            
+            peerConnection.addEventListener('icecandidate', async (event) => {
+                if (event.candidate) {
+                    await fetchWithApiKey(`https://api.d-id.com/talks/streams/${streamId}/ice`, {
+                        method: 'POST',
+                        body: JSON.stringify({ candidate: event.candidate.candidate, sdpMid: event.candidate.sdpMid, sdpMLineIndex: event.candidate.sdpMLineIndex, session_id: sessionId })
+                    });
+                }
+            });
+
+            peerConnection.addEventListener('track', (event) => {
+                videoElement.srcObject = event.streams[0];
+            });
+
+            // C. 將 D-ID 提供給我們的 SDP Offer 餵給本地 WebRTC
+            await peerConnection.setRemoteDescription(new RTCSessionDescription(sessionData.offer));
+            
+            // D. 本地產生 Answer 並回傳給 D-ID
+            sessionClientAnswer = await peerConnection.createAnswer();
+            await peerConnection.setLocalDescription(sessionClientAnswer);
+
+            await fetchWithApiKey(`https://api.d-id.com/talks/streams/${streamId}/sdp`, {
+                method: 'POST',
+                body: JSON.stringify({ answer: sessionClientAnswer, session_id: sessionId })
+            });
+
+            statusDiv.innerText = "✅ 連線成功！教授畫面已準備好 (一開始可能會是一張靜態圖)";
+            talkBtn.disabled = false;
+            document.getElementById('destroyBtn').disabled = false;
+        } catch(e) {
+            statusDiv.innerText = "❌ 發生錯誤：" + e.message;
+            connectBtn.disabled = false;
+        }
+    };
+
+    // 2. 讓教授開口說話 (扣額度的地方)
+    talkBtn.onclick = async () => {
+        statusDiv.innerText = "⏳ 正在傳送句子給教授...";
+        talkBtn.disabled = true;
+        try {
+            await fetchWithApiKey(`https://api.d-id.com/talks/streams/${streamId}`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    script: {
+                        type: 'text',
+                        input: 'Hello there! I am your AI Professor. Nice to meet you.',
+                        provider: { type: 'microsoft', voice_id: 'en-US-JennyNeural' }
+                    },
+                    session_id: sessionId
+                })
+            });
+            statusDiv.innerText = "💬 教授正在說話中...";
+        } catch(e) {
+            statusDiv.innerText = "❌ 說話失敗：" + e.message;
+        }
+        setTimeout(()=> { talkBtn.disabled = false; statusDiv.innerText="✅ 說話完畢，可再次點擊"; }, 5000);
+    };
+
+    // 3. 關閉會議室
+    document.getElementById('destroyBtn').onclick = async () => {
+        await fetchWithApiKey(`https://api.d-id.com/talks/streams/${streamId}`, {
+            method: 'DELETE',
+            body: JSON.stringify({ session_id: sessionId })
+        });
+        peerConnection.close();
+        videoElement.srcObject = null;
+        statusDiv.innerText = "⏹ 會議室已關閉";
+        connectBtn.disabled = false;
+        talkBtn.disabled = true;
+        document.getElementById('destroyBtn').disabled = true;
+    };
+</script>
+
+</body>
+</html>

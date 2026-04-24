@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>AI 面試官畫面 (D-ID 橋接版)</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; background-color: #f5f5f5;}
+        #videoElement { width: 400px; height: 400px; border-radius: 50%; object-fit: cover; background: #000; margin: 20px auto; display: block; border: 5px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        button { padding: 12px 24px; font-size: 16px; cursor: pointer; background: #4CAF50; color: white; border: none; border-radius: 5px; font-weight: bold; }
+        button:disabled { background: #ccc; }
+        #status { margin-top: 15px; color: #555; font-size: 18px; }
+    </style>
+</head>
+<body>
+
+    <h1>👨‍🏫 AI 面試官視訊畫面 👨‍🏫</h1>
+    
+    <button id="connectBtn">1. 連線進入面試 (請先在 VS Code 啟動 Python)</button>
+
+    <div id="status">如果 Python 終端機顯示「房間已準備好」，請點擊上方按鈕。</div>
+
+    <video id="videoElement" autoplay playsinline></video>
+
+<script>
+    const RTCPeerConnection = (window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection).bind(window);
+    
+    let peerConnection;
+    let sessionClientAnswer;
+    const videoElement = document.getElementById('videoElement');
+    const connectBtn = document.getElementById('connectBtn');
+    const statusDiv = document.getElementById('status');
+
+    // 本地 Python 橋樑的 API 網址 (對應 test_interview_flow_v2.py)
+    const LOCAL_BRIDGE_URL = "http://127.0.0.1:8012";
+
+    connectBtn.onclick = async () => {
+        statusDiv.innerText = "⏳ 正在向 Python 腳本取得房間鑰匙...";
+        connectBtn.disabled = true;
+
+        try {
+            // A. 從 Python 橋樑取得 D-ID Offer
+            const apiRes = await fetch(`${LOCAL_BRIDGE_URL}/get_offer`);
+            const sessionData = await apiRes.json();
+            
+            if(sessionData.error) {
+                 statusDiv.innerText = "❌ 取房失敗：" + sessionData.error + " (請確定 VS Code 已經跑到 [👉 房間已準備好！])";
+                 connectBtn.disabled = false; return;
+            }
+
+            statusDiv.innerText = "🔑 房間鑰匙取得成功，開始建立 WebRTC 視訊通道...";
+
+            // B. 建立本地端的 WebRTC Receiver
+            // 使用 D-ID 回傳的 ICE Servers
+            peerConnection = new RTCPeerConnection({ iceServers: sessionData.ice_servers });
+            
+            peerConnection.addEventListener('icecandidate', async (event) => {
+                if (event.candidate) {
+                    // C. 將前端拿到的 ICE 交給 Python 橋樑，讓 Python 去送給 D-ID
+                    await fetch(`${LOCAL_BRIDGE_URL}/send_ice`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ 
+                            candidate: event.candidate.candidate, 
+                            sdpMid: event.candidate.sdpMid, 
+                            sdpMLineIndex: event.candidate.sdpMLineIndex 
+                        })
+                    });
+                }
+            });
+
+            peerConnection.addEventListener('track', (event) => {
+                videoElement.srcObject = event.streams[0];
+            });
+
+            // D. 將 D-ID 提供給我們的 SDP Offer 餵給本地 WebRTC
+            await peerConnection.setRemoteDescription(new RTCSessionDescription(sessionData.offer));
+            
+            // E. 本地產生 Answer，並同樣透過 Python 橋樑丟還給 D-ID
+            sessionClientAnswer = await peerConnection.createAnswer();
+            await peerConnection.setLocalDescription(sessionClientAnswer);
+
+            const answerRes = await fetch(`${LOCAL_BRIDGE_URL}/send_answer`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ answer: sessionClientAnswer })
+            });
+            const answerData = await answerRes.json();
+            console.log("SDP 回傳結果:", answerData);
+
+            statusDiv.innerText = "✅ 連線成功！教授畫面已準備好。你現在可以回到 VS Code 終端機按 [Enter] 繼續面試了！";
+
+        } catch(e) {
+            statusDiv.innerText = "❌ 發生錯誤：" + e.message;
+            connectBtn.disabled = false;
+        }
+    };
+</script>
+
+</body>
+</html>

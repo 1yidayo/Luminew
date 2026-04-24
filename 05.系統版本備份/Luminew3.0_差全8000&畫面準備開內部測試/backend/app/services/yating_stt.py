@@ -1,0 +1,114 @@
+# yating_stt.py
+# 封裝 Yating 語音轉文字 (STT) 成類別，方便後端統一管理
+import asyncio
+import websockets
+import json
+import requests
+import threading
+from queue import Queue
+from dotenv import load_dotenv
+import os
+
+# 讀取 .env
+load_dotenv()
+
+YATING_API_KEY = os.getenv("YATING_API_KEY")
+ASR_TOKEN_URL = os.getenv("ASR_TOKEN_URL")
+ASR_WS_URL = os.getenv("ASR_WS_URL")
+
+SAMPLE_RATE = 16000
+CHUNK_BYTES = 2000  # 每塊 2000 bytes (~1/16 秒)
+
+class YatingSTT:
+    def __init__(self, pipeline="asr-zh-en-std"):
+        self.pipeline = pipeline
+        self.audio_queue = Queue()
+        self.ws_connection = None
+        self.recording_enabled = False
+        self.on_final_text_handler = None
+        self.token = None
+
+    # 取得一次性 token
+    def get_one_time_token(self):
+        headers = {"key": YATING_API_KEY, "Content-Type": "application/json"}
+        body = {"pipeline": self.pipeline}
+        r = requests.post(ASR_TOKEN_URL, json=body, headers=headers)
+        r.raise_for_status()
+        return r.json()["auth_token"]
+
+    # 開始錄音
+    def start_recording(self):
+        self.recording_enabled = True
+        print("[MIC] 開始錄音...")
+
+    # 停止錄音
+    def stop_recording(self):
+        self.recording_enabled = False
+        print("[STOP] 已停止錄音，等待辨識結果...")
+        
+    def feed_audio(self, pcm_bytes: bytes):
+        """提供給 FastAPI WebSocket 呼叫，用來塞入 Flutter 傳來的手機麥克風音訊"""
+        if self.recording_enabled:
+            print(f"[INPUT] ASR 佇列塞入: {len(pcm_bytes)} bytes")
+            self.audio_queue.put(pcm_bytes)
+
+    # WebSocket 流程
+    async def asr_stream_loop(self, on_final_text):
+        self.on_final_text_handler = on_final_text
+        self.token = self.get_one_time_token()
+        uri = f"{ASR_WS_URL}{self.token}"
+
+        try:
+            print(f"[LINK] 正在連線 ASR WebSocket: {ASR_WS_URL}...")
+            async with websockets.connect(uri) as ws:
+                self.ws_connection = ws
+                print("[OK] ASR WebSocket 已連線")
+
+                async def sender():
+                    while True:
+                        chunk = await asyncio.get_event_loop().run_in_executor(None, self.audio_queue.get)
+                        await ws.send(chunk)
+
+                sender_task = asyncio.create_task(sender())
+
+                async for message in ws:
+                    try:
+                        data = json.loads(message)
+                        pipe = data.get("pipe", {})
+                        if pipe.get("asr_final") is True:
+                            final_text = pipe.get("asr_sentence", "")
+                            print(f"[TARGET] [ASR 辨識成功]: {final_text}")
+                            if self.on_final_text_handler:
+                                threading.Thread(target=self.on_final_text_handler, args=(final_text,)).start()
+                    except Exception as e:
+                        print(f"[INPUT] [ASR Receiver ERROR]: {e}")
+                        continue
+                
+                sender_task.cancel()
+        except Exception as e:
+            print(f"[ERROR] [ASR WebSocket 錯誤]: {e}")
+
+    # 後台啟動 ASR
+    def start_asr_background(self, on_final_text):
+        def run_asyncio():
+            try:
+                asyncio.run(self.asr_stream_loop(on_final_text))
+            except Exception as e:
+                print(f"[ERROR] [ASR 執行緒崩潰]: {e}")
+        threading.Thread(target=run_asyncio, daemon=True).start()
+
+
+# --- 測試 ---
+if __name__ == "__main__":
+    def handle(text):
+        print("收到 ASR：", text)
+
+    stt = YatingSTT()
+    stt.start_asr_background(handle)
+
+    while True:
+        cmd = input("按 1 開麥, 2 關麥：")
+        if cmd == "1":
+            stt.start_recording()
+        elif cmd == "2":
+            stt.stop_recording()
