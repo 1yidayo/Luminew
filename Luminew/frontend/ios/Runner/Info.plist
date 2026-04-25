@@ -49,5 +49,10 @@
 	<string>Luminew 需要麥克風權限以進行語音辨識並提供即時面試回饋。</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
