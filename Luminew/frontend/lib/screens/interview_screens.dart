@@ -1100,6 +1100,42 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
       ..setBackgroundColor(const Color(0x00000000));
   }
 
+  // ★ 開始啟動流程
+  Future<void> _startLiveInterview() async {
+    if (_isWsConnecting) return;
+    setState(() => _isWsConnecting = true);
+
+    // 設定後端連線位址
+    _didService.backendUrl = ApiService.baseUrl.replaceAll('/api/db', '');
+    await _didService.init();
+
+    _setupWsCallbacks();
+    _startFallbackCheck();
+
+    bool ok = await _didService.startInterview(
+      type: widget.type,
+      interviewer: widget.interviewer,
+      language: widget.language,
+      department: "im", 
+    );
+
+    // 如果開啟了錄影分析，也要同步啟動錄影
+    if (widget.saveVideo && !_isRecording) {
+      _startRecording();
+    }
+
+    print(
+      '🎙️ [Interview] 開始建立與 D-ID 的 WebRTC 連線 (教授: ${widget.interviewer})...',
+    );
+    if (mounted)
+      setState(() {
+        _isInterviewing = ok;
+        _isWsConnecting = false;
+        _isWaitingProfessor = true;
+        _canStudentSpeak = false;
+      });
+  }
+
   // ★ 設定 WebSocket 回呼
   void _setupWsCallbacks() {
     _didService.onTranscript = (role, text) {
