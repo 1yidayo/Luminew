@@ -28,6 +28,12 @@ module.exports = {
       merge_logs: true,
       autorestart: true,
       restart_delay: 2000
+    },
+    {
+      name: "cloudflare-tunnel",
+      script: "C:/Program Files (x86)/cloudflared/cloudflared.exe",
+      args: "tunnel --url http://localhost:8000",
+      autorestart: true
     }
   ]
 };

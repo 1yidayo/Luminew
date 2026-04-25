@@ -96,8 +96,12 @@ async def startup_event():
             print(f"[ERROR] Ngrok 啟動失敗 ({e})，切換回預設固定 IP")
             app.state.public_url = "http://140.136.155.145:8000"
     else:
-        print("[MODE] 正式營運模式：使用固定 IP (8000 埠口)")
-        app.state.public_url = "http://140.136.155.145:8000"
+        print("[MODE] 正式營運模式：優先使用環境變數中的 PUBLIC_URL")
+        public_url = os.getenv("PUBLIC_URL")
+        if public_url:
+            app.state.public_url = public_url
+        else:
+            app.state.public_url = "http://140.136.155.145:8000"
         
     print(f"[FINAL] 目前對外 API 位址: {app.state.public_url}")
     print("="*50 + "\n")
