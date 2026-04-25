@@ -21,7 +21,6 @@ import '../widgets/did_video_widget.dart';
 import '../widgets/luminew_header.dart'; // 導入統一標頭
 import 'student_screens.dart';
 import 'auth_screen.dart';
-import 'did_webview_screen.dart'; // ★ 新增：導入 WebView 畫面
 
 // 全域變數：用來儲存可用的相機列表
 List<CameraDescription> cameras = [];
@@ -1075,9 +1074,6 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
   final List<Map<String, String>> _chatMessages = [];
   final ScrollController _chatScrollController = ScrollController();
   String _connectionStatus = "Disconnected";
-  Timer? _fallbackTimer; // ★ 新增：用來監控 WebRTC 是否遲遲連不上
-  bool _useWebViewFallback = false; // ★ 新增：是否切換至 WebView 模式
-  late WebViewController _webController; // ★ 新增：WebView 控制器
 
   // ★ TTS 音訊播放
 
@@ -1091,13 +1087,6 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
     });
     _initCamera();
     _setupWsCallbacks();
-    _initWebViewController(); // ★ 初始化 WebView
-  }
-
-  void _initWebViewController() {
-    _webController = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..setBackgroundColor(const Color(0x00000000));
   }
 
   // ★ 設定 WebSocket 回呼
@@ -1186,41 +1175,11 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
       '🎙️ [Interview] 開始建立與 D-ID 的 WebRTC 連線 (教授: ${widget.interviewer})...',
     );
     await _didService.startInterview(widget.interviewer);
-    _startFallbackCheck(); // ★ 啟動監視器
     if (mounted)
       setState(() {
         _isInterviewing = true;
         _isWsConnecting = false;
       });
-  }
-
-    }
-  }
-
-  // ★ 新增：退位機制偵測
-  void _startFallbackCheck() {
-    _fallbackTimer?.cancel();
-    _fallbackTimer = Timer(const Duration(seconds: 15), () {
-      if (mounted && _isInterviewing) {
-        if (_connectionStatus != "connected" && _connectionStatus != "completed") {
-          print("⚠️ [Fallback] WebRTC 依然處於 $_connectionStatus，切換至 WebView 模式");
-          _switchToWebView();
-        }
-      }
-    });
-  }
-
-  void _switchToWebView() {
-    final baseUrl = ApiService.baseUrl.replaceAll('/api/db', '');
-    final webUrl = "$baseUrl/static/professor_view.html?api_key=bHVtaW5ldzQzQGdtYWlsLmNvbTo3UFkwTUd5N3dUWXNWMjAxSEUwZzc=";
-    
-    if (mounted) {
-      setState(() {
-        _useWebViewFallback = true;
-      });
-      _webController.loadRequest(Uri.parse(webUrl));
-      print("🚀 [UI] WebView 載入中: $webUrl");
-    }
   }
 
   void _stopLiveInterview() {
@@ -1297,7 +1256,6 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
   void dispose() {
     _controller?.dispose();
     _timer?.cancel();
-    _fallbackTimer?.cancel(); // ★ 清除監視器
     _didService.dispose();
     _chatScrollController.dispose();
     super.dispose();
@@ -1680,9 +1638,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                       child: Stack(
                         children: [
                           // A. 教授影像 (使用遠端渲染器)
-                          _useWebViewFallback
-                              ? WebViewWidget(controller: _webController)
-                              : DidVideoWidget(renderer: _didService.remoteRenderer),
+                          DidVideoWidget(renderer: _didService.remoteRenderer),
 
                           // B. 載入中遮罩
                           if (_isWaitingProfessor)

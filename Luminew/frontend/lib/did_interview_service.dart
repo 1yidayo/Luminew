@@ -88,8 +88,6 @@ class DidInterviewService {
                 .toList() ??
             [
               {'urls': 'stun:stun.l.google.com:19302'},
-              {'urls': 'stun:stun1.l.google.com:19302'},
-              {'urls': 'stun:stun.cloudflare.com:3478'},
             ],
         'sdpSemantics': 'unified-plan',
       };
@@ -100,7 +98,10 @@ class DidInterviewService {
 
       _peerConnection!.onIceCandidate = (RTCIceCandidate candidate) {
         if (candidate.candidate == null) return;
-        // [Trickle ICE] 抓到就送，不再緩衝
+        if (!_isAnswerSubmitted) {
+          _iceBuffer.add(candidate);
+          return;
+        }
         _sendIceCandidate(candidate);
       };
 
@@ -147,18 +148,42 @@ class DidInterviewService {
       final answer = await _peerConnection!.createAnswer();
       await _peerConnection!.setLocalDescription(answer);
 
-      // [優化] 移除人為緩衝期，直接進入 SDP 處理
+      // 收集 ICE 的緩衝期
+      await Future.delayed(const Duration(milliseconds: 1000));
 
       final localSdp = await _peerConnection!.getLocalDescription();
       String sdpString = localSdp?.sdp ?? '';
 
-      // ★ 輕量級修正：將 127.0.0.1 換成虛擬公網 IP，避免部分設備內部路由衝突
-      sdpString = sdpString.replaceAll('127.0.0.1', '1.1.1.1');
+      // ★ 強力修正：精準定位 a=mid:0 並且補上 Sony 最相容的參數
+      if (sdpString.contains('m=video 0')) {
+        print('🔧 [SDP Fix] 執行深度 SDP 修復 (Sony/D-ID Compatibility)...');
+        sdpString = sdpString.replaceAll(
+          'm=video 0 UDP/TLS/RTP/SAVPF 0',
+          'm=video 9 UDP/TLS/RTP/SAVPF 100',
+        );
+
+        // 使用更精準的 H.264 宣告，包含 packetization-mode 與 profile-level-id
+        String h264Params =
+            'a=rtpmap:100 H264/90000\r\n'
+            'a=fmtp:100 packetization-mode=1;profile-level-id=42e01f;level-asymmetry-allowed=1\r\n'
+            'a=rtcp-fb:100 nack\r\n'
+            'a=rtcp-fb:100 nack pli\r\n'
+            'a=msid:Luminew-Video-Stream Luminew-Video-Track\r\n';
+
+        // 確保在 mid:0 之後插入
+        sdpString = sdpString.replaceFirst(
+          RegExp(r'a=mid:0\r?\n'),
+          'a=mid:0\r\n$h264Params',
+        );
+      }
 
       // 修正連線角色為 active
       if (sdpString.contains('a=setup:actpass')) {
         sdpString = sdpString.replaceAll('a=setup:actpass', 'a=setup:active');
       }
+
+      // ★ 全域 IP 洗滌：將 127.0.0.1 換成虛擬公網 IP，避免 D-ID 報錯
+      sdpString = sdpString.replaceAll('127.0.0.1', '1.1.1.1');
 
       // 連接 WebSocket
       final wsUrl = backendUrl
@@ -190,7 +215,7 @@ class DidInterviewService {
         }
       }, onError: (e) => onError?.call("WS Error: $e"));
 
-      // [優化] 移除送出 Answer 前的等待期
+      await Future.delayed(const Duration(milliseconds: 300));
 
       print('📡 [DEBUG] 傳送 Answer SDP...');
       await http.post(
@@ -206,6 +231,7 @@ class DidInterviewService {
       );
 
       _isAnswerSubmitted = true;
+      await _flushIceCandidates();
       print('✅ [DEBUG] 握手完成');
     } catch (e) {
       print('❌ 初始化失敗: $e');
@@ -292,8 +318,13 @@ class DidInterviewService {
     }
   }
 
-  // [已廢棄] 改為 Trickle ICE 即時傳輸
   Future<void> _flushIceCandidates() async {
-    _iceBuffer.clear();
+    if (_iceBuffer.isNotEmpty) {
+      await Future.delayed(const Duration(seconds: 1));
+      for (var c in _iceBuffer) {
+        _sendIceCandidate(c);
+      }
+      _iceBuffer.clear();
+    }
   }
 }

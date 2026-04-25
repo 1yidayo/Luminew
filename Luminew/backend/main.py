@@ -31,7 +31,7 @@ VIDEO_STORAGE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "st
 os.makedirs(VIDEO_STORAGE_DIR, exist_ok=True)
 
 app.mount("/audio", StaticFiles(directory=os.path.join("app", "public", "audio")), name="audio")
-app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static/videos", StaticFiles(directory=VIDEO_STORAGE_DIR), name="videos")
 
 # 引入面試的 Router 與 Database Router
 app.include_router(interview_router, prefix="/api/interview", tags=["Interview"])
