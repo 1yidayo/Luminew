@@ -1,4 +1,4 @@
-package com.example.luminew_application_1
+package com.luminew.app
 
 import io.flutter.embedding.android.FlutterActivity
 
