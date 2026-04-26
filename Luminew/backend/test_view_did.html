@@ -50,26 +50,43 @@
             statusDiv.innerText = "🔑 房間鑰匙取得成功，開始建立 WebRTC 視訊通道...";
 
             // B. 建立本地端的 WebRTC Receiver
-            // 使用 D-ID 回傳的 ICE Servers
             peerConnection = new RTCPeerConnection({ iceServers: sessionData.ice_servers });
             
+            const iceCandidatesQueue = [];
+            let isSdpAnswerSent = false;
+
             peerConnection.addEventListener('icecandidate', async (event) => {
                 if (event.candidate) {
-                    // C. 將前端拿到的 ICE 交給 Python 橋樑，讓 Python 去送給 D-ID
-                    await fetch(`${LOCAL_BRIDGE_URL}/send_ice`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ 
-                            candidate: event.candidate.candidate, 
-                            sdpMid: event.candidate.sdpMid, 
-                            sdpMLineIndex: event.candidate.sdpMLineIndex 
-                        })
-                    });
+                    if (isSdpAnswerSent) {
+                        await fetch(`${LOCAL_BRIDGE_URL}/send_ice`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ 
+                                candidate: event.candidate.candidate, 
+                                sdpMid: event.candidate.sdpMid, 
+                                sdpMLineIndex: event.candidate.sdpMLineIndex 
+                            })
+                        });
+                    } else {
+                        iceCandidatesQueue.push(event.candidate);
+                    }
                 }
             });
 
             peerConnection.addEventListener('track', (event) => {
                 videoElement.srcObject = event.streams[0];
+                videoElement.onloadedmetadata = () => {
+                    videoElement.play();
+                };
+            });
+
+            peerConnection.addEventListener('connectionstatechange', () => {
+                console.log("WebRTC Connection State changed:", peerConnection.connectionState);
+                if (peerConnection.connectionState === 'connected') {
+                    statusDiv.innerHTML = "✅ 通道已連線！(WebRTC Connected)<br>教授畫面已準備好。你現在可以回到 VS Code 終端機按 [Enter] 繼續面試了！";
+                } else if (peerConnection.connectionState === 'failed') {
+                    statusDiv.innerHTML = "❌ 連線失敗 (failed)。請重整頁面重試。";
+                }
             });
 
             // D. 將 D-ID 提供給我們的 SDP Offer 餵給本地 WebRTC
@@ -79,6 +96,7 @@
             sessionClientAnswer = await peerConnection.createAnswer();
             await peerConnection.setLocalDescription(sessionClientAnswer);
 
+            console.log("正在送出 SDP Answer...");
             const answerRes = await fetch(`${LOCAL_BRIDGE_URL}/send_answer`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -87,7 +105,20 @@
             const answerData = await answerRes.json();
             console.log("SDP 回傳結果:", answerData);
 
-            statusDiv.innerText = "✅ 連線成功！教授畫面已準備好。你現在可以回到 VS Code 終端機按 [Enter] 繼續面試了！";
+            isSdpAnswerSent = true;
+
+            console.log(`正在送出 ${iceCandidatesQueue.length} 個隊列中的 ICE Candidates...`);
+            for (const candidate of iceCandidatesQueue) {
+                await fetch(`${LOCAL_BRIDGE_URL}/send_ice`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        candidate: candidate.candidate, 
+                        sdpMid: candidate.sdpMid, 
+                        sdpMLineIndex: candidate.sdpMLineIndex 
+                    })
+                });
+            }
 
         } catch(e) {
             statusDiv.innerText = "❌ 發生錯誤：" + e.message;

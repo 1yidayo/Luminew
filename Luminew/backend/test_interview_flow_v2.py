@@ -44,7 +44,7 @@ def start_backend_bridge():
     # 啟動 ngrok
     print("[WAIT] 啟動 ngrok 隧道中 (請稍候)...")
     try:
-        public_url = ngrok.connect(8008).public_url
+        public_url = ngrok.connect(8012).public_url
         print(f"[URL] Ngrok 公開網址: {public_url}")
         bridge_data["public_url"] = public_url
     except Exception as e:

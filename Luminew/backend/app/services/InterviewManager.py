@@ -175,23 +175,25 @@ class InterviewManager:
                 with open(filepath, "wb") as f:
                     f.write(wav_data)
                 
-                # 2. 取得公開網址並傳給 D-ID
-                public_url = getattr(self, "public_url", None)
-                if public_url:
-                    # ★ 淨化網址：移除末尾斜槓，避免產生 //audio/
-                    base_url = public_url.rstrip("/")
-                    audio_url = f"{base_url}/audio/{filename}"
-                    print(f"[LINK] [D-ID] 送出音訊 URL: {audio_url}")
+                # 2. 將音訊上傳至免費的暫存空間 (Catbox)，產生乾淨的直連 URL，避開 ngrok 與 base64 過載問題
+                print(f"[LINK] [D-ID] 正在上傳音訊至雲端空間...")
+                try:
+                    upload_res = await asyncio.to_thread(
+                        requests.post, 
+                        'https://catbox.moe/user/api.php', 
+                        data={'reqtype': 'fileupload'}, 
+                        files={'fileToUpload': ('speak.wav', wav_data, 'audio/wav')}
+                    )
+                    audio_url = upload_res.text.strip()
+                    print(f"[LINK] [D-ID] 上傳成功，安全音訊 URL: {audio_url}")
                     
-                    # ★ 立即通知前端可以開始放音 (備援路徑)
                     if self.on_tts_start:
                         await self.on_tts_start()
                     
-                    # 直接指揮 D-ID 使用高品質音訊，不再進行會導致超時的自我檢測
+                    # 直接指揮 D-ID 使用高品質音訊
                     await asyncio.to_thread(self.send_did_talk_audio, audio_url)
-                else:
-                    # 退而求其次使用文字
-                    print("[WARN] 找不到 public_url，改用文字模式 (D-ID 預設語音)")
+                except Exception as e:
+                    print(f"[ERROR] [D-ID] 音訊上傳失敗 ({e})，降級為純文字發音")
                     await asyncio.to_thread(self.send_did_talk, tts_text)
             
                 # [D-ID 串流模式] 狀態管理
@@ -322,11 +324,10 @@ class InterviewManager:
             return False
 
     def _update_did_cookies(self, sid):
-        """同步 D-ID 的 AWSALB Cookie，維持 Session 持續性"""
+        """同步 D-ID 的 AWSALB Cookie，維持 Session 持續性 (改由 requests.Session 自動管理)"""
         if not sid: return
-        self.session.cookies.set("AWSALB", sid, domain="api.d-id.com")
-        self.session.cookies.set("AWSALBCORS", sid, domain="api.d-id.com")
-        print(f" [SYMBOL]  [DEBUG] 已同步 D-ID Cookies: {self.session.cookies.get_dict()}")
+        # requests.Session 會自動處理 Set-Cookie，不應將 session_id 覆蓋進 AWSALB
+        print(f" [SYMBOL]  [DEBUG] 目前 D-ID 紀錄的 Session ID: {sid}, Cookies: {self.session.cookies.get_dict()}")
 
     def create_did_stream(self):
         print("正在向 D-ID 申請開啟視訊會議室...")
@@ -337,8 +338,8 @@ class InterviewManager:
         url = os.getenv("D_ID_URL", "https://api.d-id.com/talks/streams")
 
         payload = {
-            # 改用你們的教授照片
-            "source_url": "https://raw.githubusercontent.com/1yidayo/Luminew/refs/heads/main/Luminew/backend/assets/images/Paul.jpg"
+            # 根據當前面試官角色，自動切換照片
+            "source_url": self.professor_persona.image_url
         }
         
         # ★ 自動偵測 ngrok 網址 (如果沒有手動設定)
@@ -379,6 +380,8 @@ class InterviewManager:
 
                 self.did_stream_id = data.get("id")
                 self.did_session_id = data.get("session_id", "")
+                if not self.did_session_id:
+                    print(" [WARN] [D-ID] 建立房間回傳的 session_id 為空，後續請求將僅靠 Cookies 維持 Session")
 
                 # ★ 強制提取並同步最初的 AWSALB Cookie
                 self._update_did_cookies(self.did_session_id)
@@ -403,10 +406,11 @@ class InterviewManager:
         url = f"https://api.d-id.com/talks/streams/{self.did_stream_id}/sdp"
 
         # 嚴格遵循 D-ID WebRTC 最新規範
-        payload = {
-            "answer": answer,
-            "session_id": target_sid
-        }
+        payload = {"answer": answer}
+        if target_sid:
+            payload["session_id"] = target_sid
+        else:
+            print(" [WARN] [D-ID] submit_did_sdp_answer: session_id 為空，將只靠 Cookies 維持 Session")
 
         # 打印 Answer SDP 與 Cookies 給 AI 診斷
         print(f"[SIGNAL] [DEBUG] 正在提交 Answer SDP...")
@@ -425,6 +429,7 @@ class InterviewManager:
             # ★ 每次請求後更新 Cookie，維持 Session 持續性
             res_data = response.json()
             if res_data.get("session_id"):
+                self.did_session_id = res_data["session_id"]
                 self._update_did_cookies(res_data["session_id"])
         return response.json() if response.ok else {"error": response.text}
 
@@ -438,9 +443,12 @@ class InterviewManager:
         payload = {
             "candidate": candidate_data.get("candidate"),
             "sdpMid": candidate_data.get("sdpMid"),
-            "sdpMLineIndex": candidate_data.get("sdpMLineIndex"),
-            "session_id": target_sid
+            "sdpMLineIndex": candidate_data.get("sdpMLineIndex")
         }
+        if target_sid:
+            payload["session_id"] = target_sid
+        else:
+            print(" [WARN] [D-ID] submit_did_ice: session_id 為空，將只靠 Cookies 維持 Session")
         headers = {"accept": "application/json", "content-type": "application/json"}
         
         try:
@@ -460,9 +468,12 @@ class InterviewManager:
         payload = {
             "candidate": candidate,
             "sdpMid": sdpMid,
-            "sdpMLineIndex": sdpMLineIndex,
-            "session_id": target_sid
+            "sdpMLineIndex": sdpMLineIndex
         }
+        if target_sid:
+            payload["session_id"] = target_sid
+        else:
+            print(" [WARN] [D-ID] submit_did_ice_candidate: session_id 為空，將只靠 Cookies 維持 Session")
 
         headers = {"accept": "application/json", "content-type": "application/json"}
         # ★ 送出請求，使用 asyncio.to_thread 避免 Requests 擋住 Event Loop
@@ -474,6 +485,7 @@ class InterviewManager:
             # ★ ICE 提交後也可能更新 Cookie
             res_data = response.json()
             if res_data.get("session_id"):
+                self.did_session_id = res_data["session_id"]
                 self._update_did_cookies(res_data["session_id"])
         return response.json() if response.ok else {"error": response.text}
 
@@ -488,9 +500,12 @@ class InterviewManager:
                     "type": "microsoft",
                     "voice_id": "zh-TW-YunJheNeural"  # 使用微軟中文男聲
                 }
-            },
-            "session_id": self.did_session_id
+            }
         }
+        if self.did_session_id:
+            payload["session_id"] = self.did_session_id
+        else:
+            print(" [WARN] [D-ID] send_did_talk: did_session_id 為空，將只靠 Cookies 維持 Session")
         headers = {"accept": "application/json", "content-type": "application/json"}
         response = self.session.post(url, json=payload, headers=headers)
         if not response.ok:
@@ -507,9 +522,12 @@ class InterviewManager:
             "script": {
                 "type": "audio",
                 "audio_url": audio_url,
-            },
-            "session_id": self.did_session_id
+            }
         }
+        if self.did_session_id:
+            payload["session_id"] = self.did_session_id
+        else:
+            print(" [WARN] [D-ID] send_did_talk_audio: did_session_id 為空，將只靠 Cookies 維持 Session")
         headers = {"accept": "application/json", "content-type": "application/json"}
         response = self.session.post(url, json=payload, headers=headers)
         if response.ok:
