@@ -6,7 +6,7 @@ import threading
 import uuid
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Request
 from pydantic import BaseModel
-from typing import Any, Dict
+from typing import Any, Dict, List, Optional
 from app.services.InterviewManager import InterviewManager
 from app.services.professor_persona import get_professor_persona
 
@@ -39,6 +39,8 @@ class ICEPayload(BaseModel):
 
 class StartInterviewPayload(BaseModel):
     professor_type: str = "warm_industry_professor"
+    interview_type: str = "im"
+    custom_questions: Optional[List[str]] = None
 
 @router.post("/start")
 async def start_interview(payload: StartInterviewPayload, request: Request):
@@ -55,7 +57,9 @@ async def start_interview(payload: StartInterviewPayload, request: Request):
         # 初始化面試官 (完全無頭模式：啟用 D-ID、關閉本機麥克風)
         manager = InterviewManager(
             professor_type=professor_type, 
-            use_did=True
+            department=payload.interview_type,
+            use_did=True,
+            custom_questions=payload.custom_questions
         )
         manager.public_url = public_url
         

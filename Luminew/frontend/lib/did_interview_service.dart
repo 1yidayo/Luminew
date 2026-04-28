@@ -61,7 +61,7 @@ class DidInterviewService {
     await _audioPlayer.dispose();
   }
 
-  Future<void> startInterview(String professorType) async {
+  Future<void> startInterview(String professorType, String interviewType, {List<String>? customQuestions}) async {
     try {
       print('🚀 [DEBUG] 正在呼叫後端 /start API (教授: $professorType)...');
       final startRes = await http
@@ -71,7 +71,11 @@ class DidInterviewService {
               'Content-Type': 'application/json',
               'ngrok-skip-browser-warning': 'true', // 跳過 Ngrok 警告
             },
-            body: jsonEncode({'professor_type': professorType}),
+            body: jsonEncode({
+              'professor_type': professorType,
+              'interview_type': interviewType,
+              'custom_questions': customQuestions
+            }),
           )
           .timeout(const Duration(seconds: 30));
 

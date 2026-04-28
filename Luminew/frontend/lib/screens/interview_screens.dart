@@ -821,7 +821,7 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
                                   saveVideo: _saveVideo,
                                   interviewName: _nameController.text.trim(),
                                   baseline: _baseline,
-                                  questions: _generatedQuestions,
+                                  questions: _type == '學習歷程' ? _generatedQuestions : null,
                                 ),
                               ),
                             );
@@ -1174,7 +1174,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
     print(
       '🎙️ [Interview] 開始建立與 D-ID 的 WebRTC 連線 (教授: ${widget.interviewer})...',
     );
-    await _didService.startInterview(widget.interviewer);
+    await _didService.startInterview(widget.interviewer, widget.type, customQuestions: widget.questions);
     if (mounted)
       setState(() {
         _isInterviewing = true;
@@ -3152,6 +3152,23 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
     final double passion = (widget.record.scores['passion'] ?? 0).toDouble();
     final double relaxed = (widget.record.scores['relaxed'] ?? 0).toDouble();
 
+    final List<double> rawScores = [
+      emotionManagement,
+      relevance,
+      confidence,
+      passion,
+      relaxed,
+    ];
+
+    double maxRaw = 0.1; // 防止除以 0
+    for (double s in rawScores) {
+      if (s > maxRaw) maxRaw = s;
+    }
+
+    // 自動等比例放大：讓最高分的那一項永遠落在最大佔比(第4.5圈=90分)，達成完美比例
+    final double visualScale = 90.0 / maxRaw;
+
+
     return Container(
       height: 380,
       width: double.infinity,
@@ -3196,19 +3213,33 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
             color: Colors.grey.withOpacity(0.7), // ★ 這裡就是那一圈圈的顏色
             width: 2.0,
           ),
-          gridBorderData: BorderSide(color: Colors.transparent),
+          gridBorderData: const BorderSide(color: Colors.transparent),
           dataSets: [
+            // ★ 回歸 100 分防守牆
+            RadarDataSet(
+              fillColor: Colors.transparent,
+              borderColor: Colors.transparent,
+              borderWidth: 0,
+              entryRadius: 0,
+              dataEntries: const [
+                RadarEntry(value: 100),
+                RadarEntry(value: 100),
+                RadarEntry(value: 100),
+                RadarEntry(value: 100),
+                RadarEntry(value: 100),
+              ],
+            ),
             RadarDataSet(
               fillColor: kLuminewMainPurple.withOpacity(0.15), // 極淺紫色填充
               borderColor: kLuminewMainPurple, // 紫色邊框強化
               borderWidth: 2.5,
               entryRadius: 2,
               dataEntries: [
-                RadarEntry(value: emotionManagement),
-                RadarEntry(value: relevance),
-                RadarEntry(value: confidence),
-                RadarEntry(value: passion),
-                RadarEntry(value: relaxed),
+                RadarEntry(value: (emotionManagement * visualScale).clamp(0.0, 100.0)),
+                RadarEntry(value: (relevance * visualScale).clamp(0.0, 100.0)),
+                RadarEntry(value: (confidence * visualScale).clamp(0.0, 100.0)),
+                RadarEntry(value: (passion * visualScale).clamp(0.0, 100.0)),
+                RadarEntry(value: (relaxed * visualScale).clamp(0.0, 100.0)),
               ],
             ),
           ],
