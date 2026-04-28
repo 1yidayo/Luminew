@@ -924,7 +924,7 @@ class _CalibrationDialogState extends State<_CalibrationDialog> {
       var request = http.MultipartRequest(
         'POST',
         Uri.parse(
-          'https://unobviable-oralee-unsicker.ngrok-free.dev/emotion/calibrate',
+          '${AppConfig.httpUrl}/emotion/calibrate',
         ),
       );
       request.files.add(await http.MultipartFile.fromPath('video', file.path));
@@ -1241,14 +1241,24 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
           ResolutionPreset.medium,
           enableAudio: false,
         );
+
+        // 在 Web 上，initialize 會觸發瀏覽器權限詢問
         await _controller!.initialize();
         if (mounted) setState(() {});
+        print("✅ 相機初始化完成");
       } else {
-        setState(() => _statusMessage = "找不到相機鏡頭，請檢查設備。");
+        setState(() => _statusMessage = "找不到相機鏡頭，請檢查設備是否已連接或被封鎖。");
+        print("⚠️ 找不到相機鏡頭");
       }
     } catch (e) {
-      print("相機初始化失敗: $e");
-      setState(() => _statusMessage = "相機開啟失敗: $e");
+      print("❌ 相機初始化失敗: $e");
+      String errorMsg = e.toString();
+      if (errorMsg.contains("NotAllowedError") || errorMsg.contains("Permission denied")) {
+        errorMsg = "權限被拒絕，請點擊網址列左側「鎖頭」圖標並手動允許相機權限。";
+      } else if (errorMsg.contains("NotFoundError")) {
+        errorMsg = "找不到可用的相機設備。";
+      }
+      setState(() => _statusMessage = "相機開啟失敗: $errorMsg");
     }
   }
 
@@ -1265,15 +1275,17 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
     if (_controller == null || !_controller!.value.isInitialized) return;
 
     try {
-      // ★ 修正：先請求麥克風權限，避免 camera 插件內部觸發 SecurityException
-      final micStatus = await Permission.microphone.request();
-      if (!micStatus.isGranted) {
-        if (mounted) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(const SnackBar(content: Text('需要麥克風權限才能錄影')));
+      // ★ 修正：Web 環境略過 Permission.microphone.request，因為網頁版會由瀏覽器自動處理
+      if (!kIsWeb) {
+        final micStatus = await Permission.microphone.request();
+        if (!micStatus.isGranted) {
+          if (mounted) {
+            ScaffoldMessenger.of(
+              context,
+            ).showSnackBar(const SnackBar(content: Text('需要麥克風權限才能錄影')));
+          }
+          return;
         }
-        return;
       }
 
       await _controller!.startVideoRecording();
@@ -1542,8 +1554,10 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
       body: Stack(
         children: [
           SafeArea(
-            child: Column(
-              children: [
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
                 // 1. 頂部狀態列
                 Padding(
                   padding: const EdgeInsets.all(20.0),
@@ -1729,7 +1743,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                 const SizedBox(height: 12),
 
                 // 3. 底部區域量體優化 (移除冗餘問題顯示，留待結束分析後查看)
-                const Spacer(),
+                const SizedBox(height: 24),
 
                 // 3. 底部控制按鈕
                 if (_isUploading)
@@ -1841,6 +1855,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
               ],
             ),
           ),
+        ),
 
           // 4. 右上角面試者 PIP (移除外框樣式)
           Positioned(
@@ -2897,7 +2912,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
           ),
           const SizedBox(height: 6),
           LinearProgressIndicator(
-            value: score / 100,
+            value: (score / 100).clamp(0.0, 1.0),
             color: color,
             backgroundColor: kLuminewGooseYellow,
             minHeight: 8,
@@ -2945,6 +2960,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
       List<dynamic> timeline = jsonDecode(widget.record.timelineData);
       if (timeline.isNotEmpty) maxSec = (timeline.last['t'] as num).toDouble();
     } catch (_) {}
+    if (maxSec <= 0) maxSec = 1.0; // 避免除以 0
     double curSec = _videoPosition.inMilliseconds / 1000.0;
     double progress = (curSec / maxSec).clamp(0.0, 1.0);
     return Container(
@@ -2995,6 +3011,8 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
     if (timeline.isEmpty) return const SizedBox();
 
     double maxSec = (timeline.last['t'] as num).toDouble();
+    if (maxSec <= 0) maxSec = 1.0; // 避免 max >= min 的 FlChart 崩潰
+
     return Container(
       height: 200,
       padding: const EdgeInsets.only(top: 20, right: 10),
@@ -3003,7 +3021,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
           minX: 0,
           maxX: maxSec,
           minY: 0,
-          maxY: 100,
+          maxY: 105, // 允許 100 以上的浮點誤差防崩潰
           lineTouchData: LineTouchData(
             touchCallback: (event, response) {
               if (event is FlTapUpEvent &&
@@ -3075,7 +3093,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                 width: 100,
                 height: 100,
                 child: CircularProgressIndicator(
-                  value: score / 100,
+                  value: (score / 100).clamp(0.0, 1.0),
                   strokeWidth: 12, // 再雙倍粗
                   strokeCap: StrokeCap.round, // 圓頭
                   color: kLuminewMainPurple,

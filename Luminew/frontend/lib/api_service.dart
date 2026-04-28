@@ -52,7 +52,8 @@ class ApiService {
       if (data == null || (data is List && data.isEmpty)) return null;
       return AppUser.fromMap(data);
     } catch (e) {
-      return null;
+      // 重新拋出錯誤，讓 UI 能顯示具體原因 (連線超時、CORS 等)
+      rethrow;
     }
   }
 

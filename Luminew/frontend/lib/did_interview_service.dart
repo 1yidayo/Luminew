@@ -11,6 +11,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter/foundation.dart'; // ★ 新增 kIsWeb 判斷
 
 class DidInterviewService {
   final String backendUrl;
@@ -46,6 +47,7 @@ class DidInterviewService {
   }
 
   Future<void> _forceSpeakerOn() async {
+    if (kIsWeb) return; // 網頁版不需要且不支援切換聽筒/擴音
     try {
       await Helper.setSpeakerphoneOn(true);
       print('🔊 [Audio] setSpeakerphoneOn(true)');

@@ -30,8 +30,14 @@ os.makedirs(os.path.join("app", "public", "audio"), exist_ok=True)
 VIDEO_STORAGE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static", "videos")
 os.makedirs(VIDEO_STORAGE_DIR, exist_ok=True)
 
+app.mount("/public", StaticFiles(directory=os.path.join("app", "public")), name="public")
 app.mount("/audio", StaticFiles(directory=os.path.join("app", "public", "audio")), name="audio")
 app.mount("/static/videos", StaticFiles(directory=VIDEO_STORAGE_DIR), name="videos")
+
+# ★ 設定 Flutter Web 靜態網站目錄
+web_build_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web_build")
+os.makedirs(web_build_dir, exist_ok=True)
+app.mount("/web", StaticFiles(directory=web_build_dir, html=True), name="web")
 
 # 引入面試的 Router 與 Database Router
 app.include_router(interview_router, prefix="/api/interview", tags=["Interview"])
