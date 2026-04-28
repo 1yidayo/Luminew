@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 import 'dart:ui'; // ★ 新增：支援磨砂濾鏡效果
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -371,6 +372,7 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
 
   // 檔案上傳相關
   File? _selectedFile;
+  Uint8List? _selectedFileBytes; // ★ Web 用 bytes
   String? _selectedFileName;
   List<String> _generatedQuestions = [];
   bool _isAnalyzing = false;
@@ -468,12 +470,20 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf'],
+      withData: true, // ★ Web 需要此參數才能讀到 bytes
     );
 
-    if (result != null && result.files.single.path != null) {
+    if (result != null) {
+      final file = result.files.single;
       setState(() {
-        _selectedFile = File(result.files.single.path!);
-        _selectedFileName = result.files.single.name;
+        if (kIsWeb) {
+          _selectedFileBytes = file.bytes;
+          _selectedFile = null;
+        } else {
+          _selectedFile = File(file.path!);
+          _selectedFileBytes = null;
+        }
+        _selectedFileName = file.name;
         _pdfError = false; // ★ 檔案選好了，清除紅字提示
         _generatedQuestions = []; // 清除舊問題
       });
@@ -485,7 +495,7 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
 
   // ★ 上傳檔案並生成問題
   Future<void> _analyzeFileAndGenerateQuestions() async {
-    if (_selectedFile == null) return;
+    if (_selectedFile == null && _selectedFileBytes == null) return;
 
     setState(() => _isAnalyzing = true);
 
@@ -498,9 +508,16 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
       // ★ 跳過 Ngrok 警告頁面，確保 MultipartRequest 也能直接獲得 JSON 回應
       request.headers['ngrok-skip-browser-warning'] = 'true';
 
-      request.files.add(
-        await http.MultipartFile.fromPath('pdf', _selectedFile!.path),
-      );
+      if (kIsWeb && _selectedFileBytes != null) {
+        // ★ Web：用 bytes，不能用 fromPath
+        request.files.add(
+          http.MultipartFile.fromBytes('pdf', _selectedFileBytes!, filename: _selectedFileName),
+        );
+      } else if (!kIsWeb && _selectedFile != null) {
+        request.files.add(
+          await http.MultipartFile.fromPath('pdf', _selectedFile!.path),
+        );
+      }
       request.fields['interview_type'] = _type;
 
       print("📤 上傳 PDF 並生成問題...");
@@ -792,13 +809,13 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
                               return;
                             }
                             // 2. 校驗檔案
-                            if (_type == '學習歷程' && _selectedFile == null) {
+                            if (_type == '學習歷程' && _selectedFile == null && _selectedFileBytes == null) {
                               setState(() => _pdfError = true);
                               _scrollTo(_pdfCardKey);
                               return;
                             }
                             // 3. 校驗分析狀態
-                            if (_selectedFile != null &&
+                            if ((_selectedFile != null || _selectedFileBytes != null) &&
                                 _generatedQuestions.isEmpty &&
                                 _isAnalyzing) {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -927,7 +944,17 @@ class _CalibrationDialogState extends State<_CalibrationDialog> {
           '${AppConfig.httpUrl}/emotion/calibrate',
         ),
       );
-      request.files.add(await http.MultipartFile.fromPath('video', file.path));
+      if (kIsWeb) {
+        request.files.add(
+          http.MultipartFile.fromBytes(
+            'video',
+            await file.readAsBytes(),
+            filename: file.name,
+          ),
+        );
+      } else {
+        request.files.add(await http.MultipartFile.fromPath('video', file.path));
+      }
 
       var streamedResp = await request.send().timeout(
         const Duration(seconds: 60),
