@@ -22,14 +22,19 @@ class InterviewManager:
     不再使用本地 Threading 或 sounddevice。
     """
 
-    def __init__(self, professor_type="warm_industry_professor", department="im", use_did=False):
+    def __init__(self, professor_type="warm_industry_professor", department="im", use_did=False, custom_questions=None):
         self.professor_persona = get_professor_persona(professor_type)
         self.department = department
         self.use_did = use_did
         self.mode = "did" if use_did else "minimax"
 
         # 取得隨機題庫
-        selected_questions = get_random_questions(department=self.department)
+        if custom_questions and len(custom_questions) > 0:
+            import random
+            selected_questions = random.sample(custom_questions, min(3, len(custom_questions)))
+        else:
+            selected_questions = get_random_questions(department=self.department)
+        
         self.questions = selected_questions
         self.current_question_index = 0
 

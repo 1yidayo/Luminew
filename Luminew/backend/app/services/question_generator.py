@@ -90,7 +90,7 @@ def _process_pdf_and_call_openai_sync(pdf_path: str, interview_type: str) -> dic
         # ★★★ 使用 httpx 同步模式呼叫 OpenAI ★★★
         print("[AI] 呼叫 OpenAI (同步，在獨立線程中)...")
         
-        prompt = f"""你是專業的大學面試官。請根據以下學生的學習歷程內容，生成 5 個針對這位學生具體經歷的個人化面試問題。
+        prompt = f"""你是專業的大學面試官。請根據以下學生的學習歷程內容，生成 10 個針對這位學生具體經歷的個人化面試問題。
 
 【面試類型】{interview_type}
 
@@ -104,7 +104,7 @@ def _process_pdf_and_call_openai_sync(pdf_path: str, interview_type: str) -> dic
 4. 用繁體中文
 
 【輸出格式】
-只回傳 JSON 陣列：["問題1", "問題2", "問題3", "問題4", "問題5"]"""
+只回傳 JSON 陣列：["問題1", "問題2", "問題3", "問題4", "問題5", "問題6", "問題7", "問題8", "問題9", "問題10"]"""
         
         # 使用同步 httpx（在線程中執行所以不會阻塞主程式）
         with httpx.Client(timeout=60.0) as client:
