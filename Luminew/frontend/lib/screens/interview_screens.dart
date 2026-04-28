@@ -1667,7 +1667,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                                     ),
                                     SizedBox(height: 12),
                                     const Text(
-                                      "教授說話中",
+                                      "教授思考中...",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
@@ -1828,7 +1828,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                         const SizedBox(height: 10),
                         Text(
                           _isWaitingProfessor
-                              ? "教授說話中"
+                              ? "教授思考中..."
                               : (_isInterviewing
                                     ? (_canStudentSpeak ? "點擊結束個人發言" : "延遲收音中")
                                     : "開始面試對答"),
