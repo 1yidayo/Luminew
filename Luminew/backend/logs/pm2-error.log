@@ -860,3 +860,330 @@
 2026-04-29 01:47 +08:00: INFO:     Waiting for application startup.
 2026-04-29 01:47 +08:00: INFO:     Application startup complete.
 2026-04-29 01:47 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-29 01:58 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-04-29 01:58 +08:00:   warnings.warn(
+2026-04-29 01:58 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-04-29 01:58 +08:00:   warnings.warn(msg)
+2026-04-29 01:58 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:80: DeprecationWarning: 
+2026-04-29 01:58 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-04-29 01:58 +08:00: 
+2026-04-29 01:58 +08:00:         Read more about it in the
+2026-04-29 01:58 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-04-29 01:58 +08:00:         
+2026-04-29 01:58 +08:00:   @app.on_event("startup")
+2026-04-29 01:58 +08:00: INFO:     Started server process [21828]
+2026-04-29 01:58 +08:00: INFO:     Waiting for application startup.
+2026-04-29 01:58 +08:00: INFO:     Application startup complete.
+2026-04-29 01:58 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-29 01:58 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-04-29 01:58 +08:00:   warnings.warn(
+2026-04-29 01:58 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-04-29 01:58 +08:00:   warnings.warn(msg)
+2026-04-29 01:58 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:80: DeprecationWarning: 
+2026-04-29 01:58 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-04-29 01:58 +08:00: 
+2026-04-29 01:58 +08:00:         Read more about it in the
+2026-04-29 01:58 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-04-29 01:58 +08:00:         
+2026-04-29 01:58 +08:00:   @app.on_event("startup")
+2026-04-29 01:58 +08:00: INFO:     Started server process [15456]
+2026-04-29 01:58 +08:00: INFO:     Waiting for application startup.
+2026-04-29 01:58 +08:00: INFO:     Application startup complete.
+2026-04-29 01:58 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-29 01:59 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-04-29 01:59 +08:00:   warnings.warn(
+2026-04-29 01:59 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-04-29 01:59 +08:00:   warnings.warn(msg)
+2026-04-29 01:59 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:80: DeprecationWarning: 
+2026-04-29 01:59 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-04-29 01:59 +08:00: 
+2026-04-29 01:59 +08:00:         Read more about it in the
+2026-04-29 01:59 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-04-29 01:59 +08:00:         
+2026-04-29 01:59 +08:00:   @app.on_event("startup")
+2026-04-29 01:59 +08:00: INFO:     Started server process [4280]
+2026-04-29 01:59 +08:00: INFO:     Waiting for application startup.
+2026-04-29 01:59 +08:00: INFO:     Application startup complete.
+2026-04-29 01:59 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-29 02:02 +08:00: INFO:     2402:7500:500:a55d:f900:1890:e37a:ab09:0 - "WebSocket /api/interview/ws/864a5411-3ab6-40d4-aeae-1c29027563b7" [accepted]
+2026-04-29 02:02 +08:00: INFO:     connection open
+2026-04-29 02:03 +08:00: INFO:     connection closed
+2026-04-29 02:10 +08:00: Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+2026-04-29 02:10 +08:00: handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+2026-04-29 02:10 +08:00: Traceback (most recent call last):
+2026-04-29 02:10 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 80, in _run
+2026-04-29 02:10 +08:00:     self._context.run(self._callback, *self._args)
+2026-04-29 02:10 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\asyncio\proactor_events.py", line 162, in _call_connection_lost
+2026-04-29 02:10 +08:00:     self._sock.shutdown(socket.SHUT_RDWR)
+2026-04-29 02:10 +08:00: ConnectionResetError: [WinError 10054] 遠端主機已強制關閉一個現存的連線。
+2026-04-29 02:10 +08:00: Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+2026-04-29 02:10 +08:00: handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+2026-04-29 02:10 +08:00: Traceback (most recent call last):
+2026-04-29 02:10 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 80, in _run
+2026-04-29 02:10 +08:00:     self._context.run(self._callback, *self._args)
+2026-04-29 02:10 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\asyncio\proactor_events.py", line 162, in _call_connection_lost
+2026-04-29 02:10 +08:00:     self._sock.shutdown(socket.SHUT_RDWR)
+2026-04-29 02:10 +08:00: ConnectionResetError: [WinError 10054] 遠端主機已強制關閉一個現存的連線。
+2026-04-29 02:10 +08:00: Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+2026-04-29 02:10 +08:00: handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+2026-04-29 02:10 +08:00: Traceback (most recent call last):
+2026-04-29 02:10 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 80, in _run
+2026-04-29 02:10 +08:00:     self._context.run(self._callback, *self._args)
+2026-04-29 02:10 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\asyncio\proactor_events.py", line 162, in _call_connection_lost
+2026-04-29 02:10 +08:00:     self._sock.shutdown(socket.SHUT_RDWR)
+2026-04-29 02:10 +08:00: ConnectionResetError: [WinError 10054] 遠端主機已強制關閉一個現存的連線。
+2026-04-29 02:10 +08:00: Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+2026-04-29 02:10 +08:00: handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+2026-04-29 02:10 +08:00: Traceback (most recent call last):
+2026-04-29 02:10 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 80, in _run
+2026-04-29 02:10 +08:00:     self._context.run(self._callback, *self._args)
+2026-04-29 02:10 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\asyncio\proactor_events.py", line 162, in _call_connection_lost
+2026-04-29 02:10 +08:00:     self._sock.shutdown(socket.SHUT_RDWR)
+2026-04-29 02:10 +08:00: ConnectionResetError: [WinError 10054] 遠端主機已強制關閉一個現存的連線。
+2026-04-29 02:10 +08:00: Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+2026-04-29 02:10 +08:00: handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+2026-04-29 02:10 +08:00: Traceback (most recent call last):
+2026-04-29 02:10 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 80, in _run
+2026-04-29 02:10 +08:00:     self._context.run(self._callback, *self._args)
+2026-04-29 02:10 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\asyncio\proactor_events.py", line 162, in _call_connection_lost
+2026-04-29 02:10 +08:00:     self._sock.shutdown(socket.SHUT_RDWR)
+2026-04-29 02:10 +08:00: ConnectionResetError: [WinError 10054] 遠端主機已強制關閉一個現存的連線。
+2026-04-29 02:10 +08:00: [ WARN:0@634.681] global net_impl.cpp:178 cv::dnn::dnn4_v20230620::Net::Impl::setUpNet DNN module was not built with CUDA backend; switching to CPU
+2026-04-29 02:12 +08:00: INFO:     2001:b011:2017:fc60:8077:d9a:fc2b:2434:0 - "WebSocket /api/interview/ws/be6449dc-9cce-4ad4-8306-905f2c777943" [accepted]
+2026-04-29 02:12 +08:00: INFO:     connection open
+2026-04-29 02:12 +08:00: INFO:     connection closed
+2026-04-29 02:25 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-04-29 02:25 +08:00:   warnings.warn(
+2026-04-29 02:25 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-04-29 02:25 +08:00:   warnings.warn(msg)
+2026-04-29 02:25 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:80: DeprecationWarning: 
+2026-04-29 02:25 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-04-29 02:25 +08:00: 
+2026-04-29 02:25 +08:00:         Read more about it in the
+2026-04-29 02:25 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-04-29 02:25 +08:00:         
+2026-04-29 02:25 +08:00:   @app.on_event("startup")
+2026-04-29 02:25 +08:00: INFO:     Started server process [968]
+2026-04-29 02:25 +08:00: INFO:     Waiting for application startup.
+2026-04-29 02:25 +08:00: INFO:     Application startup complete.
+2026-04-29 02:25 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-29 02:27 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-04-29 02:27 +08:00:   warnings.warn(
+2026-04-29 02:27 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-04-29 02:27 +08:00:   warnings.warn(msg)
+2026-04-29 02:27 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:80: DeprecationWarning: 
+2026-04-29 02:27 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-04-29 02:27 +08:00: 
+2026-04-29 02:27 +08:00:         Read more about it in the
+2026-04-29 02:27 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-04-29 02:27 +08:00:         
+2026-04-29 02:27 +08:00:   @app.on_event("startup")
+2026-04-29 02:27 +08:00: INFO:     Started server process [16888]
+2026-04-29 02:27 +08:00: INFO:     Waiting for application startup.
+2026-04-29 02:27 +08:00: INFO:     Application startup complete.
+2026-04-29 02:27 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-29 02:28 +08:00: INFO:     2001:b011:2017:fc60:8077:d9a:fc2b:2434:0 - "WebSocket /api/interview/ws/04cbb7e6-79d6-4567-b302-2ef25c7545ca" [accepted]
+2026-04-29 02:28 +08:00: INFO:     connection open
+2026-04-29 02:28 +08:00: INFO:     connection closed
+2026-04-29 02:29 +08:00: Task exception was never retrieved
+2026-04-29 02:29 +08:00: future: <Task finished name='Task-74' coro=<InterviewManager.process_speech_end() done, defined at C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\InterviewManager.py:256> exception=RuntimeError('Cannot call "send" once a close message has been sent.')>
+2026-04-29 02:29 +08:00: Traceback (most recent call last):
+2026-04-29 02:29 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\InterviewManager.py", line 275, in process_speech_end
+2026-04-29 02:29 +08:00:     await self._async_play_tts(fallback_msg)
+2026-04-29 02:29 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\InterviewManager.py", line 175, in _async_play_tts
+2026-04-29 02:29 +08:00:     await self.on_audio_chunk(wav_data)
+2026-04-29 02:29 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\interview.py", line 207, in _on_audio_chunk
+2026-04-29 02:29 +08:00:     await websocket.send_bytes(chunk_bytes)
+2026-04-29 02:29 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\websockets.py", line 169, in send_bytes
+2026-04-29 02:29 +08:00:     await self.send({"type": "websocket.send", "bytes": data})
+2026-04-29 02:29 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\websockets.py", line 98, in send
+2026-04-29 02:29 +08:00:     raise RuntimeError('Cannot call "send" once a close message has been sent.')
+2026-04-29 02:29 +08:00: RuntimeError: Cannot call "send" once a close message has been sent.
+2026-04-29 02:29 +08:00: [ WARN:0@113.041] global net_impl.cpp:178 cv::dnn::dnn4_v20230620::Net::Impl::setUpNet DNN module was not built with CUDA backend; switching to CPU
+2026-04-29 02:31 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-04-29 02:31 +08:00:   warnings.warn(
+2026-04-29 02:31 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-04-29 02:31 +08:00:   warnings.warn(msg)
+2026-04-29 02:31 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:80: DeprecationWarning: 
+2026-04-29 02:31 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-04-29 02:31 +08:00: 
+2026-04-29 02:31 +08:00:         Read more about it in the
+2026-04-29 02:31 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-04-29 02:31 +08:00:         
+2026-04-29 02:31 +08:00:   @app.on_event("startup")
+2026-04-29 02:31 +08:00: INFO:     Started server process [11816]
+2026-04-29 02:31 +08:00: INFO:     Waiting for application startup.
+2026-04-29 02:31 +08:00: INFO:     Application startup complete.
+2026-04-29 02:31 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-29 02:34 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-04-29 02:34 +08:00:   warnings.warn(
+2026-04-29 02:34 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-04-29 02:34 +08:00:   warnings.warn(msg)
+2026-04-29 02:34 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:80: DeprecationWarning: 
+2026-04-29 02:34 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-04-29 02:34 +08:00: 
+2026-04-29 02:34 +08:00:         Read more about it in the
+2026-04-29 02:34 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-04-29 02:34 +08:00:         
+2026-04-29 02:34 +08:00:   @app.on_event("startup")
+2026-04-29 02:34 +08:00: INFO:     Started server process [20580]
+2026-04-29 02:34 +08:00: INFO:     Waiting for application startup.
+2026-04-29 02:34 +08:00: INFO:     Application startup complete.
+2026-04-29 02:34 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-29 02:35 +08:00: INFO:     2001:b011:2017:fc60:8077:d9a:fc2b:2434:0 - "WebSocket /api/interview/ws/0da058ff-2e8c-4fdb-814b-504cfd07eeca" [accepted]
+2026-04-29 02:35 +08:00: INFO:     connection open
+2026-04-29 02:36 +08:00: INFO:     connection closed
+2026-04-29 02:36 +08:00: [ WARN:0@147.412] global net_impl.cpp:178 cv::dnn::dnn4_v20230620::Net::Impl::setUpNet DNN module was not built with CUDA backend; switching to CPU
+2026-04-29 02:42 +08:00: INFO:     2402:7500:500:a55d:f900:1890:e37a:ab09:0 - "WebSocket /api/interview/ws/c184fcc4-3243-478e-97ae-c0c5de863234" [accepted]
+2026-04-29 02:42 +08:00: INFO:     connection open
+2026-04-29 02:43 +08:00: INFO:     connection closed
+2026-04-29 02:48 +08:00: INFO:     2402:7500:500:a55d:f900:1890:e37a:ab09:0 - "WebSocket /api/interview/ws/ec002359-d3e2-4638-8ac1-8f0e56f1912e" [accepted]
+2026-04-29 02:48 +08:00: INFO:     connection open
+2026-04-29 02:49 +08:00: INFO:     connection closed
+2026-04-29 03:01 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-04-29 03:01 +08:00:   warnings.warn(
+2026-04-29 03:01 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-04-29 03:01 +08:00:   warnings.warn(msg)
+2026-04-29 03:01 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:80: DeprecationWarning: 
+2026-04-29 03:01 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-04-29 03:01 +08:00: 
+2026-04-29 03:01 +08:00:         Read more about it in the
+2026-04-29 03:01 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-04-29 03:01 +08:00:         
+2026-04-29 03:01 +08:00:   @app.on_event("startup")
+2026-04-29 03:01 +08:00: INFO:     Started server process [21596]
+2026-04-29 03:01 +08:00: INFO:     Waiting for application startup.
+2026-04-29 03:01 +08:00: INFO:     Application startup complete.
+2026-04-29 03:01 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-29 03:02 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-04-29 03:02 +08:00:   warnings.warn(
+2026-04-29 03:02 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-04-29 03:02 +08:00:   warnings.warn(msg)
+2026-04-29 03:02 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:80: DeprecationWarning: 
+2026-04-29 03:02 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-04-29 03:02 +08:00: 
+2026-04-29 03:02 +08:00:         Read more about it in the
+2026-04-29 03:02 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-04-29 03:02 +08:00:         
+2026-04-29 03:02 +08:00:   @app.on_event("startup")
+2026-04-29 03:02 +08:00: INFO:     Started server process [15588]
+2026-04-29 03:02 +08:00: INFO:     Waiting for application startup.
+2026-04-29 03:02 +08:00: INFO:     Application startup complete.
+2026-04-29 03:02 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-29 03:10 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-04-29 03:10 +08:00:   warnings.warn(
+2026-04-29 03:10 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-04-29 03:10 +08:00:   warnings.warn(msg)
+2026-04-29 03:10 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:80: DeprecationWarning: 
+2026-04-29 03:10 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-04-29 03:10 +08:00: 
+2026-04-29 03:10 +08:00:         Read more about it in the
+2026-04-29 03:10 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-04-29 03:10 +08:00:         
+2026-04-29 03:10 +08:00:   @app.on_event("startup")
+2026-04-29 03:10 +08:00: INFO:     Started server process [11900]
+2026-04-29 03:10 +08:00: INFO:     Waiting for application startup.
+2026-04-29 03:10 +08:00: INFO:     Application startup complete.
+2026-04-29 03:10 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-29 03:11 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-04-29 03:11 +08:00:   warnings.warn(
+2026-04-29 03:11 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-04-29 03:11 +08:00:   warnings.warn(msg)
+2026-04-29 03:11 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:80: DeprecationWarning: 
+2026-04-29 03:11 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-04-29 03:11 +08:00: 
+2026-04-29 03:11 +08:00:         Read more about it in the
+2026-04-29 03:11 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-04-29 03:11 +08:00:         
+2026-04-29 03:11 +08:00:   @app.on_event("startup")
+2026-04-29 03:11 +08:00: INFO:     Started server process [21032]
+2026-04-29 03:11 +08:00: INFO:     Waiting for application startup.
+2026-04-29 03:11 +08:00: INFO:     Application startup complete.
+2026-04-29 03:11 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-29 03:13 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-04-29 03:13 +08:00:   warnings.warn(
+2026-04-29 03:13 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-04-29 03:13 +08:00:   warnings.warn(msg)
+2026-04-29 03:13 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:80: DeprecationWarning: 
+2026-04-29 03:13 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-04-29 03:13 +08:00: 
+2026-04-29 03:13 +08:00:         Read more about it in the
+2026-04-29 03:13 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-04-29 03:13 +08:00:         
+2026-04-29 03:13 +08:00:   @app.on_event("startup")
+2026-04-29 03:13 +08:00: INFO:     Started server process [21248]
+2026-04-29 03:13 +08:00: INFO:     Waiting for application startup.
+2026-04-29 03:13 +08:00: INFO:     Application startup complete.
+2026-04-29 03:13 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-29 03:28 +08:00: INFO:     2001:b011:2017:fc60:8077:d9a:fc2b:2434:0 - "WebSocket /api/interview/ws/64b2e45e-c48e-4f69-9755-515f76310e55" [accepted]
+2026-04-29 03:28 +08:00: INFO:     connection open
+2026-04-29 03:29 +08:00: Traceback (most recent call last):
+2026-04-29 03:29 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\requests\models.py", line 971, in json
+2026-04-29 03:29 +08:00:     return complexjson.loads(self.text, **kwargs)
+2026-04-29 03:29 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\json\__init__.py", line 346, in loads
+2026-04-29 03:29 +08:00:     return _default_decoder.decode(s)
+2026-04-29 03:29 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\json\decoder.py", line 337, in decode
+2026-04-29 03:29 +08:00:     obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+2026-04-29 03:29 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\json\decoder.py", line 355, in raw_decode
+2026-04-29 03:29 +08:00:     raise JSONDecodeError("Expecting value", s, err.value) from None
+2026-04-29 03:29 +08:00: json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-04-29 03:29 +08:00: 
+2026-04-29 03:29 +08:00: During handling of the above exception, another exception occurred:
+2026-04-29 03:29 +08:00: 
+2026-04-29 03:29 +08:00: Traceback (most recent call last):
+2026-04-29 03:29 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\InterviewManager.py", line 208, in _async_play_tts
+2026-04-29 03:29 +08:00:     res_json = upload_res.json()
+2026-04-29 03:29 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\requests\models.py", line 975, in json
+2026-04-29 03:29 +08:00:     raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)
+2026-04-29 03:29 +08:00: requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+2026-04-29 03:29 +08:00: 
+2026-04-29 03:29 +08:00: During handling of the above exception, another exception occurred:
+2026-04-29 03:29 +08:00: 
+2026-04-29 03:29 +08:00: Traceback (most recent call last):
+2026-04-29 03:29 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\interview.py", line 240, in run_interview
+2026-04-29 03:29 +08:00:     await manager.start_interview()
+2026-04-29 03:29 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\InterviewManager.py", line 111, in start_interview
+2026-04-29 03:29 +08:00:     await self._play_opening_greeting()
+2026-04-29 03:29 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\InterviewManager.py", line 145, in _play_opening_greeting
+2026-04-29 03:29 +08:00:     await self._async_play_tts(greeting)
+2026-04-29 03:29 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\InterviewManager.py", line 211, in _async_play_tts
+2026-04-29 03:29 +08:00:     raise ValueError(f"所有音訊上傳空間皆失敗: {e2}")
+2026-04-29 03:29 +08:00: ValueError: 所有音訊上傳空間皆失敗: Expecting value: line 1 column 1 (char 0)
+2026-04-29 03:30 +08:00: INFO:     connection closed
+2026-04-29 03:32 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-04-29 03:32 +08:00:   warnings.warn(
+2026-04-29 03:32 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-04-29 03:32 +08:00:   warnings.warn(msg)
+2026-04-29 03:32 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:80: DeprecationWarning: 
+2026-04-29 03:32 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-04-29 03:32 +08:00: 
+2026-04-29 03:32 +08:00:         Read more about it in the
+2026-04-29 03:32 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-04-29 03:32 +08:00:         
+2026-04-29 03:32 +08:00:   @app.on_event("startup")
+2026-04-29 03:32 +08:00: INFO:     Started server process [18772]
+2026-04-29 03:32 +08:00: INFO:     Waiting for application startup.
+2026-04-29 03:32 +08:00: INFO:     Application startup complete.
+2026-04-29 03:32 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-29 03:32 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-04-29 03:32 +08:00:   warnings.warn(
+2026-04-29 03:32 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-04-29 03:32 +08:00:   warnings.warn(msg)
+2026-04-29 03:32 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:80: DeprecationWarning: 
+2026-04-29 03:32 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-04-29 03:32 +08:00: 
+2026-04-29 03:32 +08:00:         Read more about it in the
+2026-04-29 03:32 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-04-29 03:32 +08:00:         
+2026-04-29 03:32 +08:00:   @app.on_event("startup")
+2026-04-29 03:32 +08:00: INFO:     Started server process [20544]
+2026-04-29 03:32 +08:00: INFO:     Waiting for application startup.
+2026-04-29 03:32 +08:00: INFO:     Application startup complete.
+2026-04-29 03:32 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-04-29 03:33 +08:00: INFO:     2001:b011:2017:fc60:8077:d9a:fc2b:2434:0 - "WebSocket /api/interview/ws/a1919347-a4ac-40c4-aea3-2613d869ea51" [accepted]
+2026-04-29 03:33 +08:00: INFO:     connection open
+2026-04-29 03:35 +08:00: INFO:     connection closed
+2026-04-29 03:35 +08:00: [ WARN:0@186.915] global net_impl.cpp:178 cv::dnn::dnn4_v20230620::Net::Impl::setUpNet DNN module was not built with CUDA backend; switching to CPU
+2026-04-29 03:36 +08:00: INFO:     2001:b011:2017:fc60:8077:d9a:fc2b:2434:0 - "WebSocket /api/interview/ws/95dfc9ab-d834-472e-ac3e-48a2d3dc5e2c" [accepted]
+2026-04-29 03:36 +08:00: INFO:     connection open
+2026-04-29 03:44 +08:00: INFO:     connection closed

@@ -1888,15 +1888,18 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
           Positioned(
             top: 50,
             right: 20,
-            width: 110,
+            width: 100,
+            height: 150,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: AspectRatio(
-                aspectRatio: _controller!.value.aspectRatio,
-                child: Stack(
+              child: Stack(
+                fit: StackFit.expand,
                 children: [
-                  // 學生自拍預覽：移除手動翻轉，嘗試預設視角
-                  CameraPreview(_controller!),
+                  SizedBox(
+                    width: 100,
+                    height: 150,
+                    child: CameraPreview(_controller!),
+                  ),
                   // 加上一個微弱的陰影邊界以便區分背景
                   Container(
                     decoration: BoxDecoration(
@@ -1908,7 +1911,6 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                     ),
                   ),
                 ],
-              ),
               ),
             ),
           ),
@@ -1970,7 +1972,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
     String? url = widget.videoUrl ?? widget.record.videoUrl;
     if (url != null && url.isNotEmpty && url != 'null') {
       print("🎬 嘗試載入影片: $url");
-      if (url.startsWith('http')) {
+      if (kIsWeb || url.startsWith('http') || url.startsWith('blob:')) {
         _videoController = VideoPlayerController.networkUrl(Uri.parse(url));
       } else if (url.startsWith('blob:') || kIsWeb) {
         // ★ Web 的 XFile.path 回傳 blob URL，一樣用 networkUrl 播放

@@ -170,9 +170,11 @@ class InterviewManager:
                 wav_data = self._pcm_to_wav(pcm_bytes, sample_rate=32000)
                 
                 # ★★★ 終極修復：不論是否為 D-ID 模式，都向前端推送一份原始音訊 ★★★
-                # 這是針對 Sony/Android WebRTC 硬體放音失敗的「降級備案」
                 if self.on_audio_chunk:
-                    await self.on_audio_chunk(wav_data)
+                    try:
+                        await self.on_audio_chunk(wav_data)
+                    except Exception as e:
+                        print(f"[WARN] WebSocket send error: {e}")
 
                 filename = f"speak_{int(time.time()*1000)}.wav"
                 filepath = os.path.join("app", "public", "audio", filename)
@@ -180,25 +182,48 @@ class InterviewManager:
                 with open(filepath, "wb") as f:
                     f.write(wav_data)
                 
-                # 2. 將音訊上傳至免費的暫存空間 (Catbox)，產生乾淨的直連 URL，避開 ngrok 與 base64 過載問題
-                print(f"[LINK] [D-ID] 正在上傳音訊至雲端空間...")
+                # 2. 將音訊上傳至免費雲端 (Catbox 或 pomf.lain.la)
+                audio_url = None
                 try:
+                    # 優先嘗試 Catbox
                     upload_res = await asyncio.to_thread(
                         requests.post, 
                         'https://catbox.moe/user/api.php', 
                         data={'reqtype': 'fileupload'}, 
-                        files={'fileToUpload': ('speak.wav', wav_data, 'audio/wav')}
+                        files={'fileToUpload': ('speak.wav', wav_data, 'audio/wav')},
+                        timeout=10
                     )
-                    audio_url = upload_res.text.strip()
+                    temp_url = upload_res.text.strip()
+                    if temp_url.startswith('http'):
+                        audio_url = temp_url
+                    else:
+                        raise ValueError(f"Catbox 回傳無效: {temp_url}")
+                except Exception as e:
+                    print(f"[WARN] Catbox 失敗 ({e})，嘗試使用備用雲端 pomf.lain.la...")
+                    try:
+                        upload_res = await asyncio.to_thread(
+                            requests.post, 
+                            'https://pomf.lain.la/user/api.php', 
+                            data={'reqtype': 'fileupload'}, 
+                            files={'files[]': ('speak.wav', wav_data, 'audio/wav')},
+                            timeout=10
+                        )
+                        res_json = upload_res.json()
+                        audio_url = res_json['files'][0]['url']
+                    except Exception as e2:
+                        print(f"[WARN] 所有音訊上傳空間皆失敗: {e2}")
+                        
+                try:
+                    if not audio_url or not audio_url.startswith('http'):
+                        raise ValueError("無法取得有效的音檔網址")
+                        
                     print(f"[LINK] [D-ID] 上傳成功，安全音訊 URL: {audio_url}")
-                    
                     if self.on_tts_start:
                         await self.on_tts_start()
-                    
-                    # 直接指揮 D-ID 使用高品質音訊
+                    # 指揮 D-ID 播放高品質音訊
                     await asyncio.to_thread(self.send_did_talk_audio, audio_url)
                 except Exception as e:
-                    print(f"[ERROR] [D-ID] 音訊上傳失敗 ({e})，降級為純文字發音")
+                    print(f"[ERROR] [D-ID] 高品質音訊播報失敗 ({e})，啟動終極防禦：降級為純文字發音")
                     await asyncio.to_thread(self.send_did_talk, tts_text)
             
                 # [D-ID 串流模式] 狀態管理
@@ -347,21 +372,26 @@ class InterviewManager:
             "source_url": self.professor_persona.image_url
         }
         
-        # ★ 自動偵測 ngrok 網址 (如果沒有手動設定)
+        # ★ 優先使用環境變數的 PUBLIC_URL
         if not getattr(self, "public_url", None):
-            try:
-                import requests
-                # ngrok 預設會在本地 4040 埠開放 API 查詢其公網網址
-                ngrok_res = requests.get("http://127.0.0.1:4040/api/tunnels", timeout=1)
-                if ngrok_res.ok:
-                    tunnels = ngrok_res.json().get("tunnels", [])
-                    for t in tunnels:
-                        if t.get("proto") == "https":
-                            self.public_url = t.get("public_url")
-                            print(f"[SIGNAL] [DEBUG] 自動偵測到 ngrok 網址: {self.public_url}")
-                            break
-            except Exception:
-                pass
+            env_url = os.getenv("PUBLIC_URL")
+            if env_url:
+                self.public_url = env_url.rstrip("/")
+                print(f"[SIGNAL] [DEBUG] 使用環境變數 PUBLIC_URL: {self.public_url}")
+            else:
+                try:
+                    import requests
+                    # ngrok 預設會在本地 4040 埠開放 API 查詢其公網網址
+                    ngrok_res = requests.get("http://127.0.0.1:4040/api/tunnels", timeout=1)
+                    if ngrok_res.ok:
+                        tunnels = ngrok_res.json().get("tunnels", [])
+                        for t in tunnels:
+                            if t.get("proto") == "https":
+                                self.public_url = t.get("public_url")
+                                print(f"[SIGNAL] [DEBUG] 自動偵測到 ngrok 網址: {self.public_url}")
+                                break
+                except Exception:
+                    pass
 
         # ★ 如果有提供公開網址，就請求 D-ID 使用 Webhook 回傳連線資訊
         public_url = getattr(self, "public_url", None)

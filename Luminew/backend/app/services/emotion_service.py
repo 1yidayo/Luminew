@@ -137,7 +137,8 @@ def flip_video_horizontally(video_path: str):
     這會直接覆蓋原檔案，確保後台儲存的影片也是鏡像的
     """
     try:
-        temp_path = video_path.replace(".mp4", "_temp.mp4")
+        base, ext = os.path.splitext(video_path)
+        temp_path = f"{base}_temp{ext}"
         # -vf hflip: 水平翻轉; -c:a copy: 音訊不重新編碼以加快速度
         cmd = [
             'ffmpeg', '-y', '-i', video_path, 

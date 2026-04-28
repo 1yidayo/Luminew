@@ -88,7 +88,8 @@ async def complete_interview(
         manager.start_interview()
         
         # ========== Step 3: 儲存並分析面試影片（非同步多線程）==========
-        video_filename = f"{uuid.uuid4()}.mp4"
+        ext = video.filename.split('.')[-1] if video.filename and '.' in video.filename else 'mp4'
+        video_filename = f"{uuid.uuid4()}.{ext}"
         video_path = os.path.join(video_dir, video_filename)
         
         video_content = await video.read()
