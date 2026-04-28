@@ -1888,11 +1888,12 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
           Positioned(
             top: 50,
             right: 20,
-            width: 100,
-            height: 150,
+            width: 110,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Stack(
+              child: AspectRatio(
+                aspectRatio: _controller!.value.aspectRatio,
+                child: Stack(
                 children: [
                   // 學生自拍預覽：移除手動翻轉，嘗試預設視角
                   CameraPreview(_controller!),
@@ -1907,6 +1908,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> {
                     ),
                   ),
                 ],
+              ),
               ),
             ),
           ),

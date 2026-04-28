@@ -1,6 +1,6 @@
 {
-    "name": "luminew_application_1",
-    "short_name": "luminew_application_1",
+    "name": "Luminew 面試系統",
+    "short_name": "Luminew",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

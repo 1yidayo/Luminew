@@ -207,6 +207,9 @@ class DidInterviewService {
           } else if (event == 'tts_start') {
             print('🔊 [DEBUG] 啟動備援音訊播放...');
             _playBufferedAudio();
+          } else if (event == 'tts_done') {
+            print('🔊 [DEBUG] 收到後端 tts_done 事件');
+            onTtsDone?.call();
           } else if (event == 'did_ice') {
             _peerConnection?.addCandidate(
               RTCIceCandidate(

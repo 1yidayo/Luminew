@@ -12,8 +12,8 @@ class DidVideoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 320,
-      height: 320,
+      width: double.infinity,
+      height: double.infinity,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         color: Colors.black,
