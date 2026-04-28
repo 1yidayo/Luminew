@@ -1972,6 +1972,9 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
       print("🎬 嘗試載入影片: $url");
       if (url.startsWith('http')) {
         _videoController = VideoPlayerController.networkUrl(Uri.parse(url));
+      } else if (url.startsWith('blob:') || kIsWeb) {
+        // ★ Web 的 XFile.path 回傳 blob URL，一樣用 networkUrl 播放
+        _videoController = VideoPlayerController.networkUrl(Uri.parse(url));
       } else {
         _videoController = VideoPlayerController.file(File(url));
       }
