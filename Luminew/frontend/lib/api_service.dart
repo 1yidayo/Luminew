@@ -64,6 +64,7 @@ class ApiService {
     required String comment,
     required String suggestion,
     required String timelineText,
+    String? attachmentBase64,
   }) async {
     await _post('/send_email', {
       'recipientEmail': recipientEmail,
@@ -72,6 +73,7 @@ class ApiService {
       'comment': comment,
       'suggestion': suggestion,
       'timelineText': timelineText,
+      if (attachmentBase64 != null) 'attachmentBase64': attachmentBase64,
     });
   }
 

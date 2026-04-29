@@ -4,7 +4,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui'; // ★ 新增：支援磨砂濾鏡效果
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:camera/camera.dart';
 import 'package:http/http.dart' as http;
@@ -1951,12 +1953,79 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
   Duration _videoPosition = Duration.zero;
 
   bool _isIndexMode = false;
+  final GlobalKey _captureKey = GlobalKey();
+  bool _autoEmailSent = false;
 
   @override
   void initState() {
     super.initState();
     _loadComments();
     _initVideo();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _captureAndSendAutoEmail();
+    });
+  }
+
+  Future<void> _captureAndSendAutoEmail() async {
+    if (_autoEmailSent) return;
+    _autoEmailSent = true;
+
+    await Future.delayed(const Duration(milliseconds: 1500));
+    if (!mounted) return;
+
+    try {
+      RenderRepaintBoundary? boundary = _captureKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
+      if (boundary == null) {
+        throw Exception("無法取得畫面截圖的 context");
+      }
+
+      ui.Image image = await boundary.toImage(pixelRatio: 2.0);
+      ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+      if (byteData == null) {
+        throw Exception("無法將圖片轉換為 png");
+      }
+      
+      Uint8List pngBytes = byteData.buffer.asUint8List();
+      String base64Image = base64Encode(pngBytes);
+
+      await ApiService.sendInterviewResultEmail(
+        recipientEmail: widget.user.email,
+        studentName: widget.user.name,
+        overallScore: widget.record.overallScore,
+        comment: widget.record.aiComment.isNotEmpty ? widget.record.aiComment : '尚無評語',
+        suggestion: widget.record.aiSuggestion.isNotEmpty ? widget.record.aiSuggestion : '尚無建議',
+        timelineText: "(詳細情緒波動數據請回 Luminew 平台查看)",
+        attachmentBase64: base64Image,
+      );
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Row(
+              children: [
+                Icon(Icons.check_circle, color: Colors.white),
+                SizedBox(width: 8),
+                Text('已自動寄送結果報表至您的信箱', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              ],
+            ),
+            backgroundColor: kLuminewMainPurple,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            duration: const Duration(seconds: 4),
+          ),
+        );
+      }
+    } catch (e) {
+      print("⚠️ 自動截圖寄信失敗: $e");
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('⚠️ 自動寄信失敗: $e', style: const TextStyle(color: Colors.white)),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
   }
 
   @override
@@ -2184,145 +2253,170 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                 ),
                 padding: const EdgeInsets.all(20),
                 children: [
-                  const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "綜合評分",
-                      style: TextStyle(
-                        color: kLuminewDeepIndigo,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  _buildScoreHeader(),
-                  const SizedBox(height: 40), // 大區塊間距
-                  const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "核心能力分佈",
-                      style: TextStyle(
-                        color: kLuminewDeepIndigo,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  _buildRadarChart(),
-                  const SizedBox(height: 40), // 大區塊間距
-                  if (widget.aiComment != null) ...[
-                    Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        color: kLuminewMainPurple.withOpacity(
-                          0.20,
-                        ), // 稍微降低透明度，讓底色更深一點點
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(
-                          color: kLuminewMainPurple.withOpacity(0.50),
-                        ),
-                      ),
+                  RepaintBoundary(
+                    key: _captureKey,
+                    child: Container(
+                      color: kLuminewGooseYellow,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          const Row(
-                            children: [
-                              Icon(Icons.psychology, color: kLuminewDeepIndigo),
-                              SizedBox(width: 8),
-                              Text(
-                                "AI 短評",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                  color: kLuminewDeepIndigo,
-                                ),
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "綜合評分",
+                              style: TextStyle(
+                                color: kLuminewDeepIndigo,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
                               ),
-                            ],
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            widget.aiComment!,
-                            style: const TextStyle(height: 1.5),
-                          ),
-                          const Divider(height: 24),
-                          const Row(
-                            children: [
-                              Icon(Icons.lightbulb, color: kLuminewDeepIndigo),
-                              SizedBox(width: 8),
-                              Text(
-                                "改進建議",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                  color: kLuminewDeepIndigo,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            widget.aiSuggestion!,
-                            style: const TextStyle(
-                              color: Colors.black87,
-                              height: 1.5,
                             ),
                           ),
+                          const SizedBox(height: 24),
+                          _buildScoreHeader(),
+                          const SizedBox(height: 40),
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "核心能力分佈",
+                              style: TextStyle(
+                                color: kLuminewDeepIndigo,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          _buildRadarChart(),
+                          const SizedBox(height: 40),
+                          if (widget.aiComment != null) ...[
+                            Container(
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                color: kLuminewMainPurple.withOpacity(0.20),
+                                borderRadius: BorderRadius.circular(16),
+                                border: Border.all(
+                                  color: kLuminewMainPurple.withOpacity(0.50),
+                                ),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Row(
+                                    children: [
+                                      Icon(Icons.psychology, color: kLuminewDeepIndigo),
+                                      SizedBox(width: 8),
+                                      Text(
+                                        "AI 短評",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                          color: kLuminewDeepIndigo,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    widget.aiComment!,
+                                    style: const TextStyle(height: 1.5),
+                                  ),
+                                  const Divider(height: 24),
+                                  const Row(
+                                    children: [
+                                      Icon(Icons.lightbulb, color: kLuminewDeepIndigo),
+                                      SizedBox(width: 8),
+                                      Text(
+                                        "改進建議",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                          color: kLuminewDeepIndigo,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    widget.aiSuggestion!,
+                                    style: const TextStyle(
+                                      color: Colors.black87,
+                                      height: 1.5,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                          const SizedBox(height: 20),
+                          const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              "微表情數據分析",
+                              style: TextStyle(
+                                color: kLuminewDeepIndigo,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Container(
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                              color: kLuminewMainPurple.withOpacity(0.12),
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: Row(
+                              children: [
+                                _buildTabButton(
+                                  "情緒 % 數版",
+                                  !_isIndexMode,
+                                  () => setState(() => _isIndexMode = false),
+                                ),
+                                _buildTabButton(
+                                  "索引型（次數）",
+                                  _isIndexMode,
+                                  () => setState(() => _isIndexMode = true),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          if (!_isIndexMode) ...[
+                            const Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "情緒平均佔比",
+                                style: TextStyle(
+                                  color: kLuminewDeepIndigo,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            _buildPercentageBars(),
+                            const SizedBox(height: 30),
+                          ] else ...[
+                            const Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                "主導情緒統計",
+                                style: TextStyle(
+                                  color: kLuminewDeepIndigo,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 10),
+                            _buildIndexCountView(),
+                          ],
                         ],
                       ),
                     ),
-                  ],
-                  const SizedBox(height: 20),
-                  const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "微表情數據分析",
-                      style: TextStyle(
-                        color: kLuminewDeepIndigo,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                   ),
-                  const SizedBox(height: 20),
-                  Container(
-                    padding: const EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                      color: kLuminewMainPurple.withOpacity(0.12),
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Row(
-                      children: [
-                        _buildTabButton(
-                          "情緒 % 數版",
-                          !_isIndexMode,
-                          () => setState(() => _isIndexMode = false),
-                        ),
-                        _buildTabButton(
-                          "索引型（次數）",
-                          _isIndexMode,
-                          () => setState(() => _isIndexMode = true),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20),
                   if (!_isIndexMode) ...[
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "情緒平均佔比",
-                        style: TextStyle(
-                          color: kLuminewDeepIndigo,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    _buildPercentageBars(),
-                    const SizedBox(height: 30),
                     const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -2351,20 +2445,6 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                     _buildTimelineChart(),
                     if (_isVideoInitialized && _videoController != null)
                       _buildVideoSyncProgress(),
-                  ] else ...[
-                    const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        "主導情緒統計",
-                        style: TextStyle(
-                          color: kLuminewDeepIndigo,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    _buildIndexCountView(),
                   ],
                   const SizedBox(height: 40),
                   _EmailResultWidget(

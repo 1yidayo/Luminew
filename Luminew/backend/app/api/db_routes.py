@@ -277,6 +277,9 @@ def addPortfolio(req: AddPortfolioReq):
 import os
 import smtplib
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.image import MIMEImage
+import base64
 
 class SendEmailReq(BaseModel):
     recipientEmail: str
@@ -285,6 +288,7 @@ class SendEmailReq(BaseModel):
     comment: str
     suggestion: str
     timelineText: str
+    attachmentBase64: Optional[str] = None
 
 @router.post("/send_email")
 def send_email(req: SendEmailReq):
@@ -311,10 +315,20 @@ AI 綜合評分：{req.overallScore} 分
 感謝使用 Luminew 平台進行面試模擬，祝你順利錄取！
 """
 
-        msg = MIMEText(body, 'plain', 'utf-8')
+        msg = MIMEMultipart()
         msg['Subject'] = subject
         msg['From'] = f"Luminew <{sender_email}>"
         msg['To'] = req.recipientEmail
+
+        msg.attach(MIMEText(body, 'plain', 'utf-8'))
+
+        if req.attachmentBase64:
+            try:
+                img_data = base64.b64decode(req.attachmentBase64)
+                img = MIMEImage(img_data, name="interview_result.png")
+                msg.attach(img)
+            except Exception as img_e:
+                print(f"⚠️ [Email] 附加圖片失敗: {img_e}")
 
         # 連線至 Gmail SMTP
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
