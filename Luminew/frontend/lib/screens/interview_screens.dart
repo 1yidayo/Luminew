@@ -1970,15 +1970,27 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
     if (_autoEmailSent) return;
     _autoEmailSent = true;
 
-    await Future.delayed(const Duration(milliseconds: 1500));
-    if (!mounted) return;
+    // 增加延遲並加入重試機制，確保 Web 端元件已完全掛載、渲染並擁有大小
+    int retryCount = 0;
+    RenderRepaintBoundary? boundary;
+    
+    while (retryCount < 15) {
+      if (_captureKey.currentContext != null) {
+        boundary = _captureKey.currentContext!.findRenderObject() as RenderRepaintBoundary?;
+        if (boundary != null && boundary.hasSize) {
+          break;
+        }
+      }
+      await Future.delayed(const Duration(milliseconds: 500));
+      retryCount++;
+      if (!mounted) return;
+    }
+
+    if (boundary == null || !boundary.hasSize) {
+      throw Exception("無法取得畫面截圖的內容 (已重試 $retryCount 次，請確認畫面是否正常顯示)");
+    }
 
     try {
-      RenderRepaintBoundary? boundary = _captureKey.currentContext?.findRenderObject() as RenderRepaintBoundary?;
-      if (boundary == null) {
-        throw Exception("無法取得畫面截圖的 context");
-      }
-
       ui.Image image = await boundary.toImage(pixelRatio: 2.0);
       ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
       if (byteData == null) {
@@ -2247,12 +2259,13 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
           children: [
             // Tab 1: AI 分析
             _KeepAliveWrapper(
-              child: ListView(
+              child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
                 padding: const EdgeInsets.all(20),
-                children: [
+                child: Column(
+                  children: [
                   RepaintBoundary(
                     key: _captureKey,
                     child: Container(
