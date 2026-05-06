@@ -77,6 +77,23 @@ class ApiService {
     });
   }
 
+  static Future<void> sendPortfolioResultEmail({
+    required String recipientEmail,
+    required String studentName,
+    required int overallScore,
+    required String comment,
+    required String suggestion,
+  }) async {
+    await _post('/send_email', {
+      'recipientEmail': recipientEmail,
+      'studentName': studentName,
+      'overallScore': overallScore,
+      'comment': comment,
+      'suggestion': suggestion,
+      'timelineText': '(此報告為學習歷程 AI 分析結果)',
+    });
+  }
+
   static Future<void> registerUser(
     String email,
     String password,

@@ -1,4 +1,4 @@
 class AppConfig {
-  static const String httpUrl = "https://nottingham-liability-louisiana-pale.trycloudflare.com";
+  static const String httpUrl = "https://luminew.website";
 }
 

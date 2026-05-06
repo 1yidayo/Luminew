@@ -285,14 +285,14 @@ class _InterviewRecordListScreenState extends State<InterviewRecordListScreen> {
 
   Widget _buildRecordItem(InterviewRecord r) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
         color: kLuminewMainPurple.withOpacity(0.15), // 同步：15% 通透紫
         borderRadius: BorderRadius.circular(kRadiusM),
         border: Border.all(color: kLuminewMainPurple.withOpacity(0.05)),
       ),
       child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         splashColor: Colors.transparent, // ★ 移除黑色閃爍
         leading: Container(
           width: 54,
@@ -1955,6 +1955,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
   bool _isIndexMode = false;
   final GlobalKey _captureKey = GlobalKey();
   bool _autoEmailSent = false;
+  bool _isSendingEmail = false;
 
   @override
   void initState() {
@@ -2004,8 +2005,8 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
         recipientEmail: widget.user.email,
         studentName: widget.user.name,
         overallScore: widget.record.overallScore,
-        comment: widget.record.aiComment.isNotEmpty ? widget.record.aiComment : '尚無評語',
-        suggestion: widget.record.aiSuggestion.isNotEmpty ? widget.record.aiSuggestion : '尚無建議',
+        comment: (widget.record.aiComment ?? "").isNotEmpty ? widget.record.aiComment : '尚無評語',
+        suggestion: (widget.record.aiSuggestion ?? "").isNotEmpty ? widget.record.aiSuggestion : '尚無建議',
         timelineText: "(詳細情緒波動數據請回 Luminew 平台查看)",
         attachmentBase64: base64Image,
       );
@@ -2117,6 +2118,33 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
     } catch (_) {}
   }
 
+  void _sendEmailManually() async {
+    setState(() => _isSendingEmail = true);
+    try {
+      await ApiService.sendInterviewResultEmail(
+        recipientEmail: widget.user.email,
+        studentName: widget.user.name,
+        overallScore: widget.record.overallScore,
+        comment: (widget.record.aiComment ?? "").isNotEmpty ? widget.record.aiComment : "尚無評語",
+        suggestion: (widget.record.aiSuggestion ?? "").isNotEmpty ? widget.record.aiSuggestion : "尚無建議",
+        timelineText: "(詳細情緒波動數據請回 Luminew 平台查看)",
+      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("✅ 寄送成功！請去信箱確認", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)), backgroundColor: Colors.green),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("寄信失敗：$e", style: const TextStyle(color: Colors.white)), backgroundColor: Colors.red),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isSendingEmail = false);
+    }
+  }
+
   void _showNoteSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -2203,59 +2231,9 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
       length: 4,
       child: Scaffold(
         backgroundColor: kLuminewGooseYellow,
-        appBar: AppBar(
-          backgroundColor: kLuminewMainPurple,
-          elevation: 0,
-          leading: Container(
-            alignment: Alignment.center,
-            child: IconButton(
-              icon: const Icon(
-                Icons.arrow_back_ios_new,
-                color: Colors.white,
-                size: 20,
-              ),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ),
-          title: const Text(
-            '面試結果',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.edit_note_rounded,
-                color: Colors.white,
-                size: 28,
-              ),
-              onPressed: () => _showNoteSheet(context),
-            ),
-            const SizedBox(width: 8),
-          ],
-          bottom: TabBar(
-            isScrollable: false, // 改為不可捲動，平均分配分佈
-            indicatorColor: Colors.white,
-            indicatorWeight: 4,
-            indicatorSize: TabBarIndicatorSize.label,
-            indicatorPadding: const EdgeInsets.symmetric(horizontal: 8),
-            labelStyle: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
-            unselectedLabelStyle: const TextStyle(
-              fontWeight: FontWeight.normal,
-            ),
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.white70,
-            tabs: const [
-              Tab(text: 'AI 分析'),
-              Tab(text: '面試問題'),
-              Tab(text: '評語討論'),
-              Tab(text: '詳細內容'),
-            ],
-          ),
-        ),
-        body: TabBarView(
+        body: Stack(
+          children: [
+            TabBarView(
           children: [
             // Tab 1: AI 分析
             _KeepAliveWrapper(
@@ -2458,75 +2436,50 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                     _buildTimelineChart(),
                     if (_isVideoInitialized && _videoController != null)
                       _buildVideoSyncProgress(),
-                  ],
-                  const SizedBox(height: 40),
-                  _EmailResultWidget(
-                    record: widget.record,
-                    studentName: widget.user.name,
-                  ),
-                  const SizedBox(height: 40),
-                  SizedBox(
-                    width: double.infinity,
-                    child: TextButton.icon(
-                      onPressed: () {
-                        // 終極修復方案：先嘗試 pop 到最底層，若不行則強制 pushReplacement
-                        try {
-                          Navigator.of(
-                            context,
-                            rootNavigator: true,
-                          ).popUntil((route) => route.isFirst);
-                        } catch (_) {
-                          Navigator.of(
-                            context,
-                            rootNavigator: true,
-                          ).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                              builder: (_) => StudentMainScaffold(
-                                user: widget.user,
-                                onLogout: () {
-                                  Navigator.of(
-                                    context,
-                                    rootNavigator: true,
-                                  ).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                      builder: (_) =>
-                                          AuthScreen(onAuthSuccess: (user) {}),
-                                    ),
-                                    (route) => false,
-                                  );
-                                },
-                              ),
+                    
+                    const SizedBox(height: 40),
+                    const SizedBox(height: 40),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton.icon(
+                            onPressed: _isSendingEmail ? null : _sendEmailManually,
+                            icon: _isSendingEmail
+                                ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: kLuminewMainPurple))
+                                : const Icon(Icons.email_outlined),
+                            label: Text(_isSendingEmail ? "寄送中..." : "寄給我", style: const TextStyle(fontWeight: FontWeight.bold)),
+                            style: OutlinedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              foregroundColor: kLuminewMainPurple,
+                              side: BorderSide(color: kLuminewMainPurple.withOpacity(0.3), width: 2),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                             ),
-                            (route) => false,
-                          );
-                        }
-                      },
-                      icon: const Icon(
-                        Icons.home_outlined,
-                        color: kLuminewMainPurple,
-                      ),
-                      label: const Text(
-                        '回到首頁',
-                        style: TextStyle(
-                          color: kLuminewMainPurple,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        backgroundColor: kLuminewMainPurple.withOpacity(0.1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          side: BorderSide(
-                            color: kLuminewMainPurple.withOpacity(0.2),
                           ),
                         ),
-                      ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: ElevatedButton.icon(
+                            onPressed: () {
+                              Navigator.of(context, rootNavigator: true).popUntil((route) => route.isFirst);
+                            },
+                            icon: const Icon(Icons.home_outlined),
+                            label: const Text("回首頁", style: TextStyle(fontWeight: FontWeight.bold)),
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              backgroundColor: kLuminewMainPurple,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
+                    const SizedBox(height: 40),
+                  ],
                 ],
               ),
             ),
+          ),
             // Tab 2: 面試問題
             _KeepAliveWrapper(
               child: SingleChildScrollView(
@@ -2849,6 +2802,9 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                 ),
               ),
             ),
+          ],
+        ),
+            const LuminewHeader(title: "面試結果分析", showBackButton: true),
           ],
         ),
       ),
@@ -3553,8 +3509,8 @@ class _EmailResultWidgetState extends State<_EmailResultWidget> {
         recipientEmail: email,
         studentName: widget.studentName,
         overallScore: widget.record.overallScore,
-        comment: widget.record.aiComment.isNotEmpty ? widget.record.aiComment : '尚無評語',
-        suggestion: widget.record.aiSuggestion.isNotEmpty ? widget.record.aiSuggestion : '尚無建議',
+        comment: (widget.record.aiComment ?? "").isNotEmpty ? widget.record.aiComment : '尚無評語',
+        suggestion: (widget.record.aiSuggestion ?? "").isNotEmpty ? widget.record.aiSuggestion : '尚無建議',
         timelineText: "(詳細情緒波動數據請回 Luminew 平台查看)",
       );
       if (mounted) {

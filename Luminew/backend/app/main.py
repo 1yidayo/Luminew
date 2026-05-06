@@ -17,10 +17,30 @@ static_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static")
 os.makedirs(os.path.join(static_dir, "videos"), exist_ok=True)
 app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
+# --- 新增：自定義靜態檔案處理以禁用快取 ---
+from fastapi.staticfiles import StaticFiles
+from fastapi import Response
+
+class NoCacheStaticFiles(StaticFiles):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    async def get_response(self, path: str, scope):
+        response = await super().get_response(path, scope)
+        # 強制瀏覽器與 CDN 不要快取 index.html 和 service worker
+        if path == "" or path == "index.html" or "service_worker" in path:
+            response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+            response.headers["Pragma"] = "no-cache"
+            response.headers["Expires"] = "0"
+        else:
+            # 其他靜態資源 (js, css, images) 也縮短快取時間
+            response.headers["Cache-Control"] = "public, max-age=3600"
+        return response
+
 # ★ 設定 Flutter Web 靜態網站目錄
 web_build_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "web_build")
 os.makedirs(web_build_dir, exist_ok=True)
-app.mount("/web", StaticFiles(directory=web_build_dir, html=True), name="web")
+app.mount("/web", NoCacheStaticFiles(directory=web_build_dir, html=True), name="web")
 
 # 加入路由
 app.include_router(interview.router, prefix="/interview", tags=["Interview"])
@@ -30,9 +50,12 @@ app.include_router(emotion.router, prefix="/emotion", tags=["Emotion"])
 app.include_router(sql_proxy.router, prefix="/sql", tags=["SQL Proxy"])
 app.include_router(db_routes.router, prefix="/api/db", tags=["DB Routes"])
 
+from fastapi.responses import RedirectResponse
+
 @app.get("/")
 def root():
-    return {"message": "Luminew 即時語音練習 API 正在運行"}
+    # 自動將主網址重新導向到 Flutter Web 介面
+    return RedirectResponse(url="/web/")
 
 # ========== ★★★ 統合 API（新增）★★★ ==========
 

@@ -3,6 +3,7 @@ import '../models.dart';
 import '../api_service.dart';
 import 'student_profile_edit_screen.dart';
 import '../widgets/luminew_header.dart'; // 導入統一標頭
+import '../theme/app_theme.dart'; // 引入設計系統
 
 // 通知中心
 class NotificationCenter extends StatelessWidget {
@@ -107,86 +108,43 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ListView(
             padding: const EdgeInsets.fromLTRB(16, 110, 16, 20),
             children: [
-              // 個人資料區 (V5 極簡線性設計)
+              // 個人資料區 (全新設計系統版)
               Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 30,
-                  horizontal: 20,
-                ),
+                padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                 decoration: BoxDecoration(
-                  color: const Color(
-                    0xFFAD9DC7,
-                  ).withOpacity(0.30), // 與交流頁面卡片同步 (0.15)
-                  borderRadius: BorderRadius.circular(30),
-                  border: Border.all(
-                    color: Colors.white.withOpacity(0.3),
-                    width: 1.2,
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xFFAD9DC7).withOpacity(0.03),
-                      blurRadius: 20,
-                      offset: const Offset(0, 10),
-                    ),
-                  ],
+                  color: AppColors.purpleSurface,
+                  borderRadius: BorderRadius.circular(AppDesign.radiusL),
+                  border: Border.all(color: AppColors.purpleBorder),
+                  boxShadow: AppDesign.premiumShadow,
                 ),
                 child: Column(
                   children: [
-                    const CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Colors.white24,
-                      child: Icon(
-                        Icons.account_circle,
-                        size: 80,
-                        color: Colors.white70,
+                    Container(
+                      padding: const EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: AppColors.primaryPurple.withOpacity(0.2), width: 2),
+                      ),
+                      child: const CircleAvatar(
+                        radius: 46,
+                        backgroundColor: AppColors.surfaceWhite,
+                        child: Icon(Icons.account_circle, size: 80, color: AppColors.primaryPurple),
                       ),
                     ),
                     const SizedBox(height: 16),
-                    Text(
-                      widget.user.name,
-                      style: const TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF675B83), // 改回深紫色
-                      ),
-                    ),
+                    Text(widget.user.name, style: AppTextStyles.h1),
                     const SizedBox(height: 4),
-                    Text(
-                      widget.user.email,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: const Color(
-                          0xFF675B83,
-                        ).withOpacity(0.7), // 改回深紫色 (半透明)
-                      ),
-                    ),
-                    const SizedBox(height: 14),
-                    // 與郵件同步的「品牌紫」身份標籤
+                    Text(widget.user.email, style: AppTextStyles.bodyMedium),
+                    const SizedBox(height: 16),
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 14,
-                        vertical: 4,
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
                       decoration: BoxDecoration(
-                        color: Colors.transparent, // 改回絕對透明
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: const Color(
-                            0xFF675B83,
-                          ).withOpacity(0.7), // 深紫色邊框
-                          width: 1,
-                        ),
+                        borderRadius: BorderRadius.circular(AppDesign.radiusCircle),
+                        border: Border.all(color: AppColors.primaryPurple.withOpacity(0.5)),
                       ),
                       child: Text(
                         widget.user.role == 'Student' ? '學生帳號' : '教師帳號',
-                        style: TextStyle(
-                          color: const Color(
-                            0xFF675B83,
-                          ).withOpacity(0.7), // 同步改為深紫色文字 (0.3 透明度)
-                          fontSize: 11,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.5,
-                        ),
+                        style: AppTextStyles.labelTiny,
                       ),
                     ),
                   ],
@@ -267,11 +225,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             Expanded(
               child: Text(
                 title,
-                style: const TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF675B83),
-                  fontWeight: FontWeight.w500,
-                ),
+                style: AppTextStyles.bodyLarge.copyWith(color: AppColors.deepIndigo),
               ),
             ),
             const Icon(Icons.chevron_right, color: Colors.grey, size: 20),

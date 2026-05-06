@@ -56,7 +56,7 @@ class _TestInterviewScreenState extends State<TestInterviewScreen> {
 
     // 初始化並啟動連線
     _didService.init().then((_) {
-      _didService.startInterview('warm_industry_professor');
+      _didService.startInterview('warm_industry_professor', 'Mock');
       if (mounted) setState(() {});
     });
   }

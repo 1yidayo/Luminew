@@ -173,7 +173,12 @@ def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None
         fps = cap.get(cv2.CAP_PROP_FPS)
         if fps == 0 or fps is None or fps > 100:
             fps = 30
-        frame_interval = max(1, int(fps / 3))
+            
+        # ★ [效能優化] 提速關鍵：原本每 3 幀處理一次(一秒10次)，非常耗時。
+        # 面試影片動輒1~3分鐘，為了讓分析在 30 秒內完成，改為每秒分析 2 幀。
+        process_interval = max(1, int(fps / 2))
+        # 時間軸紀錄頻率：每秒記錄一次
+        record_interval = max(1, int(fps))
 
         session_history = []
         frame_count = 0
@@ -181,9 +186,10 @@ def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None
         
         orig_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         orig_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-        print(f"🎥 原始影片尺寸: {orig_w} x {orig_h}, FPS: {fps}")
+        print(f"🎥 原始影片尺寸: {orig_w} x {orig_h}, FPS: {fps}, 處理間隔: {process_interval}")
 
-        smooth_queue = deque(maxlen=15)  # ★ 把平滑度增加到 15 幀，分數會穩定很多
+        # 因為處理頻率降低，平滑佇列長度也跟著縮小，避免時間延遲太嚴重 (5 幀約等於 2.5 秒)
+        smooth_queue = deque(maxlen=5)
 
         with torch.no_grad():
             while True:
@@ -192,7 +198,7 @@ def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None
                     break
                 
                 frame_count += 1
-                if frame_count % 3 != 0:
+                if frame_count % process_interval != 0:
                     continue
 
                 # 縮小圖片以加快偵測速度
@@ -265,7 +271,9 @@ def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None
                     
                     session_history.append(current_emotions)
 
-                    if frame_count % frame_interval == 0:
+                    # ★ 改用 record_interval，因為我們每秒只提取 2 幀，這裡如果整除就可以記錄
+                    # 或是直接把它當作每次處理 (process_interval) 都要記錄也行，因為 2 幀/秒 數據量不大
+                    if frame_count % record_interval == 0 or frame_count % record_interval < process_interval:
                         t_emotions = {
                             "c": current_emotions['confidence'] * 100,
                             "n": current_emotions['nervous'] * 100,

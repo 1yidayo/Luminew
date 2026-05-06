@@ -18,7 +18,12 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="Luminew AI 面試模擬系統">
+  
+  <!-- 防止瀏覽器快取舊版本 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
@@ -31,6 +36,20 @@
 
   <title>Luminew 面試系統</title>
   <link rel="manifest" href="manifest.json">
+
+  <style>
+    /* 預載背景色，防止 PWA 白色閃爍 */
+    body {
+      background-color: #FFFDF0; /* kLuminewGooseYellow */
+      margin: 0;
+      padding: 0;
+      /* 強制系統字型堆疊，減少中文字延遲感 */
+      font-family: "PingFang TC", "Heiti TC", "Microsoft JhengHei", -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
+    }
+  </style>
+
+  <!-- 預連線以加速字型下載 -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>

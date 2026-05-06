@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import '../theme/app_theme.dart';
 
 class LuminewHeader extends StatelessWidget {
   final String title;
@@ -29,9 +30,9 @@ class LuminewHeader extends StatelessWidget {
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: Container(
-            height: 90,
+            height: 75,
             decoration: BoxDecoration(
-              color: const Color(0xFFAD9DC7).withOpacity(0.6),
+              color: AppColors.headerPurpleGlass,
               borderRadius: borderRadius,
               border: Border(
                 bottom: BorderSide(
@@ -50,18 +51,19 @@ class LuminewHeader extends StatelessWidget {
             child: SafeArea(
               bottom: false,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Row(
                   children: [
                     if (showBackButton)
                       Padding(
                         padding: const EdgeInsets.only(right: 12),
                         child: IconButton(
-                          icon: const Icon(Icons.arrow_back_ios, size: 20),
+                          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 22),
                           onPressed: () => Navigator.pop(context),
                           color: textColor ?? const Color(0xFF675B83),
-                          padding: EdgeInsets.zero,
+                          padding: const EdgeInsets.all(8),
                           constraints: const BoxConstraints(),
+                          splashRadius: 28,
                         ),
                       ),
                     Expanded(

@@ -9,6 +9,7 @@ import 'common_screens.dart';
 import 'interview_screens.dart';
 import 'chat_screens.dart';
 import '../widgets/luminew_header.dart'; // 導入標頭組件
+import '../theme/app_theme.dart'; // 引入設計系統
 
 const Color kLuminewMainPurple = Color(0xFFAD9DC7);
 const Color kLuminewGooseYellow = Color(0xFFFFFDF0);
@@ -54,7 +55,7 @@ class _StudentMainScaffoldState extends State<StudentMainScaffold> {
       body: screens[_index],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: kLuminewMainPurple.withOpacity(0.8), // 調輕底色至 80%
+          color: AppColors.navBarBackground, 
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(kRadius),
             topRight: Radius.circular(kRadius),
@@ -80,7 +81,7 @@ class _StudentMainScaffoldState extends State<StudentMainScaffold> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _buildNavItem(0, Icons.home_outlined, Icons.home, '主頁'),
+                  _buildNavItem(0, Icons.home_outlined, Icons.home, '首頁'),
                   _buildNavItem(
                     1,
                     Icons.chat_bubble_outline,
@@ -188,10 +189,10 @@ class InterviewHomePage extends StatelessWidget {
 
                 _buildCard(
                   context,
-                  title: '開始模擬面試 (AI)',
-                  icon: Icons.smart_toy,
-                  subtitle: '與 AI 機器人練習',
-                  color: kLuminewMainPurple.withOpacity(0.85), // 稍微調淺 8%
+                  title: '模擬面試',
+                  icon: Icons.smart_toy_outlined,
+                  subtitle: '與虛擬教授沉浸式練習',
+                  color: AppColors.primaryPurpleSoft,
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -202,24 +203,10 @@ class InterviewHomePage extends StatelessWidget {
 
                 _buildCard(
                   context,
-                  title: '預約 Live 面試',
-                  icon: Icons.calendar_today_rounded,
-                  subtitle: '搶約老師時段',
-                  color: kLuminewMainPurple.withOpacity(0.65), // 70% 實色
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => StudentBookingScreen(user: user),
-                    ),
-                  ),
-                ),
-
-                _buildCard(
-                  context,
-                  title: '學習歷程 AI 分析',
-                  icon: Icons.auto_awesome,
-                  subtitle: 'AI 智慧評價您的 PDF',
-                  color: kLuminewMainPurple.withOpacity(0.45), // 40% 實色
+                  title: '檔案分析',
+                  icon: Icons.auto_awesome_outlined,
+                  subtitle: '分析你的學習歷程或自傳',
+                  color: AppColors.primaryPurpleMuted,
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -697,10 +684,10 @@ class _StudentClassScreenState extends State<StudentClassScreen> {
                   vertical: 4,
                 ),
                 decoration: BoxDecoration(
-                  color: Colors.transparent, // 極淡紫底色
-                  borderRadius: BorderRadius.circular(12),
+                  color: AppColors.purpleSurface,
+                  borderRadius: BorderRadius.circular(AppDesign.radiusM),
                   border: Border.all(
-                    color: kLuminewMainPurple.withOpacity(0.2), // 淺紫細邊框
+                    color: AppColors.purpleBorder,
                   ),
                 ),
                 child: Row(
@@ -714,10 +701,9 @@ class _StudentClassScreenState extends State<StudentClassScreen> {
                     Expanded(
                       child: TextField(
                         controller: _codeCtrl,
-                        style: const TextStyle(
-                          color: kLuminewDeepIndigo,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18, // 放大字體至 18
+                        style: AppTextStyles.bodyLarge.copyWith(
+                          color: AppColors.deepIndigo,
+                          fontSize: 18,
                         ),
                         keyboardType: TextInputType.number,
                         decoration: const InputDecoration(
@@ -838,6 +824,40 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
   bool _isAnalyzing = false;
   Map<String, dynamic>? _analysisResult;
   String? _errorMessage;
+  bool _isSendingEmail = false;
+
+  Future<void> _sendPortfolioEmail() async {
+    if (_analysisResult == null || _isSendingEmail) return;
+
+    setState(() => _isSendingEmail = true);
+    try {
+      final score = _analysisResult!['overall_score'] ?? 0;
+      final comment = _analysisResult!['comment'] ?? '';
+      final suggestions = (_analysisResult!['suggestions'] as List<dynamic>? ?? []).join('\n');
+
+      await ApiService.sendPortfolioResultEmail(
+        recipientEmail: widget.user.email,
+        studentName: widget.user.name,
+        overallScore: score,
+        comment: comment,
+        suggestion: suggestions,
+      );
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('✅ 已將分析結果寄送至您的信箱'), backgroundColor: AppColors.success),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('❌ 寄送失敗: $e'), backgroundColor: AppColors.error),
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _isSendingEmail = false);
+    }
+  }
 
   // 選擇 PDF 檔案
   Future<void> _pickPdf() async {
@@ -845,7 +865,7 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['pdf'],
-        withData: true, // 需要取得檔案資料
+        withData: true,
       );
 
       if (result != null && result.files.isNotEmpty) {
@@ -856,9 +876,7 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
         });
       }
     } catch (e) {
-      setState(() {
-        _errorMessage = '選取檔案時發生錯誤: $e';
-      });
+      setState(() => _errorMessage = '選取檔案時發生錯誤: $e');
     }
   }
 
@@ -875,12 +893,10 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
     });
 
     try {
-      // 建立 multipart request
       var request = http.MultipartRequest(
         'POST',
         Uri.parse('${ApiService.rootUrl}/emotion/analyze_portfolio'),
       );
-
       request.files.add(
         http.MultipartFile.fromBytes(
           'pdf',
@@ -889,7 +905,6 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
         ),
       );
 
-      // 發送請求
       var streamedResponse = await request.send().timeout(
         const Duration(seconds: 60),
         onTimeout: () => throw Exception('分析逾時，請稍後再試'),
@@ -900,24 +915,16 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
         if (data['success'] == true) {
-          setState(() {
-            _analysisResult = data['analysis'];
-          });
+          setState(() => _analysisResult = data['analysis']);
         } else {
-          setState(() {
-            _errorMessage = data['error'] ?? '分析失敗';
-          });
+          setState(() => _errorMessage = data['error'] ?? '分析失敗');
         }
       } else {
         var data = jsonDecode(response.body);
-        setState(() {
-          _errorMessage = data['error'] ?? '伺服器錯誤 (${response.statusCode})';
-        });
+        setState(() => _errorMessage = data['error'] ?? '伺服器錯誤 (${response.statusCode})');
       }
     } catch (e) {
-      setState(() {
-        _errorMessage = '錯誤: $e';
-      });
+      setState(() => _errorMessage = '錯誤: $e');
     } finally {
       setState(() => _isAnalyzing = false);
     }
@@ -926,140 +933,131 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kLuminewGooseYellow,
-      appBar: AppBar(
-        title: const Text('學習歷程 AI 分析'),
-        backgroundColor: Colors.white,
-        foregroundColor: kLuminewDeepIndigo,
-        elevation: 0,
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // 說明文字
-            const Text(
-              '上傳您的學習歷程 PDF，AI 將為您分析並給予改進建議。',
-              style: TextStyle(fontSize: 15, color: Colors.grey),
-            ),
-            const SizedBox(height: 20),
+      backgroundColor: AppColors.gooseYellow,
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(AppSpacings.pagePadding, 80, AppSpacings.pagePadding, 40),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // 說明標題
+                Text('檔案分析', style: AppTextStyles.h1),
+                const SizedBox(height: AppSpacings.gapS),
+                Text('上傳您的學習歷程或自傳，供 AI 分析並給予改進建議。', style: AppTextStyles.bodyMedium),
+                const SizedBox(height: AppSpacings.gapXL),
 
-            // 上傳區塊
-            GestureDetector(
-              onTap: _pickPdf,
-              child: Container(
-                padding: const EdgeInsets.all(30),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: _selectedFile != null
-                        ? Colors.green
-                        : Colors.grey[300]!,
-                    width: 2,
+                // 上傳區塊 (質感優化)
+                GestureDetector(
+                  onTap: _isAnalyzing ? null : _pickPdf,
+                  child: Container(
+                    padding: const EdgeInsets.all(AppSpacings.cardPadding * 2),
+                    decoration: BoxDecoration(
+                      color: AppColors.surfaceWhite,
+                      borderRadius: BorderRadius.circular(AppDesign.radiusL),
+                      border: Border.all(
+                        color: _selectedFile != null ? AppColors.success : AppColors.primaryPurple.withOpacity(0.2),
+                        width: 2,
+                      ),
+                      boxShadow: AppDesign.premiumShadow,
+                    ),
+                    child: Column(
+                      children: [
+                        Icon(
+                          _selectedFile != null ? Icons.check_circle_rounded : Icons.cloud_upload_outlined,
+                          size: 54,
+                          color: _selectedFile != null ? AppColors.success : AppColors.primaryPurple,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          _selectedFile != null ? _selectedFile!.name : '點擊選擇 PDF 檔案',
+                          style: AppTextStyles.bodyLarge.copyWith(
+                            color: _selectedFile != null ? AppColors.success : AppColors.primaryPurple,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        if (_selectedFile != null) ...[
+                          const SizedBox(height: 4),
+                          Text(
+                            '${(_selectedFile!.size / 1024).toStringAsFixed(1)} KB',
+                            style: AppTextStyles.caption,
+                          ),
+                        ],
+                      ],
+                    ),
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.05),
-                      blurRadius: 10,
-                    ),
-                  ],
                 ),
-                child: Column(
-                  children: [
-                    Icon(
-                      _selectedFile != null
-                          ? Icons.check_circle
-                          : Icons.upload_file,
-                      size: 48,
-                      color: _selectedFile != null ? Colors.green : Colors.grey,
+
+                const SizedBox(height: AppSpacings.gapL),
+
+                // 分析按鈕 (質感優化)
+                SizedBox(
+                  height: 56,
+                  child: ElevatedButton.icon(
+                    onPressed: (_isAnalyzing || (_analysisResult != null && _selectedFile != null)) ? null : _analyzePortfolio,
+                    icon: _isAnalyzing
+                        ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+                        : Icon(_analysisResult != null ? Icons.check_circle : Icons.auto_awesome),
+                    label: Text(
+                      _isAnalyzing 
+                          ? '分析中，請稍候...' 
+                          : (_analysisResult != null ? '分析完成' : '開始 AI 智慧分析'), 
+                      style: AppTextStyles.buttonText
                     ),
-                    const SizedBox(height: 12),
-                    Text(
-                      _selectedFile != null
-                          ? _selectedFile!.name
-                          : '點擊選擇 PDF 檔案',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: _selectedFile != null
-                            ? Colors.green
-                            : Colors.grey[600],
-                      ),
-                      textAlign: TextAlign.center,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: _analysisResult != null ? AppColors.success : AppColors.primaryPurple,
+                      foregroundColor: Colors.white,
+                      disabledBackgroundColor: _analysisResult != null ? AppColors.success.withOpacity(0.6) : AppColors.textDisabled,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppDesign.radiusM)),
+                      elevation: 0,
                     ),
-                    if (_selectedFile != null) ...[
-                      const SizedBox(height: 4),
-                      Text(
-                        '${(_selectedFile!.size / 1024).toStringAsFixed(1)} KB',
-                        style: TextStyle(fontSize: 12, color: Colors.grey[500]),
-                      ),
-                    ],
-                  ],
+                  ),
                 ),
-              ),
+
+                // 錯誤訊息
+                if (_errorMessage != null) ...[
+                  const SizedBox(height: AppSpacings.gapM),
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(color: AppColors.error.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.error_outline, color: AppColors.error, size: 20),
+                        const SizedBox(width: 8),
+                        Expanded(child: Text(_errorMessage!, style: AppTextStyles.caption.copyWith(color: AppColors.error))),
+                      ],
+                    ),
+                  ),
+                ],
+
+                // 分析結果
+                if (_analysisResult != null) ...[
+                  const SizedBox(height: AppSpacings.gapXL),
+                  _buildResultCard(),
+                  const SizedBox(height: AppSpacings.gapL),
+                  
+                  // 寄給我按鈕 (質感優化)
+                  SizedBox(
+                    height: 56,
+                    child: OutlinedButton.icon(
+                      onPressed: _isSendingEmail ? null : _sendPortfolioEmail,
+                      icon: _isSendingEmail
+                          ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.primaryPurple))
+                          : const Icon(Icons.email_outlined),
+                      label: Text(_isSendingEmail ? '寄送中...' : '將此分析報告寄給我', style: AppTextStyles.buttonText.copyWith(color: AppColors.primaryPurple)),
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(color: AppColors.primaryPurple, width: 2),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppDesign.radiusM)),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: AppSpacings.gapM),
+                ],
+              ],
             ),
-
-            const SizedBox(height: 20),
-
-            // 分析按鈕
-            ElevatedButton.icon(
-              onPressed: _isAnalyzing || _selectedFile == null
-                  ? null
-                  : _analyzePortfolio,
-              icon: _isAnalyzing
-                  ? const SizedBox(
-                      width: 20,
-                      height: 20,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: Colors.white,
-                      ),
-                    )
-                  : const Icon(Icons.auto_awesome),
-              label: Text(_isAnalyzing ? '分析中，請稍候...' : '開始 AI 分析'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
-
-            // 錯誤訊息
-            if (_errorMessage != null) ...[
-              const SizedBox(height: 16),
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.red[50],
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  children: [
-                    const Icon(Icons.error_outline, color: Colors.red),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        _errorMessage!,
-                        style: const TextStyle(color: Colors.red),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-
-            // 分析結果
-            if (_analysisResult != null) ...[
-              const SizedBox(height: 30),
-              _buildResultCard(),
-            ],
-          ],
-        ),
+          ),
+          const LuminewHeader(title: 'AI 分析系統', showBackButton: true),
+        ],
       ),
     );
   }
@@ -1072,44 +1070,26 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
     final suggestions = _analysisResult!['suggestions'] as List<dynamic>? ?? [];
 
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(AppSpacings.cardPadding),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 15),
-        ],
+        color: AppColors.surfaceWhite,
+        borderRadius: BorderRadius.circular(AppDesign.radiusL),
+        boxShadow: AppDesign.premiumShadow,
+        border: Border.all(color: AppColors.purpleBorder),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 標題和分數
           Row(
             children: [
-              const Icon(Icons.analytics, color: Colors.green, size: 28),
+              const Icon(Icons.analytics_outlined, color: AppColors.primaryPurple, size: 24),
               const SizedBox(width: 8),
-              const Text(
-                'AI 分析結果',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
+              Text('詳細分析報告', style: AppTextStyles.h2),
               const Spacer(),
               Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                decoration: BoxDecoration(
-                  color: _getScoreColor(score),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  '$score 分',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                decoration: BoxDecoration(color: _getScoreColor(score), borderRadius: BorderRadius.circular(20)),
+                child: Text('$score 分', style: AppTextStyles.buttonText.copyWith(fontSize: 16)),
               ),
             ],
           ),
