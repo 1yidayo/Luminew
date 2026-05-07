@@ -1953,7 +1953,6 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
   Duration _videoPosition = Duration.zero;
 
   bool _isIndexMode = false;
-  final GlobalKey _captureKey = GlobalKey();
   bool _autoEmailSent = false;
   bool _isSendingEmail = false;
 
@@ -1962,84 +1961,8 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
     super.initState();
     _loadComments();
     _initVideo();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _captureAndSendAutoEmail();
-    });
   }
 
-  Future<void> _captureAndSendAutoEmail() async {
-    if (_autoEmailSent) return;
-    _autoEmailSent = true;
-
-    // 增加延遲並加入重試機制，確保 Web 端元件已完全掛載、渲染並擁有大小
-    int retryCount = 0;
-    RenderRepaintBoundary? boundary;
-    
-    while (retryCount < 15) {
-      if (_captureKey.currentContext != null) {
-        boundary = _captureKey.currentContext!.findRenderObject() as RenderRepaintBoundary?;
-        if (boundary != null && boundary.hasSize) {
-          break;
-        }
-      }
-      await Future.delayed(const Duration(milliseconds: 500));
-      retryCount++;
-      if (!mounted) return;
-    }
-
-    if (boundary == null || !boundary.hasSize) {
-      throw Exception("無法取得畫面截圖的內容 (已重試 $retryCount 次，請確認畫面是否正常顯示)");
-    }
-
-    try {
-      ui.Image image = await boundary.toImage(pixelRatio: 2.0);
-      ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-      if (byteData == null) {
-        throw Exception("無法將圖片轉換為 png");
-      }
-      
-      Uint8List pngBytes = byteData.buffer.asUint8List();
-      String base64Image = base64Encode(pngBytes);
-
-      await ApiService.sendInterviewResultEmail(
-        recipientEmail: widget.user.email,
-        studentName: widget.user.name,
-        overallScore: widget.record.overallScore,
-        comment: (widget.record.aiComment ?? "").isNotEmpty ? widget.record.aiComment : '尚無評語',
-        suggestion: (widget.record.aiSuggestion ?? "").isNotEmpty ? widget.record.aiSuggestion : '尚無建議',
-        timelineText: "(詳細情緒波動數據請回 Luminew 平台查看)",
-        attachmentBase64: base64Image,
-      );
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Row(
-              children: [
-                Icon(Icons.check_circle, color: Colors.white),
-                SizedBox(width: 8),
-                Text('已自動寄送結果報表至您的信箱', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-              ],
-            ),
-            backgroundColor: kLuminewMainPurple,
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            duration: const Duration(seconds: 4),
-          ),
-        );
-      }
-    } catch (e) {
-      print("⚠️ 自動截圖寄信失敗: $e");
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('⚠️ 自動寄信失敗: $e', style: const TextStyle(color: Colors.white)),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    }
-  }
 
   @override
   void dispose() {
@@ -2241,12 +2164,10 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                 physics: const BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics(),
                 ),
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.fromLTRB(20, 140, 20, 20),
                 child: Column(
                   children: [
-                  RepaintBoundary(
-                    key: _captureKey,
-                    child: Container(
+                    Container(
                       color: kLuminewGooseYellow,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -2328,7 +2249,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                                   ),
                                   const SizedBox(height: 8),
                                   Text(
-                                    widget.aiSuggestion!,
+                                    widget.aiSuggestion ?? "",
                                     style: const TextStyle(
                                       color: Colors.black87,
                                       height: 1.5,
@@ -2406,7 +2327,6 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                         ],
                       ),
                     ),
-                  ),
                   if (!_isIndexMode) ...[
                     const Align(
                       alignment: Alignment.centerLeft,
@@ -2452,7 +2372,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                               padding: const EdgeInsets.symmetric(vertical: 16),
                               foregroundColor: kLuminewMainPurple,
                               side: BorderSide(color: kLuminewMainPurple.withOpacity(0.3), width: 2),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
                             ),
                           ),
                         ),
@@ -2468,7 +2388,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                               padding: const EdgeInsets.symmetric(vertical: 16),
                               backgroundColor: kLuminewMainPurple,
                               foregroundColor: Colors.white,
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
                             ),
                           ),
                         ),
@@ -2484,7 +2404,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
             _KeepAliveWrapper(
               child: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.fromLTRB(16, 140, 16, 16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -2547,7 +2467,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                     child: _comments.isEmpty
                         ? const Center(child: Text("尚無評語討論"))
                         : ListView.builder(
-                            padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.fromLTRB(20, 140, 20, 20),
                             itemCount: _comments.length,
                             itemBuilder: (ctx, i) {
                               final comment = _comments[i];
@@ -2700,7 +2620,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
             _KeepAliveWrapper(
               child: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.fromLTRB(16, 140, 16, 16),
                 child: Column(
                   children: [
                     _buildDetailCard(
@@ -2804,7 +2724,33 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
             ),
           ],
         ),
-            const LuminewHeader(title: "面試結果分析", showBackButton: true),
+            Positioned(
+              top: 0, left: 0, right: 0,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const LuminewHeader(title: "面試結果分析", showBackButton: true, usePositioned: false),
+                  Container(
+                    color: kLuminewMainPurple.withOpacity(0.8),
+                    child: TabBar(
+                      isScrollable: false,
+                      indicatorColor: Colors.white,
+                      indicatorWeight: 4,
+                      labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
+                      labelColor: Colors.white,
+                      unselectedLabelColor: Colors.white70,
+                      tabs: [
+                        Tab(text: "AI 分析"),
+                        Tab(text: "面試問題"),
+                        Tab(text: "評語討論"),
+                        Tab(text: "詳細內容"),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -3160,7 +3106,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
 
     return Container(
       clipBehavior: Clip.antiAlias, // ★ 加入裁切避免內部背景擋住導角
-      padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.fromLTRB(20, 140, 20, 20),
       decoration: BoxDecoration(
         color: kLuminewMainPurple.withOpacity(0.20),
         borderRadius: BorderRadius.circular(16),
@@ -3350,11 +3296,16 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
   }
 
   Widget _buildVideoPlayerSection() {
-    final videoFile = widget.record.videoUrl!.isNotEmpty
-        ? File(widget.record.videoUrl!)
-        : null;
-    final bool hasLocalVideo = videoFile != null && videoFile.existsSync();
-
+    final String? url = widget.videoUrl ?? widget.record.videoUrl;
+    final bool isNetworkUrl = url != null && (url.startsWith("http") || url.startsWith("blob:"));
+    bool hasLocalVideo = false;
+    if (url != null && !isNetworkUrl) {
+      try {
+        hasLocalVideo = File(url).existsSync();
+      } catch (_) {
+        hasLocalVideo = false;
+      }
+    }
     if (_isVideoInitialized && _videoController != null) {
       return Column(
         children: [
