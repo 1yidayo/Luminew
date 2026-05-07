@@ -942,9 +942,9 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // 說明標題
-                Text('檔案分析', style: AppTextStyles.h1),
+                Text('上傳檔案', style: AppTextStyles.h1),
                 const SizedBox(height: AppSpacings.gapS),
-                Text('上傳您的學習歷程或自傳，供 AI 分析並給予改進建議。', style: AppTextStyles.bodyMedium),
+                Text('讓 AI 分析你的學習歷程或自傳，並給予改進建議。', style: AppTextStyles.bodyMedium),
                 const SizedBox(height: AppSpacings.gapXL),
 
                 // 上傳區塊 (質感優化)
@@ -1056,7 +1056,7 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
               ],
             ),
           ),
-          const LuminewHeader(title: 'AI 分析系統', showBackButton: true),
+          const LuminewHeader(title: '檔案分析', showBackButton: true),
         ],
       ),
     );

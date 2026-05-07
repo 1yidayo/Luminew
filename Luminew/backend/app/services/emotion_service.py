@@ -408,12 +408,12 @@ def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None
   1. 口語回答內容 (佔 80%)：學生是否有針對問題給出具體、有邏輯、符合該職位/科系期待的答案？內容是否貧乏或不知所云？
   2. 微表情與情緒 (佔 20%)：考量到壓力測試或溫和引導，學生表現出的情緒是否合宜？
 
-目前學生分數普遍偏高。你必須從嚴評分，分數範圍應真實分布在 40~95 分之間：
-90分以上：回答具體有邏輯、無可挑剔，且情緒表現完美（高自信、低緊張）。
-80-89分：內容順暢且適切，情緒數據合理正常。
-70-79分：回答太短、缺乏具體例子、背稿感太重，或是情緒數據顯示過度緊張或自信偏低。
-60-69分：答非所問、內容空洞、明顯支吾其詞，且情緒面臨壓力（如緊張超過 40%）。
-60分以下：幾乎沒有回答實質內容、放棄作答、或只有一兩句草率回應。
+目前學生分數普遍偏高。為了鼓勵學生並保持鑑別度，請精準給分，避免大家的分數都差不多。分數範圍應真實分布在 45~95 分之間（不給滿分，留有進步空間）：
+85-95分：表現優異。回答具體有邏輯、內容豐富，且情緒表現佳（展現自信或熱忱）。
+75-84分：表現良好。內容順暢適切，能回答到核心，情緒數據合理正常。
+65-74分：表現尚可。回答略顯簡短、缺乏具體例子、背稿感較重，或情緒數據顯示較為緊張。
+55-64分：需要加強。答非所問、內容空洞、明顯支吾其詞，且情緒面臨較大壓力。
+45-54分：表現極需改善。幾乎沒有回答實質內容、放棄作答、或只有極少數草率回應。
 
 【面試問答逐字稿】
 {chat_text}
@@ -425,9 +425,9 @@ def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None
 - 緊張程度: {nervous:.0f}%
 
 【評分標準】（請依此計算 overall_score）
-1. 若回答內容空洞、答非所問、或幾乎為「無對話紀錄」，分數絕對不得高於 60 分。
-2. 若回答內容優秀且具體、邏輯清晰，且表現出良好的情緒控制，給予 80~98 分。
-3. 最終分數必須為一個介於 40-98 的整數。
+1. 請根據上述級距，針對學生的實際表現給出「精準」的整數分數，不要習慣性給中間分數。
+2. 若回答內容空洞或放棄作答，分數應落在 45-54 分之間。
+3. 最終分數必須為一個介於 45-95 的整數。
 
 【回覆格式】
 請用繁體中文回覆，符合台灣人的說話習慣。
@@ -474,14 +474,14 @@ def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None
         r = int(final_scores_float.get('relaxed', 0))
         n = int(final_scores_float.get('nervous', 0))
         
-        calc_score = 60
-        if c >= 30: calc_score += 15
+        calc_score = 65
+        if c >= 30: calc_score += 10
         if c >= 50: calc_score += 10
-        if p >= 30: calc_score += 10
+        if p >= 30: calc_score += 5
         if r >= 30: calc_score += 5
-        if n >= 20: calc_score -= 10
-        if n >= 35: calc_score -= 15
-        calc_score = int(min(max(calc_score, 40), 98))
+        if n >= 20: calc_score -= 5
+        if n >= 35: calc_score -= 10
+        calc_score = int(min(max(calc_score, 45), 95))
         
         return {
             "overall_score": calc_score,

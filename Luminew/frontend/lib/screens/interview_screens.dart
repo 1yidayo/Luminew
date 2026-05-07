@@ -22,6 +22,7 @@ import '../did_interview_service.dart';
 import '../config.dart';
 import '../widgets/did_video_widget.dart';
 import '../widgets/luminew_header.dart'; // 導入統一標頭
+import '../theme/app_theme.dart'; // 導入 AppColors
 import 'student_screens.dart';
 import 'auth_screen.dart';
 
@@ -2726,29 +2727,39 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
         ),
             Positioned(
               top: 0, left: 0, right: 0,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const LuminewHeader(title: "面試結果分析", showBackButton: true, usePositioned: false),
-                  Container(
-                    color: kLuminewMainPurple.withOpacity(0.8),
-                    child: TabBar(
-                      isScrollable: false,
-                      indicatorColor: Colors.white,
-                      indicatorWeight: 4,
-                      labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                      unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
-                      labelColor: Colors.white,
-                      unselectedLabelColor: Colors.white70,
-                      tabs: [
-                        Tab(text: "AI 分析"),
-                        Tab(text: "面試問題"),
-                        Tab(text: "評語討論"),
-                        Tab(text: "詳細內容"),
+              child: ClipRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                  child: Container(
+                    color: AppColors.headerPurpleGlass,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const LuminewHeader(
+                          title: "面試結果分析",
+                          showBackButton: true,
+                          usePositioned: false,
+                          showBottomBorder: false,
+                        ),
+                        TabBar(
+                          isScrollable: false,
+                          indicatorColor: kLuminewDeepIndigo,
+                          indicatorWeight: 3,
+                          labelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                          unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
+                          labelColor: kLuminewDeepIndigo,
+                          unselectedLabelColor: kLuminewDeepIndigo.withOpacity(0.45),
+                          tabs: const [
+                            Tab(text: "AI 分析"),
+                            Tab(text: "面試問題"),
+                            Tab(text: "評語討論"),
+                            Tab(text: "詳細內容"),
+                          ],
+                        ),
                       ],
                     ),
                   ),
-                ],
+                ),
               ),
             ),
           ],
@@ -3105,8 +3116,8 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
     final scoreColor = _getScoreGradient(score).last;
 
     return Container(
-      clipBehavior: Clip.antiAlias, // ★ 加入裁切避免內部背景擋住導角
-                padding: const EdgeInsets.fromLTRB(20, 140, 20, 20),
+      clipBehavior: Clip.antiAlias,
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: kLuminewMainPurple.withOpacity(0.20),
         borderRadius: BorderRadius.circular(16),

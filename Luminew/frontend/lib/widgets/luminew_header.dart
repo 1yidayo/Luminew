@@ -10,6 +10,7 @@ class LuminewHeader extends StatelessWidget {
   final bool centerTitle; // 新增：是否置中
   final BorderRadius? borderRadius; // 新增：導角
   final bool usePositioned; // 新增：是否使用 Positioned 包裹
+  final bool showBottomBorder; // 新增：是否顯示底部分隔線
 
   const LuminewHeader({
     super.key,
@@ -20,6 +21,7 @@ class LuminewHeader extends StatelessWidget {
     this.centerTitle = false,
     this.borderRadius,
     this.usePositioned = true, // 預設為 true 以保持相容性
+    this.showBottomBorder = true, // 預設為 true 以保持相容性
   });
 
   @override
@@ -33,10 +35,12 @@ class LuminewHeader extends StatelessWidget {
             color: AppColors.headerPurpleGlass,
             borderRadius: borderRadius,
             border: Border(
-              bottom: BorderSide(
-                color: Colors.white.withOpacity(0.2),
-                width: 0.5,
-              ),
+              bottom: showBottomBorder
+                  ? BorderSide(
+                      color: Colors.white.withOpacity(0.2),
+                      width: 0.5,
+                    )
+                  : BorderSide.none,
             ),
             boxShadow: [
               BoxShadow(
@@ -49,7 +53,10 @@ class LuminewHeader extends StatelessWidget {
           child: SafeArea(
             bottom: false,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
+              padding: EdgeInsets.only(
+                left: showBackButton ? 12 : 24,
+                right: 12,
+              ),
               child: Row(
                 children: [
                   if (showBackButton)
