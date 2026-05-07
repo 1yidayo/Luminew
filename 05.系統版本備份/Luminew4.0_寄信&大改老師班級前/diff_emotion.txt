@@ -1,0 +1,51 @@
+﻿diff --cc Luminew/backend/app/api/emotion.py
+index 19cbd78,d27f21b..0000000
+--- a/Luminew/backend/app/api/emotion.py
++++ b/Luminew/backend/app/api/emotion.py
+@@@ -19,11 -19,10 +19,12 @@@ router = APIRouter(
+  
+  @router.post("/analyze")
+  async def api_analyze_video(
++     request: Request,
+      video: UploadFile = File(...),
+      save_video: str = Form(default="true"),
+ -    baseline: str = Form(default="")
+ +    baseline: str = Form(default=""),
+ +    transcript: str = Form(default="[]"),
+ +    interviewer: str = Form(default="warm_industry_professor")
+  ):
+      """
+      ??敶梁???
+@@@ -57,22 -53,18 +58,20 @@@
+              print(f"? ?嗅?犖?箇?: {baseline_dict}")
+          except json.JSONDecodeError:
+              print("?? baseline JSON 閫??憭望?嚗蕭??)
+ +
+ +    # 閫?? transcript
+-     transcript_list = []
+-     if transcript and transcript.strip():
+-         try:
+-             transcript_list = json.loads(transcript)
+-             print(f"? ?嗅?Ｚ岫??蝔? ??{len(transcript_list)} ??)
+-         except json.JSONDecodeError:
+-             print("?? transcript JSON 閫??憭望?嚗蕭??)
+++    try:
+++        transcript_list = json.loads(transcript)
+++    except json.JSONDecodeError:
+++        transcript_list = []
+      
+ -    # ??敶梁?嚗葆銝?baseline ??雯?嚗? +    # ??敶梁?嚗葆銝?baseline, transcript, interviewer嚗?      save_flag = save_video.lower() == "true"
+ -    public_url = getattr(request.app.state, "public_url", None)
+ -    
+ -    print(f"? [API] ???郊??敶梁?... {video_path}")
+ -    result = await analyze_video(video_path, save_flag, baseline_dict, public_url)
+ -    print(f"??[API] ??摰?嚗??喟??策?垢??)
+ +    result = await analyze_video(video_path, save_flag, baseline_dict, transcript_list, interviewer)
+      
+      if "error" in result:
+-         status = 400 if "No face" in result.get("error", "") else 500
++         # Return 200 OK with default metadata instead of 400, to allow testing on emulators with no webcam
++         status = 200 if "No face" in result.get("error", "") else 500
+          return JSONResponse(content=result, status_code=status)
+      
+      return result
