@@ -14,14 +14,10 @@ class DidVideoWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(16),
-      ),
+      color: Colors.black,
       child: RTCVideoView(
         renderer,
-        objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
+        objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitContain,
         mirror: false,
       ),
     );

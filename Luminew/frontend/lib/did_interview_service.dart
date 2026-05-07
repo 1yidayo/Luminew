@@ -298,6 +298,16 @@ class DidInterviewService {
     _wsChannel?.sink.add(jsonEncode({'event': 'speech_end'}));
   }
 
+  /// 回傳正規化後的麥克風音量 (0.0 = 靜音, 1.0 = 最大)
+  Future<double> getCurrentAmplitudeDb() async {
+    try {
+      final amp = await _audioRecorder.getAmplitude();
+      return ((amp.current + 60) / 60).clamp(0.0, 1.0);
+    } catch (_) {
+      return 0.0;
+    }
+  }
+
   Future<void> stopInterview() async {
     _wsChannel?.sink.add(jsonEncode({'event': 'stop_interview'}));
     _wsChannel?.sink.close();
@@ -305,6 +315,25 @@ class DidInterviewService {
     await _audioRecorder.stop();
     await _peerConnection?.close();
     _peerConnection = null;
+  }
+
+  /// 透過 WebRTC Stats 監控教授是否正在說話
+  /// 返回 true 代表正在說話 (audioLevel > 閾值)
+  Future<bool> isProfessorSpeaking() async {
+    if (_peerConnection == null) return false;
+    try {
+      final stats = await _peerConnection!.getStats();
+      for (var report in stats) {
+        if (report.type == 'inbound-rtp' && report.values['kind'] == 'audio') {
+          // audioLevel 通常在 0.0 ~ 1.0 之間
+          double level = report.values['audioLevel'] ?? 0.0;
+          return level > 0.005; // 微小的聲音閾值
+        }
+      }
+    } catch (e) {
+      print("Check speaking error: $e");
+    }
+    return false;
   }
 
   Future<void> _sendIceCandidate(RTCIceCandidate candidate) async {

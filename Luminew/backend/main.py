@@ -34,10 +34,7 @@ app.mount("/public", StaticFiles(directory=os.path.join("app", "public")), name=
 app.mount("/audio", StaticFiles(directory=os.path.join("app", "public", "audio")), name="audio")
 app.mount("/static/videos", StaticFiles(directory=VIDEO_STORAGE_DIR), name="videos")
 
-# ★ 設定 Flutter Web 靜態網站目錄
-web_build_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web_build")
-os.makedirs(web_build_dir, exist_ok=True)
-app.mount("/web", StaticFiles(directory=web_build_dir, html=True), name="web")
+
 
 # 引入面試的 Router 與 Database Router
 app.include_router(interview_router, prefix="/api/interview", tags=["Interview"])
@@ -116,3 +113,9 @@ if __name__ == "__main__":
     # 在生產環境 (學校電腦) 務必將 reload 設為 False 
     # 這樣才不會因為寫入日誌導致 Ngrok 無限重啟
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
+
+# ★ Flutter Web 根路徑掛載（必須在所有 API route 之後）
+# base href="/" 要求靜態檔在根路徑，這樣 flutter_bootstrap.js 才能被正確載入
+web_build_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web_build")
+os.makedirs(web_build_dir, exist_ok=True)
+app.mount("/", StaticFiles(directory=web_build_dir, html=True), name="web")

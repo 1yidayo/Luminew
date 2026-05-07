@@ -9,8 +9,9 @@ class LuminewHeader extends StatelessWidget {
   final Color? textColor; // 新增：可選文字顏色
   final bool centerTitle; // 新增：是否置中
   final BorderRadius? borderRadius; // 新增：導角
-  final bool usePositioned; // 新增：是否使用 Positioned 包裹
-  final bool showBottomBorder; // 新增：是否顯示底部分隔線
+  final bool usePositioned;
+  final bool showBottomBorder;
+  final bool showOwnBackground; // 新增：是否自己畫背景（被包在玻璃容器內時傳 false）
 
   const LuminewHeader({
     super.key,
@@ -20,83 +21,86 @@ class LuminewHeader extends StatelessWidget {
     this.textColor,
     this.centerTitle = false,
     this.borderRadius,
-    this.usePositioned = true, // 預設為 true 以保持相容性
-    this.showBottomBorder = true, // 預設為 true 以保持相容性
+    this.usePositioned = true,
+    this.showBottomBorder = true,
+    this.showOwnBackground = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    Widget content = ClipRect(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-        child: Container(
-          height: 75,
-          decoration: BoxDecoration(
-            color: AppColors.headerPurpleGlass,
-            borderRadius: borderRadius,
-            border: Border(
-              bottom: showBottomBorder
-                  ? BorderSide(
-                      color: Colors.white.withOpacity(0.2),
-                      width: 0.5,
-                    )
-                  : BorderSide.none,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.05),
-                blurRadius: 4,
-                offset: const Offset(0, 2),
+    final Widget innerContent = Container(
+      height: 75,
+      decoration: showOwnBackground
+          ? BoxDecoration(
+              color: AppColors.headerPurpleGlass,
+              borderRadius: borderRadius,
+              border: Border(
+                bottom: showBottomBorder
+                    ? BorderSide(color: Colors.white.withOpacity(0.2), width: 0.5)
+                    : BorderSide.none,
               ),
-            ],
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.05),
+                  blurRadius: 4,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            )
+          : null,
+      child: SafeArea(
+        bottom: false,
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: showBackButton ? 12 : 24,
+            right: 12,
           ),
-          child: SafeArea(
-            bottom: false,
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: showBackButton ? 12 : 24,
-                right: 12,
-              ),
-              child: Row(
-                children: [
-                  if (showBackButton)
-                    Padding(
-                      padding: const EdgeInsets.only(right: 12),
-                      child: IconButton(
-                        icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 22),
-                        onPressed: () => Navigator.pop(context),
-                        color: textColor ?? const Color(0xFF675B83),
-                        padding: const EdgeInsets.all(8),
-                        constraints: const BoxConstraints(),
-                        splashRadius: 28,
-                      ),
-                    ),
-                  Expanded(
-                    child: Text(
-                      title,
-                      textAlign: centerTitle
-                          ? TextAlign.center
-                          : TextAlign.start,
-                      style: TextStyle(
-                        color: textColor ?? const Color(0xFF675B83),
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.2,
-                      ),
-                    ),
+          child: Row(
+            children: [
+              if (showBackButton)
+                Padding(
+                  padding: const EdgeInsets.only(right: 6),
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 22),
+                    onPressed: () => Navigator.pop(context),
+                    color: textColor ?? const Color(0xFF675B83),
+                    padding: const EdgeInsets.all(8),
+                    constraints: const BoxConstraints(),
+                    splashRadius: 28,
                   ),
-                  if (actions != null) ...actions!,
-                  if (centerTitle &&
-                      showBackButton &&
-                      (actions == null || actions!.isEmpty))
-                    const SizedBox(width: 32),
-                ],
+                ),
+              Expanded(
+                child: Text(
+                  title,
+                  textAlign: centerTitle ? TextAlign.center : TextAlign.start,
+                  style: TextStyle(
+                    color: textColor ?? const Color(0xFF675B83),
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                  ),
+                ),
               ),
-            ),
+              if (actions != null) ...actions!,
+              if (centerTitle && showBackButton && (actions == null || actions!.isEmpty))
+                const SizedBox(width: 32),
+            ],
           ),
         ),
       ),
     );
+
+    Widget content;
+    if (showOwnBackground) {
+      content = ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: innerContent,
+        ),
+      );
+    } else {
+      content = innerContent;
+    }
 
     if (!usePositioned) return content;
 
