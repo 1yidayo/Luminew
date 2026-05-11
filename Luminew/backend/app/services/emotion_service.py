@@ -677,6 +677,7 @@ def _analyze_portfolio_sync(pdf_path: str) -> dict:
         【請依照以下格式給予評價】
         請只回傳一個 JSON，不要有任何 Markdown 標記：
         {{
+            "overall_score": (0-100 整數，根據內容完整性、個人特色、反思深度給分),
             "strengths": [
                 "優點1",
                 "優點2",
@@ -691,12 +692,6 @@ def _analyze_portfolio_sync(pdf_path: str) -> dict:
                 "具體改進建議1",
                 "具體改進建議2",
                 "具體改進建議3"
-            ]
-            "comment": (1-3個建議未來參加活動，促進這份學習歷程可以更加亮眼，要具體、有建設性的活動而不是隨便給出一個沒人知道的活動),
-            "activities": [
-                "具體建議參加活動1",
-                "具體建議參加活動2",
-                "具體建議參加活動3"
             ]
         }}
         """
