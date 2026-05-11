@@ -685,26 +685,26 @@ def _analyze_portfolio_sync(pdf_path: str) -> dict:
         【請依照以下格式給予評價】
         請只回傳一個 JSON，不要有任何 Markdown 標記：
         {{
+            "comment": (我們希望呈現的優點是點出檔案中寫得好、描述得好，有把自己優勢表達出來的地方，而不是評判學生擁有什麼經歷很好，那屬於優勢而不是優點，要先幫學生區分開來),
             "strengths": [
                 "優點1",
                 "優點2",
                 "優點3"
             ],
+            "comment": (直接點出學習歷程中缺少什麼直接描述即可，先不用給出解決方法，直接寫出這份學習歷程的缺點就好),
             "weaknesses": [
                 "需改進1",
-                "需改進2"
+                "需改進2",
+                "需改進3"
             ],
-            "comment": (100-150字的整體評語，指出這份學習歷程的亮點和可以加強的地方，要具體、有建設性),
+            "comment": (直接點出學生接下來應改怎麼做能夠將這份學習歷程做得更加亮眼),
             "suggestions": [
                 "具體改進建議1",
                 "具體改進建議2",
                 "具體改進建議3"
-            ]
-            "comment": (1-3個建議未來參加活動，促進這份學習歷程可以更加亮眼，要具體、有建設性的活動而不是隨便給出一個沒人知道的活動),
-            "activities": [
-                "具體建議參加活動1",
-                "具體建議參加活動2",
-                "具體建議參加活動3"
+            ],
+            "comment": (用100-200字，針對學習歷程，用來總結學習歷程的優缺點以及改進建議，請控制在200字以內，直接用你稱呼學生即可),
+            "summary": [
             ]
         }}
         """
@@ -733,7 +733,6 @@ def _analyze_portfolio_sync(pdf_path: str) -> dict:
             content = resp.json()["choices"][0]["message"]["content"]
             clean_text = content.replace('```json', '').replace('```', '').strip()
             result_json = json.loads(clean_text)
-            print(f"✅ 學習歷程分析完成！分數: {result_json.get('overall_score', 'N/A')}")
             
             try: os.remove(pdf_path)
             except: pass
