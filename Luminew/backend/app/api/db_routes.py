@@ -280,6 +280,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 import base64
+from datetime import datetime
 
 class SendEmailReq(BaseModel):
     recipientEmail: str
@@ -298,7 +299,8 @@ def send_email(req: SendEmailReq):
         if not sender_email or not sender_pwd:
              raise HTTPException(status_code=500, detail="Server SMTP configuration missing")
 
-        subject = f"[Luminew] {req.studentName} 的 AI 面試分析報告"
+        date_str = datetime.now().strftime("%Y/%m/%d")
+        subject = f"【Luminew】{req.studentName} 的 AI 面試分析報告（{date_str}）"
         body = f"""你好！這是來自 Luminew 系統的面試分析報告：
 
 面試受試者：{req.studentName}
@@ -310,9 +312,10 @@ AI 綜合評分：{req.overallScore} 分
 【改善建議】
 {req.suggestion}
 
-{req.timelineText}
-
 感謝使用 Luminew 平台進行面試模擬，祝你順利錄取！
+
+────────────────────────
+{req.timelineText}
 """
 
         msg = MIMEMultipart()

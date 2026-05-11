@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import '../theme/app_theme.dart';
 
 class LuminewHeader extends StatelessWidget {
   final String title;
@@ -8,6 +9,9 @@ class LuminewHeader extends StatelessWidget {
   final Color? textColor; // 新增：可選文字顏色
   final bool centerTitle; // 新增：是否置中
   final BorderRadius? borderRadius; // 新增：導角
+  final bool usePositioned;
+  final bool showBottomBorder;
+  final bool showOwnBackground; // 新增：是否自己畫背景（被包在玻璃容器內時傳 false）
 
   const LuminewHeader({
     super.key,
@@ -17,27 +21,23 @@ class LuminewHeader extends StatelessWidget {
     this.textColor,
     this.centerTitle = false,
     this.borderRadius,
+    this.usePositioned = true,
+    this.showBottomBorder = true,
+    this.showOwnBackground = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      top: 0,
-      left: 0,
-      right: 0,
-      child: ClipRect(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-          child: Container(
-            height: 90,
-            decoration: BoxDecoration(
-              color: const Color(0xFFAD9DC7).withOpacity(0.6),
+    final Widget innerContent = Container(
+      height: 75,
+      decoration: showOwnBackground
+          ? BoxDecoration(
+              color: AppColors.headerPurpleGlass,
               borderRadius: borderRadius,
               border: Border(
-                bottom: BorderSide(
-                  color: Colors.white.withOpacity(0.2),
-                  width: 0.5,
-                ),
+                bottom: showBottomBorder
+                    ? BorderSide(color: Colors.white.withOpacity(0.2), width: 0.5)
+                    : BorderSide.none,
               ),
               boxShadow: [
                 BoxShadow(
@@ -46,50 +46,69 @@ class LuminewHeader extends StatelessWidget {
                   offset: const Offset(0, 2),
                 ),
               ],
-            ),
-            child: SafeArea(
-              bottom: false,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Row(
-                  children: [
-                    if (showBackButton)
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: IconButton(
-                          icon: const Icon(Icons.arrow_back_ios, size: 20),
-                          onPressed: () => Navigator.pop(context),
-                          color: textColor ?? const Color(0xFF675B83),
-                          padding: EdgeInsets.zero,
-                          constraints: const BoxConstraints(),
-                        ),
-                      ),
-                    Expanded(
-                      child: Text(
-                        title,
-                        textAlign: centerTitle
-                            ? TextAlign.center
-                            : TextAlign.start,
-                        style: TextStyle(
-                          color: textColor ?? const Color(0xFF675B83),
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                        ),
-                      ),
-                    ),
-                    if (actions != null) ...actions!,
-                    if (centerTitle &&
-                        showBackButton &&
-                        (actions == null || actions!.isEmpty))
-                      const SizedBox(width: 32),
-                  ],
+            )
+          : null,
+      child: SafeArea(
+        bottom: false,
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: showBackButton ? 12 : 24,
+            right: 12,
+          ),
+          child: Row(
+            children: [
+              if (showBackButton)
+                Padding(
+                  padding: const EdgeInsets.only(right: 6),
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 22),
+                    onPressed: () => Navigator.pop(context),
+                    color: textColor ?? const Color(0xFF675B83),
+                    padding: const EdgeInsets.all(8),
+                    constraints: const BoxConstraints(),
+                    splashRadius: 28,
+                  ),
+                ),
+              Expanded(
+                child: Text(
+                  title,
+                  textAlign: centerTitle ? TextAlign.center : TextAlign.start,
+                  style: TextStyle(
+                    color: textColor ?? const Color(0xFF675B83),
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
+                  ),
                 ),
               ),
-            ),
+              if (actions != null) ...actions!,
+              if (centerTitle && showBackButton && (actions == null || actions!.isEmpty))
+                const SizedBox(width: 32),
+            ],
           ),
         ),
       ),
+    );
+
+    Widget content;
+    if (showOwnBackground) {
+      content = ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: innerContent,
+        ),
+      );
+    } else {
+      content = innerContent;
+    }
+
+    if (!usePositioned) return content;
+
+    return Positioned(
+      top: 0,
+      left: 0,
+      right: 0,
+      child: content,
     );
   }
 }

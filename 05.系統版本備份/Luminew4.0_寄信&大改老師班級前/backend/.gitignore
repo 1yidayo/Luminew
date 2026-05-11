@@ -1,0 +1,15 @@
+# virtual environment
+luminew_env/
+.env
+
+# python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

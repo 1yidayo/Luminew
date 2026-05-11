@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/web/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Luminew AI 面試模擬系統">
+  
+  <!-- 防止瀏覽器快取舊版本 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Luminew">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>Luminew 面試系統</title>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    /* 預載背景色，防止 PWA 白色閃爍 */
+    body {
+      background-color: #FFFDF0; /* kLuminewGooseYellow */
+      margin: 0;
+      padding: 0;
+      /* 強制系統字型堆疊，減少中文字延遲感 */
+      font-family: "PingFang TC", "Heiti TC", "Microsoft JhengHei", -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
+    }
+  </style>
+
+  <!-- 預連線以加速字型下載 -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
