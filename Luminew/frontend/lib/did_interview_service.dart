@@ -34,6 +34,7 @@ class DidInterviewService {
   Function(String error)? onError;
   Function()? onVideoTrack;
   Function(String state)? onConnectionState;
+  Function()? onInterviewEnd; // ★ 新增
 
   DidInterviewService({required this.backendUrl});
 
@@ -218,6 +219,9 @@ class DidInterviewService {
                 data['sdpMLineIndex'],
               ),
             );
+          } else if (event == 'interview_end') {
+            print('🏁 [DEBUG] 收到後端 interview_end 事件');
+            onInterviewEnd?.call();
           }
         } else if (message is Uint8List) {
           _audioBuffer.addAll(message);

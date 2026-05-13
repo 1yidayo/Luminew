@@ -175,15 +175,19 @@ def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None
         if fps == 0 or fps is None or fps > 100:
             fps = 30
             
-        # ★ [效能優化] 提速關鍵：原本每 3 幀處理一次(一秒10次)，非常耗時。
-        # 面試影片動輒1~3分鐘，為了讓分析在 30 秒內完成，改為每秒分析 2 幀。
-        process_interval = max(1, int(fps / 2))
-        # 時間軸紀錄頻率：每秒記錄一次
-        record_interval = max(1, int(fps))
+        # ★ [效能優化] 提速關鍵：面試影片動輒 1~3 分鐘。
+        # 為了大幅提升分析速度，將取樣率降為「每秒 1 幀」。
+        process_interval = max(1, int(fps))
+        # 時間軸紀錄頻率：配合處理頻率
+        record_interval = process_interval
 
         session_history = []
         frame_count = 0
         detected_count = 0
+        
+        # ★ [效能優化] 人臉框快取：不用每幀都跑 DNN 偵測，沿用舊框
+        cached_face_box = None
+        cached_face_ttl = 0
         
         orig_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         orig_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
@@ -202,54 +206,77 @@ def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None
                 if frame_count % process_interval != 0:
                     continue
 
-                # 縮小圖片以加快偵測速度
-                h_orig, w_orig = frame.shape[:2]
-                if w_orig > 640:
-                    scale = 640.0 / w_orig
-                    frame_small = cv2.resize(frame, (640, int(h_orig * scale)))
+                # ★ [效能優化] 人臉追蹤快取
+                # 如果快取還有效，直接沿用上一次的臉部位置
+                if cached_face_box is not None and cached_face_ttl > 0:
+                    (x, y, w, h) = cached_face_box
+                    # 確保沒有超出邊界
+                    h_orig, w_orig = frame.shape[:2]
+                    if x + w <= w_orig and y + h <= h_orig:
+                        face_crop = frame[y:y+h, x:x+w]
+                        cached_face_ttl -= 1
+                        detected_count += 1
+                        found_face_info = True # 標記成功
+                    else:
+                        cached_face_box = None
+                        cached_face_ttl = 0
+                        found_face_info = None
                 else:
-                    frame_small = frame
-                    
-                # ★ 使用 OpenCV DNN 抓臉
-                found_face_info = None
-                if face_net is not None:
-                    blob = cv2.dnn.blobFromImage(cv2.resize(frame_small, (300, 300)), 1.0, (300, 300), (104.0, 177.0, 123.0))
-                    face_net.setInput(blob)
-                    detections = face_net.forward()
+                    found_face_info = None
 
-                    faces = []
-                    ih, iw = frame_small.shape[:2]
-                    for i in range(0, detections.shape[2]):
-                        confidence = detections[0, 0, i, 2]
-                        if confidence > 0.5:  # 門檻值 0.5
-                            box = detections[0, 0, i, 3:7] * np.array([iw, ih, iw, ih])
-                            (startX, startY, endX, endY) = box.astype("int")
-                            
-                            # 確保在邊界內
-                            startX, startY = max(0, startX), max(0, startY)
-                            endX, endY = min(iw, endX), min(ih, endY)
-                            
-                            w, h = endX - startX, endY - startY
-                            if w > 0 and h > 0:
-                                faces.append((startX, startY, w, h))
-                    
-                    if len(faces) > 0:
-                         if w_orig > 640:
-                            scale_inv = w_orig / 640.0
-                            faces = [(int(fx*scale_inv), int(fy*scale_inv), int(fw*scale_inv), int(fh*scale_inv)) for (fx, fy, fw, fh) in faces]
-                            found_face_info = (frame, faces)
-                         else:
-                            found_face_info = (frame, faces)
-
+                # 如果沒有快取或快取失效，重新跑 DNN 偵測
                 if found_face_info is None:
-                    continue
+                    # 縮小圖片以加快偵測速度
+                    h_orig, w_orig = frame.shape[:2]
+                    if w_orig > 640:
+                        scale = 640.0 / w_orig
+                        frame_small = cv2.resize(frame, (640, int(h_orig * scale)))
+                    else:
+                        frame_small = frame
+                        
+                    # ★ 使用 OpenCV DNN 抓臉
+                    if face_net is not None:
+                        blob = cv2.dnn.blobFromImage(cv2.resize(frame_small, (300, 300)), 1.0, (300, 300), (104.0, 177.0, 123.0))
+                        face_net.setInput(blob)
+                        detections = face_net.forward()
 
-                detected_count += 1
-                correct_frame, faces = found_face_info
-                (x, y, w, h) = max(faces, key=lambda f: f[2] * f[3])
+                        faces = []
+                        ih, iw = frame_small.shape[:2]
+                        for i in range(0, detections.shape[2]):
+                            confidence = detections[0, 0, i, 2]
+                            if confidence > 0.5:  # 門檻值 0.5
+                                box = detections[0, 0, i, 3:7] * np.array([iw, ih, iw, ih])
+                                (startX, startY, endX, endY) = box.astype("int")
+                                
+                                # 確保在邊界內
+                                startX, startY = max(0, startX), max(0, startY)
+                                endX, endY = min(iw, endX), min(ih, endY)
+                                
+                                w, h = endX - startX, endY - startY
+                                if w > 0 and h > 0:
+                                    faces.append((startX, startY, w, h))
+                        
+                        if len(faces) > 0:
+                             if w_orig > 640:
+                                scale_inv = w_orig / 640.0
+                                faces = [(int(fx*scale_inv), int(fy*scale_inv), int(fw*scale_inv), int(fh*scale_inv)) for (fx, fy, fw, fh) in faces]
+                                found_face_info = faces
+                             else:
+                                found_face_info = faces
 
-                # 裁切臉部（還原為原本精確裁切，避免帶入背景干擾模型）
-                face_crop = correct_frame[y:y+h, x:x+w]
+                    if found_face_info is None:
+                        continue
+
+                    detected_count += 1
+                    faces = found_face_info
+                    (x, y, w, h) = max(faces, key=lambda f: f[2] * f[3])
+                    
+                    # 更新快取 (讓接下來的 3 秒都直接沿用這個框)
+                    cached_face_box = (x, y, w, h)
+                    cached_face_ttl = 3 
+                    
+                    # 裁切臉部
+                    face_crop = frame[y:y+h, x:x+w]
 
                 try:
                     img = cv2.cvtColor(face_crop, cv2.COLOR_BGR2RGB)

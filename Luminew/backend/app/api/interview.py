@@ -234,6 +234,13 @@ async def interview_endpoint(websocket: WebSocket, client_id: str):
             pass
     manager.on_tts_start = _on_tts_start
 
+    async def _on_interview_end():
+        try:
+            await websocket.send_text(json.dumps({"event": "interview_end"}))
+        except Exception:
+            pass
+    manager.on_interview_end = _on_interview_end
+
     # 在背景非同步啟動面試（包含 STT + AI 打招呼）
     async def run_interview():
         try:

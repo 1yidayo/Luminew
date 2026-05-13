@@ -1213,6 +1213,12 @@ class _MockInterviewScreenState extends State<MockInterviewScreen>
         });
       }
     };
+    _didService.onInterviewEnd = () {
+      if (mounted) {
+        print('🏁 [UI] 面試結束信號收到，自動啟動分析流程...');
+        _stopAndAnalyze();
+      }
+    };
   }
 
   // ★ 開始即時面試
