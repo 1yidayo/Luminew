@@ -3197,3 +3197,2017 @@
 2026-05-11 14:29 +08:00: WARNING:  Invalid HTTP request received.
 2026-05-11 14:29 +08:00: WARNING:  Invalid HTTP request received.
 2026-05-11 14:29 +08:00: WARNING:  Invalid HTTP request received.
+2026-05-14 02:48 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 02:48 +08:00:   warnings.warn(
+2026-05-14 02:48 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 02:48 +08:00:   warnings.warn(msg)
+2026-05-14 02:48 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 02:48 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 02:48 +08:00: 
+2026-05-14 02:48 +08:00:         Read more about it in the
+2026-05-14 02:48 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 02:48 +08:00:         
+2026-05-14 02:48 +08:00:   @app.on_event("startup")
+2026-05-14 02:48 +08:00: INFO:     Started server process [18680]
+2026-05-14 02:48 +08:00: INFO:     Waiting for application startup.
+2026-05-14 02:48 +08:00: INFO:     Application startup complete.
+2026-05-14 02:48 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 02:49 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 02:49 +08:00:   warnings.warn(
+2026-05-14 02:49 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 02:49 +08:00:   warnings.warn(msg)
+2026-05-14 02:49 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 02:49 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 02:49 +08:00: 
+2026-05-14 02:49 +08:00:         Read more about it in the
+2026-05-14 02:49 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 02:49 +08:00:         
+2026-05-14 02:49 +08:00:   @app.on_event("startup")
+2026-05-14 02:49 +08:00: INFO:     Started server process [7992]
+2026-05-14 02:49 +08:00: INFO:     Waiting for application startup.
+2026-05-14 02:49 +08:00: INFO:     Application startup complete.
+2026-05-14 02:49 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 02:52 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 02:52 +08:00:   warnings.warn(
+2026-05-14 02:52 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 02:52 +08:00:   warnings.warn(msg)
+2026-05-14 02:52 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 02:52 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 02:52 +08:00: 
+2026-05-14 02:52 +08:00:         Read more about it in the
+2026-05-14 02:52 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 02:52 +08:00:         
+2026-05-14 02:52 +08:00:   @app.on_event("startup")
+2026-05-14 02:52 +08:00: INFO:     Started server process [2724]
+2026-05-14 02:52 +08:00: INFO:     Waiting for application startup.
+2026-05-14 02:52 +08:00: INFO:     Application startup complete.
+2026-05-14 02:52 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 02:52 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 02:52 +08:00:   warnings.warn(
+2026-05-14 02:52 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 02:52 +08:00:   warnings.warn(msg)
+2026-05-14 02:52 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 02:52 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 02:52 +08:00: 
+2026-05-14 02:52 +08:00:         Read more about it in the
+2026-05-14 02:52 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 02:52 +08:00:         
+2026-05-14 02:52 +08:00:   @app.on_event("startup")
+2026-05-14 02:52 +08:00: INFO:     Started server process [15496]
+2026-05-14 02:52 +08:00: INFO:     Waiting for application startup.
+2026-05-14 02:52 +08:00: INFO:     Application startup complete.
+2026-05-14 02:52 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 02:53 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 02:53 +08:00:   warnings.warn(
+2026-05-14 02:53 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 02:53 +08:00:   warnings.warn(msg)
+2026-05-14 02:53 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 02:53 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 02:53 +08:00: 
+2026-05-14 02:53 +08:00:         Read more about it in the
+2026-05-14 02:53 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 02:53 +08:00:         
+2026-05-14 02:53 +08:00:   @app.on_event("startup")
+2026-05-14 02:53 +08:00: INFO:     Started server process [11476]
+2026-05-14 02:53 +08:00: INFO:     Waiting for application startup.
+2026-05-14 02:53 +08:00: INFO:     Application startup complete.
+2026-05-14 02:53 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 02:59 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 02:59 +08:00:   warnings.warn(
+2026-05-14 02:59 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 02:59 +08:00:   warnings.warn(msg)
+2026-05-14 02:59 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 02:59 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 02:59 +08:00: 
+2026-05-14 02:59 +08:00:         Read more about it in the
+2026-05-14 02:59 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 02:59 +08:00:         
+2026-05-14 02:59 +08:00:   @app.on_event("startup")
+2026-05-14 02:59 +08:00: INFO:     Started server process [2920]
+2026-05-14 02:59 +08:00: INFO:     Waiting for application startup.
+2026-05-14 02:59 +08:00: INFO:     Application startup complete.
+2026-05-14 02:59 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 03:01 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 03:01 +08:00:   warnings.warn(
+2026-05-14 03:01 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 03:01 +08:00:   warnings.warn(msg)
+2026-05-14 03:01 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 03:01 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 03:01 +08:00: 
+2026-05-14 03:01 +08:00:         Read more about it in the
+2026-05-14 03:01 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 03:01 +08:00:         
+2026-05-14 03:01 +08:00:   @app.on_event("startup")
+2026-05-14 03:01 +08:00: INFO:     Started server process [6332]
+2026-05-14 03:01 +08:00: INFO:     Waiting for application startup.
+2026-05-14 03:01 +08:00: INFO:     Application startup complete.
+2026-05-14 03:01 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 03:01 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 03:01 +08:00:   warnings.warn(
+2026-05-14 03:01 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 03:01 +08:00:   warnings.warn(msg)
+2026-05-14 03:01 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 03:01 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 03:01 +08:00: 
+2026-05-14 03:01 +08:00:         Read more about it in the
+2026-05-14 03:01 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 03:01 +08:00:         
+2026-05-14 03:01 +08:00:   @app.on_event("startup")
+2026-05-14 03:01 +08:00: INFO:     Started server process [11204]
+2026-05-14 03:01 +08:00: INFO:     Waiting for application startup.
+2026-05-14 03:01 +08:00: INFO:     Application startup complete.
+2026-05-14 03:01 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 03:04 +08:00: Traceback (most recent call last):
+2026-05-14 03:04 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:04 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:04 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:04 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:04 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 48
+2026-05-14 03:04 +08:00:     def flip_video_async(video_path: str):
+2026-05-14 03:04 +08:00: SyntaxError: expected 'except' or 'finally' block
+2026-05-14 03:05 +08:00: Traceback (most recent call last):
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:05 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:05 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 49
+2026-05-14 03:05 +08:00:     def flip_video_async(video_path: str):
+2026-05-14 03:05 +08:00: SyntaxError: expected 'except' or 'finally' block
+2026-05-14 03:05 +08:00: Traceback (most recent call last):
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:05 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:05 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 48
+2026-05-14 03:05 +08:00:     def flip_video_async(video_path: str):
+2026-05-14 03:05 +08:00: SyntaxError: expected 'except' or 'finally' block
+2026-05-14 03:05 +08:00: Traceback (most recent call last):
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:05 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:05 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 48
+2026-05-14 03:05 +08:00:     def flip_video_async(video_path: str):
+2026-05-14 03:05 +08:00: SyntaxError: expected 'except' or 'finally' block
+2026-05-14 03:05 +08:00: Traceback (most recent call last):
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:05 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:05 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 48
+2026-05-14 03:05 +08:00:     def flip_video_async(video_path: str):
+2026-05-14 03:05 +08:00: SyntaxError: expected 'except' or 'finally' block
+2026-05-14 03:05 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 03:05 +08:00:   warnings.warn(
+2026-05-14 03:05 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 03:05 +08:00:   warnings.warn(msg)
+2026-05-14 03:05 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 03:05 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 03:05 +08:00: 
+2026-05-14 03:05 +08:00:         Read more about it in the
+2026-05-14 03:05 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 03:05 +08:00:         
+2026-05-14 03:05 +08:00:   @app.on_event("startup")
+2026-05-14 03:05 +08:00: INFO:     Started server process [18336]
+2026-05-14 03:05 +08:00: INFO:     Waiting for application startup.
+2026-05-14 03:05 +08:00: INFO:     Application startup complete.
+2026-05-14 03:05 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 03:05 +08:00: Traceback (most recent call last):
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:05 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:05 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 40
+2026-05-14 03:05 +08:00:     return
+2026-05-14 03:05 +08:00: IndentationError: unexpected indent
+2026-05-14 03:05 +08:00: Traceback (most recent call last):
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:05 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:05 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 40
+2026-05-14 03:05 +08:00:     return
+2026-05-14 03:05 +08:00: IndentationError: unexpected indent
+2026-05-14 03:05 +08:00: Traceback (most recent call last):
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:05 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:05 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:05 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 40
+2026-05-14 03:05 +08:00:     return
+2026-05-14 03:05 +08:00: IndentationError: unexpected indent
+2026-05-14 03:05 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 03:05 +08:00:   warnings.warn(
+2026-05-14 03:05 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 03:05 +08:00:   warnings.warn(msg)
+2026-05-14 03:05 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 03:05 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 03:05 +08:00: 
+2026-05-14 03:05 +08:00:         Read more about it in the
+2026-05-14 03:05 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 03:05 +08:00:         
+2026-05-14 03:05 +08:00:   @app.on_event("startup")
+2026-05-14 03:05 +08:00: INFO:     Started server process [15788]
+2026-05-14 03:05 +08:00: INFO:     Waiting for application startup.
+2026-05-14 03:05 +08:00: INFO:     Application startup complete.
+2026-05-14 03:05 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 03:13 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 03:13 +08:00:   warnings.warn(
+2026-05-14 03:13 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 03:13 +08:00:   warnings.warn(msg)
+2026-05-14 03:13 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 03:13 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 03:13 +08:00: 
+2026-05-14 03:13 +08:00:         Read more about it in the
+2026-05-14 03:13 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 03:13 +08:00:         
+2026-05-14 03:13 +08:00:   @app.on_event("startup")
+2026-05-14 03:13 +08:00: INFO:     Started server process [12396]
+2026-05-14 03:13 +08:00: INFO:     Waiting for application startup.
+2026-05-14 03:13 +08:00: INFO:     Application startup complete.
+2026-05-14 03:13 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 03:30 +08:00: WARNING:  Invalid HTTP request received.
+2026-05-14 03:30 +08:00: WARNING:  Invalid HTTP request received.
+2026-05-14 03:30 +08:00: WARNING:  Invalid HTTP request received.
+2026-05-14 03:35 +08:00: Traceback (most recent call last):
+2026-05-14 03:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:35 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:35 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:35 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:35 +08:00:     ^
+2026-05-14 03:35 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:35 +08:00: Traceback (most recent call last):
+2026-05-14 03:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:35 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:35 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:35 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:35 +08:00:     ^
+2026-05-14 03:35 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:36 +08:00: Traceback (most recent call last):
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:36 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:36 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:36 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:36 +08:00:     ^
+2026-05-14 03:36 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:36 +08:00: Traceback (most recent call last):
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:36 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:36 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:36 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:36 +08:00:     ^
+2026-05-14 03:36 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:36 +08:00: Traceback (most recent call last):
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:36 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:36 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:36 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:36 +08:00:     ^
+2026-05-14 03:36 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:36 +08:00: Traceback (most recent call last):
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:36 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:36 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:36 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:36 +08:00:     ^
+2026-05-14 03:36 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:36 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 03:36 +08:00:   warnings.warn(
+2026-05-14 03:36 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 03:36 +08:00:   warnings.warn(msg)
+2026-05-14 03:36 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 03:36 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 03:36 +08:00: 
+2026-05-14 03:36 +08:00:         Read more about it in the
+2026-05-14 03:36 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 03:36 +08:00:         
+2026-05-14 03:36 +08:00:   @app.on_event("startup")
+2026-05-14 03:36 +08:00: INFO:     Started server process [18112]
+2026-05-14 03:36 +08:00: INFO:     Waiting for application startup.
+2026-05-14 03:36 +08:00: INFO:     Application startup complete.
+2026-05-14 03:36 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 03:36 +08:00: Traceback (most recent call last):
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:36 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:36 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:36 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:36 +08:00:     ^
+2026-05-14 03:36 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:36 +08:00: Traceback (most recent call last):
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:36 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:36 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:36 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:36 +08:00:     ^
+2026-05-14 03:36 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:36 +08:00: Traceback (most recent call last):
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:36 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:36 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:36 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:36 +08:00:     ^
+2026-05-14 03:36 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:36 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 03:36 +08:00:   warnings.warn(
+2026-05-14 03:36 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 03:36 +08:00:   warnings.warn(msg)
+2026-05-14 03:36 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 03:36 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 03:36 +08:00: 
+2026-05-14 03:36 +08:00:         Read more about it in the
+2026-05-14 03:36 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 03:36 +08:00:         
+2026-05-14 03:36 +08:00:   @app.on_event("startup")
+2026-05-14 03:36 +08:00: INFO:     Started server process [14560]
+2026-05-14 03:36 +08:00: INFO:     Waiting for application startup.
+2026-05-14 03:36 +08:00: INFO:     Application startup complete.
+2026-05-14 03:36 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 03:36 +08:00: Traceback (most recent call last):
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:36 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:36 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:36 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:36 +08:00:     ^
+2026-05-14 03:36 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:36 +08:00: Traceback (most recent call last):
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:36 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:36 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:36 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:36 +08:00:     ^
+2026-05-14 03:36 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:36 +08:00: Traceback (most recent call last):
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:36 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:36 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:36 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:36 +08:00:     ^
+2026-05-14 03:36 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:36 +08:00: Traceback (most recent call last):
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:36 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:36 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:36 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:36 +08:00:     ^
+2026-05-14 03:36 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:36 +08:00: Traceback (most recent call last):
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:36 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:36 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:36 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:36 +08:00:     ^
+2026-05-14 03:36 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:36 +08:00: Traceback (most recent call last):
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:36 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:36 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:36 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:36 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:36 +08:00:     ^
+2026-05-14 03:36 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:37 +08:00: Traceback (most recent call last):
+2026-05-14 03:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:37 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:37 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 572
+2026-05-14 03:37 +08:00:     (sx, sy, ex, ey        {{
+2026-05-14 03:37 +08:00:     ^
+2026-05-14 03:37 +08:00: SyntaxError: '(' was never closed
+2026-05-14 03:37 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 03:37 +08:00:   warnings.warn(
+2026-05-14 03:37 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 03:37 +08:00:   warnings.warn(msg)
+2026-05-14 03:37 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 03:37 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 03:37 +08:00: 
+2026-05-14 03:37 +08:00:         Read more about it in the
+2026-05-14 03:37 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 03:37 +08:00:         
+2026-05-14 03:37 +08:00:   @app.on_event("startup")
+2026-05-14 03:37 +08:00: INFO:     Started server process [18996]
+2026-05-14 03:37 +08:00: INFO:     Waiting for application startup.
+2026-05-14 03:37 +08:00: INFO:     Application startup complete.
+2026-05-14 03:37 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 03:37 +08:00: Traceback (most recent call last):
+2026-05-14 03:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:37 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:37 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 571
+2026-05-14 03:37 +08:00:     box = detections[0, 0, i, 3:7] * np.a        【請依照以下格式給予評價】
+2026-05-14 03:37 +08:00:                                                  ^
+2026-05-14 03:37 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-05-14 03:37 +08:00: Traceback (most recent call last):
+2026-05-14 03:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:37 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:37 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 571
+2026-05-14 03:37 +08:00:     box = detections[0, 0, i, 3:7] * np.a        【請依照以下格式給予評價】
+2026-05-14 03:37 +08:00:                                                  ^
+2026-05-14 03:37 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-05-14 03:37 +08:00: Traceback (most recent call last):
+2026-05-14 03:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:37 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:37 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 571
+2026-05-14 03:37 +08:00:     box = detections[0, 0, i, 3:7] * np.a        【請依照以下格式給予評價】
+2026-05-14 03:37 +08:00:                                                  ^
+2026-05-14 03:37 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-05-14 03:37 +08:00: Traceback (most recent call last):
+2026-05-14 03:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-05-14 03:37 +08:00:     from app.api.emotion import router as emotion_router
+2026-05-14 03:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-05-14 03:37 +08:00:     from app.services.emotion_service import (
+2026-05-14 03:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 571
+2026-05-14 03:37 +08:00:     box = detections[0, 0, i, 3:7] * np.a        【請依照以下格式給予評價】
+2026-05-14 03:37 +08:00:                                                  ^
+2026-05-14 03:37 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-05-14 03:37 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 03:37 +08:00:   warnings.warn(
+2026-05-14 03:37 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 03:37 +08:00:   warnings.warn(msg)
+2026-05-14 03:37 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 03:37 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 03:37 +08:00: 
+2026-05-14 03:37 +08:00:         Read more about it in the
+2026-05-14 03:37 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 03:37 +08:00:         
+2026-05-14 03:37 +08:00:   @app.on_event("startup")
+2026-05-14 03:37 +08:00: INFO:     Started server process [16872]
+2026-05-14 03:37 +08:00: INFO:     Waiting for application startup.
+2026-05-14 03:37 +08:00: INFO:     Application startup complete.
+2026-05-14 03:37 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 03:38 +08:00: Traceback (most recent call last):
+2026-05-14 03:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:38 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:38 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:38 +08:00:                         ^
+2026-05-14 03:38 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:38 +08:00: Traceback (most recent call last):
+2026-05-14 03:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:38 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:38 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:38 +08:00:                         ^
+2026-05-14 03:38 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:38 +08:00: Traceback (most recent call last):
+2026-05-14 03:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:38 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:38 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:38 +08:00:                         ^
+2026-05-14 03:38 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:38 +08:00: Traceback (most recent call last):
+2026-05-14 03:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:38 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:38 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:38 +08:00:                         ^
+2026-05-14 03:38 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:38 +08:00: Traceback (most recent call last):
+2026-05-14 03:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:38 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:38 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:38 +08:00:                         ^
+2026-05-14 03:38 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:38 +08:00: Traceback (most recent call last):
+2026-05-14 03:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:38 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:38 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:38 +08:00:                         ^
+2026-05-14 03:38 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:39 +08:00: Traceback (most recent call last):
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:39 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:39 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:39 +08:00:                         ^
+2026-05-14 03:39 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:40 +08:00: Traceback (most recent call last):
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:40 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:40 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:40 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:40 +08:00:                         ^
+2026-05-14 03:40 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:41 +08:00: Traceback (most recent call last):
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:41 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:41 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:41 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:41 +08:00:                         ^
+2026-05-14 03:41 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:42 +08:00: Traceback (most recent call last):
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:42 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:42 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:42 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:42 +08:00:                         ^
+2026-05-14 03:42 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:43 +08:00: Traceback (most recent call last):
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:43 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:43 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:43 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:43 +08:00:                         ^
+2026-05-14 03:43 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:44 +08:00: Traceback (most recent call last):
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:44 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:44 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:44 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:44 +08:00:                         ^
+2026-05-14 03:44 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:45 +08:00: Traceback (most recent call last):
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:45 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:45 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:45 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:45 +08:00:                         ^
+2026-05-14 03:45 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:46 +08:00: Traceback (most recent call last):
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:46 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:46 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:46 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:46 +08:00:                         ^
+2026-05-14 03:46 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:47 +08:00: Traceback (most recent call last):
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:47 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:47 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:47 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:47 +08:00:                         ^
+2026-05-14 03:47 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:48 +08:00: Traceback (most recent call last):
+2026-05-14 03:48 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:48 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:48 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:48 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:48 +08:00:                         ^
+2026-05-14 03:48 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:48 +08:00: Traceback (most recent call last):
+2026-05-14 03:48 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:48 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:48 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:48 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:48 +08:00:                         ^
+2026-05-14 03:48 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:48 +08:00: Traceback (most recent call last):
+2026-05-14 03:48 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:48 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:48 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:48 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:48 +08:00:                         ^
+2026-05-14 03:48 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:48 +08:00: Traceback (most recent call last):
+2026-05-14 03:48 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 9, in <module>
+2026-05-14 03:48 +08:00:     from app.api.db_routes import router as db_router
+2026-05-14 03:48 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 389
+2026-05-14 03:48 +08:00:     本郵件由 Luminew AI 自動生成，請勿直接回覆。
+2026-05-14 03:48 +08:00:                         ^
+2026-05-14 03:48 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-05-14 03:48 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 03:48 +08:00:   warnings.warn(
+2026-05-14 03:48 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 03:48 +08:00:   warnings.warn(msg)
+2026-05-14 03:48 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 03:48 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 03:48 +08:00: 
+2026-05-14 03:48 +08:00:         Read more about it in the
+2026-05-14 03:48 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 03:48 +08:00:         
+2026-05-14 03:48 +08:00:   @app.on_event("startup")
+2026-05-14 03:48 +08:00: INFO:     Started server process [15732]
+2026-05-14 03:48 +08:00: INFO:     Waiting for application startup.
+2026-05-14 03:48 +08:00: INFO:     Application startup complete.
+2026-05-14 03:48 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 03:48 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 03:48 +08:00:   warnings.warn(
+2026-05-14 03:48 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 03:48 +08:00:   warnings.warn(msg)
+2026-05-14 03:48 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 03:48 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 03:48 +08:00: 
+2026-05-14 03:48 +08:00:         Read more about it in the
+2026-05-14 03:48 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 03:48 +08:00:         
+2026-05-14 03:48 +08:00:   @app.on_event("startup")
+2026-05-14 03:48 +08:00: INFO:     Started server process [15452]
+2026-05-14 03:48 +08:00: INFO:     Waiting for application startup.
+2026-05-14 03:48 +08:00: INFO:     Application startup complete.
+2026-05-14 03:48 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 03:49 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 03:49 +08:00:   warnings.warn(
+2026-05-14 03:49 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 03:49 +08:00:   warnings.warn(msg)
+2026-05-14 03:49 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 03:49 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 03:49 +08:00: 
+2026-05-14 03:49 +08:00:         Read more about it in the
+2026-05-14 03:49 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 03:49 +08:00:         
+2026-05-14 03:49 +08:00:   @app.on_event("startup")
+2026-05-14 03:49 +08:00: INFO:     Started server process [4960]
+2026-05-14 03:49 +08:00: INFO:     Waiting for application startup.
+2026-05-14 03:49 +08:00: INFO:     Application startup complete.
+2026-05-14 03:49 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 03:49 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 03:49 +08:00:   warnings.warn(
+2026-05-14 03:49 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 03:49 +08:00:   warnings.warn(msg)
+2026-05-14 03:49 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 03:49 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 03:49 +08:00: 
+2026-05-14 03:49 +08:00:         Read more about it in the
+2026-05-14 03:49 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 03:49 +08:00:         
+2026-05-14 03:49 +08:00:   @app.on_event("startup")
+2026-05-14 03:49 +08:00: INFO:     Started server process [6344]
+2026-05-14 03:49 +08:00: INFO:     Waiting for application startup.
+2026-05-14 03:49 +08:00: INFO:     Application startup complete.
+2026-05-14 03:49 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 04:01 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 04:01 +08:00:   warnings.warn(
+2026-05-14 04:01 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 04:01 +08:00:   warnings.warn(msg)
+2026-05-14 04:01 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 04:01 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 04:01 +08:00: 
+2026-05-14 04:01 +08:00:         Read more about it in the
+2026-05-14 04:01 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 04:01 +08:00:         
+2026-05-14 04:01 +08:00:   @app.on_event("startup")
+2026-05-14 04:01 +08:00: INFO:     Started server process [8028]
+2026-05-14 04:01 +08:00: INFO:     Waiting for application startup.
+2026-05-14 04:01 +08:00: INFO:     Application startup complete.
+2026-05-14 04:01 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 04:17 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 04:17 +08:00:   warnings.warn(
+2026-05-14 04:17 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 04:17 +08:00:   warnings.warn(msg)
+2026-05-14 04:17 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 04:17 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 04:17 +08:00: 
+2026-05-14 04:17 +08:00:         Read more about it in the
+2026-05-14 04:17 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 04:17 +08:00:         
+2026-05-14 04:17 +08:00:   @app.on_event("startup")
+2026-05-14 04:17 +08:00: INFO:     Started server process [6608]
+2026-05-14 04:17 +08:00: INFO:     Waiting for application startup.
+2026-05-14 04:17 +08:00: INFO:     Application startup complete.
+2026-05-14 04:17 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 04:19 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 04:19 +08:00:   warnings.warn(
+2026-05-14 04:19 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 04:19 +08:00:   warnings.warn(msg)
+2026-05-14 04:19 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 04:19 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 04:19 +08:00: 
+2026-05-14 04:19 +08:00:         Read more about it in the
+2026-05-14 04:19 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 04:19 +08:00:         
+2026-05-14 04:19 +08:00:   @app.on_event("startup")
+2026-05-14 04:19 +08:00: INFO:     Started server process [17116]
+2026-05-14 04:19 +08:00: INFO:     Waiting for application startup.
+2026-05-14 04:19 +08:00: INFO:     Application startup complete.
+2026-05-14 04:19 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 04:26 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 04:26 +08:00:   warnings.warn(
+2026-05-14 04:26 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 04:26 +08:00:   warnings.warn(msg)
+2026-05-14 04:26 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 04:26 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 04:26 +08:00: 
+2026-05-14 04:26 +08:00:         Read more about it in the
+2026-05-14 04:26 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 04:26 +08:00:         
+2026-05-14 04:26 +08:00:   @app.on_event("startup")
+2026-05-14 04:26 +08:00: INFO:     Started server process [9768]
+2026-05-14 04:26 +08:00: INFO:     Waiting for application startup.
+2026-05-14 04:26 +08:00: INFO:     Application startup complete.
+2026-05-14 04:26 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 04:29 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 04:29 +08:00:   warnings.warn(
+2026-05-14 04:29 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 04:29 +08:00:   warnings.warn(msg)
+2026-05-14 04:29 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 04:29 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 04:29 +08:00: 
+2026-05-14 04:29 +08:00:         Read more about it in the
+2026-05-14 04:29 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 04:29 +08:00:         
+2026-05-14 04:29 +08:00:   @app.on_event("startup")
+2026-05-14 04:29 +08:00: INFO:     Started server process [11204]
+2026-05-14 04:29 +08:00: INFO:     Waiting for application startup.
+2026-05-14 04:29 +08:00: INFO:     Application startup complete.
+2026-05-14 04:29 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 04:33 +08:00: WARNING:  Invalid HTTP request received.
+2026-05-14 04:33 +08:00: WARNING:  Invalid HTTP request received.
+2026-05-14 04:43 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 04:43 +08:00:   warnings.warn(
+2026-05-14 04:43 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 04:43 +08:00:   warnings.warn(msg)
+2026-05-14 04:43 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 04:43 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 04:43 +08:00: 
+2026-05-14 04:43 +08:00:         Read more about it in the
+2026-05-14 04:43 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 04:43 +08:00:         
+2026-05-14 04:43 +08:00:   @app.on_event("startup")
+2026-05-14 04:43 +08:00: INFO:     Started server process [11232]
+2026-05-14 04:43 +08:00: INFO:     Waiting for application startup.
+2026-05-14 04:43 +08:00: INFO:     Application startup complete.
+2026-05-14 04:43 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 04:43 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 04:43 +08:00:   warnings.warn(
+2026-05-14 04:43 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 04:43 +08:00:   warnings.warn(msg)
+2026-05-14 04:43 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 04:43 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 04:43 +08:00: 
+2026-05-14 04:43 +08:00:         Read more about it in the
+2026-05-14 04:43 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 04:43 +08:00:         
+2026-05-14 04:43 +08:00:   @app.on_event("startup")
+2026-05-14 04:43 +08:00: INFO:     Started server process [9936]
+2026-05-14 04:43 +08:00: INFO:     Waiting for application startup.
+2026-05-14 04:43 +08:00: INFO:     Application startup complete.
+2026-05-14 04:43 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 04:48 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 04:48 +08:00:   warnings.warn(
+2026-05-14 04:48 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 04:48 +08:00:   warnings.warn(msg)
+2026-05-14 04:48 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 04:48 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 04:48 +08:00: 
+2026-05-14 04:48 +08:00:         Read more about it in the
+2026-05-14 04:48 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 04:48 +08:00:         
+2026-05-14 04:48 +08:00:   @app.on_event("startup")
+2026-05-14 04:48 +08:00: INFO:     Started server process [7988]
+2026-05-14 04:48 +08:00: INFO:     Waiting for application startup.
+2026-05-14 04:48 +08:00: INFO:     Application startup complete.
+2026-05-14 04:48 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 04:48 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 04:48 +08:00:   warnings.warn(
+2026-05-14 04:48 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 04:48 +08:00:   warnings.warn(msg)
+2026-05-14 04:48 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 04:48 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 04:48 +08:00: 
+2026-05-14 04:48 +08:00:         Read more about it in the
+2026-05-14 04:48 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 04:48 +08:00:         
+2026-05-14 04:48 +08:00:   @app.on_event("startup")
+2026-05-14 04:48 +08:00: INFO:     Started server process [6816]
+2026-05-14 04:48 +08:00: INFO:     Waiting for application startup.
+2026-05-14 04:48 +08:00: INFO:     Application startup complete.
+2026-05-14 04:48 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-05-14 04:49 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-05-14 04:49 +08:00:   warnings.warn(
+2026-05-14 04:49 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-05-14 04:49 +08:00:   warnings.warn(msg)
+2026-05-14 04:49 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:77: DeprecationWarning: 
+2026-05-14 04:49 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-05-14 04:49 +08:00: 
+2026-05-14 04:49 +08:00:         Read more about it in the
+2026-05-14 04:49 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-05-14 04:49 +08:00:         
+2026-05-14 04:49 +08:00:   @app.on_event("startup")
+2026-05-14 04:49 +08:00: INFO:     Started server process [14016]
+2026-05-14 04:49 +08:00: INFO:     Waiting for application startup.
+2026-05-14 04:49 +08:00: INFO:     Application startup complete.
+2026-05-14 04:49 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)

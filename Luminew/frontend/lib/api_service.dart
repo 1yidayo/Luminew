@@ -94,6 +94,25 @@ class ApiService {
     });
   }
 
+  // --- 新增：學習歷程分析專用寄信介面 ---
+  static Future<void> sendPortfolioAnalysisEmail({
+    required String recipientEmail,
+    required String studentName,
+    required String summary,
+    required String strengths,
+    required String weaknesses,
+    required String suggestions,
+  }) async {
+    await _post('/send_portfolio_email', {
+      'recipientEmail': recipientEmail,
+      'studentName': studentName,
+      'summary': summary,
+      'strengths': strengths,
+      'weaknesses': weaknesses,
+      'suggestions': suggestions,
+    });
+  }
+
   static Future<void> registerUser(
     String email,
     String password,

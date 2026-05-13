@@ -344,3 +344,59 @@ AI 綜合評分：{req.overallScore} 分
         import traceback
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"寄信失敗: {str(e)}")
+
+# --- 新增：學習歷程分析專用寄信介面 ---
+class SendPortfolioEmailReq(BaseModel):
+    recipientEmail: str
+    studentName: str
+    summary: str
+    strengths: str
+    weaknesses: str
+    suggestions: str
+
+@router.post("/send_portfolio_email")
+def send_portfolio_email(req: SendPortfolioEmailReq):
+    try:
+        sender_email = os.getenv("SMTP_EMAIL")
+        sender_pwd = os.getenv("SMTP_PASSWORD")
+        if not sender_email or not sender_pwd:
+             raise HTTPException(status_code=500, detail="Server SMTP configuration missing")
+
+        date_str = datetime.now().strftime("%Y/%m/%d")
+        subject = f"【Luminew】{req.studentName} 的 AI 學習歷程分析報告（{date_str}）"
+        body = f"""你好！這是來自 Luminew 系統的 AI 學習歷程分析報告：
+
+受分析學生：{req.studentName}
+分析日期：{date_str}
+
+【整體評語】
+{req.summary}
+
+【亮點優勢】
+{req.strengths}
+
+【不足之處】
+{req.weaknesses}
+
+【具體優化建議】
+{req.suggestions}
+
+希望這些建議能幫助你將學習歷程檔案做得更加出色！
+
+────────────────────────
+Luminew AI 智慧輔導系統
+"""
+        msg = MIMEMultipart()
+        msg['Subject'] = subject
+        msg['From'] = f"Luminew <{sender_email}>"
+        msg['To'] = req.recipientEmail
+        msg.attach(MIMEText(body, 'plain', 'utf-8'))
+
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login(sender_email, sender_pwd)
+            server.send_message(msg)
+
+        return {"status": "ok", "message": "Portfolio email sent"}
+    except Exception as e:
+        print(f"❌ [Portfolio Email] 失敗: {e}")
+        raise HTTPException(status_code=500, detail=str(e))

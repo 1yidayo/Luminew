@@ -831,16 +831,18 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
 
     setState(() => _isSendingEmail = true);
     try {
-      final score = _analysisResult!['overall_score'] ?? 0;
-      final comment = _analysisResult!['comment'] ?? '';
+      final summary = _analysisResult!['summary'] ?? '';
+      final strengths = (_analysisResult!['strengths'] as List<dynamic>? ?? []).join('\n');
+      final weaknesses = (_analysisResult!['weaknesses'] as List<dynamic>? ?? []).join('\n');
       final suggestions = (_analysisResult!['suggestions'] as List<dynamic>? ?? []).join('\n');
 
-      await ApiService.sendPortfolioResultEmail(
+      await ApiService.sendPortfolioAnalysisEmail(
         recipientEmail: widget.user.email,
         studentName: widget.user.name,
-        overallScore: score,
-        comment: comment,
-        suggestion: suggestions,
+        summary: summary,
+        strengths: strengths,
+        weaknesses: weaknesses,
+        suggestions: suggestions,
       );
 
       if (mounted) {
@@ -1063,162 +1065,104 @@ class _PortfolioAnalysisScreenState extends State<PortfolioAnalysisScreen> {
   }
 
   Widget _buildResultCard() {
-    final score = _analysisResult!['overall_score'] ?? 0;
     final strengths = _analysisResult!['strengths'] as List<dynamic>? ?? [];
     final weaknesses = _analysisResult!['weaknesses'] as List<dynamic>? ?? [];
-    final comment = _analysisResult!['comment'] ?? '';
     final suggestions = _analysisResult!['suggestions'] as List<dynamic>? ?? [];
+    final summary = _analysisResult!['summary'] ?? _analysisResult!['comment'] ?? '';
 
     return Container(
-      padding: const EdgeInsets.all(AppSpacings.cardPadding),
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.surfaceWhite,
-        borderRadius: BorderRadius.circular(AppDesign.radiusL),
-        boxShadow: AppDesign.premiumShadow,
-        border: Border.all(color: AppColors.purpleBorder),
+        color: Colors.white.withOpacity(0.20),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: AppColors.primaryPurple.withOpacity(0.50),
+          width: 1.5,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // 整體評語區塊
           Row(
             children: [
-              const Icon(Icons.analytics_outlined, color: AppColors.primaryPurple, size: 24),
-              const SizedBox(width: 8),
-              Text('詳細分析報告', style: AppTextStyles.h2),
-              const Spacer(),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                decoration: BoxDecoration(color: _getScoreColor(score), borderRadius: BorderRadius.circular(20)),
-                child: Text('$score 分', style: AppTextStyles.buttonText.copyWith(fontSize: 16)),
-              ),
+              const Icon(Icons.psychology, color: AppColors.primaryPurple, size: 24),
+              const SizedBox(width: 10),
+              Text('整體評語', style: AppTextStyles.h3.copyWith(color: AppColors.deepIndigo, fontSize: 18, fontWeight: FontWeight.bold)),
             ],
           ),
+          const SizedBox(height: 10),
+          Text(
+            summary,
+            style: AppTextStyles.bodyMedium.copyWith(color: Colors.black87, height: 1.5, fontSize: 15),
+          ),
 
-          const SizedBox(height: 20),
+          // 分隔線
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Divider(color: AppColors.primaryPurple.withOpacity(0.3), thickness: 1),
+          ),
 
-          // 優點
+          // 亮點優勢
           if (strengths.isNotEmpty) ...[
-            const Row(
+            Row(
               children: [
-                Icon(Icons.thumb_up, color: Colors.green, size: 18),
-                SizedBox(width: 6),
-                Text(
-                  '優點',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
+                const Icon(Icons.stars_rounded, color: AppColors.primaryPurple, size: 24),
+                const SizedBox(width: 10),
+                Text('亮點優勢', style: AppTextStyles.h3.copyWith(color: AppColors.deepIndigo, fontSize: 18, fontWeight: FontWeight.bold)),
               ],
             ),
-            const SizedBox(height: 8),
-            ...strengths.map(
-              (s) => Padding(
-                padding: const EdgeInsets.only(left: 24, bottom: 4),
-                child: Text('• $s', style: const TextStyle(fontSize: 14)),
-              ),
-            ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
+            ...strengths.map((s) => _buildBulletPoint(s)),
+            const SizedBox(height: 12),
           ],
 
-          // 需改進
+          // 不足之處
           if (weaknesses.isNotEmpty) ...[
-            const Row(
+            Row(
               children: [
-                Icon(Icons.warning_amber, color: Colors.orange, size: 18),
-                SizedBox(width: 6),
-                Text(
-                  '需改進',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
+                const Icon(Icons.error_outline_rounded, color: AppColors.primaryPurple, size: 24),
+                const SizedBox(width: 10),
+                Text('不足之處', style: AppTextStyles.h3.copyWith(color: AppColors.deepIndigo, fontSize: 18, fontWeight: FontWeight.bold)),
               ],
             ),
-            const SizedBox(height: 8),
-            ...weaknesses.map(
-              (w) => Padding(
-                padding: const EdgeInsets.only(left: 24, bottom: 4),
-                child: Text('• $w', style: const TextStyle(fontSize: 14)),
-              ),
-            ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
+            ...weaknesses.map((w) => _buildBulletPoint(w)),
+            const SizedBox(height: 12),
           ],
 
-          // 整體評語
-          if (comment.isNotEmpty) ...[
-            const Row(
-              children: [
-                Icon(Icons.chat, color: Colors.blue, size: 18),
-                SizedBox(width: 6),
-                Text(
-                  '整體評語',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.blue[50],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Text(comment, style: const TextStyle(fontSize: 14)),
-            ),
-            const SizedBox(height: 16),
-          ],
-
-          // 改進建議
+          // 改進建議區塊
           if (suggestions.isNotEmpty) ...[
-            const Row(
+            Row(
               children: [
-                Icon(Icons.lightbulb, color: Colors.amber, size: 18),
-                SizedBox(width: 6),
-                Text(
-                  '改進建議',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
+                const Icon(Icons.lightbulb, color: AppColors.primaryPurple, size: 24),
+                const SizedBox(width: 10),
+                Text('改進建議', style: AppTextStyles.h3.copyWith(color: AppColors.deepIndigo, fontSize: 18, fontWeight: FontWeight.bold)),
               ],
             ),
-            const SizedBox(height: 8),
-            ...suggestions.asMap().entries.map(
-              (entry) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 24,
-                      height: 24,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Colors.amber[100],
-                        shape: BoxShape.circle,
-                      ),
-                      child: Text(
-                        '${entry.key + 1}',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Text(
-                        entry.value,
-                        style: const TextStyle(fontSize: 14),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            const SizedBox(height: 10),
+            ...suggestions.map((s) => _buildBulletPoint(s)),
           ],
         ],
       ),
     );
   }
 
-  Color _getScoreColor(int score) {
-    if (score >= 80) return Colors.green;
-    if (score >= 60) return Colors.orange;
-    return Colors.red;
+  Widget _buildBulletPoint(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8, left: 4),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Icon(Icons.circle, size: 6, color: AppColors.primaryPurple),
+          ),
+          const SizedBox(width: 12),
+          Expanded(child: Text(text, style: AppTextStyles.bodyMedium.copyWith(color: Colors.black87, height: 1.5))),
+        ],
+      ),
+    );
   }
 }
