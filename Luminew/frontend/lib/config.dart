@@ -1,4 +1,4 @@
 class AppConfig {
-  static const String httpUrl = "https://luminew.website";
+  static const String httpUrl = "https://luminew.site";
 }
 
