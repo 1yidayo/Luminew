@@ -29,23 +29,32 @@ class InterviewManager:
         self.mode = "did" if use_did else "minimax"
 
         # --- [更新] 總共 3 題流程 ---
-        # 第 1 題固定：自我介紹
-        # 第 2, 3 題從題庫或個人化問題挑選
+        import random
+        
         fixed_q1 = "同學請坐，請花1分鐘跟我介紹你自己"
         
+        # 決定第一題
+        if self.department == "通用型":
+            first_q = fixed_q1
+        else:
+            # 如果不是通用型，不強制自我介紹
+            # 從題庫或自訂問題中隨機挑選一題作為開場
+            if custom_questions and len(custom_questions) > 0:
+                first_q = random.choice([q for q in custom_questions if q != fixed_q1])
+            else:
+                all_q = get_random_questions(department=self.department)
+                first_q = random.choice([q for q in all_q if q != fixed_q1])
+                
+        # 決定後續題目
         if custom_questions and len(custom_questions) > 0:
-            import random
-            # 從自訂問題中挑選 2 題
-            pool = [q for q in custom_questions if q != fixed_q1]
+            pool = [q for q in custom_questions if q != fixed_q1 and q != first_q]
             selected_others = random.sample(pool, min(2, len(pool)))
         else:
-            # 從預設題庫中挑選 2 題
             all_q = get_random_questions(department=self.department)
-            pool = [q for q in all_q if q != fixed_q1]
-            import random
+            pool = [q for q in all_q if q != fixed_q1 and q != first_q]
             selected_others = random.sample(pool, min(2, len(pool)))
         
-        self.questions = [fixed_q1] + selected_others
+        self.questions = [first_q] + selected_others
         self.current_question_index = 0 # 追蹤目前是第幾題
         self.total_questions = 3
 
@@ -136,14 +145,25 @@ class InterviewManager:
                 print(f"[ERROR] _on_student_text_sync 錯誤: {e}")
 
     async def _play_opening_greeting(self):
-        """讓教授自然地開場，但強制要求固定主題（請坐 + 1分鐘自介）"""
-        opening_instruct = (
-            f"\n\n現在面試剛開始，請你作為面試官（{self.professor_persona.name}），主動向學生打招呼。\n"
-            "【開場強制任務】\n"
-            "1. 請務必先請學生「坐下」（例如：同學請坐、請坐下吧）。\n"
-            "2. 拋出的第一題必須是「請學生進行約 1 分鐘的自我介紹」。\n"
-            "3. 語氣要完全符合你的教授人格，可以有自然的開場白，但請保持簡短直接。"
-        )
+        """讓教授自然地開場"""
+        if self.department == "通用型":
+            opening_instruct = (
+                f"\n\n現在面試剛開始，請你作為面試官（{self.professor_persona.name}），主動向學生打招呼。\n"
+                "【開場強制任務】\n"
+                "1. 請務必先請學生「坐下」（例如：同學請坐、請坐下吧）。\n"
+                "2. 拋出的第一題必須是「請學生進行約 1 分鐘的自我介紹」。\n"
+                "3. 語氣要完全符合你的教授人格，可以有自然的開場白，但請保持簡短直接。"
+            )
+        else:
+            first_question = self.questions[0]
+            opening_instruct = (
+                f"\n\n現在面試剛開始，請你作為面試官（{self.professor_persona.name}），主動向學生打招呼。\n"
+                "【開場強制任務】\n"
+                "1. 請務必先請學生「坐下」（例如：同學請坐、請坐下吧）。\n"
+                f"2. 拋出的第一題必須是：「{first_question}」。\n"
+                "3. 語氣要完全符合你的教授人格，可以有自然的開場白，但請保持簡短直接。"
+            )
+        
         opening_prompt = self.system_prompt + opening_instruct
 
         print(f"[THINK] 教授 ({self.professor_persona.name}) 正在準備開場白...")
