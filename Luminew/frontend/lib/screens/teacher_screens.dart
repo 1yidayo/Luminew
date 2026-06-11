@@ -39,7 +39,7 @@ class _TeacherMainScaffoldState extends State<TeacherMainScaffold> {
   @override
   Widget build(BuildContext context) {
     final pages = [
-      TeacherClassScreen(user: widget.user),
+      TeacherStudentScreen(user: widget.user),
       TeacherScheduleScreen(user: widget.user),
       ClassForumScreen(userEmail: widget.user.email),
       InterviewRecordListScreen(user: widget.user),
@@ -74,7 +74,7 @@ class _TeacherMainScaffoldState extends State<TeacherMainScaffold> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _buildNavItem(0, Icons.class_outlined, Icons.class_, '班級'),
+                  _buildNavItem(0, Icons.people_outlined, Icons.people, '學生'),
                   _buildNavItem(1, Icons.calendar_month_outlined, Icons.calendar_month, '排程'),
                   _buildNavItem(2, Icons.chat_bubble_outline, Icons.chat_bubble, '交流'),
                   _buildNavItem(3, Icons.video_library_outlined, Icons.video_library, '紀錄'),
@@ -124,16 +124,17 @@ class _TeacherMainScaffoldState extends State<TeacherMainScaffold> {
   }
 }
 
-// 班級管理
-class TeacherClassScreen extends StatefulWidget {
+// 學生管理
+class TeacherStudentScreen extends StatefulWidget {
   final AppUser user;
-  const TeacherClassScreen({super.key, required this.user});
+  const TeacherStudentScreen({super.key, required this.user});
   @override
-  State<TeacherClassScreen> createState() => _TeacherClassScreenState();
+  State<TeacherStudentScreen> createState() => _TeacherStudentScreenState();
 }
 
-class _TeacherClassScreenState extends State<TeacherClassScreen> {
-  List<Class> _list = [];
+class _TeacherStudentScreenState extends State<TeacherStudentScreen> {
+  List<Student> _students = [];
+  String _teacherCode = "";
   bool _isLoading = false;
 
   @override
@@ -146,69 +147,14 @@ class _TeacherClassScreenState extends State<TeacherClassScreen> {
     if (!mounted) return;
     setState(() => _isLoading = true);
     try {
-      await Future.delayed(const Duration(milliseconds: 300));
-      var data = await ApiService.getTeacherClasses(widget.user.email);
-      if (mounted) setState(() => _list = data);
+      final p = await ApiService.getTeacherProfile(widget.user.email);
+      _teacherCode = p['TeacherCode'] ?? '';
+      _students = await ApiService.getTeacherStudents(widget.user.email);
     } catch (e) {
       print("讀取失敗: $e");
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
-  }
-
-  Future<void> _createClass() async {
-    final c = TextEditingController();
-    await showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kRadius),
-        ),
-        title: const Text("建立新班級"),
-        content: TextField(
-          controller: c,
-          decoration: InputDecoration(
-            labelText: "班級名稱",
-            hintText: "例如：計算機概論",
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            filled: true,
-            fillColor: Colors.grey[50],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: const Text("取消"),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              if (c.text.isEmpty) return;
-              Navigator.pop(ctx);
-              setState(() => _isLoading = true);
-              try {
-                await ApiService.createClass(c.text, widget.user.email);
-                await Future.delayed(const Duration(milliseconds: 500));
-                if (mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("✅ 建立成功！"), backgroundColor: Colors.green),
-                  );
-                }
-                await _load();
-              } catch (e) {
-                if (mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("❌ 錯誤: $e"), backgroundColor: Colors.red),
-                  );
-                }
-                setState(() => _isLoading = false);
-              }
-            },
-            style: ElevatedButton.styleFrom(backgroundColor: kLuminewMainPurple, foregroundColor: Colors.white),
-            child: const Text("建立"),
-          ),
-        ],
-      ),
-    );
   }
 
   @override
@@ -220,30 +166,54 @@ class _TeacherClassScreenState extends State<TeacherClassScreen> {
           RefreshIndicator(
             onRefresh: _load,
             color: kLuminewMainPurple,
-            child: _isLoading && _list.isEmpty
+            child: _isLoading && _students.isEmpty
                 ? const Center(child: CircularProgressIndicator())
-                : _list.isEmpty
-                    ? ListView(
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        children: const [
-                          SizedBox(height: 200),
-                          Center(
-                            child: Text(
-                              "尚未建立班級\n請點擊右下角新增",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Color(0xFF5A5A5A)),
+                : ListView(
+                    physics: const AlwaysScrollableScrollPhysics(),
+                    padding: const EdgeInsets.fromLTRB(16, 110, 16, 20),
+                    children: [
+                      // 邀請碼區塊
+                      Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: kLuminewMainPurple.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(kRadius),
+                        ),
+                        child: Column(
+                          children: [
+                            const Text("我的專屬老師邀請碼", style: TextStyle(color: kLuminewDeepIndigo, fontSize: 14)),
+                            const SizedBox(height: 8),
+                            InkWell(
+                              onTap: () {
+                                Clipboard.setData(ClipboardData(text: _teacherCode));
+                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("已複製邀請碼")));
+                              },
+                              child: Text(
+                                _teacherCode, 
+                                style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, letterSpacing: 5, color: kLuminewMainPurple)
+                              ),
                             ),
-                          ),
-                        ],
-                      )
-                    : ListView.builder(
-                        padding: const EdgeInsets.fromLTRB(16, 110, 16, 20),
-                        itemCount: _list.length,
-                        itemBuilder: (ctx, i) => _buildClassCardItem(i),
+                          ],
+                        ),
                       ),
+                      const SizedBox(height: 20),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 4),
+                        child: Text("我的學生", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: kLuminewDeepIndigo)),
+                      ),
+                      const SizedBox(height: 10),
+                      if (_students.isEmpty)
+                        const Padding(
+                          padding: EdgeInsets.all(20),
+                          child: Center(child: Text("目前還沒有學生加入喔！", style: TextStyle(color: Colors.grey))),
+                        )
+                      else
+                        ..._students.map((s) => _buildStudentCardItem(s)),
+                    ],
+                  ),
           ),
           LuminewHeader(
-            title: '班級管理',
+            title: '我的學生',
             actions: [
               IconButton(
                 icon: const Icon(Icons.notifications_none_rounded, color: kLuminewDeepIndigo),
@@ -254,22 +224,12 @@ class _TeacherClassScreenState extends State<TeacherClassScreen> {
               ),
             ],
           ),
-          Positioned(
-            right: 20,
-            bottom: 20,
-            child: FloatingActionButton.extended(
-              onPressed: _createClass,
-              icon: const Icon(Icons.add),
-              label: const Text("新增班級"),
-              backgroundColor: kLuminewMainPurple,
-            ),
-          ),
         ],
       ),
     );
   }
 
-  Widget _buildClassCardItem(int i) {
+  Widget _buildStudentCardItem(Student s) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
@@ -284,196 +244,119 @@ class _TeacherClassScreenState extends State<TeacherClassScreen> {
         leading: Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(color: kLuminewMainPurple.withOpacity(0.1), shape: BoxShape.circle),
-          child: const Icon(Icons.school_rounded, color: kLuminewMainPurple),
+          child: const Icon(Icons.person_rounded, color: kLuminewMainPurple),
         ),
-        title: Text(_list[i].name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-        subtitle: const Text("點擊管理學生與面試", style: TextStyle(fontSize: 12, color: Colors.grey)),
+        title: Text(s.name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+        subtitle: const Text("點擊查看面試紀錄", style: TextStyle(fontSize: 12, color: Colors.grey)),
         trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[400]),
         onTap: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (_) => TeacherClassDetailScreen(cls: _list[i], user: widget.user)),
+          MaterialPageRoute(builder: (_) => TeacherStudentRecordsScreen(student: s, user: widget.user)),
         ),
       ),
     );
   }
 }
 
-// 班級詳情
-class TeacherClassDetailScreen extends StatefulWidget {
-  final Class cls;
+class TeacherStudentRecordsScreen extends StatefulWidget {
+  final Student student;
   final AppUser user;
-  const TeacherClassDetailScreen({super.key, required this.cls, required this.user});
+  const TeacherStudentRecordsScreen({super.key, required this.student, required this.user});
   @override
-  State<TeacherClassDetailScreen> createState() => _TeacherClassDetailScreenState();
+  State<TeacherStudentRecordsScreen> createState() => _TeacherStudentRecordsScreenState();
 }
 
-class _TeacherClassDetailScreenState extends State<TeacherClassDetailScreen> {
-  List<Student> _students = [];
-  final Set<String> _selectedIds = {};
-  bool _isAllSelected = false;
+class _TeacherStudentRecordsScreenState extends State<TeacherStudentRecordsScreen> {
+  List<InterviewRecord> _records = [];
   bool _isLoading = false;
 
   @override
   void initState() {
     super.initState();
-    _loadStudents();
+    _loadRecords();
   }
 
-  Future<void> _loadStudents() async {
+  Future<void> _loadRecords() async {
     setState(() => _isLoading = true);
     try {
-      var list = await ApiService.getClassStudents(widget.cls.id);
-      if (mounted) setState(() { _students = list; _isLoading = false; _selectedIds.clear(); _isAllSelected = false; });
+      var list = await ApiService.getTeacherRecords(widget.user.email, widget.student.id);
+      if (mounted) setState(() { _records = list; });
     } catch (e) {
+      // ignore
+    } finally {
       if (mounted) setState(() => _isLoading = false);
     }
   }
 
-  void _toggleSelectAll(bool? val) {
-    setState(() {
-      _isAllSelected = val ?? false;
-      if (_isAllSelected) _selectedIds.addAll(_students.map((s) => s.id));
-      else _selectedIds.clear();
-    });
-  }
-
-  void _toggleSingle(String id) {
-    setState(() {
-      if (_selectedIds.contains(id)) _selectedIds.remove(id);
-      else _selectedIds.add(id);
-      _isAllSelected = _selectedIds.length == _students.length;
-    });
-  }
-
-  void _sendBulkInvite() {
-    if (_selectedIds.isEmpty) return;
-    final msgCtrl = TextEditingController(text: "面試時段已開放，請至「預約 Live 面試」搶位！");
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(kRadius)),
-        title: Text("發送邀請給 ${_selectedIds.length} 人"),
-        content: TextField(controller: msgCtrl, decoration: const InputDecoration(labelText: "邀請訊息", border: OutlineInputBorder()), maxLines: 2),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text("取消")),
-          ElevatedButton(
-            onPressed: () async {
-              Navigator.pop(ctx);
-              try {
-                await ApiService.sendBulkInvitations(widget.user.email, _selectedIds.toList(), msgCtrl.text);
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("✅ 邀請已發送！")));
-                setState(() { _selectedIds.clear(); _isAllSelected = false; });
-              } catch (e) {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("❌ 錯誤: $e")));
-              }
-            },
-            style: ElevatedButton.styleFrom(backgroundColor: kLuminewMainPurple, foregroundColor: Colors.white),
-            child: const Text("發送"),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        backgroundColor: kLuminewGooseYellow,
-        body: Stack(
-          children: [
-            Column(
-              children: [
-                const SizedBox(height: 90), // 預留標頭空間
-                Container(
-                  color: Colors.white,
-                  child: const TabBar(
-                    indicatorColor: kLuminewMainPurple,
-                    labelColor: kLuminewDeepIndigo,
-                    unselectedLabelColor: Colors.grey,
-                    tabs: [Tab(text: '名單管理'), Tab(text: '班級聊天')],
-                  ),
-                ),
-                Expanded(
-                  child: TabBarView(
-                    children: [
-                      _buildMemberManagement(),
-                      ClassChatRoom(chatKey: widget.cls.id, userEmail: widget.user.email, title: widget.cls.name, showAppBar: false),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            LuminewHeader(title: widget.cls.name, showBackButton: true),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildMemberManagement() {
-    return Column(
-      children: [
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-          color: Colors.indigo.shade50,
-          child: Column(
-            children: [
-              const Text("班級邀請碼", style: TextStyle(color: kLuminewDeepIndigo, fontSize: 12)),
-              const SizedBox(height: 8),
-              InkWell(
-                onTap: () {
-                  Clipboard.setData(ClipboardData(text: widget.cls.invitationCode));
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("已複製代碼")));
-                },
-                child: Text(widget.cls.invitationCode, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, letterSpacing: 5, color: kLuminewMainPurple)),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          color: Colors.white,
-          child: Row(
-            children: [
-              Checkbox(value: _isAllSelected, onChanged: _students.isEmpty ? null : _toggleSelectAll, activeColor: kLuminewMainPurple),
-              const Text("全選學生", style: TextStyle(fontWeight: FontWeight.bold)),
-              const Spacer(),
-              ElevatedButton.icon(
-                icon: const Icon(Icons.send_rounded, size: 16),
-                label: Text("發送邀請 (${_selectedIds.length})"),
-                onPressed: _selectedIds.isEmpty ? null : _sendBulkInvite,
-                style: ElevatedButton.styleFrom(backgroundColor: _selectedIds.isEmpty ? Colors.grey[300] : kLuminewMainPurple, foregroundColor: Colors.white, elevation: 0),
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: _isLoading
+    return Scaffold(
+      backgroundColor: kLuminewGooseYellow,
+      body: Stack(
+        children: [
+          _isLoading
               ? const Center(child: CircularProgressIndicator())
-              : _students.isEmpty
-                  ? const Center(child: Text("尚無學生加入"))
+              : _records.isEmpty
+                  ? const Center(child: Text("該學生尚未向您公開任何紀錄", style: TextStyle(color: Colors.grey)))
                   : ListView.builder(
-                      itemCount: _students.length,
+                      padding: const EdgeInsets.fromLTRB(16, 110, 16, 20),
+                      itemCount: _records.length,
                       itemBuilder: (ctx, i) {
-                        final s = _students[i];
-                        final isChecked = _selectedIds.contains(s.id);
-                        return Container(
-                          decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.black12))),
-                          child: ListTile(
-                            tileColor: Colors.white,
-                            leading: Checkbox(value: isChecked, onChanged: (v) => _toggleSingle(s.id), activeColor: kLuminewMainPurple),
-                            title: Text(s.name),
-                            subtitle: const Text("尚未進行面試"),
-                            onTap: () => _toggleSingle(s.id),
+                        final rec = _records[i];
+                        return InkWell(
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => InterviewResultScreen(
+                                record: rec,
+                                user: widget.user,
+                              ),
+                            ),
+                          ),
+                          child: Container(
+                            margin: const EdgeInsets.only(bottom: 12),
+                            padding: const EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(16),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.05),
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 4),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      rec.date.toIso8601String().split('T')[0],
+                                      style: const TextStyle(color: Colors.grey, fontSize: 12),
+                                    ),
+                                    Text(
+                                      '分數: ${rec.overallScore}',
+                                      style: const TextStyle(fontWeight: FontWeight.bold, color: kLuminewDeepIndigo),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 8),
+                                Text(
+                                  rec.type,
+                                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: kLuminewDeepIndigo),
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       },
                     ),
-        ),
-      ],
+          LuminewHeader(title: "${widget.student.name} 的面試紀錄", showBackButton: true),
+        ],
+      ),
     );
   }
 }

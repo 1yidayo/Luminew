@@ -45,7 +45,7 @@ class _StudentMainScaffoldState extends State<StudentMainScaffold> {
       InterviewHomePage(user: widget.user),
       ClassForumScreen(userEmail: widget.user.email),
       InterviewRecordListScreen(user: widget.user),
-      StudentClassScreen(user: widget.user),
+      StudentTeacherScreen(user: widget.user),
       SettingsScreen(onLogout: widget.onLogout, user: widget.user),
     ];
 
@@ -94,7 +94,7 @@ class _StudentMainScaffoldState extends State<StudentMainScaffold> {
                     Icons.video_library,
                     '紀錄',
                   ),
-                  _buildNavItem(3, Icons.school_outlined, Icons.school, '班級'),
+                  _buildNavItem(3, Icons.school_outlined, Icons.school, '老師'),
                   _buildNavItem(
                     4,
                     Icons.settings_outlined,
@@ -626,16 +626,16 @@ class _StudentNotificationsScreenState
 // ==========================================
 // 5. 學生班級 (修復括號問題)
 // ==========================================
-class StudentClassScreen extends StatefulWidget {
+class StudentTeacherScreen extends StatefulWidget {
   final AppUser user;
-  const StudentClassScreen({super.key, required this.user});
+  const StudentTeacherScreen({super.key, required this.user});
   @override
-  State<StudentClassScreen> createState() => _StudentClassScreenState();
+  State<StudentTeacherScreen> createState() => _StudentTeacherScreenState();
 }
 
-class _StudentClassScreenState extends State<StudentClassScreen> {
+class _StudentTeacherScreenState extends State<StudentTeacherScreen> {
   final _codeCtrl = TextEditingController();
-  List<Class> _classes = [];
+  List<Teacher> _teachers = [];
   bool _isLoading = false;
 
   @override
@@ -647,7 +647,7 @@ class _StudentClassScreenState extends State<StudentClassScreen> {
   Future<void> _load() async {
     setState(() => _isLoading = true);
     try {
-      _classes = await ApiService.getStudentClasses(widget.user.email);
+      _teachers = await ApiService.getStudentTeachers(widget.user.email);
     } catch (e) {
       // ignore
     }
@@ -657,10 +657,10 @@ class _StudentClassScreenState extends State<StudentClassScreen> {
   Future<void> _join() async {
     if (_codeCtrl.text.isEmpty) return;
     try {
-      await ApiService.joinClass(_codeCtrl.text, widget.user.email);
+      final res = await ApiService.joinTeacher(_codeCtrl.text, widget.user.email);
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text("成功加入")));
+      ).showSnackBar(SnackBar(content: Text("成功加入老師：${res['teacherName']}")));
       _codeCtrl.clear();
       _load();
     } catch (e) {
@@ -705,9 +705,9 @@ class _StudentClassScreenState extends State<StudentClassScreen> {
                           color: AppColors.deepIndigo,
                           fontSize: 18,
                         ),
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.text, // 可能有英數字
                         decoration: const InputDecoration(
-                          hintText: "輸入邀請碼",
+                          hintText: "輸入老師邀請碼",
                           hintStyle: TextStyle(
                             color: Colors.grey,
                             fontSize: 15, // 放大提示字至 15
@@ -726,7 +726,7 @@ class _StudentClassScreenState extends State<StudentClassScreen> {
                         ),
                       ),
                       child: const Text(
-                        "加入班級",
+                        "加入老師",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,
@@ -740,16 +740,16 @@ class _StudentClassScreenState extends State<StudentClassScreen> {
             Expanded(
               child: _isLoading
                   ? const Center(child: CircularProgressIndicator())
-                  : _classes.isEmpty
+                  : _teachers.isEmpty
                   ? const Center(
                       child: Text(
-                        "尚未加入班級",
+                        "尚未加入任何老師",
                         style: TextStyle(color: Color(0xFF5A5A5A)),
                       ),
                     )
                   : ListView.builder(
                       padding: const EdgeInsets.all(16),
-                      itemCount: _classes.length,
+                      itemCount: _teachers.length,
                       itemBuilder: (ctx, i) => Container(
                         margin: const EdgeInsets.only(bottom: 12),
                         decoration: BoxDecoration(
@@ -770,38 +770,29 @@ class _StudentClassScreenState extends State<StudentClassScreen> {
                             size: 32,
                           ),
                           title: Text(
-                            _classes[i].name,
+                            _teachers[i].name,
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF675B83),
                             ),
                           ),
-                          subtitle: const Text(
-                            "點擊進入聊天室",
-                            style: TextStyle(color: Colors.grey, fontSize: 13),
+                          subtitle: Text(
+                            _teachers[i].email,
+                            style: const TextStyle(color: Colors.grey, fontSize: 13),
                           ),
                           trailing: const Icon(
-                            Icons.arrow_forward_ios,
+                            Icons.check_circle,
                             size: 16,
-                            color: Colors.grey,
+                            color: kLuminewMainPurple,
                           ),
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => ClassChatRoom(
-                                chatKey: _classes[i].id,
-                                userEmail: widget.user.email,
-                                title: _classes[i].name,
-                              ),
-                            ),
-                          ),
+                          onTap: () {}, // 點擊不進入班級群聊，因為班級功能移除了
                         ),
                       ),
                     ),
             ),
           ],
         ),
-        const LuminewHeader(title: '我的班級'),
+        const LuminewHeader(title: '我的老師'),
       ],
     );
   }

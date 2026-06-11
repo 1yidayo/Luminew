@@ -27,25 +27,25 @@ class AppUser {
   }
 }
 
-class Class {
+class Teacher {
   final String id;
   final String name;
-  final String teacherId;
-  final String invitationCode;
+  final String email;
+  final String teacherCode;
 
-  Class({
+  Teacher({
     required this.id,
     required this.name,
-    required this.teacherId,
-    required this.invitationCode,
+    required this.email,
+    required this.teacherCode,
   });
 
-  factory Class.fromMap(Map<String, dynamic> map) {
-    return Class(
-      id: map['ClassID'].toString(),
-      name: map['ClassName']?.toString() ?? '',
-      teacherId: map['TeacherID'].toString(),
-      invitationCode: map['InvitationCode']?.toString() ?? '',
+  factory Teacher.fromMap(Map<String, dynamic> map) {
+    return Teacher(
+      id: map['id']?.toString() ?? map['UserID']?.toString() ?? '',
+      name: map['name']?.toString() ?? map['Name']?.toString() ?? '',
+      email: map['email']?.toString() ?? map['Email']?.toString() ?? '',
+      teacherCode: map['teacherCode']?.toString() ?? map['TeacherCode']?.toString() ?? '',
     );
   }
 }
@@ -74,7 +74,7 @@ class InterviewRecord {
   final String type;
   final String interviewer;
   final String language;
-  final String privacy;
+  String privacy;
   final String studentName;
   final String aiComment;
   final String aiSuggestion;
@@ -200,12 +200,14 @@ class Comment {
   final String senderName;
   final String content;
   final String date;
+  final int? teacherChannelId;
 
   Comment({
     this.id = '',
     required this.senderName,
     required this.content,
     required this.date,
+    this.teacherChannelId,
   });
 }
 

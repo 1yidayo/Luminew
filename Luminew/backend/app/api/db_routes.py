@@ -23,7 +23,14 @@ def login(req: LoginReq):
 class RegisterReq(BaseModel): email: str; password: str; name: str; role: str
 @router.post("/registerUser")
 def registerUser(req: RegisterReq):
-    sql = f"INSERT INTO Users (Email, PasswordHash, Name, Role) VALUES ('{req.email}', '{req.password}', N'{req.name}', '{req.role}')"
+    import string
+    import random
+    teacher_code = "NULL"
+    if req.role.lower() == 'teacher':
+        code = ''.join(random.choices(string.digits, k=6))
+        teacher_code = f"'{code}'"
+        
+    sql = f"INSERT INTO Users (Email, PasswordHash, Name, Role, TeacherCode) VALUES ('{req.email}', '{req.password}', N'{req.name}', '{req.role}', {teacher_code})"
     execute_write(sql)
     return {"status": "ok"}
 
@@ -41,44 +48,57 @@ def updateUserProfile(req: UpdateProfileReq):
     execute_write(sql)
     return {"status": "ok"}
 
-# --- 2. 班級管理 ---
+# --- 2. 老師與學生關聯管理 ---
 class EmailReq(BaseModel): email: str
-@router.post("/getTeacherClasses")
-def getTeacherClasses(req: EmailReq):
-    sql = f"SELECT * FROM Classes WHERE TeacherID = (SELECT UserID FROM Users WHERE Email = '{req.email}')"
+
+class JoinTeacherReq(BaseModel): code: str; email: str
+@router.post("/teacher/join")
+def joinTeacher(req: JoinTeacherReq):
+    res = execute_read(f"SELECT * FROM Users WHERE Role = 'teacher' AND TeacherCode = '{req.code}'")
+    if not res: raise HTTPException(404, "找不到此教師代碼")
+    teacher = res[0]
+    check = execute_read(f"SELECT * FROM TeacherStudents WHERE TeacherID = {teacher['UserID']} AND StudentID = (SELECT UserID FROM Users WHERE Email = '{req.email}')")
+    if check: raise HTTPException(400, "您已加入過此老師")
+    execute_write(f"INSERT INTO TeacherStudents (TeacherID, StudentID) VALUES ({teacher['UserID']}, (SELECT UserID FROM Users WHERE Email = '{req.email}'))")
+    return {"status": "ok", "teacherName": teacher['Name']}
+
+@router.post("/student/teachers")
+def getStudentTeachers(req: EmailReq):
+    sql = f"SELECT u.UserID as id, u.Name as name, u.Email as email, u.TeacherCode as teacherCode FROM Users u JOIN TeacherStudents ts ON u.UserID = ts.TeacherID WHERE ts.StudentID = (SELECT UserID FROM Users WHERE Email = '{req.email}')"
     return execute_read(sql)
 
-class CreateClassReq(BaseModel): name: str; teacherEmail: str
-@router.post("/createClass")
-def createClass(req: CreateClassReq):
-    idRes = execute_read(f"SELECT UserID FROM Users WHERE Email = '{req.teacherEmail}'")
-    if not idRes: raise HTTPException(404, "User not found")
-    code = str(random.randint(100000, 999999))
-    sql = f"INSERT INTO Classes (ClassName, TeacherID, InvitationCode) VALUES (N'{req.name}', {idRes[0]['UserID']}, '{code}')"
-    execute_write(sql)
-    return {"status": "ok"}
-
-class ClassIdReq(BaseModel): classId: str
-@router.post("/getClassStudents")
-def getClassStudents(req: ClassIdReq):
-    sql = f"SELECT u.UserID as id, u.Name as name FROM Users u JOIN ClassMembers cm ON u.UserID = cm.StudentID WHERE cm.ClassID = {req.classId}"
+@router.post("/teacher/students")
+def getTeacherStudents(req: EmailReq):
+    sql = f"SELECT u.UserID as id, u.Name as name, u.Email as email FROM Users u JOIN TeacherStudents ts ON u.UserID = ts.StudentID WHERE ts.TeacherID = (SELECT UserID FROM Users WHERE Email = '{req.email}')"
     return execute_read(sql)
 
-@router.post("/getStudentClasses")
-def getStudentClasses(req: EmailReq):
-    sql = f"SELECT c.* FROM Classes c JOIN ClassMembers cm ON c.ClassID = cm.ClassID WHERE cm.StudentID = (SELECT UserID FROM Users WHERE Email = '{req.email}')"
-    return execute_read(sql)
+@router.post("/teacher/profile")
+def getTeacherProfile(req: EmailReq):
+    res = execute_read(f"SELECT TeacherCode FROM Users WHERE Email = '{req.email}' AND Role = 'teacher'")
+    if not res: raise HTTPException(404, "Not found")
+    
+    code = res[0].get('TeacherCode')
+    if not code:
+        import string
+        import random
+        new_code = ''.join(random.choices(string.digits, k=6))
+        execute_write(f"UPDATE Users SET TeacherCode = '{new_code}' WHERE Email = '{req.email}' AND Role = 'teacher'")
+        res[0]['TeacherCode'] = new_code
+        
+    return res[0]
 
-class JoinClassReq(BaseModel): code: str; email: str
-@router.post("/joinClass")
-def joinClass(req: JoinClassReq):
-    res = execute_read(f"SELECT * FROM Classes WHERE InvitationCode = '{req.code}'")
-    if not res: raise HTTPException(404, "找不到班級")
-    cls = res[0]
-    check = execute_read(f"SELECT * FROM ClassMembers WHERE ClassID = {cls['ClassID']} AND StudentID = (SELECT UserID FROM Users WHERE Email = '{req.email}')")
-    if check: raise HTTPException(400, "您已加入此班級")
-    execute_write(f"INSERT INTO ClassMembers (ClassID, StudentID) VALUES ({cls['ClassID']}, (SELECT UserID FROM Users WHERE Email = '{req.email}'))")
-    return cls
+class TeacherRecordsReq(BaseModel): teacherEmail: str; studentId: str
+@router.post("/teacher/records")
+def getTeacherRecords(req: TeacherRecordsReq):
+    safeSelect = "r.RecordID, r.StudentID, r.Date, r.DurationSeconds, r.Type, r.Interviewer, r.Language, r.OverallScore, CAST(r.ScoresDetail AS NVARCHAR(4000)) as ScoresDetail, r.Privacy, CAST(r.AIComment AS NVARCHAR(4000)) as AIComment, CAST(r.AISuggestion AS NVARCHAR(4000)) as AISuggestion, CAST(r.TimelineData AS NVARCHAR(4000)) as TimelineData, r.VideoUrl, CAST(r.Questions AS NVARCHAR(4000)) as Questions, r.InterviewName"
+    sql = f"""
+    SELECT {safeSelect} FROM InterviewRecords r
+    JOIN RecordTeacherAccess rta ON r.RecordID = rta.RecordID
+    WHERE rta.TeacherID = (SELECT UserID FROM Users WHERE Email = '{req.teacherEmail}')
+    AND r.StudentID = '{req.studentId}'
+    ORDER BY r.Date DESC
+    """
+    return execute_read(sql)
 
 # --- 3. 面試紀錄 ---
 class GetRecordsReq(BaseModel): userId: str; filter: str
@@ -246,20 +266,47 @@ def bookSlot(req: BookSlotReq):
     return {"status": "ok"}
 
 # --- 5. 評論與學習歷程 ---
-@router.post("/getComments")
-def getComments(req: RecordIdReq):
-    return execute_read(f"SELECT c.*, u.Name as SenderName FROM RecordComments c JOIN Users u ON c.SenderID = u.UserID WHERE c.RecordID = '{req.recordId}' ORDER BY c.SentAt ASC")
+class GetCommentsReq(BaseModel): 
+    recordId: str
+    teacherChannelId: Optional[int] = None
 
-class SendCommentReq(BaseModel): recordId: str; userEmail: str; content: str
+@router.post("/getComments")
+def getComments(req: GetCommentsReq):
+    if req.teacherChannelId is not None:
+        sql = f"SELECT c.*, u.Name as SenderName FROM RecordComments c JOIN Users u ON c.SenderID = u.UserID WHERE c.RecordID = '{req.recordId}' AND c.TeacherChannelID = {req.teacherChannelId} ORDER BY c.SentAt ASC"
+    else:
+        sql = f"SELECT c.*, u.Name as SenderName FROM RecordComments c JOIN Users u ON c.SenderID = u.UserID WHERE c.RecordID = '{req.recordId}' AND c.TeacherChannelID IS NULL ORDER BY c.SentAt ASC"
+    return execute_read(sql)
+
+class SendCommentReq(BaseModel): 
+    recordId: str
+    userEmail: str
+    content: str
+    teacherChannelId: Optional[int] = None
+
 @router.post("/sendComment")
 def sendComment(req: SendCommentReq):
-    execute_write(f"INSERT INTO RecordComments (RecordID, SenderID, Content) VALUES ('{req.recordId}', (SELECT UserID FROM Users WHERE Email = '{req.userEmail}'), N'{req.content}')")
+    t_id_str = str(req.teacherChannelId) if req.teacherChannelId is not None else "NULL"
+    execute_write(f"INSERT INTO RecordComments (RecordID, SenderID, Content, TeacherChannelID) VALUES ('{req.recordId}', (SELECT UserID FROM Users WHERE Email = '{req.userEmail}'), N'{req.content}', {t_id_str})")
     return {"status": "ok"}
 
-class UpdatePrivacyReq(BaseModel): recordId: str; privacy: str
+class UpdatePrivacyReq(BaseModel): 
+    recordId: str
+    privacy: str
+    teacherIds: Optional[List[int]] = None
+
 @router.post("/updatePrivacy")
 def updatePrivacy(req: UpdatePrivacyReq):
     execute_write(f"UPDATE InterviewRecords SET Privacy = '{req.privacy}' WHERE RecordID = '{req.recordId}'")
+    
+    # 清空舊有授權
+    execute_write(f"DELETE FROM RecordTeacherAccess WHERE RecordID = '{req.recordId}'")
+    
+    # 若為老師可見，寫入新授權
+    if req.privacy == 'Teacher' and req.teacherIds:
+        for tid in req.teacherIds:
+            execute_write(f"INSERT INTO RecordTeacherAccess (RecordID, TeacherID) VALUES ('{req.recordId}', {tid})")
+            
     return {"status": "ok"}
 
 
