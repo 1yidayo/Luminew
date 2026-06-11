@@ -52,6 +52,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+  <!-- 強制破解 Cloudflare 與手機快取 -->
+  <script>
+    var script = document.createElement("script");
+    script.src = "flutter_bootstrap.js?v=" + new Date().getTime();
+    script.async = true;
+    document.body.appendChild(script);
+  </script>
 </body>
 </html>

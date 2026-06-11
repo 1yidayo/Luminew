@@ -176,8 +176,8 @@ def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None
             fps = 30
             
         # ★ [效能優化] 提速關鍵：面試影片動輒 1~3 分鐘。
-        # 為了大幅提升分析速度，將取樣率降為「每秒 1 幀」。
-        process_interval = max(1, int(fps))
+        # 為了大幅提升分析速度並避免 Nginx 60 秒 Timeout，將取樣率降為「每 2 秒 1 幀」。
+        process_interval = max(1, int(fps) * 2)
         # 時間軸紀錄頻率：配合處理頻率
         record_interval = process_interval
 

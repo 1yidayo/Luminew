@@ -300,6 +300,7 @@ class DidInterviewService {
     await _audioStreamSubscription?.cancel();
     await _audioRecorder.stop();
     _wsChannel?.sink.add(jsonEncode({'event': 'speech_end'}));
+    await _forceSpeakerOn(); // ★ 新增：避免錄音結束後音訊通道被切換回聽筒導致聲音忽大忽小
   }
 
   /// 回傳正規化後的麥克風音量 (0.0 = 靜音, 1.0 = 最大)

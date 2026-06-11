@@ -118,4 +118,21 @@ if __name__ == "__main__":
 # base href="/" 要求靜態檔在根路徑，這樣 flutter_bootstrap.js 才能被正確載入
 web_build_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web_build")
 os.makedirs(web_build_dir, exist_ok=True)
+
+from fastapi.responses import HTMLResponse
+@app.get("/app")
+async def get_app_bypass_cache():
+    """提供一個全新的路徑來繞過 Cloudflare HTML 快取"""
+    html_path = os.path.join(web_build_dir, "index.html")
+    with open(html_path, "r", encoding="utf-8") as f:
+        content = f.read()
+    # 動態注入時間戳確保絕對不會被快取
+    import time
+    content = content.replace("flutter_bootstrap.js", f"flutter_bootstrap.js?t={int(time.time())}")
+    return HTMLResponse(content=content, headers={
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0"
+    })
+
 app.mount("/", StaticFiles(directory=web_build_dir, html=True), name="web")

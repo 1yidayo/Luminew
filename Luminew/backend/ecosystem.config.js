@@ -7,12 +7,12 @@ module.exports = {
       interpreter: "C:/Users/Luminew/Desktop/Luminew/Luminew/Luminew/backend/luminew_env/Scripts/pythonw.exe",
       watch: ["main.py", "app"],
       ignore_watch: [
-        "logs", 
-        "static", 
-        ".env", 
-        "**/__pycache__", 
-        "*.pdf", 
-        "*.wav", 
+        "logs",
+        "static",
+        ".env",
+        "**/__pycache__",
+        "*.pdf",
+        "*.wav",
         "*.json",
         "app/public/audio"
       ],
@@ -29,11 +29,11 @@ module.exports = {
       autorestart: true,
       restart_delay: 2000
     },
-    {
-      name: "cloudflare-tunnel",
-      script: "C:/Program Files (x86)/cloudflared/cloudflared.exe",
-      args: "tunnel --url http://localhost:8000",
-      autorestart: true
-    }
+    // {
+    //   name: "cloudflare-tunnel",
+    //   script: "C:/Program Files (x86)/cloudflared/cloudflared.exe",
+    //   args: "tunnel --url http://localhost:8000",
+    //   autorestart: true
+    // }
   ]
 };
