@@ -1,0 +1,5 @@
+-keep class net.sourceforge.jtds.** { *; }
+-dontwarn net.sourceforge.jtds.**
+-dontwarn jcifs.**
+-dontwarn org.ietf.jgss.**
+-keep class jcifs.** { *; }

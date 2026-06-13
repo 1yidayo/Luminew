@@ -1,0 +1,34 @@
+# [GPU VERSION ONLY] Forced CUDA 12.1 Index
+# 為了確保在 GPU 工作站正確安裝，鎖定了支援 CUDA 12.1 的特定版本
+--index-url https://download.pytorch.org/whl/cu121
+
+# === AI & Deep Learning Core (Hardcoded for GPU) ===
+torch==2.1.2+cu121
+torchvision==0.16.2+cu121
+torchaudio==2.1.2+cu121
+
+# === Core Framework (Back to Standard PyPI) ===
+--extra-index-url https://pypi.org/simple
+fastapi             # Backend API framework
+uvicorn[standard]   # FastAPI server
+requests            # HTTP requests for OpenAI / Yating API
+httpx               # Async HTTP client
+websockets          # Realtime voice / ASR WebSocket
+sounddevice         # Audio playback
+numpy==1.26.4         # Math / Audio processing (Must be 1.26.4 for torch/opencv compatibility)
+pydub               # MP3 / WAV processing
+python-dotenv       # Load .env file
+pydantic            # FastAPI data validation
+pyngrok             # Ngrok tunnel
+pyodbc              # MS SQL Server Driver
+python-multipart    # FastAPI file upload
+openai              # OpenAI API
+
+# === Vision & PDF Utils ===
+opencv-python==4.8.1.78       # Face detection (Match with NumPy 1.x)
+opencv-contrib-python==4.8.1.78 # Extra modules (Match with NumPy 1.x)
+mediapipe           # Google High-precision face detection
+Pillow              # Image processing
+pdfplumber          # PDF text extraction
+PyPDF2              # PDF processing
+ffmpeg-python       # FFmpeg wrapper
