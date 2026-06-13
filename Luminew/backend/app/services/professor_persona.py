@@ -21,7 +21,7 @@ PROFESSOR_PERSONAS = {
         min_words=150,
         max_words=220,
         speed=1.25, # 說話稍微放慢，但在 1.25 基準下顯得穩重
-        image_url="https://raw.githubusercontent.com/1yidayo/Luminew/refs/heads/main/Luminew/backend/assets/images/Paul.jpg", # 業界教授預設照片
+        image_url="https://raw.githubusercontent.com/1yidayo/Luminew/refs/heads/main/Luminew/backend/assets/images/warm_industry_professor.png", # 業界教授預設照片
         prompt="""
 你是一位45歲左右的台灣資訊管理學系教授，正在進行大學入學模擬面試。
 不是數位管理或任何其他系，就是資訊管理學系，簡稱資管系。

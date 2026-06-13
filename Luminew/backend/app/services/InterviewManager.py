@@ -416,28 +416,42 @@ class InterviewManager:
 
         url = os.getenv("D_ID_URL", "https://api.d-id.com/talks/streams")
 
-        payload = {
-            "source_url": self.professor_persona.image_url
-        }
-        
         if not getattr(self, "public_url", None):
             env_url = os.getenv("PUBLIC_URL")
             if env_url:
                 self.public_url = env_url.rstrip("/")
                 print(f"[SIGNAL] [DEBUG] 使用環境變數 PUBLIC_URL: {self.public_url}")
+            # --- 註解 Ngrok 備用邏輯 ---
+            # else:
+            #     try:
+            #         import requests
+            #         ngrok_res = requests.get("http://127.0.0.1:4040/api/tunnels", timeout=1)
+            #         if ngrok_res.ok:
+            #             tunnels = ngrok_res.json().get("tunnels", [])
+            #             for t in tunnels:
+            #                 if t.get("proto") == "https":
+            #                     self.public_url = t.get("public_url")
+            #                     print(f"[SIGNAL] [DEBUG] 自動偵測到 ngrok 網址: {self.public_url}")
+            #                     break
+            #     except Exception:
+            #         pass
+
+        img_url = self.professor_persona.image_url
+        if img_url.startswith("http"):
+            source_url = img_url
+        else:
+            public_url = getattr(self, "public_url", None)
+            if public_url:
+                source_url = f"{public_url.rstrip('/')}/assets/images/{img_url}"
             else:
-                try:
-                    import requests
-                    ngrok_res = requests.get("http://127.0.0.1:4040/api/tunnels", timeout=1)
-                    if ngrok_res.ok:
-                        tunnels = ngrok_res.json().get("tunnels", [])
-                        for t in tunnels:
-                            if t.get("proto") == "https":
-                                self.public_url = t.get("public_url")
-                                print(f"[SIGNAL] [DEBUG] 自動偵測到 ngrok 網址: {self.public_url}")
-                                break
-                except Exception:
-                    pass
+                source_url = f"http://140.136.155.145:8000/assets/images/{img_url}"
+
+        payload = {
+            "source_url": source_url,
+            "config": {
+                "stitch": True
+            }
+        }
 
         public_url = getattr(self, "public_url", None)
         if public_url:

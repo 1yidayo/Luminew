@@ -3,7 +3,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from pyngrok import ngrok, conf
+# from pyngrok import ngrok, conf  # 暫時註解 ngrok，保留作備用
 from dotenv import load_dotenv
 from app.api.interview import router as interview_router
 from app.api.db_routes import router as db_router
@@ -33,6 +33,7 @@ os.makedirs(VIDEO_STORAGE_DIR, exist_ok=True)
 app.mount("/public", StaticFiles(directory=os.path.join("app", "public")), name="public")
 app.mount("/audio", StaticFiles(directory=os.path.join("app", "public", "audio")), name="audio")
 app.mount("/static/videos", StaticFiles(directory=VIDEO_STORAGE_DIR), name="videos")
+app.mount("/assets/images", StaticFiles(directory=os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets", "images")), name="images")
 
 
 
@@ -80,31 +81,33 @@ async def startup_event():
     print("\n" + "="*50)
     
     # 從 .env 讀取開關，預設為 False (使用固定 IP)
-    use_ngrok = os.getenv("USE_NGROK", "False").lower() == "true"
+    # use_ngrok = os.getenv("USE_NGROK", "False").lower() == "true"
     
-    if use_ngrok:
-        print("[MODE] 備援模式：啟動 Ngrok 隧道...")
-        try:
-            print("[FIX] 正在清理舊的 Ngrok 連線...")
-            ngrok.kill() 
-            auth_token = os.getenv("NGROK_AUTHTOKEN")
-            if auth_token and auth_token.strip():
-                ngrok.set_auth_token(auth_token.strip())
-                print("[KEY] Ngrok Authtoken 已載入")
-            
-            public_url = ngrok.connect(8000).public_url
-            print(f"[URL] 外部公開網址 (Flutter 用): {public_url}")
-            app.state.public_url = public_url
-        except Exception as e:
-            print(f"[ERROR] Ngrok 啟動失敗 ({e})，切換回預設固定 IP")
-            app.state.public_url = "http://140.136.155.145:8000"
+    # --- 註解 Ngrok 備用邏輯 ---
+    # if use_ngrok:
+    #     print("[MODE] 備援模式：啟動 Ngrok 隧道...")
+    #     try:
+    #         print("[FIX] 正在清理舊的 Ngrok 連線...")
+    #         ngrok.kill() 
+    #         auth_token = os.getenv("NGROK_AUTHTOKEN")
+    #         if auth_token and auth_token.strip():
+    #             ngrok.set_auth_token(auth_token.strip())
+    #             print("[KEY] Ngrok Authtoken 已載入")
+    #         
+    #         public_url = ngrok.connect(8000).public_url
+    #         print(f"[URL] 外部公開網址 (Flutter 用): {public_url}")
+    #         app.state.public_url = public_url
+    #     except Exception as e:
+    #         print(f"[ERROR] Ngrok 啟動失敗 ({e})，切換回預設固定 IP")
+    #         app.state.public_url = "http://140.136.155.145:8000"
+    # else:
+    
+    print("[MODE] 正式營運模式：優先使用環境變數中的 PUBLIC_URL")
+    public_url = os.getenv("PUBLIC_URL")
+    if public_url:
+        app.state.public_url = public_url
     else:
-        print("[MODE] 正式營運模式：優先使用環境變數中的 PUBLIC_URL")
-        public_url = os.getenv("PUBLIC_URL")
-        if public_url:
-            app.state.public_url = public_url
-        else:
-            app.state.public_url = "http://140.136.155.145:8000"
+        app.state.public_url = "http://140.136.155.145:8000"
         
     print(f"[FINAL] 目前對外 API 位址: {app.state.public_url}")
     print("="*50 + "\n")

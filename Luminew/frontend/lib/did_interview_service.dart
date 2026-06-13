@@ -280,7 +280,7 @@ class DidInterviewService {
   }
 
   Future<void> startRecording() async {
-    if (await Permission.microphone.request().isGranted) {
+    if (await _audioRecorder.hasPermission()) {
       isRecording = true;
       final stream = await _audioRecorder.startStream(
         const RecordConfig(

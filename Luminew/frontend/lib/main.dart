@@ -3,6 +3,7 @@ import 'models.dart';
 import 'screens/auth_screen.dart';
 import 'screens/student_screens.dart';
 import 'screens/teacher_screens.dart';
+import 'screens/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +19,34 @@ class LuminewApp extends StatefulWidget {
 
 class _LuminewAppState extends State<LuminewApp> {
   AppUser? _currentUser;
+  bool _showSplash = false; // 登入後才為 true，顯示一次待機畫面
+
+  void _onAuthSuccess(AppUser user) {
+    setState(() {
+      _currentUser = user;
+      _showSplash = true; // 觸發待機畫面
+    });
+  }
+
+  Widget _buildMainScaffold() {
+    if (_currentUser!.role == 'Teacher') {
+      return TeacherMainScaffold(
+        onLogout: () => setState(() {
+          _currentUser = null;
+          _showSplash = false;
+        }),
+        user: _currentUser!,
+      );
+    } else {
+      return StudentMainScaffold(
+        onLogout: () => setState(() {
+          _currentUser = null;
+          _showSplash = false;
+        }),
+        user: _currentUser!,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,16 +63,16 @@ class _LuminewAppState extends State<LuminewApp> {
         useMaterial3: true,
       ),
       home: _currentUser == null
-          ? AuthScreen(onAuthSuccess: (u) => setState(() => _currentUser = u))
-          : _currentUser!.role == 'Teacher'
-          ? TeacherMainScaffold(
-              onLogout: () => setState(() => _currentUser = null),
-              user: _currentUser!,
-            )
-          : StudentMainScaffold(
-              onLogout: () => setState(() => _currentUser = null),
-              user: _currentUser!,
-            ),
+          // 未登入 → 顯示登入頁
+          ? AuthScreen(onAuthSuccess: _onAuthSuccess)
+          // 已登入且剛登入 → 待機畫面（點擊後跳至主頁，不再出現）
+          : _showSplash
+              ? SplashScreen(
+                  destination: _buildMainScaffold(),
+                  onEntered: () => setState(() => _showSplash = false),
+                )
+              // 待機畫面已經看過 → 直接顯示主頁
+              : _buildMainScaffold(),
     );
   }
 }

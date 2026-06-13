@@ -41,7 +41,7 @@ class _TeacherMainScaffoldState extends State<TeacherMainScaffold> {
     final pages = [
       TeacherStudentScreen(user: widget.user),
       TeacherScheduleScreen(user: widget.user),
-      ClassForumScreen(userEmail: widget.user.email),
+      // ClassForumScreen(userEmail: widget.user.email), // 暫時隱藏交流頁面
       InterviewRecordListScreen(user: widget.user),
       SettingsScreen(onLogout: widget.onLogout, user: widget.user),
     ];
@@ -76,9 +76,9 @@ class _TeacherMainScaffoldState extends State<TeacherMainScaffold> {
                 children: [
                   _buildNavItem(0, Icons.people_outlined, Icons.people, '學生'),
                   _buildNavItem(1, Icons.calendar_month_outlined, Icons.calendar_month, '排程'),
-                  _buildNavItem(2, Icons.chat_bubble_outline, Icons.chat_bubble, '交流'),
-                  _buildNavItem(3, Icons.video_library_outlined, Icons.video_library, '紀錄'),
-                  _buildNavItem(4, Icons.settings_outlined, Icons.settings, '設定'),
+                  // _buildNavItem(2, Icons.chat_bubble_outline, Icons.chat_bubble, '交流'), // 暫時隱藏
+                  _buildNavItem(2, Icons.video_library_outlined, Icons.video_library, '紀錄'),
+                  _buildNavItem(3, Icons.settings_outlined, Icons.settings, '設定'),
                 ],
               ),
             ),

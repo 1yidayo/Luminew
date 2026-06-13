@@ -43,7 +43,7 @@ class _StudentMainScaffoldState extends State<StudentMainScaffold> {
   Widget build(BuildContext context) {
     final screens = [
       InterviewHomePage(user: widget.user),
-      ClassForumScreen(userEmail: widget.user.email),
+      // ClassForumScreen(userEmail: widget.user.email), // 暫時隱藏交流頁面
       InterviewRecordListScreen(user: widget.user),
       StudentTeacherScreen(user: widget.user),
       SettingsScreen(onLogout: widget.onLogout, user: widget.user),
@@ -82,21 +82,16 @@ class _StudentMainScaffoldState extends State<StudentMainScaffold> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   _buildNavItem(0, Icons.home_outlined, Icons.home, '首頁'),
+                  // _buildNavItem(1, Icons.chat_bubble_outline, Icons.chat_bubble, '交流'), // 暫時隱藏
                   _buildNavItem(
                     1,
-                    Icons.chat_bubble_outline,
-                    Icons.chat_bubble,
-                    '交流',
-                  ),
-                  _buildNavItem(
-                    2,
                     Icons.video_library_outlined,
                     Icons.video_library,
                     '紀錄',
                   ),
-                  _buildNavItem(3, Icons.school_outlined, Icons.school, '老師'),
+                  _buildNavItem(2, Icons.school_outlined, Icons.school, '老師'),
                   _buildNavItem(
-                    4,
+                    3,
                     Icons.settings_outlined,
                     Icons.settings,
                     '設定',

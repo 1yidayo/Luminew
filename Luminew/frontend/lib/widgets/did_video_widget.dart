@@ -17,7 +17,7 @@ class DidVideoWidget extends StatelessWidget {
       color: Colors.black,
       child: RTCVideoView(
         renderer,
-        objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitContain,
+        objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
         mirror: false,
       ),
     );

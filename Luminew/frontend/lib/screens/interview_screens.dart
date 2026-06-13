@@ -287,7 +287,7 @@ class _InterviewRecordListScreenState extends State<InterviewRecordListScreen> {
 
   Widget _buildRecordItem(InterviewRecord r) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
       decoration: BoxDecoration(
         color: kLuminewMainPurple.withOpacity(0.15), // 同步：15% 通透紫
         borderRadius: BorderRadius.circular(kRadiusM),
@@ -389,7 +389,12 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
   @override
   void initState() {
     super.initState();
-    // 預設展開校準數據？
+    _requestPermissionsEarly();
+  }
+
+  Future<void> _requestPermissionsEarly() async {
+    // 從主頁進入設定頁面時，第一時間要求相機與麥克風權限，讓設備有時間緩衝穩定
+    await [Permission.camera, Permission.microphone].request();
   }
 
   void _scrollTo(GlobalKey key) {
@@ -1719,25 +1724,26 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
                 // 2. 核心影像區域：D-ID 教授
                 Padding(
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 90),
-                  child: Container(
-                    width: double.infinity,
-                    height: 510, // 增加高度至 520 (滿足高一些且下移的需求)
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: kLuminewMainPurple.withOpacity(0.95),
-                        width: 2,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: kLuminewMainPurple.withOpacity(0.4),
-                          blurRadius: 35,
-                          spreadRadius: 8,
+                  child: AspectRatio(
+                    aspectRatio: 1.0,
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: kLuminewMainPurple.withOpacity(0.95),
+                          width: 1,
                         ),
-                      ],
-                    ),
-                    child: ClipRRect(
+                        boxShadow: [
+                          BoxShadow(
+                            color: kLuminewMainPurple.withOpacity(0.4),
+                            blurRadius: 35,
+                            spreadRadius: 8,
+                          ),
+                        ],
+                      ),
+                      child: ClipRRect(
                       borderRadius: BorderRadius.circular(16),
                       child: Stack(
                         children: [
@@ -1768,67 +1774,63 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
                               ),
                             ),
 
-                          // C. 懸浮字幕 (Floating Overlay - 灰底半透明)
-                          if (_chatMessages.isNotEmpty)
-                            Positioned(
-                              bottom: 12,
-                              left: 12,
-                              right: 12,
-                              child: Container(
-                                height: 110, // 限制高度
-                                padding: const EdgeInsets.all(12),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey.withOpacity(0.6),
-                                  borderRadius: BorderRadius.circular(16),
-                                  border: Border.all(color: Colors.white24),
-                                ),
-                                child: ListView.builder(
-                                  controller: _chatScrollController,
-                                  padding: EdgeInsets.zero,
-                                  itemCount: _chatMessages.length,
-                                  itemBuilder: (context, index) {
-                                    final msg = _chatMessages[index];
-                                    final isStudent = msg['role'] == 'student';
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 4,
-                                      ),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            isStudent ? "我：" : "教授：",
-                                            style: TextStyle(
-                                              color: isStudent
-                                                  ? Colors.lightBlueAccent
-                                                  : Colors.amberAccent,
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              msg['text'] ?? "",
-                                              style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 13,
-                                                height: 1.4,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                        ],
+                          // C. 懸浮字幕 (Floating Overlay - 暂時注解)
+                          // if (_chatMessages.isNotEmpty)
+                          //   Positioned(
+                          //     bottom: 12,
+                          //     left: 12,
+                          //     right: 12,
+                          //     child: Container(
+                          //       height: 110,
+                          //       padding: const EdgeInsets.all(12),
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.grey.withOpacity(0.6),
+                          //         borderRadius: BorderRadius.circular(16),
+                          //         border: Border.all(color: Colors.white24),
+                          //       ),
+                          //       child: ListView.builder(
+                          //         controller: _chatScrollController,
+                          //         padding: EdgeInsets.zero,
+                          //         itemCount: _chatMessages.length,
+                          //         itemBuilder: (context, index) {
+                          //           final msg = _chatMessages[index];
+                          //           final isStudent = msg['role'] == 'student';
+                          //           return Padding(
+                          //             padding: const EdgeInsets.symmetric(vertical: 4),
+                          //             child: Row(
+                          //               crossAxisAlignment: CrossAxisAlignment.start,
+                          //               children: [
+                          //                 Text(
+                          //                   isStudent ? "我：" : "教授：",
+                          //                   style: TextStyle(
+                          //                     color: isStudent ? Colors.lightBlueAccent : Colors.amberAccent,
+                          //                     fontSize: 12,
+                          //                     fontWeight: FontWeight.bold,
+                          //                   ),
+                          //                 ),
+                          //                 Expanded(
+                          //                   child: Text(
+                          //                     msg['text'] ?? "",
+                          //                     style: const TextStyle(
+                          //                       color: Colors.white,
+                          //                       fontSize: 13,
+                          //                       height: 1.4,
+                          //                     ),
+                          //                   ),
+                          //                 ),
+                          //               ],
+                          //             ),
+                          //           );
+                          //         },
+                          //       ),
+                          //     ),
+                          //   ),
+                      ],
                       ),
-                    ),
-                  ),
-                ),
+                    ), // end of ClipRRect
+                  ), // end of Container
+                ), // end of AspectRatio
+              ), // end of Padding
 
                 const SizedBox(height: 12),
 
@@ -1947,7 +1949,6 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
           ),
         ),
 
-          // 4. 右上角面試者 PIP (移除外框樣式)
           Positioned(
             top: 50,
             right: 20,
@@ -1955,11 +1956,14 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
               child: AspectRatio(
-                aspectRatio: _controller!.value.aspectRatio,
+                aspectRatio: _controller!.value.aspectRatio > 1.0 
+                    ? 1.0 / _controller!.value.aspectRatio 
+                    : _controller!.value.aspectRatio,
                 child: Stack(
-                children: [
-                  // 學生自拍預覽：移除手動翻轉，嘗試預設視角
-                  CameraPreview(_controller!),
+                  fit: StackFit.expand,
+                  children: [
+                    // 學生自拍預覽：保持原始比例
+                    CameraPreview(_controller!),
                   // 加上一個微弱的陰影邊界以便區分背景
                   Container(
                     decoration: BoxDecoration(
@@ -1971,10 +1975,10 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
                     ),
                   ),
                 ],
-              ),
-              ),
-            ),
-          ),
+              ), // end of Stack
+             ), // end of AspectRatio
+            ), // end of ClipRRect
+          ), // end of Positioned
         ],
       ),
     );
@@ -2525,69 +2529,88 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                     _buildIndexCountView(),
                   ],
                   const SizedBox(height: 40),
-                  _EmailResultWidget(
-                    record: widget.record,
-                    studentName: widget.user.name,
-                  ),
-                  const SizedBox(height: 40),
-                  SizedBox(
-                    width: double.infinity,
-                    child: TextButton.icon(
-                      onPressed: () {
-                        // 終極修復方案：先嘗試 pop 到最底層，若不行則強制 pushReplacement
-                        try {
-                          Navigator.of(
-                            context,
-                            rootNavigator: true,
-                          ).popUntil((route) => route.isFirst);
-                        } catch (_) {
-                          Navigator.of(
-                            context,
-                            rootNavigator: true,
-                          ).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                              builder: (_) => StudentMainScaffold(
-                                user: widget.user,
-                                onLogout: () {
-                                  Navigator.of(
-                                    context,
-                                    rootNavigator: true,
-                                  ).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                      builder: (_) =>
-                                          AuthScreen(onAuthSuccess: (user) {}),
-                                    ),
-                                    (route) => false,
-                                  );
-                                },
-                              ),
+                  // ★ 並排按鈕：寄信（左，外框）& 回首頁（右，實心）
+                  Row(
+                    children: [
+                      // 左：寄給我（外框透明）
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: kLuminewMainPurple,
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
                             ),
-                            (route) => false,
-                          );
-                        }
-                      },
-                      icon: const Icon(
-                        Icons.home_outlined,
-                        color: kLuminewMainPurple,
-                      ),
-                      label: const Text(
-                        '回到首頁',
-                        style: TextStyle(
-                          color: kLuminewMainPurple,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        backgroundColor: kLuminewMainPurple.withOpacity(0.1),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          side: BorderSide(
-                            color: kLuminewMainPurple.withOpacity(0.2),
+                            side: const BorderSide(color: kLuminewMainPurple, width: 1.5),
+                            backgroundColor: Colors.transparent,
+                          ),
+                          onPressed: _isSendingEmail ? null : _sendEmailManually,
+                          icon: _isSendingEmail
+                              ? const SizedBox(
+                                  width: 18,
+                                  height: 18,
+                                  child: CircularProgressIndicator(strokeWidth: 2, color: kLuminewMainPurple),
+                                )
+                              : const Icon(Icons.email_outlined, size: 18),
+                          label: Text(
+                            _isSendingEmail ? "寄送中..." : "寄給我",
+                            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ),
-                    ),
+                      const SizedBox(width: 12),
+                      // 右：回首頁（實心紫色）
+                      Expanded(
+                        child: ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: kLuminewMainPurple,
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            elevation: 0,
+                          ),
+                          onPressed: () {
+                            try {
+                              Navigator.of(
+                                context,
+                                rootNavigator: true,
+                              ).popUntil((route) => route.isFirst);
+                            } catch (_) {
+                              Navigator.of(
+                                context,
+                                rootNavigator: true,
+                              ).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                  builder: (_) => StudentMainScaffold(
+                                    user: widget.user,
+                                    onLogout: () {
+                                      Navigator.of(
+                                        context,
+                                        rootNavigator: true,
+                                      ).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                          builder: (_) =>
+                                              AuthScreen(onAuthSuccess: (user) {}),
+                                        ),
+                                        (route) => false,
+                                      );
+                                    },
+                                  ),
+                                ),
+                                (route) => false,
+                              );
+                            }
+                          },
+                          icon: const Icon(Icons.home_outlined, size: 18),
+                          label: const Text(
+                            '回首頁',
+                            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -3502,7 +3525,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
       child: RadarChart(
         RadarChartData(
           radarShape: RadarShape.polygon, // ★ 改為圓形網格，實現極致圓潤
-          radarBorderData: const BorderSide(color: Colors.transparent),
+          radarBorderData: BorderSide(color: Colors.grey.withOpacity(0.7), width: 2.0),
           titlePositionPercentageOffset: 0.1,
           titleTextStyle: const TextStyle(
             color: kLuminewDeepIndigo,
