@@ -214835,3 +214835,2238 @@
 2026-06-14 05:39 +08:00: INFO:     2001:b011:2017:fb42:8d59:2447:fe5f:9d8c:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
 2026-06-14 05:39 +08:00: INFO:     2001:b011:2017:fb42:8d59:2447:fe5f:9d8c:0 - "GET /static/videos/bff7e04f-e352-4cc9-8cbb-21f1f48253f5.mp4 HTTP/1.1" 200 OK
 2026-06-14 05:39 +08:00: INFO:     2001:b011:2017:fb42:8d59:2447:fe5f:9d8c:0 - "GET /static/videos/bff7e04f-e352-4cc9-8cbb-21f1f48253f5.mp4 HTTP/1.1" 200 OK
+2026-06-14 05:50 +08:00: INFO:     216.73.216.78:0 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-06-14 05:53 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 05:54 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 05:57 +08:00: INFO:     185.247.137.86:53285 - "GET / HTTP/1.1" 200 OK
+2026-06-14 05:57 +08:00: INFO:     185.247.137.47:35589 - "GET /favicon.png HTTP/1.1" 200 OK
+2026-06-14 05:57 +08:00: INFO:     195.96.139.204:58573 - "GET /icons/Icon-192.png HTTP/1.1" 200 OK
+2026-06-14 06:07 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 06:13 +08:00: INFO:     176.65.139.235:0 - "GET /.env HTTP/1.1" 404 Not Found
+2026-06-14 06:25 +08:00: INFO:     216.73.216.173:0 - "GET /sitemap.xml HTTP/1.1" 404 Not Found
+2026-06-14 06:42 +08:00: INFO:     45.92.85.116:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 07:01 +08:00: INFO:     216.251.143.109:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 07:01 +08:00: INFO:     216.251.143.109:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 07:01 +08:00: INFO:     216.251.143.109:0 - "GET /flutter_bootstrap.js?v=1781391706030 HTTP/1.1" 200 OK
+2026-06-14 07:01 +08:00: INFO:     216.251.143.109:0 - "GET /flutter_service_worker.js?v=4143627542 HTTP/1.1" 200 OK
+2026-06-14 07:01 +08:00: INFO:     216.251.143.109:0 - "GET /favicon.png HTTP/1.1" 200 OK
+2026-06-14 07:01 +08:00: INFO:     216.251.143.109:0 - "GET /main.dart.js HTTP/1.1" 200 OK
+2026-06-14 07:01 +08:00: INFO:     216.251.143.109:0 - "GET /index.html HTTP/1.1" 200 OK
+2026-06-14 07:01 +08:00: INFO:     216.251.143.109:0 - "GET /flutter_bootstrap.js HTTP/1.1" 200 OK
+2026-06-14 07:01 +08:00: INFO:     216.251.143.109:0 - "GET /assets/AssetManifest.bin.json HTTP/1.1" 200 OK
+2026-06-14 07:01 +08:00: INFO:     216.251.143.109:0 - "GET /assets/FontManifest.json HTTP/1.1" 200 OK
+2026-06-14 07:04 +08:00: INFO:     5.78.73.116:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 07:09 +08:00: INFO:     47.254.156.46:45708 - "GET / HTTP/1.1" 200 OK
+2026-06-14 07:09 +08:00: INFO:     47.254.156.46:46122 - "GET / HTTP/1.1" 200 OK
+2026-06-14 07:11 +08:00: INFO:     149.57.180.23:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 07:24 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 07:29 +08:00: INFO:     34.47.34.161:44440 - "GET /wp-json/gravitysmtp/v1/tests/mock-data?page=gravitysmtp-settings HTTP/1.1" 404 Not Found
+2026-06-14 07:29 +08:00: INFO:     34.47.34.161:44450 - "GET /wp-json/gravitysmtp/v1/settings HTTP/1.1" 404 Not Found
+2026-06-14 07:29 +08:00: INFO:     34.47.34.161:44452 - "GET /wp-json/gravitysmtp/v1/config HTTP/1.1" 404 Not Found
+2026-06-14 07:29 +08:00: INFO:     34.47.34.161:44460 - "GET /wp-json/gravitysmtp/v1/tests/mock-data HTTP/1.1" 404 Not Found
+2026-06-14 07:29 +08:00: INFO:     34.47.34.161:44468 - "GET /wp-json/wp/v2/settings HTTP/1.1" 404 Not Found
+2026-06-14 07:36 +08:00: INFO:     43.166.134.114:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 07:41 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 07:57 +08:00: INFO:     216.73.216.237:0 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45252 - "GET /.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45254 - "GET /app/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45260 - "GET /src/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45262 - "GET /backend/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45270 - "GET /frontend/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45278 - "GET /api/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45284 - "GET /v1/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45292 - "GET /v3/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45296 - "GET /v2/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45298 - "GET /www/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45312 - "GET /web/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45328 - "GET /public/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45324 - "GET /htdocs/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45344 - "GET /assets/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45374 - "GET /dist/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45360 - "GET /static/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45350 - "GET /html/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45392 - "GET /admin/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45380 - "GET /build/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45402 - "GET /dashboard/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45404 - "GET /portal/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45414 - "GET /site/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45424 - "GET /shop/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45430 - "GET /wp-content/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45444 - "GET /blog/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45456 - "GET /wordpress/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45482 - "GET /project/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45468 - "GET /laravel/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45488 - "GET /symfony/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:16 +08:00: INFO:     35.187.247.218:45494 - "GET /code/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 08:17 +08:00: INFO:     43.159.144.16:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 08:51 +08:00: INFO:     216.73.217.165:0 - "GET /sitemap.xml HTTP/1.1" 404 Not Found
+2026-06-14 09:02 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 09:04 +08:00: INFO:     43.130.228.73:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 09:05 +08:00: INFO:     49.51.183.220:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 09:14 +08:00: INFO:     43.166.247.155:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 09:21 +08:00: INFO:     216.73.216.149:0 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-06-14 09:22 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 09:40 +08:00: INFO:     2001:4ca0:108:42::24:0 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-06-14 10:03 +08:00: INFO:     162.216.148.0:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 10:03 +08:00: INFO:     162.216.148.0:0 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-06-14 10:03 +08:00: INFO:     162.216.148.0:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 10:16 +08:00: INFO:     194.163.130.250:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 10:45 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 10:57 +08:00: INFO:     5.78.73.116:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 11:01 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 11:06 +08:00: INFO:     113.31.186.195:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-06-14 11:07 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 11:12 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 11:12 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 11:14 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 11:14 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 11:19 +08:00: INFO:     81.196.20.141:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 11:19 +08:00: INFO:     81.196.20.141:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 11:34 +08:00: INFO:     45.156.128.52:44342 - "GET / HTTP/1.1" 200 OK
+2026-06-14 11:34 +08:00: INFO:     45.156.128.51:39094 - "POST /mcp HTTP/1.1" 405 Method Not Allowed
+2026-06-14 11:34 +08:00: INFO:     45.156.128.51:39094 - "GET /sse HTTP/1.1" 404 Not Found
+2026-06-14 11:34 +08:00: INFO:     45.156.128.54:37360 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-06-14 11:38 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 11:38 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "GET /flutter_bootstrap.js?v=1781408304537 HTTP/1.1" 200 OK
+2026-06-14 11:38 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "GET /flutter_service_worker.js?v=4143627542 HTTP/1.1" 200 OK
+2026-06-14 11:38 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "GET /index.html HTTP/1.1" 200 OK
+2026-06-14 11:38 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "GET /assets/AssetManifest.bin.json HTTP/1.1" 200 OK
+2026-06-14 11:38 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "GET /assets/FontManifest.json HTTP/1.1" 200 OK
+2026-06-14 11:38 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "GET /flutter_bootstrap.js HTTP/1.1" 200 OK
+2026-06-14 11:38 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "GET /main.dart.js HTTP/1.1" 200 OK
+2026-06-14 11:38 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 OK
+2026-06-14 11:38 +08:00: 📥 [Login] 收到登入請求: Email='w0939836832@gmail.com'
+2026-06-14 11:38 +08:00: 
+2026-06-14 11:38 +08:00: ✅ [Login] 驗證成功: w0939836832@gmail.com
+2026-06-14 11:38 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "POST /api/db/login HTTP/1.1" 200 OK
+2026-06-14 11:38 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "GET /assets/assets/LOGO.png HTTP/1.1" 200 OK
+2026-06-14 11:38 +08:00: 🔍 [GetRecords] 診斷模式啟動: UserID='15'
+2026-06-14 11:38 +08:00: 📊 [診斷] 全表最近 10 筆 StudentID: [(1162, 1), (1161, 1), (1160, 1), (1159, 1), (1158, 1), (1157, 1), (1156, 1), (1155, 15), (1154, 13), (1153, 19)]
+2026-06-14 11:38 +08:00: ✅ [GetRecords] 查詢成功，找到 7 筆紀錄
+2026-06-14 11:38 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "POST /api/db/getRecords HTTP/1.1" 200 OK
+2026-06-14 11:38 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 11:38 +08:00: 🔍 [GetRecords] 診斷模式啟動: UserID='15'
+2026-06-14 11:38 +08:00: 📊 [診斷] 全表最近 10 筆 StudentID: [(1162, 1), (1161, 1), (1160, 1), (1159, 1), (1158, 1), (1157, 1), (1156, 1), (1155, 15), (1154, 13), (1153, 19)]
+2026-06-14 11:38 +08:00: ✅ [GetRecords] 查詢成功，找到 7 筆紀錄
+2026-06-14 11:38 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "POST /api/db/getRecords HTTP/1.1" 200 OK
+2026-06-14 11:39 +08:00: 🔍 [GetRecords] 診斷模式啟動: UserID='15'
+2026-06-14 11:39 +08:00: 📊 [診斷] 全表最近 10 筆 StudentID: [(1162, 1), (1161, 1), (1160, 1), (1159, 1), (1158, 1), (1157, 1), (1156, 1), (1155, 15), (1154, 13), (1153, 19)]
+2026-06-14 11:39 +08:00: ✅ [GetRecords] 查詢成功，找到 7 筆紀錄
+2026-06-14 11:39 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "POST /api/db/getRecords HTTP/1.1" 200 OK
+2026-06-14 11:39 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 11:39 +08:00: INFO:     2402:7500:479:8ba:c18b:575d:2879:d5ad:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /wp-includes/ID3/license.txt HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /wp-includes/ID3/license.txt HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /feed/ HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /feed/ HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /xmlrpc.php?rsd HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /xmlrpc.php?rsd HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /blog/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /web/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /wordpress/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /wp/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /2020/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /2020/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /2019/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /2021/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /2021/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /shop/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /wp1/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /test/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /site/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /cms/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:41 +08:00: INFO:     79.127.129.225:0 - "GET /cms/wp-includes/wlwmanifest.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:43 +08:00: INFO:     216.73.217.59:0 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-06-14 11:44 +08:00: INFO:     216.73.217.59:0 - "GET /sitemap.xml HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /app/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /frontend/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /src/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /backend/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /api/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /portal/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /web/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /v1/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /v3/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /v2/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /site/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /html/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /shop/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /blog/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /public/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /www/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /assets/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /static/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /dist/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /htdocs/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /laravel/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /symfony/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /admin/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /project/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /build/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /dashboard/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /wordpress/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /wp-content/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:52 +08:00: INFO:     35.186.146.174:0 - "GET /code/.git/config HTTP/1.1" 404 Not Found
+2026-06-14 11:56 +08:00: INFO:     183.134.40.85:0 - "GET /api/user/check HTTP/1.1" 404 Not Found
+2026-06-14 11:59 +08:00: INFO:     183.134.40.85:0 - "GET /api/user/check HTTP/1.1" 404 Not Found
+2026-06-14 12:14 +08:00: INFO:     194.163.167.100:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 12:19 +08:00: INFO:     5.78.73.116:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 12:27 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 12:28 +08:00: INFO:     216.73.217.167:0 - "GET /sitemap.xml HTTP/1.1" 404 Not Found
+2026-06-14 12:40 +08:00: INFO:     34.156.131.59:0 - "GET /wp-json/gravitysmtp/v1/tests/mock-data?page=gravitysmtp-settings HTTP/1.1" 404 Not Found
+2026-06-14 12:40 +08:00: INFO:     34.156.131.59:0 - "GET /wp-json/gravitysmtp/v1/config HTTP/1.1" 404 Not Found
+2026-06-14 12:40 +08:00: INFO:     34.156.131.59:0 - "GET /wp-json/gravitysmtp/v1/tests/mock-data HTTP/1.1" 404 Not Found
+2026-06-14 12:40 +08:00: INFO:     34.156.131.59:0 - "GET /wp-json/gravitysmtp/v1/settings HTTP/1.1" 404 Not Found
+2026-06-14 12:40 +08:00: INFO:     34.156.131.59:0 - "GET /wp-json/wp/v2/settings HTTP/1.1" 404 Not Found
+2026-06-14 12:45 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 12:49 +08:00: INFO:     47.84.227.99:48700 - "GET / HTTP/1.1" 200 OK
+2026-06-14 12:49 +08:00: INFO:     47.84.227.99:48746 - "GET /favicon.png HTTP/1.1" 200 OK
+2026-06-14 12:54 +08:00: INFO:     106.52.49.148:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 12:58 +08:00: INFO:     2001:4ca0:108:42::24:0 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-06-14 13:44 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 13:45 +08:00: INFO:     101.33.81.73:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 13:45 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 13:46 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 13:49 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 13:50 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 13:50 +08:00: INFO:     216.73.216.71:0 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-06-14 13:51 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 13:51 +08:00: INFO:     113.31.186.195:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-06-14 13:52 +08:00: INFO:     129.226.214.57:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 13:52 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 13:53 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 13:53 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 13:53 +08:00: INFO:     113.31.186.195:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-06-14 13:54 +08:00: INFO:     113.31.186.195:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-06-14 13:54 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 13:55 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 14:00 +08:00: INFO:     113.31.186.195:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 14:08 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 14:21 +08:00: INFO:     31.14.254.106:6180 - "GET / HTTP/1.1" 200 OK
+2026-06-14 14:21 +08:00: INFO:     5.226.140.97:6068 - "GET /favicon.png HTTP/1.1" 200 OK
+2026-06-14 14:21 +08:00: INFO:     5.226.140.87:11800 - "GET /icons/Icon-192.png HTTP/1.1" 200 OK
+2026-06-14 14:21 +08:00: INFO:     89.37.172.148:9076 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-06-14 14:21 +08:00: INFO:     81.19.219.235:5868 - "POST /mcp HTTP/1.1" 405 Method Not Allowed
+2026-06-14 14:21 +08:00: INFO:     193.176.29.17:10800 - "POST / HTTP/1.1" 405 Method Not Allowed
+2026-06-14 14:21 +08:00: INFO:     194.50.235.153:15374 - "GET /sse HTTP/1.1" 404 Not Found
+2026-06-14 14:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 14:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_service_worker.js?v=2621805485 HTTP/1.1" 200 OK
+2026-06-14 14:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js?v=1781418254548 HTTP/1.1" 200 OK
+2026-06-14 14:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /main.dart.js HTTP/1.1" 200 OK
+2026-06-14 14:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/FontManifest.json HTTP/1.1" 200 OK
+2026-06-14 14:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /index.html HTTP/1.1" 200 OK
+2026-06-14 14:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js HTTP/1.1" 200 OK
+2026-06-14 14:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/AssetManifest.bin.json HTTP/1.1" 200 OK
+2026-06-14 14:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_service_worker.js?v=4143627542 HTTP/1.1" 200 OK
+2026-06-14 14:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/AssetManifest.bin.json HTTP/1.1" 200 OK
+2026-06-14 14:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/FontManifest.json HTTP/1.1" 200 OK
+2026-06-14 14:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /index.html HTTP/1.1" 200 OK
+2026-06-14 14:24 +08:00: 📥 [Login] 收到登入請求: Email='cc@gmail.com'
+2026-06-14 14:24 +08:00: 
+2026-06-14 14:24 +08:00: ✅ [Login] 驗證成功: cc@gmail.com
+2026-06-14 14:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/login HTTP/1.1" 200 OK
+2026-06-14 14:25 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 14:33 +08:00: [INIT] 正在啟動面試官: 引導型教授
+2026-06-14 14:33 +08:00: [WAIT] 收到 Flutter 請求，正在申請 D-ID... 
+2026-06-14 14:33 +08:00: 正在向 D-ID 申請開啟視訊會議室...
+2026-06-14 14:33 +08:00: [LINK] [D-ID] 已設定 Webhook 回傳地址 (請確認 ngrok 正常): https://luminew.site/api/interview/did-webhook
+2026-06-14 14:34 +08:00:  [SYMBOL]  [DEBUG] 目前 D-ID 紀錄的 Session ID: TALKS_STREAMER_SESSION="ChIxMC4yMDIuNjYuMjI4OjMwMDA=", Cookies: {}
+2026-06-14 14:34 +08:00: [OK] [D-ID] 串流已建立: strm_t6nNd9F9i7SqDV-ds1oH4_AKS
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/start HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [OK] Client d8300bc3-551e-4c4c-974c-3b33ca5e81b5 已連線
+2026-06-14 14:34 +08:00: [OK] 找到對應的 D-ID 面試 session_id: d8300bc3-551e-4c4c-974c-3b33ca5e81b5
+2026-06-14 14:34 +08:00: ℹ️ [ICE 補送] 無緩存 ICE (session_id=d8300bc3-551e-4c4c-974c-3b33ca5e81b5)
+2026-06-14 14:34 +08:00: [ACAD] 面試啟動（教授: warm_industry_professor）
+2026-06-14 14:34 +08:00: [THINK] 教授 (warm_industry_professor) 正在準備開場白...
+2026-06-14 14:34 +08:00: [LINK] 正在連線 ASR WebSocket: wss://asr.api.yating.tw/ws/v1/?token=...
+2026-06-14 14:34 +08:00: [OK] [D-ID] SDP Answer 提交成功! 回應: {}
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-answer HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [OK] ASR WebSocket 已連線
+2026-06-14 14:34 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [PROF] [教授開場]: 同學請坐吧，也很歡迎你來參加這次的面試。我是教授，很高興見到你。首先，請花約一分鐘的時間，跟我介紹一下你自己。
+2026-06-14 14:34 +08:00: [WAIT] [D-ID] 第一次播放，額外等待 2 秒確保連線穩定...
+2026-06-14 14:34 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:34 +08:00: 
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:34 +08:00: 
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:34 +08:00: 
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [AUDIO] [TTS 準備播放] 文字長度: 55
+2026-06-14 14:34 +08:00: [AUDIO] [D-ID] 正在生成高品質 Minimax 音訊檔案...
+2026-06-14 14:34 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:34 +08:00: [LINK] [D-ID] 上傳成功，安全音訊 URL: https://files.catbox.moe/xns007.wav
+2026-06-14 14:34 +08:00:  [SYMBOL]  正在指揮 D-ID 教授播報 Minimax 聲音...
+2026-06-14 14:34 +08:00: [OK] [D-ID 音訊說話成功] 狀態碼: 200
+2026-06-14 14:34 +08:00: [MIC] 開始錄音...
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:34 +08:00: [STOP] [學生演講結束] 正在處理學生回答並產出教授回應...
+2026-06-14 14:34 +08:00: [STOP] 已停止錄音，等待辨識結果...
+2026-06-14 14:34 +08:00: [WARN] 偵測到無效或過短的回答，觸發重啟錄音流程...
+2026-06-14 14:34 +08:00: [AUDIO] [TTS 準備播放] 文字長度: 22
+2026-06-14 14:34 +08:00: [AUDIO] [D-ID] 正在生成高品質 Minimax 音訊檔案...
+2026-06-14 14:34 +08:00: [LINK] [D-ID] 上傳成功，安全音訊 URL: https://files.catbox.moe/k4dgo0.wav
+2026-06-14 14:34 +08:00:  [SYMBOL]  正在指揮 D-ID 教授播報 Minimax 聲音...
+2026-06-14 14:34 +08:00: [OK] [D-ID 音訊說話成功] 狀態碼: 200
+2026-06-14 14:34 +08:00: [MIC] 開始錄音...
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: 
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 14:34 +08:00: [STOP] 已停止錄音，等待辨識結果...
+2026-06-14 14:34 +08:00: [STOP] 面試完全結束
+2026-06-14 14:34 +08:00: [ERROR] Client d8300bc3-551e-4c4c-974c-3b33ca5e81b5 斷線
+2026-06-14 14:34 +08:00: [STOP] 已停止錄音，等待辨識結果...
+2026-06-14 14:34 +08:00: [STOP] 面試完全結束
+2026-06-14 14:34 +08:00:  [SYMBOL]  Client d8300bc3-551e-4c4c-974c-3b33ca5e81b5 清理完成
+2026-06-14 14:35 +08:00: [INIT] 正在啟動面試官: 引導型教授
+2026-06-14 14:35 +08:00: [WAIT] 收到 Flutter 請求，正在申請 D-ID... 
+2026-06-14 14:35 +08:00: 正在向 D-ID 申請開啟視訊會議室...
+2026-06-14 14:35 +08:00: [LINK] [D-ID] 已設定 Webhook 回傳地址 (請確認 ngrok 正常): https://luminew.site/api/interview/did-webhook
+2026-06-14 14:35 +08:00:  [SYMBOL]  [DEBUG] 目前 D-ID 紀錄的 Session ID: TALKS_STREAMER_SESSION="ChMxMC4yMDIuMTAwLjI0MjozMDAw", Cookies: {}
+2026-06-14 14:35 +08:00: [OK] [D-ID] 串流已建立: strm_wfdqZ3NhfmxTE-a42qRdZ_AKS
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/start HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [OK] Client d6b1a6b6-6dfd-4d19-b2e5-cd4404615135 已連線
+2026-06-14 14:35 +08:00: [OK] 找到對應的 D-ID 面試 session_id: d6b1a6b6-6dfd-4d19-b2e5-cd4404615135
+2026-06-14 14:35 +08:00: ℹ️ [ICE 補送] 無緩存 ICE (session_id=d6b1a6b6-6dfd-4d19-b2e5-cd4404615135)
+2026-06-14 14:35 +08:00: [ACAD] 面試啟動（教授: warm_industry_professor）
+2026-06-14 14:35 +08:00: [THINK] 教授 (warm_industry_professor) 正在準備開場白...
+2026-06-14 14:35 +08:00: [LINK] 正在連線 ASR WebSocket: wss://asr.api.yating.tw/ws/v1/?token=...
+2026-06-14 14:35 +08:00: [OK] [D-ID] SDP Answer 提交成功! 回應: {}
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-answer HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [OK] ASR WebSocket 已連線
+2026-06-14 14:35 +08:00: [PROF] [教授開場]: 同學請坐吧。很好，首先請花大約一分鐘時間跟我介紹一下你自己。可以談談你的背景、興趣或是對未來的期待，都沒問題。
+2026-06-14 14:35 +08:00: 
+2026-06-14 14:35 +08:00: [WAIT] [D-ID] 第一次播放，額外等待 2 秒確保連線穩定...
+2026-06-14 14:35 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:35 +08:00: 
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:35 +08:00: 
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:35 +08:00: 
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: [AUDIO] [TTS 準備播放] 文字長度: 55
+2026-06-14 14:35 +08:00: [AUDIO] [D-ID] 正在生成高品質 Minimax 音訊檔案...
+2026-06-14 14:35 +08:00: [LINK] [D-ID] 上傳成功，安全音訊 URL: https://files.catbox.moe/w8imcb.wav
+2026-06-14 14:35 +08:00:  [SYMBOL]  正在指揮 D-ID 教授播報 Minimax 聲音...
+2026-06-14 14:35 +08:00: [OK] [D-ID 音訊說話成功] 狀態碼: 200
+2026-06-14 14:35 +08:00: [MIC] 開始錄音...
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 14:35 +08:00: [STOP] 已停止錄音，等待辨識結果...
+2026-06-14 14:35 +08:00: [STOP] 面試完全結束
+2026-06-14 14:35 +08:00: [ERROR] Client d6b1a6b6-6dfd-4d19-b2e5-cd4404615135 斷線
+2026-06-14 14:35 +08:00: [STOP] 已停止錄音，等待辨識結果...
+2026-06-14 14:35 +08:00: [STOP] 面試完全結束
+2026-06-14 14:35 +08:00: 
+2026-06-14 14:35 +08:00: [INPUT] 收到影片，已存檔至: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\static\videos\eb43b297-9b21-4837-a268-40347a33c183.mp4
+2026-06-14 14:35 +08:00: 🚀 [Job ec059564-fbd0-47cd-a28f-e19c51777f5a] 已建立，分析在背景執行中...
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /emotion/analyze HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: 🎬 [Worker] 開始處理影片: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\static\videos\eb43b297-9b21-4837-a268-40347a33c183.mp4
+2026-06-14 14:35 +08:00: 
+2026-06-14 14:35 +08:00: 🎥 原始影片尺寸: 480 x 720, FPS: 30.0, 處理間隔: 60
+2026-06-14 14:35 +08:00: 📊 [Worker] 分析完成：共 1011 幀，辨識 16 幀
+2026-06-14 14:35 +08:00: 📈 結果: {'confidence': 36, 'nervous': 56, 'passion': 6, 'relaxed': 0}
+2026-06-14 14:35 +08:00: 🤖 呼叫 OpenAI 生成評語 (同步，在獨立線程中)...
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /emotion/status/ec059564-fbd0-47cd-a28f-e19c51777f5a HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: ✅ [Job ec059564-fbd0-47cd-a28f-e19c51777f5a] 分析完成
+2026-06-14 14:35 +08:00: 🎬 [FFmpeg] 正在執行翻轉: ffmpeg -y -i C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\static\videos\eb43b297-9b21-4837-a268-40347a33c183.mp4 -vf hflip -c:a copy C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\static\videos\eb43b297-9b21-4837-a268-40347a33c183_temp.mp4
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /emotion/status/ec059564-fbd0-47cd-a28f-e19c51777f5a HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: ✅ [SaveRecord] 準備為 UserID: 1 (cc@gmail.com) 儲存紀錄
+2026-06-14 14:35 +08:00: ✨ [SaveRecord] 成功建立紀錄 ID: 1163
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/saveRecord HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 14:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 14:36 +08:00: ✅ 影片翻轉成功
+2026-06-14 14:37 +08:00: INFO:     45.92.84.82:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 14:37 +08:00: INFO:     45.92.87.31:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 14:40 +08:00: INFO:     104.28.155.33:0 - "GET /wp-login.php HTTP/1.1" 404 Not Found
+2026-06-14 14:40 +08:00: INFO:     104.28.155.33:0 - "GET /wp-login.php HTTP/1.1" 404 Not Found
+2026-06-14 14:41 +08:00: INFO:     4.43.184.113:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 14:44 +08:00: INFO:     2001:4ca0:108:42::24:0 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-06-14 14:55 +08:00: INFO:     173.188.143.247:0 - "GET /products.json?limit=250 HTTP/1.1" 404 Not Found
+2026-06-14 14:56 +08:00: INFO:     178.121.60.204:0 - "GET /6999DJjf?utm_creative=1&utm_campaign=KNUR&utm_source=escobar&utm_placement=Instagram_Feed&campaign_id=120243826115170417&adset_id=120243826115180417&ad_id=120243826115160417&adset_name=VALERA&p=3452341611582961&int=%7Bint%7D&lock=1lb56&bid=18&utm_medium=paid&utm_id=120243826115170417&utm_content=120243826115160417&utm_term=120243826115180417&fbclid=PAYm9jbAR6dwFleHRuA2FlbQEwAGFkaWQBqzEfzpwLsXNydGMGYXBwX2lkDzEyNDAyNDU3NDI4NzQxNAABp71syldLxZX6UqiEyCbHpsccNeVUgbfR7rpe2KQ_i--phhwRhlKyFGQYHbC6_aem_Us0lwYhZZRxevDS-0L6P1A HTTP/1.1" 404 Not Found
+2026-06-14 15:06 +08:00: INFO:     216.73.216.150:0 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-06-14 15:06 +08:00: INFO:     216.73.216.150:0 - "GET /sitemap.xml HTTP/1.1" 404 Not Found
+2026-06-14 15:14 +08:00: INFO:     35.247.119.43:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 15:19 +08:00: INFO:     43.136.167.197:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 15:29 +08:00: INFO:     5.78.73.116:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 15:43 +08:00: [AUTH] OpenAI API Key: sk-proj-Fn...
+2026-06-14 15:43 +08:00: ✅ OpenAI API 設定成功
+2026-06-14 15:43 +08:00: 📂 成功載入 OpenCV DNN 人臉辨識模組
+2026-06-14 15:43 +08:00: ⚡ OpenCV DNN 已切換至 CUDA GPU 模式
+2026-06-14 15:43 +08:00: ✅ 情緒辨識模型載入成功
+2026-06-14 15:43 +08:00: 
+2026-06-14 15:43 +08:00: ==================================================
+2026-06-14 15:43 +08:00: [MODE] 正式營運模式：優先使用環境變數中的 PUBLIC_URL
+2026-06-14 15:43 +08:00: [FINAL] 目前對外 API 位址: https://luminew.site
+2026-06-14 15:43 +08:00: ==================================================
+2026-06-14 15:43 +08:00: 
+2026-06-14 15:44 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 15:49 +08:00: INFO:     40.87.20.23:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 15:49 +08:00: INFO:     40.87.20.23:0 - "POST / HTTP/1.1" 405 Method Not Allowed
+2026-06-14 15:50 +08:00: [AUTH] OpenAI API Key: sk-proj-Fn...
+2026-06-14 15:50 +08:00: ✅ OpenAI API 設定成功
+2026-06-14 15:50 +08:00: 📂 成功載入 OpenCV DNN 人臉辨識模組
+2026-06-14 15:50 +08:00: ⚡ OpenCV DNN 已切換至 CUDA GPU 模式
+2026-06-14 15:50 +08:00: ✅ 情緒辨識模型載入成功
+2026-06-14 15:50 +08:00: 
+2026-06-14 15:50 +08:00: ==================================================
+2026-06-14 15:50 +08:00: [MODE] 正式營運模式：優先使用環境變數中的 PUBLIC_URL
+2026-06-14 15:50 +08:00: [FINAL] 目前對外 API 位址: https://luminew.site
+2026-06-14 15:50 +08:00: ==================================================
+2026-06-14 15:50 +08:00: 
+2026-06-14 15:54 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 15:54 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js?v=1781423693799 HTTP/1.1" 200 OK
+2026-06-14 15:54 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /manifest.json HTTP/1.1" 200 OK
+2026-06-14 15:54 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /icons/Icon-192.png HTTP/1.1" 200 OK
+2026-06-14 15:54 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /favicon.png HTTP/1.1" 200 OK
+2026-06-14 15:54 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_service_worker.js?v=3934476054 HTTP/1.1" 200 OK
+2026-06-14 15:54 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /index.html HTTP/1.1" 200 OK
+2026-06-14 15:54 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/FontManifest.json HTTP/1.1" 200 OK
+2026-06-14 15:54 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/AssetManifest.bin.json HTTP/1.1" 200 OK
+2026-06-14 15:54 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /main.dart.js HTTP/1.1" 200 OK
+2026-06-14 15:54 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js HTTP/1.1" 200 OK
+2026-06-14 15:54 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 OK
+2026-06-14 15:54 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 OK
+2026-06-14 15:55 +08:00: 📥 [Login] 收到登入請求: Email='cc@gmail.com'
+2026-06-14 15:55 +08:00: ✅ [Login] 驗證成功: cc@gmail.com
+2026-06-14 15:55 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/login HTTP/1.1" 200 OK
+2026-06-14 15:55 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/assets/LOGO.png HTTP/1.1" 200 OK
+2026-06-14 15:55 +08:00: 🔍 [GetRecords] 診斷模式啟動: UserID='1'
+2026-06-14 15:55 +08:00: 📊 [診斷] 全表最近 10 筆 StudentID: [(1163, 1), (1162, 1), (1161, 1), (1160, 1), (1159, 1), (1158, 1), (1157, 1), (1156, 1), (1155, 15), (1154, 13)]
+2026-06-14 15:55 +08:00: ✅ [GetRecords] 查詢成功，找到 44 筆紀錄
+2026-06-14 15:55 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getRecords HTTP/1.1" 200 OK
+2026-06-14 15:55 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 15:55 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 15:55 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /static/videos/eb43b297-9b21-4837-a268-40347a33c183.mp4 HTTP/1.1" 200 OK
+2026-06-14 15:55 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /static/videos/eb43b297-9b21-4837-a268-40347a33c183.mp4 HTTP/1.1" 200 OK
+2026-06-14 15:59 +08:00: INFO:     2001:1670:1a:4225:4de0:595b:8811:4346:0 - "POST /xmlrpc.php HTTP/1.1" 405 Method Not Allowed
+2026-06-14 15:59 +08:00: INFO:     2001:1670:1a:4225:4de0:595b:8811:4346:0 - "POST /xmlrpc.php HTTP/1.1" 405 Method Not Allowed
+2026-06-14 16:02 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 16:09 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateTutorialStatus HTTP/1.1" 200 OK
+2026-06-14 16:09 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 16:09 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /manifest.json HTTP/1.1" 200 OK
+2026-06-14 16:09 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js?v=1781424594142 HTTP/1.1" 200 OK
+2026-06-14 16:09 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_service_worker.js?v=3934476054 HTTP/1.1" 200 OK
+2026-06-14 16:11 +08:00: 📥 [Login] 收到登入請求: Email='cc@gmail.com'
+2026-06-14 16:11 +08:00: ✅ [Login] 驗證成功: cc@gmail.com
+2026-06-14 16:11 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/login HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [INIT] 正在啟動面試官: 引導型教授
+2026-06-14 16:12 +08:00: [WAIT] 收到 Flutter 請求，正在申請 D-ID... 
+2026-06-14 16:12 +08:00: 正在向 D-ID 申請開啟視訊會議室...
+2026-06-14 16:12 +08:00: 
+2026-06-14 16:12 +08:00: [LINK] [D-ID] 已設定 Webhook 回傳地址 (請確認 ngrok 正常): https://luminew.site/api/interview/did-webhook
+2026-06-14 16:12 +08:00:  [SYMBOL]  [DEBUG] 目前 D-ID 紀錄的 Session ID: TALKS_STREAMER_SESSION="ChMxMC4yMDIuMTAwLjI0MjozMDAw", Cookies: {}
+2026-06-14 16:12 +08:00: [OK] [D-ID] 串流已建立: strm_SixvH_YQBaP9BTOrQollq_AKS
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/start HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [OK] Client 894fcb0b-c421-453d-b34d-3e46fc2e2cf4 已連線
+2026-06-14 16:12 +08:00: [OK] 找到對應的 D-ID 面試 session_id: 894fcb0b-c421-453d-b34d-3e46fc2e2cf4
+2026-06-14 16:12 +08:00: ℹ️ [ICE 補送] 無緩存 ICE (session_id=894fcb0b-c421-453d-b34d-3e46fc2e2cf4)
+2026-06-14 16:12 +08:00: [ACAD] 面試啟動（教授: warm_industry_professor）
+2026-06-14 16:12 +08:00: [THINK] 教授 (warm_industry_professor) 正在準備開場白...
+2026-06-14 16:12 +08:00: 
+2026-06-14 16:12 +08:00: [LINK] 正在連線 ASR WebSocket: wss://asr.api.yating.tw/ws/v1/?token=...
+2026-06-14 16:12 +08:00: [OK] [D-ID] SDP Answer 提交成功! 回應: {}
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-answer HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [OK] ASR WebSocket 已連線
+2026-06-14 16:12 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:12 +08:00: 
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [PROF] [教授開場]: 同學請坐吧。很好，首先想請你用大約一分鐘的時間，跟我介紹一下你自己。可以談談你的背景、興趣、或者為什麼想走資管這條路。沒關係，放輕鬆，這主要是幫我了解你這個人。好了，請開始吧。
+2026-06-14 16:12 +08:00: 
+2026-06-14 16:12 +08:00: [WAIT] [D-ID] 第一次播放，額外等待 2 秒確保連線穩定...
+2026-06-14 16:12 +08:00: 
+2026-06-14 16:12 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:12 +08:00: 
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:12 +08:00: 
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:12 +08:00: 
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [AUDIO] [TTS 準備播放] 文字長度: 88
+2026-06-14 16:12 +08:00: [AUDIO] [D-ID] 正在生成高品質 Minimax 音訊檔案...
+2026-06-14 16:12 +08:00: [LINK] [D-ID] 上傳成功，安全音訊 URL: https://files.catbox.moe/eabg6b.wav
+2026-06-14 16:12 +08:00:  [SYMBOL]  正在指揮 D-ID 教授播報 Minimax 聲音...
+2026-06-14 16:12 +08:00: 
+2026-06-14 16:12 +08:00: [OK] [D-ID 音訊說話成功] 狀態碼: 200
+2026-06-14 16:12 +08:00: [MIC] 開始錄音...
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/packages/record_web/assets/js/record.worklet.js HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [TARGET] [ASR 辨識成功]: 
+2026-06-14 16:12 +08:00: [MIC] [學生]: 
+2026-06-14 16:12 +08:00: 
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [TARGET] [ASR 辨識成功]: 最主要是我了解你這個人
+2026-06-14 16:12 +08:00: [MIC] [學生]: 最主要是我了解你這個人
+2026-06-14 16:12 +08:00: 
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [TARGET] [ASR 辨識成功]: 開始吧
+2026-06-14 16:12 +08:00: [MIC] [學生]: 開始吧
+2026-06-14 16:12 +08:00: 
+2026-06-14 16:12 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:12 +08:00: [STOP] 已停止錄音，等待辨識結果...
+2026-06-14 16:12 +08:00: [STOP] 面試完全結束
+2026-06-14 16:12 +08:00: [ERROR] Client 894fcb0b-c421-453d-b34d-3e46fc2e2cf4 斷線
+2026-06-14 16:12 +08:00: [STOP] 已停止錄音，等待辨識結果...
+2026-06-14 16:12 +08:00: [STOP] 面試完全結束
+2026-06-14 16:12 +08:00:  [SYMBOL]  Client 894fcb0b-c421-453d-b34d-3e46fc2e2cf4 清理完成
+2026-06-14 16:12 +08:00: [INPUT] 收到影片，已存檔至: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\static\videos\20bef7df-e04c-4a74-a9a0-5fb220cc0f6b.mp4
+2026-06-14 16:12 +08:00: 🚀 [Job c8e59e91-8789-4296-aa30-bacbf380bf08] 已建立，分析在背景執行中...
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /emotion/analyze HTTP/1.1" 200 OK
+2026-06-14 16:12 +08:00: 🎬 [Worker] 開始處理影片: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\static\videos\20bef7df-e04c-4a74-a9a0-5fb220cc0f6b.mp4
+2026-06-14 16:12 +08:00: 
+2026-06-14 16:12 +08:00: 🎥 原始影片尺寸: 480 x 720, FPS: 30.0, 處理間隔: 60
+2026-06-14 16:12 +08:00: 
+2026-06-14 16:12 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /emotion/status/c8e59e91-8789-4296-aa30-bacbf380bf08 HTTP/1.1" 200 OK
+2026-06-14 16:13 +08:00: 📊 [Worker] 分析完成：共 1333 幀，辨識 7 幀
+2026-06-14 16:13 +08:00: 📈 結果: {'confidence': 11, 'nervous': 76, 'passion': 11, 'relaxed': 0}
+2026-06-14 16:13 +08:00: 🤖 呼叫 OpenAI 生成評語 (同步，在獨立線程中)...
+2026-06-14 16:13 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /emotion/status/c8e59e91-8789-4296-aa30-bacbf380bf08 HTTP/1.1" 200 OK
+2026-06-14 16:13 +08:00: 🎬 [FFmpeg] 正在執行翻轉: ffmpeg -y -i C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\static\videos\20bef7df-e04c-4a74-a9a0-5fb220cc0f6b.mp4 -vf hflip -c:a copy C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\static\videos\20bef7df-e04c-4a74-a9a0-5fb220cc0f6b_temp.mp4
+2026-06-14 16:13 +08:00: ✅ [Job c8e59e91-8789-4296-aa30-bacbf380bf08] 分析完成
+2026-06-14 16:13 +08:00: 
+2026-06-14 16:13 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /emotion/status/c8e59e91-8789-4296-aa30-bacbf380bf08 HTTP/1.1" 200 OK
+2026-06-14 16:13 +08:00: ✅ [SaveRecord] 準備為 UserID: 1 (cc@gmail.com) 儲存紀錄
+2026-06-14 16:13 +08:00: ✨ [SaveRecord] 成功建立紀錄 ID: 1164
+2026-06-14 16:13 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/saveRecord HTTP/1.1" 200 OK
+2026-06-14 16:13 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 16:13 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 16:13 +08:00: [AUTH] OpenAI API Key: sk-proj-Fn...
+2026-06-14 16:13 +08:00: ✅ OpenAI API 設定成功
+2026-06-14 16:13 +08:00: 📂 成功載入 OpenCV DNN 人臉辨識模組
+2026-06-14 16:13 +08:00: ⚡ OpenCV DNN 已切換至 CUDA GPU 模式
+2026-06-14 16:13 +08:00: ✅ 情緒辨識模型載入成功
+2026-06-14 16:13 +08:00: 
+2026-06-14 16:13 +08:00: ==================================================
+2026-06-14 16:13 +08:00: [MODE] 正式營運模式：優先使用環境變數中的 PUBLIC_URL
+2026-06-14 16:13 +08:00: [FINAL] 目前對外 API 位址: https://luminew.site
+2026-06-14 16:13 +08:00: ==================================================
+2026-06-14 16:13 +08:00: 
+2026-06-14 16:14 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 16:14 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateTutorialStatus HTTP/1.1" 200 OK
+2026-06-14 16:15 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateTutorialStatus HTTP/1.1" 200 OK
+2026-06-14 16:15 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateTutorialStatus HTTP/1.1" 200 OK
+2026-06-14 16:15 +08:00: [INIT] 正在啟動面試官: 引導型教授
+2026-06-14 16:15 +08:00: [WAIT] 收到 Flutter 請求，正在申請 D-ID... 
+2026-06-14 16:15 +08:00: 正在向 D-ID 申請開啟視訊會議室...
+2026-06-14 16:15 +08:00: 
+2026-06-14 16:15 +08:00: [LINK] [D-ID] 已設定 Webhook 回傳地址 (請確認 ngrok 正常): https://luminew.site/api/interview/did-webhook
+2026-06-14 16:15 +08:00:  [SYMBOL]  [DEBUG] 目前 D-ID 紀錄的 Session ID: TALKS_STREAMER_SESSION="ChExMC4yMDIuMTAwLjA6MzAwMA==", Cookies: {}
+2026-06-14 16:15 +08:00: [OK] [D-ID] 串流已建立: strm_4JnHAx89-HydVkdvBf0n__AKS
+2026-06-14 16:15 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/start HTTP/1.1" 200 OK
+2026-06-14 16:20 +08:00: [AUTH] OpenAI API Key: sk-proj-Fn...
+2026-06-14 16:20 +08:00: ✅ OpenAI API 設定成功
+2026-06-14 16:20 +08:00: 📂 成功載入 OpenCV DNN 人臉辨識模組
+2026-06-14 16:20 +08:00: ⚡ OpenCV DNN 已切換至 CUDA GPU 模式
+2026-06-14 16:20 +08:00: ✅ 情緒辨識模型載入成功
+2026-06-14 16:20 +08:00: 
+2026-06-14 16:20 +08:00: ==================================================
+2026-06-14 16:20 +08:00: [MODE] 正式營運模式：優先使用環境變數中的 PUBLIC_URL
+2026-06-14 16:20 +08:00: [FINAL] 目前對外 API 位址: https://luminew.site
+2026-06-14 16:20 +08:00: ==================================================
+2026-06-14 16:20 +08:00: 
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /manifest.json HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js?v=1781425331321 HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_service_worker.js?v=1428444179 HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/FontManifest.json HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/AssetManifest.bin.json HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /index.html HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /main.dart.js HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: 📥 [Login] 收到登入請求: Email='cc@gmail.com'
+2026-06-14 16:22 +08:00: ✅ [Login] 驗證成功: cc@gmail.com
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/login HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/assets/LOGO.png HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [INIT] 正在啟動面試官: 引導型教授
+2026-06-14 16:22 +08:00: [WAIT] 收到 Flutter 請求，正在申請 D-ID... 
+2026-06-14 16:22 +08:00: 正在向 D-ID 申請開啟視訊會議室...
+2026-06-14 16:22 +08:00: 
+2026-06-14 16:22 +08:00: [LINK] [D-ID] 已設定 Webhook 回傳地址 (請確認 ngrok 正常): https://luminew.site/api/interview/did-webhook
+2026-06-14 16:22 +08:00:  [SYMBOL]  [DEBUG] 目前 D-ID 紀錄的 Session ID: TALKS_STREAMER_SESSION="ChIxMC4yMDIuNjcuMTIzOjMwMDA=", Cookies: {}
+2026-06-14 16:22 +08:00: [OK] [D-ID] 串流已建立: strm_G-0NSd7gM5rSjWXvg_cXG_AKS
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/start HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [OK] Client b475c2a3-7eb9-41f8-add2-555911460b7c 已連線
+2026-06-14 16:22 +08:00: [OK] 找到對應的 D-ID 面試 session_id: b475c2a3-7eb9-41f8-add2-555911460b7c
+2026-06-14 16:22 +08:00: ℹ️ [ICE 補送] 無緩存 ICE (session_id=b475c2a3-7eb9-41f8-add2-555911460b7c)
+2026-06-14 16:22 +08:00: [ACAD] 面試啟動（教授: warm_industry_professor）
+2026-06-14 16:22 +08:00: [THINK] 教授 (warm_industry_professor) 正在準備開場白...
+2026-06-14 16:22 +08:00: [LINK] 正在連線 ASR WebSocket: wss://asr.api.yating.tw/ws/v1/?token=...
+2026-06-14 16:22 +08:00: [OK] [D-ID] SDP Answer 提交成功! 回應: {}
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-answer HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [OK] ASR WebSocket 已連線
+2026-06-14 16:22 +08:00: [PROF] [教授開場]: 同學請坐吧，謝謝你來參加面試。那麼，請用約一分鐘的時間，跟我介紹一下你自己，讓我了解你的背景與興趣。
+2026-06-14 16:22 +08:00: [WAIT] [D-ID] 第一次播放，額外等待 2 秒確保連線穩定...
+2026-06-14 16:22 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:22 +08:00: 
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:22 +08:00: 
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:22 +08:00: 
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:22 +08:00: 
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:22 +08:00: [AUDIO] [TTS 準備播放] 文字長度: 50
+2026-06-14 16:22 +08:00: 
+2026-06-14 16:22 +08:00: [AUDIO] [D-ID] 正在生成高品質 Minimax 音訊檔案...
+2026-06-14 16:23 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:23 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:23 +08:00: [LINK] [D-ID] 上傳成功，安全音訊 URL: https://files.catbox.moe/9tjk1u.wav
+2026-06-14 16:23 +08:00:  [SYMBOL]  正在指揮 D-ID 教授播報 Minimax 聲音...
+2026-06-14 16:23 +08:00: [OK] [D-ID 音訊說話成功] 狀態碼: 200
+2026-06-14 16:23 +08:00: [MIC] 開始錄音...
+2026-06-14 16:23 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/packages/record_web/assets/js/record.worklet.js HTTP/1.1" 200 OK
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: 
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [TARGET] [ASR 辨識成功]: 謝謝。來參加面試，那麼
+2026-06-14 16:23 +08:00: [MIC] [學生]: 謝謝。來參加面試，那麼
+2026-06-14 16:23 +08:00: 
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [TARGET] [ASR 辨識成功]: 介紹一下，你自己，
+2026-06-14 16:23 +08:00: [MIC] [學生]: 介紹一下，你自己，
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: 
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: 
+2026-06-14 16:23 +08:00: [TARGET] [ASR 辨識成功]: 
+2026-06-14 16:23 +08:00: [MIC] [學生]: 
+2026-06-14 16:23 +08:00: 
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [TARGET] [ASR 辨識成功]: 
+2026-06-14 16:23 +08:00: [MIC] [學生]: 
+2026-06-14 16:23 +08:00: 
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:23 +08:00: [ERROR] WebSocket 錯誤: Cannot call "receive" once a disconnect message has been received.
+2026-06-14 16:23 +08:00: [STOP] 已停止錄音，等待辨識結果...
+2026-06-14 16:23 +08:00: [STOP] 面試完全結束
+2026-06-14 16:23 +08:00:  [SYMBOL]  Client b475c2a3-7eb9-41f8-add2-555911460b7c 清理完成
+2026-06-14 16:23 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 16:23 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /manifest.json HTTP/1.1" 200 OK
+2026-06-14 16:23 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js?v=1781425421999 HTTP/1.1" 200 OK
+2026-06-14 16:23 +08:00: 📥 [Login] 收到登入請求: Email='cc@gmail.com'
+2026-06-14 16:23 +08:00: ✅ [Login] 驗證成功: cc@gmail.com
+2026-06-14 16:23 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/login HTTP/1.1" 200 OK
+2026-06-14 16:23 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateTutorialStatus HTTP/1.1" 200 OK
+2026-06-14 16:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateTutorialStatus HTTP/1.1" 200 OK
+2026-06-14 16:35 +08:00: [AUTH] OpenAI API Key: sk-proj-Fn...
+2026-06-14 16:35 +08:00: ✅ OpenAI API 設定成功
+2026-06-14 16:35 +08:00: 📂 成功載入 OpenCV DNN 人臉辨識模組
+2026-06-14 16:35 +08:00: ⚡ OpenCV DNN 已切換至 CUDA GPU 模式
+2026-06-14 16:35 +08:00: ✅ 情緒辨識模型載入成功
+2026-06-14 16:35 +08:00: 
+2026-06-14 16:35 +08:00: ==================================================
+2026-06-14 16:35 +08:00: [MODE] 正式營運模式：優先使用環境變數中的 PUBLIC_URL
+2026-06-14 16:35 +08:00: [FINAL] 目前對外 API 位址: https://luminew.site
+2026-06-14 16:35 +08:00: ==================================================
+2026-06-14 16:35 +08:00: 
+2026-06-14 16:37 +08:00: [AUTH] OpenAI API Key: sk-proj-Fn...
+2026-06-14 16:37 +08:00: ✅ OpenAI API 設定成功
+2026-06-14 16:37 +08:00: 📂 成功載入 OpenCV DNN 人臉辨識模組
+2026-06-14 16:37 +08:00: ⚡ OpenCV DNN 已切換至 CUDA GPU 模式
+2026-06-14 16:37 +08:00: ✅ 情緒辨識模型載入成功
+2026-06-14 16:37 +08:00: 
+2026-06-14 16:37 +08:00: ==================================================
+2026-06-14 16:37 +08:00: [MODE] 正式營運模式：優先使用環境變數中的 PUBLIC_URL
+2026-06-14 16:37 +08:00: [FINAL] 目前對外 API 位址: https://luminew.site
+2026-06-14 16:37 +08:00: ==================================================
+2026-06-14 16:37 +08:00: 
+2026-06-14 16:43 +08:00: [AUTH] OpenAI API Key: sk-proj-Fn...
+2026-06-14 16:43 +08:00: ✅ OpenAI API 設定成功
+2026-06-14 16:43 +08:00: 📂 成功載入 OpenCV DNN 人臉辨識模組
+2026-06-14 16:43 +08:00: ⚡ OpenCV DNN 已切換至 CUDA GPU 模式
+2026-06-14 16:43 +08:00: ✅ 情緒辨識模型載入成功
+2026-06-14 16:43 +08:00: 
+2026-06-14 16:43 +08:00: ==================================================
+2026-06-14 16:43 +08:00: [MODE] 正式營運模式：優先使用環境變數中的 PUBLIC_URL
+2026-06-14 16:43 +08:00: [FINAL] 目前對外 API 位址: https://luminew.site
+2026-06-14 16:43 +08:00: ==================================================
+2026-06-14 16:43 +08:00: 
+2026-06-14 16:48 +08:00: INFO:     161.35.91.33:51264 - "GET / HTTP/1.1" 200 OK
+2026-06-14 16:48 +08:00: INFO:     161.35.91.33:51278 - "GET /favicon.png HTTP/1.1" 200 OK
+2026-06-14 16:50 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 16:50 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /manifest.json HTTP/1.1" 200 OK
+2026-06-14 16:50 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js?v=1781427041948 HTTP/1.1" 200 OK
+2026-06-14 16:50 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_service_worker.js?v=479448509 HTTP/1.1" 200 OK
+2026-06-14 16:50 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /index.html HTTP/1.1" 200 OK
+2026-06-14 16:50 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/FontManifest.json HTTP/1.1" 200 OK
+2026-06-14 16:50 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /main.dart.js HTTP/1.1" 200 OK
+2026-06-14 16:50 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/AssetManifest.bin.json HTTP/1.1" 200 OK
+2026-06-14 16:50 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js HTTP/1.1" 200 OK
+2026-06-14 16:50 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 OK
+2026-06-14 16:50 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 OK
+2026-06-14 16:50 +08:00: 📥 [Login] 收到登入請求: Email='cc@gmail.com'
+2026-06-14 16:50 +08:00: ✅ [Login] 驗證成功: cc@gmail.com
+2026-06-14 16:50 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/login HTTP/1.1" 200 OK
+2026-06-14 16:50 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/assets/LOGO.png HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: 🔍 [GetRecords] 診斷模式啟動: UserID='1'
+2026-06-14 16:51 +08:00: 
+2026-06-14 16:51 +08:00: 📊 [診斷] 全表最近 10 筆 StudentID: [(1164, 1), (1163, 1), (1162, 1), (1161, 1), (1160, 1), (1159, 1), (1158, 1), (1157, 1), (1156, 1), (1155, 15)]
+2026-06-14 16:51 +08:00: ✅ [GetRecords] 查詢成功，找到 45 筆紀錄
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getRecords HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /static/videos/bff7e04f-e352-4cc9-8cbb-21f1f48253f5.mp4 HTTP/1.1" 404 Not Found
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /static/videos/20bef7df-e04c-4a74-a9a0-5fb220cc0f6b.mp4 HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /static/videos/20bef7df-e04c-4a74-a9a0-5fb220cc0f6b.mp4 HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateRecordNote HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /sql/query HTTP/1.1" 405 Method Not Allowed
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateRecordNote HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /sql/query HTTP/1.1" 405 Method Not Allowed
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /static/videos/eb43b297-9b21-4837-a268-40347a33c183.mp4 HTTP/1.1" 404 Not Found
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 16:51 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 16:52 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateRecordNote HTTP/1.1" 200 OK
+2026-06-14 16:52 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /sql/query HTTP/1.1" 405 Method Not Allowed
+2026-06-14 16:52 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 16:52 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 16:52 +08:00: 📥 [Login] 收到登入請求: Email='cc@gmail.com'
+2026-06-14 16:52 +08:00: ✅ [Login] 驗證成功: cc@gmail.com
+2026-06-14 16:52 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/login HTTP/1.1" 200 OK
+2026-06-14 16:52 +08:00: 🔍 [GetRecords] 診斷模式啟動: UserID='1'
+2026-06-14 16:52 +08:00: 📊 [診斷] 全表最近 10 筆 StudentID: [(1164, 1), (1163, 1), (1162, 1), (1161, 1), (1160, 1), (1159, 1), (1158, 1), (1157, 1), (1156, 1), (1155, 15)]
+2026-06-14 16:52 +08:00: ✅ [GetRecords] 查詢成功，找到 45 筆紀錄
+2026-06-14 16:52 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getRecords HTTP/1.1" 200 OK
+2026-06-14 16:52 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 16:52 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 16:52 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/sendComment HTTP/1.1" 200 OK
+2026-06-14 16:52 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 16:52 +08:00: INFO:     216.73.216.150:0 - "GET /robots.txt HTTP/1.1" 404 Not Found
+2026-06-14 16:52 +08:00: INFO:     216.73.216.150:0 - "GET /sitemap.xml HTTP/1.1" 404 Not Found
+2026-06-14 16:56 +08:00: [INIT] 正在啟動面試官: 引導型教授
+2026-06-14 16:56 +08:00: [WAIT] 收到 Flutter 請求，正在申請 D-ID... 
+2026-06-14 16:56 +08:00: 正在向 D-ID 申請開啟視訊會議室...
+2026-06-14 16:56 +08:00: 
+2026-06-14 16:56 +08:00: [LINK] [D-ID] 已設定 Webhook 回傳地址 (請確認 ngrok 正常): https://luminew.site/api/interview/did-webhook
+2026-06-14 16:56 +08:00:  [SYMBOL]  [DEBUG] 目前 D-ID 紀錄的 Session ID: TALKS_STREAMER_SESSION="ChMxMC4yMDIuMTAwLjI0MjozMDAw", Cookies: {}
+2026-06-14 16:56 +08:00: [OK] [D-ID] 串流已建立: strm_0x8_ibtTdpIvrfOb614PP_AKS
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/start HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [OK] Client abe12d04-cc7d-4a9f-b330-1928fc4de0c0 已連線
+2026-06-14 16:56 +08:00: [OK] 找到對應的 D-ID 面試 session_id: abe12d04-cc7d-4a9f-b330-1928fc4de0c0
+2026-06-14 16:56 +08:00: ℹ️ [ICE 補送] 無緩存 ICE (session_id=abe12d04-cc7d-4a9f-b330-1928fc4de0c0)
+2026-06-14 16:56 +08:00: [ACAD] 面試啟動（教授: warm_industry_professor）
+2026-06-14 16:56 +08:00: [THINK] 教授 (warm_industry_professor) 正在準備開場白...
+2026-06-14 16:56 +08:00: [LINK] 正在連線 ASR WebSocket: wss://asr.api.yating.tw/ws/v1/?token=...
+2026-06-14 16:56 +08:00: [OK] [D-ID] SDP Answer 提交成功! 回應: {}
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-answer HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [OK] ASR WebSocket 已連線
+2026-06-14 16:56 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:56 +08:00: 
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:56 +08:00: 
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:56 +08:00: 
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:56 +08:00: 
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:56 +08:00: 
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [PROF] [教授開場]: 同學請坐啦，好，現在請你花一分鐘時間，跟我介紹一下你自己。可以談談你的興趣、學習經歷，或者一點你覺得值得分享的事情。
+2026-06-14 16:56 +08:00: [WAIT] [D-ID] 第一次播放，額外等待 2 秒確保連線穩定...
+2026-06-14 16:56 +08:00: [AUDIO] [TTS 準備播放] 文字長度: 58
+2026-06-14 16:56 +08:00: [AUDIO] [D-ID] 正在生成高品質 Minimax 音訊檔案...
+2026-06-14 16:56 +08:00: [LINK] [D-ID] 上傳成功，安全音訊 URL: https://files.catbox.moe/hxuibg.wav
+2026-06-14 16:56 +08:00:  [SYMBOL]  正在指揮 D-ID 教授播報 Minimax 聲音...
+2026-06-14 16:56 +08:00: [OK] [D-ID 音訊說話成功] 狀態碼: 200
+2026-06-14 16:56 +08:00: [MIC] 開始錄音...
+2026-06-14 16:56 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/packages/record_web/assets/js/record.worklet.js HTTP/1.1" 200 OK
+2026-06-14 16:56 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:56 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:56 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:56 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:56 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:56 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 16:57 +08:00: [STOP] [學生演講結束] 正在處理學生回答並產出教授回應...
+2026-06-14 16:57 +08:00: [STOP] 已停止錄音，等待辨識結果...
+2026-06-14 16:57 +08:00: [WARN] 偵測到無效或過短的回答，觸發重啟錄音流程...
+2026-06-14 16:57 +08:00: [AUDIO] [TTS 準備播放] 文字長度: 22
+2026-06-14 16:57 +08:00: [AUDIO] [D-ID] 正在生成高品質 Minimax 音訊檔案...
+2026-06-14 16:57 +08:00: [LINK] [D-ID] 上傳成功，安全音訊 URL: https://files.catbox.moe/f23xl4.wav
+2026-06-14 16:57 +08:00:  [SYMBOL]  正在指揮 D-ID 教授播報 Minimax 聲音...
+2026-06-14 16:57 +08:00: [OK] [D-ID 音訊說話成功] 狀態碼: 200
+2026-06-14 16:57 +08:00: [MIC] 開始錄音...
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [INPUT] ASR 佇列塞入: 1364 bytes
+2026-06-14 16:57 +08:00: [STOP] 已停止錄音，等待辨識結果...
+2026-06-14 16:57 +08:00: [STOP] 面試完全結束
+2026-06-14 16:57 +08:00: [ERROR] Client abe12d04-cc7d-4a9f-b330-1928fc4de0c0 斷線
+2026-06-14 16:57 +08:00: [STOP] 已停止錄音，等待辨識結果...
+2026-06-14 16:57 +08:00: [STOP] 面試完全結束
+2026-06-14 16:57 +08:00: 
+2026-06-14 16:57 +08:00: [INPUT] 收到影片，已存檔至: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\static\videos\1949e315-0cac-47ef-9e11-ef4ba9ed296a.mp4
+2026-06-14 16:57 +08:00: 🚀 [Job 9fe6171e-ed68-491c-994f-dcb48a32a823] 已建立，分析在背景執行中...
+2026-06-14 16:57 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /emotion/analyze HTTP/1.1" 200 OK
+2026-06-14 16:57 +08:00: 🎬 [Worker] 開始處理影片: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\static\videos\1949e315-0cac-47ef-9e11-ef4ba9ed296a.mp4
+2026-06-14 16:57 +08:00: 
+2026-06-14 16:57 +08:00: 🎥 原始影片尺寸: 480 x 720, FPS: 30.0, 處理間隔: 60
+2026-06-14 16:57 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /emotion/status/9fe6171e-ed68-491c-994f-dcb48a32a823 HTTP/1.1" 200 OK
+2026-06-14 16:57 +08:00: 📊 [Worker] 分析完成：共 1205 幀，辨識 0 幀
+2026-06-14 16:57 +08:00: ✅ [Job 9fe6171e-ed68-491c-994f-dcb48a32a823] 分析完成
+2026-06-14 16:57 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /emotion/status/9fe6171e-ed68-491c-994f-dcb48a32a823 HTTP/1.1" 200 OK
+2026-06-14 16:57 +08:00: ✅ [SaveRecord] 準備為 UserID: 1 (cc@gmail.com) 儲存紀錄
+2026-06-14 16:57 +08:00: ✨ [SaveRecord] 成功建立紀錄 ID: 1165
+2026-06-14 16:57 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/saveRecord HTTP/1.1" 200 OK
+2026-06-14 16:57 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 16:57 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 16:58 +08:00: 🔍 [GetRecords] 診斷模式啟動: UserID='1'
+2026-06-14 16:58 +08:00: 📊 [診斷] 全表最近 10 筆 StudentID: [(1165, 1), (1164, 1), (1163, 1), (1162, 1), (1161, 1), (1160, 1), (1159, 1), (1158, 1), (1157, 1), (1156, 1)]
+2026-06-14 16:58 +08:00: ✅ [GetRecords] 查詢成功，找到 46 筆紀錄
+2026-06-14 16:58 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getRecords HTTP/1.1" 200 OK
+2026-06-14 16:58 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 16:58 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 16:58 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateTutorialStatus HTTP/1.1" 200 OK
+2026-06-14 16:59 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateTutorialStatus HTTP/1.1" 200 OK
+2026-06-14 17:00 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 17:00 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /manifest.json HTTP/1.1" 200 OK
+2026-06-14 17:00 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js?v=1781427636866 HTTP/1.1" 200 OK
+2026-06-14 17:00 +08:00: 📥 [Login] 收到登入請求: Email='cc@gmail.com'
+2026-06-14 17:00 +08:00: ✅ [Login] 驗證成功: cc@gmail.com
+2026-06-14 17:00 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/login HTTP/1.1" 200 OK
+2026-06-14 17:00 +08:00: [INIT] 正在啟動面試官: 引導型教授
+2026-06-14 17:00 +08:00: [WAIT] 收到 Flutter 請求，正在申請 D-ID... 
+2026-06-14 17:00 +08:00: 正在向 D-ID 申請開啟視訊會議室...
+2026-06-14 17:00 +08:00: [LINK] [D-ID] 已設定 Webhook 回傳地址 (請確認 ngrok 正常): https://luminew.site/api/interview/did-webhook
+2026-06-14 17:01 +08:00:  [SYMBOL]  [DEBUG] 目前 D-ID 紀錄的 Session ID: TALKS_STREAMER_SESSION="ChExMC4yMDIuNjUuNTg6MzAwMA==", Cookies: {}
+2026-06-14 17:01 +08:00: [OK] [D-ID] 串流已建立: strm_hmz9AMdNq3ba9gWu_1Emt_AKS
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/start HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [OK] Client 152d1618-675e-4260-a5e3-8e606ca6d6e3 已連線
+2026-06-14 17:01 +08:00: [OK] 找到對應的 D-ID 面試 session_id: 152d1618-675e-4260-a5e3-8e606ca6d6e3
+2026-06-14 17:01 +08:00: ℹ️ [ICE 補送] 無緩存 ICE (session_id=152d1618-675e-4260-a5e3-8e606ca6d6e3)
+2026-06-14 17:01 +08:00: [ACAD] 面試啟動（教授: warm_industry_professor）
+2026-06-14 17:01 +08:00: [THINK] 教授 (warm_industry_professor) 正在準備開場白...
+2026-06-14 17:01 +08:00: [LINK] 正在連線 ASR WebSocket: wss://asr.api.yating.tw/ws/v1/?token=...
+2026-06-14 17:01 +08:00: [OK] [D-ID] SDP Answer 提交成功! 回應: {}
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-answer HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [OK] ASR WebSocket 已連線
+2026-06-14 17:01 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 17:01 +08:00: 
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 17:01 +08:00: 
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 17:01 +08:00: 
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 17:01 +08:00: 
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 17:01 +08:00: 
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 17:01 +08:00: 
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 17:01 +08:00: 
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [PROF] [教授開場]: 同學請坐，謝謝。您好，我是教授，今天很高興能跟你聊聊。請你用大約一分鐘的時間，簡單介紹一下你自己，可以談談你的背景、興趣或是為什麼想讀資管系。
+2026-06-14 17:01 +08:00: [WAIT] [D-ID] 第一次播放，額外等待 2 秒確保連線穩定...
+2026-06-14 17:01 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [OK] [D-ID] ICE 提交成功! 回應: {"status":"created"}
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/interview/webrtc-ice HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: [AUDIO] [TTS 準備播放] 文字長度: 71
+2026-06-14 17:01 +08:00: [AUDIO] [D-ID] 正在生成高品質 Minimax 音訊檔案...
+2026-06-14 17:01 +08:00: [LINK] [D-ID] 上傳成功，安全音訊 URL: https://files.catbox.moe/uuprkr.wav
+2026-06-14 17:01 +08:00:  [SYMBOL]  正在指揮 D-ID 教授播報 Minimax 聲音...
+2026-06-14 17:01 +08:00: [OK] [D-ID 音訊說話成功] 狀態碼: 200
+2026-06-14 17:01 +08:00: [MIC] 開始錄音...
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [INPUT] ASR 佇列塞入: 4096 bytes
+2026-06-14 17:01 +08:00: [STOP] 已停止錄音，等待辨識結果...
+2026-06-14 17:01 +08:00: [STOP] 面試完全結束
+2026-06-14 17:01 +08:00: [STOP] 已停止錄音，等待辨識結果...
+2026-06-14 17:01 +08:00: [STOP] 面試完全結束
+2026-06-14 17:01 +08:00:  [SYMBOL]  Client 152d1618-675e-4260-a5e3-8e606ca6d6e3 清理完成
+2026-06-14 17:01 +08:00: [INPUT] 收到影片，已存檔至: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\static\videos\e4ed60bf-12a5-4ebe-8d89-0f7b123db58c.mp4
+2026-06-14 17:01 +08:00: 🚀 [Job 4f314cab-0afb-4f59-90fd-823b7d140cc4] 已建立，分析在背景執行中...
+2026-06-14 17:01 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /emotion/analyze HTTP/1.1" 200 OK
+2026-06-14 17:01 +08:00: 🎬 [Worker] 開始處理影片: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\static\videos\e4ed60bf-12a5-4ebe-8d89-0f7b123db58c.mp4
+2026-06-14 17:01 +08:00: 
+2026-06-14 17:01 +08:00: 🎥 原始影片尺寸: 480 x 720, FPS: 30.0, 處理間隔: 60
+2026-06-14 17:01 +08:00: 
+2026-06-14 17:02 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /emotion/status/4f314cab-0afb-4f59-90fd-823b7d140cc4 HTTP/1.1" 200 OK
+2026-06-14 17:02 +08:00: 📊 [Worker] 分析完成：共 1264 幀，辨識 0 幀
+2026-06-14 17:02 +08:00: 
+2026-06-14 17:02 +08:00: ✅ [Job 4f314cab-0afb-4f59-90fd-823b7d140cc4] 分析完成
+2026-06-14 17:02 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /emotion/status/4f314cab-0afb-4f59-90fd-823b7d140cc4 HTTP/1.1" 200 OK
+2026-06-14 17:02 +08:00: ✅ [SaveRecord] 準備為 UserID: 1 (cc@gmail.com) 儲存紀錄
+2026-06-14 17:02 +08:00: ✨ [SaveRecord] 成功建立紀錄 ID: 1166
+2026-06-14 17:02 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/saveRecord HTTP/1.1" 200 OK
+2026-06-14 17:02 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 17:02 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 17:03 +08:00: [AUTH] OpenAI API Key: sk-proj-Fn...
+2026-06-14 17:03 +08:00: ✅ OpenAI API 設定成功
+2026-06-14 17:03 +08:00: 📂 成功載入 OpenCV DNN 人臉辨識模組
+2026-06-14 17:03 +08:00: ⚡ OpenCV DNN 已切換至 CUDA GPU 模式
+2026-06-14 17:03 +08:00: ✅ 情緒辨識模型載入成功
+2026-06-14 17:03 +08:00: 
+2026-06-14 17:03 +08:00: ==================================================
+2026-06-14 17:03 +08:00: [MODE] 正式營運模式：優先使用環境變數中的 PUBLIC_URL
+2026-06-14 17:03 +08:00: [FINAL] 目前對外 API 位址: https://luminew.site
+2026-06-14 17:03 +08:00: ==================================================
+2026-06-14 17:03 +08:00: 
+2026-06-14 17:06 +08:00: INFO:     2a06:98c0:360c:e107:1804:521e:cfe9:9c7f:0 - "HEAD / HTTP/1.1" 200 OK
+2026-06-14 17:06 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 17:06 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js?v=1781428006486 HTTP/1.1" 200 OK
+2026-06-14 17:06 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_service_worker.js?v=3252165056 HTTP/1.1" 200 OK
+2026-06-14 17:06 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /index.html HTTP/1.1" 200 OK
+2026-06-14 17:06 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/FontManifest.json HTTP/1.1" 200 OK
+2026-06-14 17:06 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/AssetManifest.bin.json HTTP/1.1" 200 OK
+2026-06-14 17:06 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js HTTP/1.1" 200 OK
+2026-06-14 17:06 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /main.dart.js HTTP/1.1" 200 OK
+2026-06-14 17:06 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 OK
+2026-06-14 17:06 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 OK
+2026-06-14 17:06 +08:00: 📥 [Login] 收到登入請求: Email='cc@gmail.com'
+2026-06-14 17:06 +08:00: ✅ [Login] 驗證成功: cc@gmail.com
+2026-06-14 17:06 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/login HTTP/1.1" 200 OK
+2026-06-14 17:06 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/assets/LOGO.png HTTP/1.1" 200 OK
+2026-06-14 17:06 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateTutorialStatus HTTP/1.1" 200 OK
+2026-06-14 17:09 +08:00: [AUTH] OpenAI API Key: sk-proj-Fn...
+2026-06-14 17:09 +08:00: ✅ OpenAI API 設定成功
+2026-06-14 17:09 +08:00: 📂 成功載入 OpenCV DNN 人臉辨識模組
+2026-06-14 17:09 +08:00: ⚡ OpenCV DNN 已切換至 CUDA GPU 模式
+2026-06-14 17:09 +08:00: ✅ 情緒辨識模型載入成功
+2026-06-14 17:09 +08:00: 
+2026-06-14 17:09 +08:00: ==================================================
+2026-06-14 17:09 +08:00: [MODE] 正式營運模式：優先使用環境變數中的 PUBLIC_URL
+2026-06-14 17:09 +08:00: [FINAL] 目前對外 API 位址: https://luminew.site
+2026-06-14 17:09 +08:00: ==================================================
+2026-06-14 17:09 +08:00: 
+2026-06-14 17:10 +08:00: INFO:     2001:b011:3809:df29:1c5a:7eb0:1fd6:cb3a:0 - "GET /flutter_service_worker.js?v=3311080506 HTTP/1.1" 200 OK
+2026-06-14 17:10 +08:00: INFO:     2001:b011:3809:df29:1c5a:7eb0:1fd6:cb3a:0 - "GET /main.dart.js HTTP/1.1" 200 OK
+2026-06-14 17:10 +08:00: INFO:     2001:b011:3809:df29:1c5a:7eb0:1fd6:cb3a:0 - "GET /index.html HTTP/1.1" 200 OK
+2026-06-14 17:10 +08:00: INFO:     2001:b011:3809:df29:1c5a:7eb0:1fd6:cb3a:0 - "GET /flutter_bootstrap.js HTTP/1.1" 200 OK
+2026-06-14 17:10 +08:00: INFO:     2001:b011:3809:df29:1c5a:7eb0:1fd6:cb3a:0 - "GET /assets/AssetManifest.bin.json HTTP/1.1" 200 OK
+2026-06-14 17:10 +08:00: INFO:     2001:b011:3809:df29:1c5a:7eb0:1fd6:cb3a:0 - "GET /assets/FontManifest.json HTTP/1.1" 200 OK
+2026-06-14 17:14 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 17:14 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /manifest.json HTTP/1.1" 200 OK
+2026-06-14 17:14 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js?v=1781428496124 HTTP/1.1" 200 OK
+2026-06-14 17:14 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_service_worker.js?v=4177527842 HTTP/1.1" 200 OK
+2026-06-14 17:14 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/AssetManifest.bin.json HTTP/1.1" 200 OK
+2026-06-14 17:14 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/FontManifest.json HTTP/1.1" 200 OK
+2026-06-14 17:14 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /index.html HTTP/1.1" 200 OK
+2026-06-14 17:14 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 OK
+2026-06-14 17:14 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 OK
+2026-06-14 17:15 +08:00: 📥 [Login] 收到登入請求: Email='cc@gmail.com'
+2026-06-14 17:15 +08:00: ✅ [Login] 驗證成功: cc@gmail.com
+2026-06-14 17:15 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/login HTTP/1.1" 200 OK
+2026-06-14 17:15 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/assets/LOGO.png HTTP/1.1" 200 OK
+2026-06-14 17:15 +08:00: 🔍 [GetRecords] 診斷模式啟動: UserID='1'
+2026-06-14 17:15 +08:00: 📊 [診斷] 全表最近 10 筆 StudentID: [(1166, 1), (1165, 1), (1164, 1), (1163, 1), (1162, 1), (1161, 1), (1160, 1), (1159, 1), (1158, 1), (1157, 1)]
+2026-06-14 17:15 +08:00: ✅ [GetRecords] 查詢成功，找到 47 筆紀錄
+2026-06-14 17:15 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getRecords HTTP/1.1" 200 OK
+2026-06-14 17:15 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 17:15 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 17:15 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateTutorialStatus HTTP/1.1" 200 OK
+2026-06-14 17:16 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateTutorialStatus HTTP/1.1" 200 OK
+2026-06-14 17:17 +08:00: [AUTH] OpenAI API Key: sk-proj-Fn...
+2026-06-14 17:17 +08:00: ✅ OpenAI API 設定成功
+2026-06-14 17:17 +08:00: 📂 成功載入 OpenCV DNN 人臉辨識模組
+2026-06-14 17:17 +08:00: ⚡ OpenCV DNN 已切換至 CUDA GPU 模式
+2026-06-14 17:17 +08:00: 
+2026-06-14 17:17 +08:00: ✅ 情緒辨識模型載入成功
+2026-06-14 17:17 +08:00: 
+2026-06-14 17:17 +08:00: ==================================================
+2026-06-14 17:17 +08:00: [MODE] 正式營運模式：優先使用環境變數中的 PUBLIC_URL
+2026-06-14 17:17 +08:00: 
+2026-06-14 17:17 +08:00: ==================================================
+2026-06-14 17:17 +08:00: 
+2026-06-14 17:18 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 17:20 +08:00: [AUTH] OpenAI API Key: sk-proj-Fn...
+2026-06-14 17:20 +08:00: ✅ OpenAI API 設定成功
+2026-06-14 17:20 +08:00: 📂 成功載入 OpenCV DNN 人臉辨識模組
+2026-06-14 17:20 +08:00: ⚡ OpenCV DNN 已切換至 CUDA GPU 模式
+2026-06-14 17:20 +08:00: ✅ 情緒辨識模型載入成功
+2026-06-14 17:20 +08:00: 
+2026-06-14 17:20 +08:00: ==================================================
+2026-06-14 17:20 +08:00: [MODE] 正式營運模式：優先使用環境變數中的 PUBLIC_URL
+2026-06-14 17:20 +08:00: 
+2026-06-14 17:20 +08:00: ==================================================
+2026-06-14 17:20 +08:00: 
+2026-06-14 17:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 17:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js?v=1781428954857 HTTP/1.1" 200 OK
+2026-06-14 17:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /manifest.json HTTP/1.1" 200 OK
+2026-06-14 17:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_service_worker.js?v=620234631 HTTP/1.1" 200 OK
+2026-06-14 17:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/AssetManifest.bin.json HTTP/1.1" 200 OK
+2026-06-14 17:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /index.html HTTP/1.1" 200 OK
+2026-06-14 17:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/FontManifest.json HTTP/1.1" 200 OK
+2026-06-14 17:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /main.dart.js HTTP/1.1" 200 OK
+2026-06-14 17:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js HTTP/1.1" 200 OK
+2026-06-14 17:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 OK
+2026-06-14 17:22 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 OK
+2026-06-14 17:23 +08:00: 📥 [Login] 收到登入請求: Email='cc@gmail.com'
+2026-06-14 17:23 +08:00: ✅ [Login] 驗證成功: cc@gmail.com
+2026-06-14 17:23 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/login HTTP/1.1" 200 OK
+2026-06-14 17:23 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/assets/LOGO.png HTTP/1.1" 200 OK
+2026-06-14 17:23 +08:00: 🔍 [GetRecords] 診斷模式啟動: UserID='1'
+2026-06-14 17:23 +08:00: 📊 [診斷] 全表最近 10 筆 StudentID: [(1166, 1), (1165, 1), (1164, 1), (1163, 1), (1162, 1), (1161, 1), (1160, 1), (1159, 1), (1158, 1), (1157, 1)]
+2026-06-14 17:23 +08:00: ✅ [GetRecords] 查詢成功，找到 47 筆紀錄
+2026-06-14 17:23 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getRecords HTTP/1.1" 200 OK
+2026-06-14 17:23 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 17:23 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 17:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 17:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 17:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 17:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /static/videos/20bef7df-e04c-4a74-a9a0-5fb220cc0f6b.mp4 HTTP/1.1" 200 OK
+2026-06-14 17:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 17:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /static/videos/20bef7df-e04c-4a74-a9a0-5fb220cc0f6b.mp4 HTTP/1.1" 200 OK
+2026-06-14 17:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/student/teachers HTTP/1.1" 200 OK
+2026-06-14 17:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/getComments HTTP/1.1" 200 OK
+2026-06-14 17:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateRecordNote HTTP/1.1" 200 OK
+2026-06-14 17:24 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /sql/query HTTP/1.1" 405 Method Not Allowed
+2026-06-14 17:33 +08:00: [AUTH] OpenAI API Key: sk-proj-Fn...
+2026-06-14 17:33 +08:00: ✅ OpenAI API 設定成功
+2026-06-14 17:33 +08:00: 📂 成功載入 OpenCV DNN 人臉辨識模組
+2026-06-14 17:33 +08:00: ⚡ OpenCV DNN 已切換至 CUDA GPU 模式
+2026-06-14 17:33 +08:00: ✅ 情緒辨識模型載入成功
+2026-06-14 17:33 +08:00: 
+2026-06-14 17:33 +08:00: ==================================================
+2026-06-14 17:33 +08:00: [MODE] 正式營運模式：優先使用環境變數中的 PUBLIC_URL
+2026-06-14 17:33 +08:00: [FINAL] 目前對外 API 位址: https://luminew.site
+2026-06-14 17:33 +08:00: ==================================================
+2026-06-14 17:33 +08:00: 
+2026-06-14 17:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET / HTTP/1.1" 200 OK
+2026-06-14 17:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /manifest.json HTTP/1.1" 200 OK
+2026-06-14 17:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js?v=1781429671525 HTTP/1.1" 200 OK
+2026-06-14 17:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_service_worker.js?v=4146490415 HTTP/1.1" 200 OK
+2026-06-14 17:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /index.html HTTP/1.1" 200 OK
+2026-06-14 17:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/FontManifest.json HTTP/1.1" 200 OK
+2026-06-14 17:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/AssetManifest.bin.json HTTP/1.1" 200 OK
+2026-06-14 17:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /flutter_bootstrap.js HTTP/1.1" 200 OK
+2026-06-14 17:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /main.dart.js HTTP/1.1" 200 OK
+2026-06-14 17:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/fonts/MaterialIcons-Regular.otf HTTP/1.1" 200 OK
+2026-06-14 17:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/packages/cupertino_icons/assets/CupertinoIcons.ttf HTTP/1.1" 200 OK
+2026-06-14 17:34 +08:00: 📥 [Login] 收到登入請求: Email='cc@gmail.com'
+2026-06-14 17:34 +08:00: ✅ [Login] 驗證成功: cc@gmail.com
+2026-06-14 17:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/login HTTP/1.1" 200 OK
+2026-06-14 17:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "GET /assets/assets/LOGO.png HTTP/1.1" 200 OK
+2026-06-14 17:34 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateTutorialStatus HTTP/1.1" 200 OK
+2026-06-14 17:34 +08:00: INFO:     2a06:98c0:3600::103:0 - "GET /wp-admin/install.php?step=1 HTTP/1.1" 404 Not Found
+2026-06-14 17:35 +08:00: INFO:     2001:b011:2017:fb42:a827:6985:d838:5940:0 - "POST /api/db/updateTutorialStatus HTTP/1.1" 200 OK

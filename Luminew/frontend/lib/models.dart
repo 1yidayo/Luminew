@@ -7,6 +7,7 @@ class AppUser {
   final String email;
   final String role;
   final String subscription;
+  bool showTutorial;
 
   AppUser({
     required this.id,
@@ -14,6 +15,7 @@ class AppUser {
     required this.email,
     required this.role,
     this.subscription = 'Free',
+    this.showTutorial = true,
   });
 
   factory AppUser.fromMap(Map<String, dynamic> map) {
@@ -23,6 +25,7 @@ class AppUser {
       email: map['Email'],
       role: map['Role'],
       subscription: map['Subscription'] ?? 'Free',
+      showTutorial: map['ShowTutorial'] == true || map['ShowTutorial'] == 1,
     );
   }
 }
@@ -82,6 +85,7 @@ class InterviewRecord {
   final String? videoUrl;
   final List<String> questions;
   final String interviewName; // ★ 新增：面試名稱
+  String note; // ★ 新增：心得筆記
 
   InterviewRecord({
     required this.id,
@@ -101,6 +105,7 @@ class InterviewRecord {
     this.videoUrl,
     this.questions = const [],
     this.interviewName = '', // ★ 新增：面試名稱
+    this.note = '', // ★ 新增：心得筆記
   }) : _dbOverallScore = dbOverallScore;
 
   // ★ 優先從 ScoresDetail 讀 overall，沒有的話用 DB 的 OverallScore 欄位
@@ -125,6 +130,7 @@ class InterviewRecord {
       videoUrl: map['VideoUrl'],
       questions: _parseQuestions(map['Questions']),
       interviewName: map['InterviewName'] ?? '', // ★ 新增
+      note: map['Note'] ?? '', // ★ 新增
     );
   }
 
@@ -255,6 +261,29 @@ class InterviewSlot {
       // 相容 SQL Server 的 BIT 類型 (可能回傳 true/false 或 1/0)
       isBooked: map['IsBooked'] == true || map['IsBooked'] == 1,
       bookedByStudentName: map['StudentName'],
+    );
+  }
+}
+
+class Class {
+  final String id;
+  final String name;
+  final String teacherId;
+  final String invitationCode;
+
+  Class({
+    required this.id,
+    required this.name,
+    required this.teacherId,
+    required this.invitationCode,
+  });
+
+  factory Class.fromMap(Map<String, dynamic> map) {
+    return Class(
+      id: map['ClassID']?.toString() ?? '',
+      name: map['ClassName']?.toString() ?? '',
+      teacherId: map['TeacherID']?.toString() ?? '',
+      invitationCode: map['InvitationCode']?.toString() ?? '',
     );
   }
 }

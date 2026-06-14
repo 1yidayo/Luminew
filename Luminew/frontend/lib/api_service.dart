@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'models.dart';
 import 'mock_data.dart'; // ★ 引入以對接 Mock 數據
 import 'config.dart';
+import 'sql_service.dart'; // ★ 新增：為了降級直連模式而引入
 
 /// ========================================================
 /// 神不知鬼不覺的完美替身：ApiService
@@ -131,6 +132,10 @@ class ApiService {
     await _post('/updateUserProfile', {'email': email, 'name': name});
   }
 
+  static Future<void> updateTutorialStatus(String email, bool showTutorial) async {
+    await _post('/updateTutorialStatus', {'email': email, 'showTutorial': showTutorial});
+  }
+
   // ==========================
   // 老師管理
   // ==========================
@@ -216,9 +221,26 @@ class ApiService {
       'videoUrl': r.videoUrl,
       'questions': r.questions,
       'interviewName': r.interviewName,
+      'note': r.note, // ★ 新增
     });
     final data = jsonDecode(res.body);
     return data['recordId']?.toString();
+  }
+
+  static Future<void> updateRecordNote(String recordId, String note) async {
+    try {
+      await _post('/updateRecordNote', {
+        'recordId': recordId,
+        'note': note,
+      });
+    } catch (e) {
+      print("⚠️ [API] updateRecordNote API 失敗，將降級執行: $e");
+    }
+    try {
+      await SqlService.updateNote(recordId, note);
+    } catch (e) {
+      print("⚠️ [API] updateRecordNote SqlService 失敗: $e");
+    }
   }
 
   // ==========================

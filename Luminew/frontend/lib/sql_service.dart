@@ -238,7 +238,8 @@ class SqlService {
         "REPLACE(CAST(TimelineData AS NVARCHAR(4000)), CHAR(34), CHAR(39)) as TimelineData, "
         "CAST(VideoUrl AS NVARCHAR(4000)) as VideoUrl, "
         "REPLACE(CAST(Questions AS NVARCHAR(4000)), CHAR(34), CHAR(39)) as Questions, "
-        "InterviewName";
+        "InterviewName, "
+        "REPLACE(CAST(Note AS NVARCHAR(4000)), CHAR(34), CHAR(39)) as Note";
 
     String sql = userId.contains('@')
         ? "SELECT $safeSelect FROM InterviewRecords WHERE StudentID = (SELECT UserID FROM Users WHERE Email = '$userId') ORDER BY Date DESC"
@@ -270,6 +271,7 @@ class SqlService {
     String safeTimeline = r.timelineData.replaceAll("'", "''");
     String questionsJson = jsonEncode(r.questions);
     String safeName = r.interviewName.replaceAll("'", "''"); // ★ 新增
+    String safeNote = r.note.replaceAll("'", "''"); // ★ 新增
     String sql = 
         "INSERT INTO InterviewRecords ("
         "  StudentID, "
@@ -286,7 +288,8 @@ class SqlService {
         "  TimelineData, "
         "  VideoUrl, "
         "  Questions, "
-        "  InterviewName" // ★ 新增
+        "  InterviewName, " // ★ 新增
+        "  Note"            // ★ 新增
         ") "
         "VALUES ("
         "  (SELECT UserID FROM Users WHERE Email = '${r.studentId}'), " // StudentID (子查詢)
@@ -303,7 +306,8 @@ class SqlService {
         "  '$safeTimeline', "     // TimelineData
         "  '${r.videoUrl}', "     // VideoUrl
         "  N'$questionsJson', "   // Questions
-        "  N'$safeName'"          // ★ 新增 InterviewName
+        "  N'$safeName', "        // ★ 新增 InterviewName
+        "  N'$safeNote'"          // ★ 新增 Note
         ")";
     await _safeWrite(sql);
   }
@@ -466,6 +470,13 @@ class SqlService {
   static Future<void> updatePrivacy(String recordId, String privacy) async {
     await _safeWrite(
       "UPDATE InterviewRecords SET Privacy = '$privacy' WHERE RecordID = $recordId",
+    );
+  }
+
+  static Future<void> updateNote(String recordId, String note) async {
+    String safeNote = note.replaceAll("'", "''");
+    await _safeWrite(
+      "UPDATE InterviewRecords SET Note = N'$safeNote' WHERE RecordID = $recordId",
     );
   }
 

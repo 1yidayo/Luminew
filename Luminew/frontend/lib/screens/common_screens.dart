@@ -184,6 +184,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
               _buildDivider(),
               _buildSettingsItem(
+                Icons.explore_outlined,
+                '使用導覽',
+                const Color(0xFFAD9DC7),
+                () {
+                  _showGuideResetDialog(context);
+                },
+              ),
+              _buildDivider(),
+              _buildSettingsItem(
                 Icons.help_outline,
                 '幫助與回饋',
                 const Color(0xFFAD9DC7),
@@ -198,6 +207,81 @@ class _SettingsScreenState extends State<SettingsScreen> {
           const LuminewHeader(title: '設定'),
         ],
       ),
+    );
+  }
+
+  void _showGuideResetDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext ctx) {
+        return AlertDialog(
+          backgroundColor: const Color(0xFFFFFDF0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          title: const Text(
+            '重新啟動使用導覽',
+            style: TextStyle(
+              color: Color(0xFF675B83),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                '是否要再次觀看使用導覽？',
+                style: TextStyle(color: Color(0xFF675B83), fontSize: 16),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                '將在下次進入面試間再次顯示使用導覽',
+                style: TextStyle(
+                  color: Colors.grey.shade600,
+                  fontSize: 12,
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('否', style: TextStyle(color: Colors.grey)),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFAD9DC7),
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              onPressed: () async {
+                try {
+                  await ApiService.updateTutorialStatus(widget.user.email, true);
+                  widget.user.showTutorial = true; // 同步更新記憶體狀態
+                  if (mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('已設定下次進入面試間時顯示使用導覽')),
+                    );
+                    Navigator.pop(ctx);
+                  }
+                } catch (e) {
+                  print('Error saving preferences: $e');
+                  if (mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('設定失敗: $e')),
+                    );
+                    Navigator.pop(ctx);
+                  }
+                }
+              },
+              child: const Text('是'),
+            ),
+          ],
+        );
+      },
     );
   }
 

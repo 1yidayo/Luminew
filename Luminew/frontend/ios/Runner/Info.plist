@@ -44,7 +44,7 @@
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Luminew 需要相機權限以分析您的面試表情與肢體語言。</string>
+	<string>Luminew 需要相機權限以分析您的面試表情。</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Luminew 需要麥克風權限以進行語音辨識並提供即時面試回饋。</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

@@ -48,6 +48,20 @@ def updateUserProfile(req: UpdateProfileReq):
     execute_write(sql)
     return {"status": "ok"}
 
+class UpdateTutorialReq(BaseModel):
+    email: str
+    showTutorial: bool
+
+@router.post("/updateTutorialStatus")
+def updateTutorialStatus(req: UpdateTutorialReq):
+    """
+    更新使用者是否要觀看導覽狀態
+    """
+    show_val = 1 if req.showTutorial else 0
+    sql = f"UPDATE Users SET ShowTutorial = {show_val} WHERE Email = '{req.email}'"
+    execute_write(sql)
+    return {"status": "ok"}
+
 # --- 2. 老師與學生關聯管理 ---
 class EmailReq(BaseModel): email: str
 
@@ -90,7 +104,7 @@ def getTeacherProfile(req: EmailReq):
 class TeacherRecordsReq(BaseModel): teacherEmail: str; studentId: str
 @router.post("/teacher/records")
 def getTeacherRecords(req: TeacherRecordsReq):
-    safeSelect = "r.RecordID, r.StudentID, r.Date, r.DurationSeconds, r.Type, r.Interviewer, r.Language, r.OverallScore, CAST(r.ScoresDetail AS NVARCHAR(4000)) as ScoresDetail, r.Privacy, CAST(r.AIComment AS NVARCHAR(4000)) as AIComment, CAST(r.AISuggestion AS NVARCHAR(4000)) as AISuggestion, CAST(r.TimelineData AS NVARCHAR(4000)) as TimelineData, r.VideoUrl, CAST(r.Questions AS NVARCHAR(4000)) as Questions, r.InterviewName"
+    safeSelect = "r.RecordID, r.StudentID, r.Date, r.DurationSeconds, r.Type, r.Interviewer, r.Language, r.OverallScore, CAST(r.ScoresDetail AS NVARCHAR(4000)) as ScoresDetail, r.Privacy, CAST(r.AIComment AS NVARCHAR(4000)) as AIComment, CAST(r.AISuggestion AS NVARCHAR(4000)) as AISuggestion, CAST(r.TimelineData AS NVARCHAR(4000)) as TimelineData, r.VideoUrl, CAST(r.Questions AS NVARCHAR(4000)) as Questions, r.InterviewName, REPLACE(CAST(r.Note AS NVARCHAR(4000)), CHAR(34), CHAR(39)) as Note"
     sql = f"""
     SELECT {safeSelect} FROM InterviewRecords r
     JOIN RecordTeacherAccess rta ON r.RecordID = rta.RecordID
@@ -105,7 +119,7 @@ class GetRecordsReq(BaseModel): userId: str; filter: str
 @router.post("/getRecords")
 def getRecords(req: GetRecordsReq):
     print(f"🔍 [GetRecords] 診斷模式啟動: UserID='{req.userId}'")
-    safeSelect = "RecordID, StudentID, Date, DurationSeconds, Type, Interviewer, Language, OverallScore, CAST(ScoresDetail AS NVARCHAR(4000)) as ScoresDetail, Privacy, CAST(AIComment AS NVARCHAR(4000)) as AIComment, CAST(AISuggestion AS NVARCHAR(4000)) as AISuggestion, CAST(TimelineData AS NVARCHAR(4000)) as TimelineData, VideoUrl, CAST(Questions AS NVARCHAR(4000)) as Questions, InterviewName"
+    safeSelect = "RecordID, StudentID, Date, DurationSeconds, Type, Interviewer, Language, OverallScore, CAST(ScoresDetail AS NVARCHAR(4000)) as ScoresDetail, Privacy, CAST(AIComment AS NVARCHAR(4000)) as AIComment, CAST(AISuggestion AS NVARCHAR(4000)) as AISuggestion, CAST(TimelineData AS NVARCHAR(4000)) as TimelineData, VideoUrl, CAST(Questions AS NVARCHAR(4000)) as Questions, InterviewName, REPLACE(CAST(Note AS NVARCHAR(4000)), CHAR(34), CHAR(39)) as Note"
     
     # [診斷日誌 1] 掃描全表前 10 筆數據，看看到底存了什麼
     try:
@@ -200,6 +214,17 @@ def saveRecord(req: SaveRecordReq):
     except Exception as e:
         print(f"❌ [SaveRecord] 資料庫寫入異常: {e}")
         raise HTTPException(status_code=500, detail=f"伺服器資料庫寫入失敗: {e}")
+
+
+class UpdateNoteReq(BaseModel):
+    recordId: str
+    note: str
+
+@router.post("/updateRecordNote")
+def updateRecordNote(req: UpdateNoteReq):
+    safeNote = req.note.replace("'", "''")
+    execute_write(f"UPDATE InterviewRecords SET Note = N'{safeNote}' WHERE RecordID = '{req.recordId}'")
+    return {"status": "ok"}
 
 # --- 4. 邀請與時段 ---
 class SendInvitationReq(BaseModel): teacherEmail: str; studentId: str; msg: str

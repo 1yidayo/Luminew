@@ -873,8 +873,8 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
                 // ★ 修改後的免責聲明
+                /*
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
@@ -888,6 +888,7 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
+                */
               ],
             ),
           ),
@@ -1097,6 +1098,12 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
   CameraController? _controller;
   bool _isRecording = false;
   bool _isUploading = false;
+
+  // ★ 使用導覽元件的 GlobalKey 定位
+  final GlobalKey _statusBarKey = GlobalKey();
+  final GlobalKey _professorVideoKey = GlobalKey();
+  final GlobalKey _studentCameraKey = GlobalKey();
+  final GlobalKey _micButtonKey = GlobalKey();
   int _sec = 0;
   Timer? _timer;
   String _statusMessage = "";
@@ -1107,9 +1114,27 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
   bool _isWsConnecting = false;
   bool _isWaitingProfessor = false;
   bool _canStudentSpeak = false; // ★ 新增：控制學生是否可以說話（延遲顯示開麥）
+  bool _isVideoTrackReceived = false; // ★ 新增：影像軌道是否已成功接收
   final List<Map<String, String>> _chatMessages = [];
   final ScrollController _chatScrollController = ScrollController();
   String _connectionStatus = "Disconnected";
+
+  String get _connectionStatusChinese {
+    final statusLower = _connectionStatus.toLowerCase();
+    if (statusLower.contains('connected') || statusLower.contains('completed')) {
+      return _isVideoTrackReceived ? '已連線' : '連線中...';
+    } else if (statusLower.contains('checking') || statusLower.contains('new') || statusLower.contains('connecting')) {
+      return '連線中...';
+    } else if (statusLower.contains('disconnected')) {
+      return '尚未連線';
+    } else if (statusLower.contains('failed')) {
+      return '連線失敗';
+    } else if (statusLower.contains('closed')) {
+      return '連線已關閉';
+    } else {
+      return _connectionStatus;
+    }
+  }
 
   // ★ 麥克風動畫變數
   late AnimationController _micWaveController;
@@ -1132,6 +1157,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
       vsync: this,
       duration: const Duration(milliseconds: 1200),
     )..repeat();
+
   }
 
   // ★ 設定 WebSocket 回呼
@@ -1190,7 +1216,9 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
     _didService.onVideoTrack = () {
       if (mounted) {
         print('📺 [UI] 偵測到視訊執軌道掛載，重新渲染畫面');
-        setState(() {});
+        setState(() {
+          _isVideoTrackReceived = true; // ★ 設為已接收影像
+        });
       }
     };
     _didService.onConnectionState = (state) {
@@ -1214,6 +1242,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
       _isWsConnecting = true;
       _isWaitingProfessor = true;
       _canStudentSpeak = false;
+      _isVideoTrackReceived = false; // ★ 重置狀態
     });
 
     // 如果開啟了錄影分析，也要同步啟動錄影
@@ -1310,7 +1339,17 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
 
         // 在 Web 上，initialize 會觸發瀏覽器權限詢問
         await _controller!.initialize();
-        if (mounted) setState(() {});
+        if (mounted) {
+          setState(() {});
+          // ★ 新增：如果使用者需要導覽，於相機初始化完成且畫面渲染後 300 毫秒開啟
+          if (widget.user.showTutorial) {
+            Future.delayed(const Duration(milliseconds: 300), () {
+              if (mounted) {
+                _startTutorialFlow();
+              }
+            });
+          }
+        }
         print("✅ 相機初始化完成");
       } else {
         setState(() => _statusMessage = "找不到相機鏡頭，請檢查設備是否已連接或被封鎖。");
@@ -1330,6 +1369,8 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
 
   @override
   void dispose() {
+    _tutorialOverlayEntry?.remove();
+    _tutorialOverlayEntry = null;
     _controller?.dispose();
     _timer?.cancel();
     _amplitudeTimer?.cancel();
@@ -1604,6 +1645,222 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
     }
   }
 
+  // ★ 使用導覽相關狀態與定位引導方法
+  OverlayEntry? _tutorialOverlayEntry;
+  int _tutorialStep = 0;
+
+  Offset _getWidgetPosition(GlobalKey key) {
+    if (key.currentContext == null) return Offset.zero;
+    final renderBox = key.currentContext!.findRenderObject() as RenderBox;
+    return renderBox.localToGlobal(Offset.zero);
+  }
+
+  Size _getWidgetSize(GlobalKey key) {
+    if (key.currentContext == null) return Size.zero;
+    final renderBox = key.currentContext!.findRenderObject() as RenderBox;
+    return renderBox.size;
+  }
+
+  void _startTutorialFlow() {
+    setState(() {
+      _tutorialStep = 1;
+    });
+    _showTutorialOverlay();
+  }
+
+  void _nextTutorialStep() {
+    if (_tutorialStep < 4) {
+      setState(() {
+        _tutorialStep++;
+      });
+      _tutorialOverlayEntry?.markNeedsBuild();
+    } else {
+      _endTutorialFlow();
+    }
+  }
+
+  void _endTutorialFlow() async {
+    _tutorialOverlayEntry?.remove();
+    _tutorialOverlayEntry = null;
+    setState(() {
+      _tutorialStep = 0;
+    });
+
+    try {
+      await ApiService.updateTutorialStatus(widget.user.email, false);
+      widget.user.showTutorial = false; // 同步更新記憶體狀態
+    } catch (e) {
+      print("⚠️ [Tutorial] 更新導覽狀態失敗: $e");
+    }
+
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('導覽播放完畢！下次進入面試間將不再主動顯示。您隨時可以在設定頁面重啟導覽。'),
+          duration: Duration(seconds: 4),
+        ),
+      );
+    }
+  }
+
+  void _showTutorialOverlay() {
+    _tutorialOverlayEntry = OverlayEntry(
+      builder: (context) {
+        GlobalKey? targetKey;
+        String title = "";
+        String desc = "";
+
+        if (_tutorialStep == 1) {
+          targetKey = _statusBarKey;
+          title = "1. 面試資訊與狀態";
+          desc = "顯示當前面試類型、面試教授、語言，以及累計時間與教授連線狀態。";
+        } else if (_tutorialStep == 2) {
+          targetKey = _professorVideoKey;
+          title = "2. AI 教授視訊";
+          desc = "面試教授的影像呈現區域。請看著教授聆聽問題與互動。";
+        } else if (_tutorialStep == 3) {
+          targetKey = _studentCameraKey;
+          title = "3. 個人鏡頭預覽";
+          desc = "您的即時鏡頭畫面。AI 將在面試期間分析您的面部表情。";
+        } else if (_tutorialStep == 4) {
+          targetKey = _micButtonKey;
+          title = "4. 語音控制按鈕";
+          desc = "進入時單擊以連線教授。教授發言完畢會自動開啟麥克風，此時即可發言，發言結束再單擊按鈕關閉。如欲提前結束，長按此處即可開始 AI 分析。";
+        }
+
+        Offset targetOffset = Offset.zero;
+        Size targetSize = Size.zero;
+        if (targetKey != null) {
+          targetOffset = _getWidgetPosition(targetKey);
+          targetSize = _getWidgetSize(targetKey);
+        }
+
+        // ★ 當找不到定位或尺寸為 0 時（例如尚未佈局），使用預設的備用範圍
+        if (targetOffset == Offset.zero || targetSize == Size.zero) {
+          targetOffset = const Offset(50, 100);
+          targetSize = const Size(200, 50);
+        }
+
+        final targetRect = Rect.fromLTWH(
+          targetOffset.dx - 8,
+          targetOffset.dy - 8,
+          targetSize.width + 16,
+          targetSize.height + 16,
+        );
+
+        return GestureDetector(
+          onTap: _nextTutorialStep,
+          behavior: HitTestBehavior.opaque,
+          child: Stack(
+            children: [
+              // A. 背景微暗遮罩 (0.2 透明度)
+              Positioned.fill(
+                child: ColorFiltered(
+                  colorFilter: ColorFilter.mode(
+                    Colors.black.withOpacity(0.2),
+                    BlendMode.srcOut,
+                  ),
+                  child: Stack(
+                    children: [
+                      Positioned.fill(
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: Colors.black,
+                            backgroundBlendMode: BlendMode.dstOut,
+                          ),
+                        ),
+                      ),
+                      Positioned(
+                        left: targetRect.left,
+                        top: targetRect.top,
+                        width: targetRect.width,
+                        height: targetRect.height,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              // B. 指引氣泡框 (半透明紫色)
+              Positioned(
+                left: (targetOffset.dx + targetSize.width / 2 - 130).clamp(16.0, MediaQuery.of(context).size.width - 276.0),
+                top: targetOffset.dy + targetSize.height + 16 > MediaQuery.of(context).size.height - 220
+                    ? targetOffset.dy - 160
+                    : targetOffset.dy + targetSize.height + 16,
+                width: 260,
+                child: Material(
+                  color: Colors.transparent,
+                  child: Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: const Color(0xE6675B83), // 紫色半透明
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: const Color(0xFFAD9DC7).withOpacity(0.5),
+                        width: 1.5,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          title,
+                          style: const TextStyle(
+                            color: Color(0xFFFFFDF0),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          desc,
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            fontSize: 12,
+                            height: 1.4,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              "點擊任意處繼續 ➔",
+                              style: TextStyle(
+                                color: Color(0xFFFFFDF0),
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+    Overlay.of(context).insert(_tutorialOverlayEntry!);
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_statusMessage.isNotEmpty) {
@@ -1659,6 +1916,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
                   child: Row(
                     children: [
                       Container(
+                        key: _statusBarKey,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16,
                           vertical: 10,
@@ -1698,14 +1956,15 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
                                   height: 8,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: _connectionStatus == 'connected'
+                                    color: _connectionStatus.toLowerCase().contains('connected') ||
+                                           _connectionStatus.toLowerCase().contains('completed')
                                         ? Colors.green
                                         : Colors.orange,
                                   ),
                                 ),
                                 const SizedBox(width: 6),
                                 Text(
-                                  "連線狀態: $_connectionStatus",
+                                  _connectionStatusChinese,
                                   style: TextStyle(
                                     color: kLuminewDeepIndigo.withOpacity(0.7),
                                     fontSize: 11,
@@ -1725,6 +1984,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
                 Padding(
                   padding: const EdgeInsets.only(left: 16, right: 16, top: 90),
                   child: AspectRatio(
+                    key: _professorVideoKey,
                     aspectRatio: 1.0,
                     child: Container(
                       width: double.infinity,
@@ -1862,6 +2122,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         GestureDetector(
+                          key: _micButtonKey,
                           onTap:
                               _isWsConnecting ||
                                   _isWaitingProfessor ||
@@ -1950,34 +2211,40 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
         ),
 
           Positioned(
-            top: 50,
+            top: 20,
             right: 20,
             width: 110,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: AspectRatio(
-                aspectRatio: _controller!.value.aspectRatio > 1.0 
-                    ? 1.0 / _controller!.value.aspectRatio 
-                    : _controller!.value.aspectRatio,
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    // 學生自拍預覽：保持原始比例
-                    CameraPreview(_controller!),
-                  // 加上一個微弱的陰影邊界以便區分背景
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: Colors.white.withOpacity(0.2),
-                        width: 1,
+            child: SafeArea(
+              key: _studentCameraKey,
+              bottom: false,
+              left: false,
+              right: false,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: AspectRatio(
+                  aspectRatio: _controller!.value.aspectRatio > 1.0 
+                      ? 1.0 / _controller!.value.aspectRatio 
+                      : _controller!.value.aspectRatio,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      // 學生自拍預覽：保持原始比例
+                      CameraPreview(_controller!),
+                      // 加上一個微弱的陰影邊界以便區分背景
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: Colors.white.withOpacity(0.2),
+                            width: 1,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ],
-              ), // end of Stack
-             ), // end of AspectRatio
-            ), // end of ClipRRect
+                    ],
+                  ), // end of Stack
+                ), // end of AspectRatio
+              ), // end of ClipRRect
+            ), // end of SafeArea
           ), // end of Positioned
         ],
       ),
@@ -2010,10 +2277,22 @@ class InterviewResultScreen extends StatefulWidget {
 
 class _InterviewResultScreenState extends State<InterviewResultScreen> {
   final _commentCtrl = TextEditingController();
+  late final TextEditingController _noteCtrl; // ★ 心得控制器
   List<Comment> _comments = [];
   VideoPlayerController? _videoController;
   bool _isVideoInitialized = false;
   Duration _videoPosition = Duration.zero;
+
+  // ★ 筆記儲存狀態與旗標
+  String _saveStatusText = "已儲存";
+  bool _isSavingNote = false;
+
+  Color get _saveStatusColor {
+    if (_saveStatusText == "已儲存") return AppColors.success;
+    if (_saveStatusText == "尚未儲存") return AppColors.warning;
+    if (_saveStatusText == "儲存中...") return AppColors.primaryPurple;
+    return AppColors.error;
+  }
 
   bool _isIndexMode = false;
   bool _autoEmailSent = false;
@@ -2025,6 +2304,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
   @override
   void initState() {
     super.initState();
+    _noteCtrl = TextEditingController(text: widget.record.note); // ★ 初始化心得
     _loadTeachers();
     _initVideo();
   }
@@ -2048,6 +2328,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
 
   @override
   void dispose() {
+    _noteCtrl.dispose(); // ★ 釋放
     _videoController?.dispose();
     _commentCtrl.dispose();
     super.dispose();
@@ -2247,82 +2528,190 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
   }
 
   void _showNoteSheet(BuildContext context) {
+    _noteCtrl.text = widget.record.note ?? "";
+    _saveStatusText = "已儲存";
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
-      builder: (context) => BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
-        child: Container(
-          height: MediaQuery.of(context).size.height * 0.7,
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.9),
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
-          ),
-          padding: const EdgeInsets.fromLTRB(28, 20, 28, 28),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Container(
-                  width: 36,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(2),
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setModalState) {
+            final int charCount = _noteCtrl.text.length;
+            return BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.75,
+                decoration: BoxDecoration(
+                  color: AppColors.gooseYellow.withOpacity(0.95), // 品牌鵝黃磨砂背景
+                  borderRadius: const BorderRadius.vertical(top: Radius.circular(AppDesign.radiusL)),
+                  border: Border.all(
+                    color: AppColors.primaryPurple.withOpacity(0.2),
+                    width: 1.5,
                   ),
+                  boxShadow: AppDesign.premiumShadow,
                 ),
-              ),
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "面試心得筆記",
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: kLuminewDeepIndigo,
-                    ),
-                  ),
-                  IconButton(
-                    icon: Container(
-                      padding: const EdgeInsets.all(6),
-                      decoration: const BoxDecoration(
-                        color: kLuminewMainPurple,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.check,
-                        color: Colors.white,
-                        size: 20,
+                padding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Container(
+                        width: 40,
+                        height: 5,
+                        decoration: BoxDecoration(
+                          color: AppColors.deepIndigo.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(2.5),
+                        ),
                       ),
                     ),
-                    onPressed: () => Navigator.pop(context),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-              const Text(
-                "記錄下您的亮點與需要改進的地方",
-                style: TextStyle(color: Colors.grey, fontSize: 13),
-              ),
-              const SizedBox(height: 20),
-              const Expanded(
-                child: TextField(
-                  maxLines: null,
-                  autofocus: true,
-                  decoration: InputDecoration(
-                    hintText: "在這裡寫下您的想法...",
-                    border: InputBorder.none,
-                  ),
-                  style: TextStyle(fontSize: 16, height: 1.6),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "面試心得筆記",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.deepIndigo,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              _saveStatusText,
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: _saveStatusColor,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            TextButton(
+                              onPressed: _isSavingNote
+                                  ? null
+                                  : () async {
+                                      setModalState(() {
+                                        _saveStatusText = "儲存中...";
+                                        _isSavingNote = true;
+                                      });
+
+                                      final newNote = _noteCtrl.text;
+                                      widget.record.note = newNote;
+                                      try {
+                                        await ApiService.updateRecordNote(widget.record.id, newNote);
+                                        setModalState(() {
+                                          _saveStatusText = "已儲存";
+                                        });
+                                      } catch (e) {
+                                        setModalState(() {
+                                          _saveStatusText = "儲存失敗";
+                                        });
+                                        print("⚠️ 儲存筆記失敗: $e");
+                                      } finally {
+                                        setModalState(() {
+                                          _isSavingNote = false;
+                                        });
+                                      }
+
+                                      Future.delayed(const Duration(milliseconds: 800), () {
+                                        if (context.mounted) {
+                                          Navigator.pop(context);
+                                        }
+                                      });
+                                    },
+                              style: TextButton.styleFrom(
+                                backgroundColor: AppColors.primaryPurple,
+                                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(AppDesign.radiusM),
+                                ),
+                              ),
+                              child: _isSavingNote
+                                  ? const SizedBox(
+                                      width: 16,
+                                      height: 16,
+                                      child: CircularProgressIndicator(
+                                        color: Colors.white,
+                                        strokeWidth: 2,
+                                      ),
+                                    )
+                                  : const Text(
+                                      "儲存",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                      "記錄下您在此次面試中的發揮、亮點與待改進之處",
+                      style: TextStyle(color: AppColors.textGrey, fontSize: 13),
+                    ),
+                    const SizedBox(height: 16),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.purpleSurface, // 質感淺紫底色
+                          borderRadius: BorderRadius.circular(AppDesign.radiusM),
+                          border: Border.all(
+                            color: AppColors.primaryPurple.withOpacity(0.15),
+                            width: 1,
+                          ),
+                        ),
+                        padding: const EdgeInsets.all(16),
+                        child: TextField(
+                          controller: _noteCtrl,
+                          maxLines: null,
+                          autofocus: true,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            height: 1.6,
+                            color: AppColors.textMain,
+                          ),
+                          decoration: const InputDecoration(
+                            hintText: "在此輸入您的心得、反思或未來改進重點...",
+                            hintStyle: TextStyle(color: AppColors.textLightGrey),
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.zero,
+                          ),
+                          onChanged: (val) {
+                            setModalState(() {
+                              if (_saveStatusText != "尚未儲存") {
+                                _saveStatusText = "尚未儲存";
+                              }
+                            });
+                          },
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          "字數：$charCount 字",
+                          style: const TextStyle(
+                            color: AppColors.textLightGrey,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ),
-      ),
+            );
+          },
+        );
+      },
     );
   }
 
@@ -2817,7 +3206,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                       16,
                       8,
                       16,
-                      8 + MediaQuery.of(context).viewInsets.bottom,
+                      8 + MediaQuery.of(context).padding.bottom,
                     ),
                     decoration: BoxDecoration(
                       color: kLuminewMainPurple,
