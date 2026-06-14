@@ -26,6 +26,8 @@ import '../widgets/luminew_header.dart'; // 導入統一標頭
 import '../theme/app_theme.dart'; // 導入 AppColors
 import 'student_screens.dart';
 import 'auth_screen.dart';
+import '../utils/web_uploader_stub.dart'
+    if (dart.library.html) '../utils/web_uploader.dart'; // ★ Web XHR 上傳 + 進度條
 
 // 全域變數：用來儲存可用的相機列表
 List<CameraDescription> cameras = [];
@@ -1096,8 +1098,10 @@ class MockInterviewScreen extends StatefulWidget {
 
 class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTickerProviderStateMixin {
   CameraController? _controller;
+  final _webRecorder = WebVideoRecorder();
   bool _isRecording = false;
   bool _isUploading = false;
+  double _uploadProgress = 0.0; // 0.0 ~ 1.0 上傳進度
 
   // ★ 使用導覽元件的 GlobalKey 定位
   final GlobalKey _statusBarKey = GlobalKey();
@@ -1372,6 +1376,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
     _tutorialOverlayEntry?.remove();
     _tutorialOverlayEntry = null;
     _controller?.dispose();
+    _webRecorder.dispose(); // 新增釋放 Web 錄影資源
     _timer?.cancel();
     _amplitudeTimer?.cancel();
     _micWaveController.dispose();
@@ -1397,7 +1402,11 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
         }
       }
 
-      await _controller!.startVideoRecording();
+      if (kIsWeb) {
+        await _webRecorder.start();
+      } else {
+        await _controller!.startVideoRecording();
+      }
       setState(() {
         _isRecording = true;
         _sec = 0;
@@ -1431,7 +1440,13 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
     _timer?.cancel();
     XFile file;
     try {
-      file = await _controller!.stopVideoRecording();
+      if (kIsWeb) {
+        final url = await _webRecorder.stop();
+        if (url == null) throw Exception("網頁錄影失敗，無法取得影片 URL");
+        file = XFile(url, name: 'video.webm');
+      } else {
+        file = await _controller!.stopVideoRecording();
+      }
     } catch (e) {
       print("❌ [Record] 停止錄影失敗: $e");
       if (mounted) {
@@ -1458,21 +1473,132 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
       print("★★★ 準備上傳影片到: $apiUrl ★★★");
       print("★★★ 影片路徑: ${file.path} ★★★");
 
-      var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
-
       if (kIsWeb) {
-        request.files.add(
-          http.MultipartFile.fromBytes(
-            'video',
-            await file.readAsBytes(),
-            filename: kIsWeb ? file.name : 'video.mp4',
-          ),
+        // ★ Web 版：用 XHR 分塊上傳，支援即時進度回呼，避免大檔超時
+        final webApiUrl = '${ApiService.rootUrl}/emotion/upload_chunk';
+        print("★★★ [Web] 使用 XHR 分塊上傳影片到: $webApiUrl ★★★");
+
+        final responseBody = await uploadVideoWebChunked(
+          file.path, // blobUrl（Web 下 XFile.path 就是 blob URL）
+          file.name, // fileName
+          webApiUrl, // url
+          {         // fields
+            'save_video': widget.saveVideo ? 'true' : 'false',
+            'interviewer': widget.interviewer,
+            if (_chatMessages.isNotEmpty) 'transcript': jsonEncode(_chatMessages),
+            if (widget.baseline != null) 'baseline': jsonEncode(widget.baseline),
+          },
+          onProgress: (percent) {
+            if (mounted) setState(() => _uploadProgress = percent);
+          },
         );
-      } else {
-        request.files.add(
-          await http.MultipartFile.fromPath('video', file.path),
+
+        // 上傳完成，進度條跳到 100%
+        if (mounted) setState(() => _uploadProgress = 1.0);
+
+
+        var data = jsonDecode(responseBody);
+
+        // ★ 檢查是否為非同步任務 (job_id)
+        if (data.containsKey('job_id')) {
+          final jobId = data['job_id'];
+          print('★★★ 開始輪詢任務狀態: $jobId ★★★');
+
+          bool isDone = false;
+          while (!isDone) {
+            await Future.delayed(const Duration(seconds: 3));
+            final statusRes = await http.get(Uri.parse('${ApiService.rootUrl}/emotion/status/$jobId'));
+            if (statusRes.statusCode == 200) {
+              final statusData = jsonDecode(statusRes.body);
+              if (statusData['status'] == 'done') {
+                data = statusData['result'];
+                isDone = true;
+                print('★★★ 分析完成！ ★★★');
+              } else if (statusData['status'] == 'error') {
+                throw Exception('後端分析發生錯誤: ${statusData['result']['error']}');
+              }
+            }
+          }
+        }
+
+        // ★ 內嵌結果處理（與 Native 路徑相同邏輯）
+        if (data.containsKey('error')) {
+          data['emotions'] = {'confidence': 0, 'nervous': 0, 'passion': 0, 'relaxed': 0};
+          data['ai_analysis'] = {
+            'overall_score': 0,
+            'comment': '【系統警告】無法從影片中偵測到清晰的人臉，情緒分析已強制略過。\n\n' + (data['error'] ?? ''),
+            'suggestion': '請確保攝影機鏡頭開啟，環境光源充足，並讓臉部居中顯示於畫面之中。',
+          };
+          data['timeline'] = [];
+        }
+
+        final emotions = data['emotions'];
+        final ai = data['ai_analysis'];
+        final timelineList = data['timeline'] ?? [];
+
+        String finalVideoUrl = data['video_url'] ?? '';
+        if (finalVideoUrl.startsWith('/')) {
+          finalVideoUrl = '${AppConfig.httpUrl}$finalVideoUrl';
+        }
+
+        final r = InterviewRecord(
+          id: 'IR${DateTime.now().millisecondsSinceEpoch}',
+          studentId: widget.user.email,
+          date: DateTime.now(),
+          durationSec: _sec,
+          scores: {
+            'overall': ai['overall_score'] ?? 0,
+            'confidence': emotions['confidence'] ?? 0,
+            'passion': emotions['passion'] ?? 0,
+            'nervous': emotions['nervous'] ?? 0,
+            'relaxed': emotions['relaxed'] ?? 0,
+          },
+          type: widget.type,
+          interviewer: widget.interviewer,
+          language: widget.language,
+          privacy: 'Private',
+          aiComment: ai['comment'] ?? '',
+          aiSuggestion: ai['suggestion'] ?? '',
+          timelineData: jsonEncode(timelineList),
+          videoUrl: finalVideoUrl,
+          questions: widget.questions ?? [],
+          interviewName: widget.interviewName,
         );
+
+        mockService.addRecord(r);
+
+        try {
+          final serverId = await ApiService.saveRecord(r);
+          if (serverId != null) {
+            r.id = serverId;
+            print("✅ 資料庫儲存成功，正版 ID: $serverId");
+          }
+        } catch (dbError) {
+          print("❌ 資料庫儲存失敗: $dbError");
+        }
+
+        if (mounted) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (_) => InterviewResultScreen(
+                record: r,
+                user: widget.user,
+                aiComment: ai['comment'],
+                aiSuggestion: ai['suggestion'],
+                videoUrl: file.path,
+              ),
+            ),
+          );
+        }
+        return; // ★ Web 分支結束
       }
+
+      // ★ 以下為 Native (iOS/Android) 上傳流程 ★
+      var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
+      request.files.add(
+        await http.MultipartFile.fromPath('video', file.path),
+      );
       // ★ 傳送設定給後端
       request.fields['save_video'] = widget.saveVideo ? 'true' : 'false';
       request.fields['interviewer'] = widget.interviewer;
@@ -2099,19 +2225,38 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
 
                 // 3. 底部控制按鈕
                 if (_isUploading)
-                  const Padding(
-                    padding: EdgeInsets.all(30),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                     child: Column(
                       children: [
-                        CircularProgressIndicator(color: kLuminewMainPurple),
-                        SizedBox(height: 12),
-                        Text(
-                          "AI 正在進行深度情緒分析",
-                          style: TextStyle(
-                            color: kLuminewMainPurple,
-                            fontWeight: FontWeight.bold,
+                        // 進度條
+                        if (_uploadProgress < 1.0) ...[
+                          LinearProgressIndicator(
+                            value: _uploadProgress,
+                            backgroundColor: kLuminewMainPurple.withOpacity(0.2),
+                            valueColor: const AlwaysStoppedAnimation<Color>(kLuminewMainPurple),
+                            minHeight: 6,
+                            borderRadius: BorderRadius.circular(3),
                           ),
-                        ),
+                          const SizedBox(height: 10),
+                          Text(
+                            "正在上傳影片... ${(_uploadProgress * 100).toStringAsFixed(0)}%",
+                            style: const TextStyle(
+                              color: kLuminewMainPurple,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ] else ...[
+                          const CircularProgressIndicator(color: kLuminewMainPurple),
+                          const SizedBox(height: 12),
+                          const Text(
+                            "影片上傳完成，AI 正在分析中...",
+                            style: TextStyle(
+                              color: kLuminewMainPurple,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
                       ],
                     ),
                   )
@@ -2340,7 +2485,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
     String? url = widget.videoUrl ?? widget.record.videoUrl;
     if (url != null && url.isNotEmpty && url != 'null') {
       print("🎬 嘗試載入影片: $url");
-      if (url.startsWith('http')) {
+      if (url.startsWith('http') || url.startsWith('blob:') || kIsWeb) {
         _videoController = VideoPlayerController.networkUrl(Uri.parse(url));
       } else {
         _videoController = VideoPlayerController.file(File(url));
@@ -4051,15 +4196,17 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
           ),
         ],
       );
-    } else if (url != null && url.isNotEmpty && hasLocalVideo) {
-      return _videoLoadFailed
-          ? _buildVideoPlaceholder(Icons.videocam_off, '影片載入失敗')
-          : const Center(child: CircularProgressIndicator());
-    } else if (url != null && url.isNotEmpty && !hasLocalVideo) {
-      return _buildVideoPlaceholder(
-        Icons.history_toggle_off_rounded,
-        '影像已歸檔或移除',
-      );
+    } else if (url != null && url.isNotEmpty) {
+      if (_videoLoadFailed) {
+        return hasLocalVideo
+            ? _buildVideoPlaceholder(Icons.videocam_off, '影片載入失敗')
+            : _buildVideoPlaceholder(
+                Icons.history_toggle_off_rounded,
+                '影像已歸檔或移除',
+              );
+      } else {
+        return const Center(child: CircularProgressIndicator());
+      }
     } else {
       return _buildVideoPlaceholder(Icons.videocam_off, '未記錄影片');
     }

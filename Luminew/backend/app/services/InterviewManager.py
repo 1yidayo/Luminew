@@ -28,35 +28,34 @@ class InterviewManager:
         self.use_did = use_did
         self.mode = "did" if use_did else "minimax"
 
-        # --- [更新] 總共 3 題流程 ---
+        # --- [2題精簡流程] 固定第一題為自我介紹，第二題依類型分流 ---
         import random
         
         fixed_q1 = "同學請坐，請花1分鐘跟我介紹你自己"
         
-        # 決定第一題
-        if self.department == "通用型":
-            first_q = fixed_q1
-        else:
-            # 如果不是通用型，不強制自我介紹
-            # 從題庫或自訂問題中隨機挑選一題作為開場
-            if custom_questions and len(custom_questions) > 0:
-                first_q = random.choice([q for q in custom_questions if q != fixed_q1])
-            else:
-                all_q = get_random_questions(department=self.department)
-                first_q = random.choice([q for q in all_q if q != fixed_q1])
+        # 第一題：所有類型一律固定為自我介紹
+        first_q = fixed_q1
                 
-        # 決定後續題目
-        if custom_questions and len(custom_questions) > 0:
-            pool = [q for q in custom_questions if q != fixed_q1 and q != first_q]
-            selected_others = random.sample(pool, min(2, len(pool)))
+        # 第二題：依面試類型分流
+        if self.department == "學習歷程":
+            # 學習歷程：優先從 custom_questions 中抽取
+            if custom_questions and len(custom_questions) > 0:
+                pool = [q for q in custom_questions if q != fixed_q1]
+                second_q = random.choice(pool) if pool else "請問你的學習歷程中，有哪個專題或活動讓你印象最深刻？"
+            else:
+                second_q = "請問你的學習歷程中，有哪個專題或活動讓你印象最深刻？"
+        elif self.department == "資管專業":
+            # 資管專業：從 im 題庫中抽取一題
+            im_questions = get_random_questions(department="資管專業")
+            im_pool = [q for q in im_questions if q != fixed_q1]
+            second_q = random.choice(im_pool) if im_pool else "請問你對於資訊管理這個領域，有什麼特別感興趣的研究方向？"
         else:
-            all_q = get_random_questions(department=self.department)
-            pool = [q for q in all_q if q != fixed_q1 and q != first_q]
-            selected_others = random.sample(pool, min(2, len(pool)))
+            # 通用型：GPT 會根據自我介紹追問，此處用佔位文字
+            second_q = "【通用型追問】"
         
-        self.questions = [first_q] + selected_others
-        self.current_question_index = 0 # 追蹤目前是第幾題
-        self.total_questions = 3
+        self.questions = [first_q, second_q]
+        self.current_question_index = 0  # 追蹤目前是第幾題
+        self.total_questions = 2
 
         # D-ID 設定 (從 .env 讀取，並處理 auth)
         self.did_api_key = os.getenv("D_ID_API_KEY")
@@ -67,10 +66,11 @@ class InterviewManager:
         elif self.did_api_key:
             self.session.headers.update({"Authorization": f"Basic {self.did_api_key}"})
 
-        questions_text = "\n".join([f"{i+1}. {q}" for i, q in enumerate(self.questions)])
+        questions_display = [q for q in self.questions if q != "【通用型追問】"]
+        questions_text = "\n".join([f"{i+1}. {q}" for i, q in enumerate(questions_display)])
 
         # 把題庫偷偷塞進系統提示詞
-        self.system_prompt = self.professor_persona.prompt + f"\n\n【本次面試核心任務】\n請擔任主考官，自然地將以下題目融入對話中（總共 3 題，請嚴格按照題號順序進行）：\n{questions_text}\n目前進行到第 {self.current_question_index + 1} 題。"
+        self.system_prompt = self.professor_persona.prompt + f"\n\n【本次面試核心任務】\n請擔任主考官，自然地將以下題目融入對話中（總共 2 題，請嚴格按照題號順序進行）：\n{questions_text}\n目前進行到第 {self.current_question_index + 1} 題。"
 
         # 初始化服務
         self.stt = YatingSTT()
@@ -145,24 +145,16 @@ class InterviewManager:
                 print(f"[ERROR] _on_student_text_sync 錯誤: {e}")
 
     async def _play_opening_greeting(self):
-        """讓教授自然地開場"""
-        if self.department == "通用型":
-            opening_instruct = (
-                f"\n\n現在面試剛開始，請你作為面試官（{self.professor_persona.name}），主動向學生打招呼。\n"
-                "【開場強制任務】\n"
-                "1. 請務必先請學生「坐下」（例如：同學請坐、請坐下吧）。\n"
-                "2. 拋出的第一題必須是「請學生進行約 1 分鐘的自我介紹」。\n"
-                "3. 語氣要完全符合你的教授人格，可以有自然的開場白，但請保持簡短直接。"
-            )
-        else:
-            first_question = self.questions[0]
-            opening_instruct = (
-                f"\n\n現在面試剛開始，請你作為面試官（{self.professor_persona.name}），主動向學生打招呼。\n"
-                "【開場強制任務】\n"
-                "1. 請務必先請學生「坐下」（例如：同學請坐、請坐下吧）。\n"
-                f"2. 拋出的第一題必須是：「{first_question}」。\n"
-                "3. 語氣要完全符合你的教授人格，可以有自然的開場白，但請保持簡短直接。"
-            )
+        """讓教授自然地開場（第一題固定為自我介紹）"""
+        # 所有類型第一題都是自我介紹，統一使用相同的開場指令
+        opening_instruct = (
+            f"\n\n現在面試剛開始，請你作為面試官（{self.professor_persona.name}），主動向學生打招呼。\n"
+            "【開場強制任務】\n"
+            "1. 請務必先請學生「坐下」（例如：同學請坐、請坐下吧）。\n"
+            "2. 拋出的第一題必須是「請學生進行約 1 分鐘的自我介紹」。\n"
+            "3. 語氣要完全符合你的教授人格，可以有自然的開場白，但請保持簡短直接。\n"
+            "4. 注意：本次面試只有 2 題，請保持簡潔有力。"
+        )
         
         opening_prompt = self.system_prompt + opening_instruct
 
@@ -333,15 +325,15 @@ class InterviewManager:
         self.current_question_index += 1
         
         if self.current_question_index >= self.total_questions:
-            # 面試結束
-            reply = "好的，今天的面試就到這裡結束。謝謝你的參與，我們之後會再通知你結果。辛苦了！"
+            # 面試結束（2題完畢，使用指定結尾台詞）
+            reply = "謝謝同學，我們這次面試就先到這裡，期待你之後的表現。"
             print(f"[PROF] [面試結束]: {reply}")
             self.conversation_history.append({"role": "professor", "content": reply})
             if self.on_transcript:
                 await self.on_transcript("professor", reply)
             await self._async_play_tts(reply)
             
-            # --- [新增] 通知前端面試結束 ---
+            # --- 通知前端面試結束 ---
             if self.on_interview_end:
                 await self.on_interview_end()
                 
@@ -364,22 +356,30 @@ class InterviewManager:
         self.stt.start_recording()
 
     def _build_llm_prompt(self):
-        # 更新系統提示詞中的進度
-        questions_text = "\n".join([f"{i+1}. {q}" for i, q in enumerate(self.questions)])
-        current_system_prompt = self.professor_persona.prompt + f"\n\n【本次面試核心任務】\n請擔任主考官，自然地將以下題目融入對話中（總共 3 題，請嚴格按照題號順序進行）：\n{questions_text}\n目前進行到第 {self.current_question_index + 1} 題。"
+        # 更新系統提示詞中的進度（2題流程）
+        questions_display = [q for q in self.questions if q != "【通用型追問】"]
+        questions_text = "\n".join([f"{i+1}. {q}" for i, q in enumerate(questions_display)])
+        current_system_prompt = self.professor_persona.prompt + f"\n\n【本次面試核心任務】\n請擔任主考官，自然地將以下題目融入對話中（總共 2 題，請嚴格按照題號順序進行）：\n{questions_text}\n目前進行到第 {self.current_question_index + 1} 題。"
         
         prompt_text = current_system_prompt + "\n\n"
         for turn in self.conversation_history[-10:]:
             label = "學生" if turn["role"] == "student" else "教授"
             prompt_text += f"{label}說: {turn['content']}\n"
         
-        # 強調目前該問哪一題，但給予隨機追問的彈性
         target_q = self.questions[self.current_question_index]
-        prompt_text += f"\n【重要指示】目前進度排定要問第 {self.current_question_index + 1} 題：『{target_q}』。\n"
-        prompt_text += "請根據學生剛才的回答，自行判斷要採取以下哪一種策略（二選一）：\n"
-        prompt_text += "策略 A（深挖追問）：如果學生剛才的回答很有趣、有疑點、或內容太空泛，你可以「放棄原定題目」，直接針對他的回答提出一個具體的追問。\n"
-        prompt_text += f"策略 B（進入正題）：如果不需要特別追問，請給予極簡的承接（如：了解、我明白了）後，直接提出原定題目：『{target_q}』。\n"
-        prompt_text += "請以教授身份自然地講出下一句，不要解釋你的選擇，直接發問即可。\n"
+        
+        # 通用型第二題：GPT 針對學生自我介紹內容進行追問
+        if self.department == "通用型" and target_q == "【通用型追問】":
+            prompt_text += f"\n【重要指示】這是第 {self.current_question_index + 1} 題（最後一題）。\n"
+            prompt_text += "請仔細閱讀上方學生的自我介紹內容，針對其中一個具體的點（例如：提到的經歷、技能、興趣、或模糊的描述）進行深入追問。\n"
+            prompt_text += "要求：追問必須與學生剛才說的內容直接相關，不要問與自我介紹無關的問題。\n"
+            prompt_text += "請以教授身份自然地發問，語氣簡潔，直接提問即可。\n"
+        else:
+            # 學習歷程 / 資管專業：帶入排定的第二題題目
+            prompt_text += f"\n【重要指示】這是第 {self.current_question_index + 1} 題（最後一題），請直接提出以下問題：『{target_q}』。\n"
+            prompt_text += "請給予極簡的承接（如：了解、謝謝、好的）後，自然地帶出這個問題。\n"
+            prompt_text += "不要追問、不要延伸，直接以教授身份問出這題即可。\n"
+        
         return prompt_text
 
     def stop_interview(self):

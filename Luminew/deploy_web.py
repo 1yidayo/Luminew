@@ -25,7 +25,8 @@ def main():
     web_build_dest = os.path.join(backend_dir, "web_build")
 
     print("=== Step 1: 開始編譯 Flutter Web ===")
-    run_cmd(["flutter", "build", "web", "--release"], cwd=frontend_dir)
+    run_cmd(["flutter", "build", "web", "--release", "--pwa-strategy=none"], cwd=frontend_dir)
+
 
     print("\n=== Step 2: 清理舊的部署目錄 ===")
     if os.path.exists(web_build_dest):
@@ -48,6 +49,31 @@ def main():
         else:
             shutil.copy2(s, d)
     print("✅ 複製完成！")
+
+    print("\n=== Step 3.1: 執行自動防快取檔名替換 ===")
+    import time
+    timestamp = int(time.time())
+    
+    main_js_path = os.path.join(web_build_dest, "main.dart.js")
+    new_main_js_name = f"main_{timestamp}.dart.js"
+    new_main_js_path = os.path.join(web_build_dest, new_main_js_name)
+    
+    if os.path.exists(main_js_path):
+        os.rename(main_js_path, new_main_js_path)
+        print(f"✅ 已將 main.dart.js 改名為: {new_main_js_name}")
+        
+        # 替換 flutter_bootstrap.js 中的引用
+        bootstrap_path = os.path.join(web_build_dest, "flutter_bootstrap.js")
+        if os.path.exists(bootstrap_path):
+            with open(bootstrap_path, "r", encoding="utf-8") as f:
+                content = f.read()
+            content = content.replace("main.dart.js", new_main_js_name)
+            with open(bootstrap_path, "w", encoding="utf-8") as f:
+                f.write(content)
+            print("✅ 已更新 flutter_bootstrap.js 中的 main.dart.js 引用！")
+    else:
+        print("⚠️ 找不到 main.dart.js，跳過改名步驟")
+
 
     print("\n=== Step 4: 重啟 PM2 後端服務 ===")
     try:

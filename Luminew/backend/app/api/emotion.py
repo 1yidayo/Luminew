@@ -102,6 +102,7 @@ async def api_get_job_status(job_id: str):
 
 @router.post("/upload_chunk")
 async def api_upload_chunk(
+    background_tasks: BackgroundTasks,
     session_id: str = Form(...),
     chunk_index: int = Form(...),
     total_chunks: int = Form(...),
@@ -123,15 +124,41 @@ async def api_upload_chunk(
     
     # If it is the last chunk, perform analysis
     if chunk_index == total_chunks - 1:
+        import subprocess
         # Generate final file name
         ext = os.path.splitext(video.filename)[1] if video.filename else ".mp4"
         if not ext:
             ext = ".mp4"
-        final_filename = f"{uuid.uuid4()}{ext}"
-        final_path = os.path.join(video_dir, final_filename)
-        os.rename(temp_path, final_path)
+            
+        combined_filename = f"combined_{uuid.uuid4()}{ext}"
+        combined_path = os.path.join(video_dir, combined_filename)
+        os.rename(temp_path, combined_path)
+        print(f"[INPUT] 影片組裝完成，存檔至暫存檔: {combined_path}")
         
-        print(f"[INPUT] 影片組裝完成，存檔至: {final_path}")
+        # 重新封裝為標準 MP4，以修復二進位追加導致的 Metadata/Seek Index 損壞
+        final_filename = f"{uuid.uuid4()}.mp4"
+        final_path = os.path.join(video_dir, final_filename)
+        
+        print(f"🎬 [FFmpeg] 正在修復與封裝影片為 MP4: {combined_path} -> {final_path}")
+        cmd = [
+            'ffmpeg', '-y', '-i', combined_path,
+            '-c:v', 'copy',
+            '-an',  # 去除音軌避免無音軌報錯
+            final_path
+        ]
+        
+        try:
+            res = subprocess.run(cmd, capture_output=True, text=True, shell=True)
+            if res.returncode == 0 and os.path.exists(final_path):
+                print("✅ 影片封裝 MP4 成功，且已修復播放索引")
+                try: os.remove(combined_path)
+                except: pass
+            else:
+                print(f"⚠️ [FFmpeg] 封裝失敗: {res.stderr}，降級使用合併原檔")
+                os.rename(combined_path, final_path)
+        except Exception as e:
+            print(f"⚠️ [FFmpeg] 轉換拋出異常: {e}，降級使用合併原檔")
+            os.rename(combined_path, final_path)
         
         baseline_dict = None
         if baseline and baseline.strip():
@@ -146,19 +173,18 @@ async def api_upload_chunk(
             transcript_list = []
         
         save_flag = save_video.lower() == "true"
-        result = await analyze_video(final_path, save_flag, baseline_dict, transcript_list, interviewer)
         
-        if "error" in result:
-            status = 200 if "No face" in result.get("error", "") else 500
-            return JSONResponse(status_code=status, content=result)
-            
-        # [FIX] 使用者要求：還原翻轉處理，以跟 PIP 方向一致
-        if save_flag:
-            flip_video_async(final_path)
-        
-        return result
+        # ★ 建立背景工作執行分析，避免最後分塊連線逾時
+        job_id = str(uuid.uuid4())
+        _jobs[job_id] = {"status": "processing", "result": None}
+        background_tasks.add_task(
+            _run_analysis_job, job_id, final_path, save_flag, baseline_dict, transcript_list, interviewer
+        )
+        print(f"🚀 [Job {job_id}] (分塊上傳) 已建立，分析在背景執行中...")
+        return JSONResponse({"job_id": job_id, "status": "processing"})
         
     return {"status": "chunk received"}
+
 
 
 @router.post("/calibrate")

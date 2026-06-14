@@ -123,6 +123,22 @@ web_build_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web_bu
 os.makedirs(web_build_dir, exist_ok=True)
 
 from fastapi.responses import HTMLResponse
+
+@app.get("/")
+async def get_index_bypass_cache():
+    """提供根路徑首頁，繞過 Cloudflare 與瀏覽器快取"""
+    html_path = os.path.join(web_build_dir, "index.html")
+    with open(html_path, "r", encoding="utf-8") as f:
+        content = f.read()
+    import time
+    # 動態注入時間戳確保絕對不會被快取
+    content = content.replace("flutter_bootstrap.js", f"flutter_bootstrap.js?t={int(time.time())}")
+    return HTMLResponse(content=content, headers={
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0"
+    })
+
 @app.get("/app")
 async def get_app_bypass_cache():
     """提供一個全新的路徑來繞過 Cloudflare HTML 快取"""
@@ -138,4 +154,26 @@ async def get_app_bypass_cache():
         "Expires": "0"
     })
 
+@app.get("/flutter_bootstrap.js")
+async def get_bootstrap_bypass_cache():
+    """動態生成帶有時間戳 main.dart.js 的 bootstrap 檔案，破解 JS 檔案快取"""
+    bootstrap_path = os.path.join(web_build_dir, "flutter_bootstrap.js")
+    with open(bootstrap_path, "r", encoding="utf-8") as f:
+        content = f.read()
+    import time
+    timestamp = int(time.time())
+    # 替換 main.dart.js 加入時間戳
+    content = content.replace('"main.dart.js"', f'"main.dart.js?v={timestamp}"')
+    content = content.replace("'main.dart.js'", f"'main.dart.js?v={timestamp}'")
+    # 針對沒有引號的情況做替換（保險起見）
+    content = content.replace("main.dart.js?v=", "TEMP_REPLACE_VAL_JS")
+    content = content.replace("main.dart.js", f"main.dart.js?v={timestamp}")
+    content = content.replace("TEMP_REPLACE_VAL_JS", "main.dart.js?v=")
+    return HTMLResponse(content=content, media_type="application/javascript", headers={
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0"
+    })
+
 app.mount("/", StaticFiles(directory=web_build_dir, html=True), name="web")
+

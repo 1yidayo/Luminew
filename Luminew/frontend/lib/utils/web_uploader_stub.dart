@@ -18,3 +18,14 @@ Future<String> uploadVideoWeb(
 }) async {
   throw UnsupportedError('uploadVideoWeb only supported on web');
 }
+
+Future<String> uploadVideoWebChunked(
+  String blobUrl,
+  String fileName,
+  String url,
+  Map<String, String> fields, {
+  void Function(double progress)? onProgress,
+}) async {
+  throw UnsupportedError('uploadVideoWebChunked only supported on web');
+}
+

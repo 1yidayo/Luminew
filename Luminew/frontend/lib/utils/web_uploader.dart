@@ -4,6 +4,7 @@
 import 'dart:async';
 import 'dart:html' as html;
 import 'dart:js' as js;
+import 'dart:js_util' as js_util;
 
 class WebVideoRecorder {
   html.MediaRecorder? _recorder;
@@ -53,7 +54,19 @@ class WebVideoRecorder {
       // 建立一個只含 video tracks 的新 stream（避免帶入音訊）
       final videoOnlyStream = html.MediaStream();
       for (final track in _stream!.getVideoTracks()) {
-        videoOnlyStream.addTrack(track);
+        // 克隆影片軌道並加上限制，以防部分瀏覽器（例如 Safari/iOS）忽略 videoBitsPerSecond 設定。
+        // 將克隆軌道限制在 480x360, 15 FPS，這既保證人臉偵測準確度，也能強制瀏覽器降低硬體編碼碼率。
+        final clonedTrack = track.clone();
+        try {
+          final constraints = js_util.newObject();
+          js_util.setProperty(constraints, 'width', js_util.jsify({'max': 480}));
+          js_util.setProperty(constraints, 'height', js_util.jsify({'max': 360}));
+          js_util.setProperty(constraints, 'frameRate', js_util.jsify({'max': 15}));
+          js_util.callMethod(clonedTrack, 'applyConstraints', [constraints]);
+        } catch (e) {
+          print('⚠️ [WebRecorder] 無法為克隆的影片軌道套用限制: $e');
+        }
+        videoOnlyStream.addTrack(clonedTrack);
       }
 
       // 決定支援的 mimeType
@@ -72,8 +85,14 @@ class WebVideoRecorder {
       }
       print('✅ [WebRecorder] 使用 mimeType: $selectedMime');
 
-      final options = {'mimeType': selectedMime, 'videoBitsPerSecond': 500000};
-      _recorder = html.MediaRecorder(videoOnlyStream, options as Map<String, dynamic>);
+      // 避開 dart:html constructor 對 Map 轉換的限制，直接使用 js_util 建立原生 JS 物件作為 options，
+      // 以確保瀏覽器能正確讀取 videoBitsPerSecond 設定，從而啟用 500 kbps 錄影壓縮。
+      final rawOptions = js_util.newObject();
+      js_util.setProperty(rawOptions, 'mimeType', selectedMime);
+      js_util.setProperty(rawOptions, 'videoBitsPerSecond', 500000);
+
+      final mediaRecorderConstructor = js_util.getProperty(html.window, 'MediaRecorder');
+      _recorder = js_util.callConstructor(mediaRecorderConstructor, [videoOnlyStream, rawOptions]) as html.MediaRecorder;
 
       _recorder!.addEventListener('dataavailable', (event) {
         final e = event as html.BlobEvent;
@@ -84,6 +103,14 @@ class WebVideoRecorder {
       });
 
       _recorder!.addEventListener('stop', (event) {
+        // 停止並釋放所有克隆的影片軌道，防記憶體洩漏與鏡頭燈殘留
+        try {
+          for (final track in videoOnlyStream.getVideoTracks()) {
+            track.stop();
+          }
+        } catch (e) {
+          print('⚠️ [WebRecorder] 釋放克隆軌道失敗: $e');
+        }
         final blob = html.Blob(_chunks, selectedMime);
         final url = html.Url.createObjectUrlFromBlob(blob);
         print('✅ [WebRecorder] 錄影結束，總分塊: ${_chunks.length}, 合併後大小: ${blob.size} bytes');
@@ -144,8 +171,9 @@ Future<String> uploadVideoWeb(
   xhr.open('POST', url);
   xhr.timeout = 300000; // 300 秒
 
+  StreamSubscription? progressSub;
   if (onProgress != null) {
-    xhr.upload.onProgress.listen((html.ProgressEvent e) {
+    progressSub = xhr.upload.onProgress.listen((html.ProgressEvent e) {
       if (e.lengthComputable) {
         final loaded = e.loaded ?? 0;
         final total = e.total ?? 1;
@@ -156,7 +184,11 @@ Future<String> uploadVideoWeb(
   }
 
   final completer = Completer<String>();
-  xhr.onLoad.listen((_) {
+  StreamSubscription? loadSub;
+  StreamSubscription? errorSub;
+  StreamSubscription? timeoutSub;
+
+  loadSub = xhr.onLoad.listen((_) {
     print('📥 [WebUpload] 收到回應 status=${xhr.status}');
     if (xhr.status == 200) {
       completer.complete(xhr.responseText ?? '');
@@ -166,15 +198,108 @@ Future<String> uploadVideoWeb(
       );
     }
   });
-  xhr.onError.listen((_) {
+  errorSub = xhr.onError.listen((_) {
     print('❌ [WebUpload] 網路錯誤');
     completer.completeError('網路錯誤，請確認伺服器連線');
   });
-  xhr.onTimeout.listen((_) {
+  timeoutSub = xhr.onTimeout.listen((_) {
     print('⏱ [WebUpload] 上傳逾時');
     completer.completeError('上傳逾時（300 秒）');
   });
 
   xhr.send(formData);
-  return completer.future;
+
+  try {
+    return await completer.future;
+  } finally {
+    progressSub?.cancel();
+    loadSub?.cancel();
+    errorSub?.cancel();
+    timeoutSub?.cancel();
+  }
 }
+
+/// 將 blobUrl 上的影片切分成 1MB 分塊，循序上傳至 /emotion/upload_chunk
+Future<String> uploadVideoWebChunked(
+  String blobUrl,
+  String fileName,
+  String url,
+  Map<String, String> fields, {
+  void Function(double progress)? onProgress,
+}) async {
+  // 從 blob URL 取得 Blob 物件參考
+  final req = await html.HttpRequest.request(blobUrl, responseType: 'blob');
+  final blob = req.response as html.Blob;
+  final totalSize = blob.size;
+  
+  // 每個分塊設為 2 MB (2,097,152 bytes)
+  const int chunkSize = 2 * 1024 * 1024;
+  final totalChunks = (totalSize / chunkSize).ceil();
+  final sessionId = 'web_${DateTime.now().millisecondsSinceEpoch}_${(totalSize % 10000)}';
+  
+  print('📤 [WebUploadChunked] 開始分塊上傳, 總大小: $totalSize bytes, 共 $totalChunks 個分塊, Session: $sessionId');
+
+  String lastResponse = "";
+
+  for (int i = 0; i < totalChunks; i++) {
+    final start = i * chunkSize;
+    final end = (start + chunkSize < totalSize) ? start + chunkSize : totalSize;
+    final chunkBlob = blob.slice(start, end);
+
+    final formData = html.FormData();
+    formData.appendBlob('video', chunkBlob, fileName);
+    formData.append('session_id', sessionId);
+    formData.append('chunk_index', i.toString());
+    formData.append('total_chunks', totalChunks.toString());
+    
+    // 將其他欄位（save_video, interviewer, transcript, baseline 等）附加於分塊中
+    fields.forEach((key, value) => formData.append(key, value));
+
+    final xhr = html.HttpRequest();
+    xhr.open('POST', url);
+    xhr.timeout = 60000; // 每個分塊超時設為 60 秒
+
+    final completer = Completer<String>();
+    StreamSubscription? loadSub;
+    StreamSubscription? errorSub;
+    StreamSubscription? timeoutSub;
+
+    loadSub = xhr.onLoad.listen((_) {
+      if (xhr.status == 200) {
+        completer.complete(xhr.responseText ?? '');
+      } else {
+        completer.completeError('Server error status: ${xhr.status} - ${xhr.responseText}');
+      }
+    });
+
+    errorSub = xhr.onError.listen((_) {
+      completer.completeError('網路錯誤，分塊上傳失敗');
+    });
+
+    timeoutSub = xhr.onTimeout.listen((_) {
+      completer.completeError('上傳分塊逾時');
+    });
+
+    xhr.send(formData);
+
+    try {
+      lastResponse = await completer.future;
+      print('📦 [WebUploadChunked] 成功上傳分塊 [${i + 1}/$totalChunks]');
+      if (onProgress != null) {
+        // 更新進度百分比
+        final percent = (i + 1) / totalChunks;
+        onProgress(percent);
+      }
+    } catch (e) {
+      print('❌ [WebUploadChunked] 上傳分塊 [${i + 1}/$totalChunks] 失敗: $e');
+      rethrow;
+    } finally {
+      loadSub?.cancel();
+      errorSub?.cancel();
+      timeoutSub?.cancel();
+    }
+  }
+
+  return lastResponse;
+}
+
