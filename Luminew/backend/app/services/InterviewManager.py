@@ -10,7 +10,7 @@ from app.services.yating_stt import YatingSTT
 from app.services.openai_llm import ask_gpt4_1_nano
 from app.services.minimax_tts import MinimaxTTSWS
 from app.services.professor_persona import get_professor_persona
-from app.services.question_loader import get_random_questions
+from app.services.question_loader import get_random_questions, get_questions
 
 class InterviewManager:
     """
@@ -22,40 +22,87 @@ class InterviewManager:
     不再使用本地 Threading 或 sounddevice。
     """
 
+    # ── 自我介紹說法隨機清單（通用型第一題，不帶時間限制）──
+    _SELF_INTRO_PROMPTS = [
+        "同學請坐，可以先跟我們簡單介紹一下你自己嗎？",
+        "好，那我們開始，先請你自我介紹一下。",
+        "請先介紹你自己，想從哪個面向說都可以。",
+        "歡迎，先跟我們說說你是誰吧。",
+        "請先做個自我介紹。",
+    ]
+
+    # ── 結語隨機清單 ──
+    _CLOSING_REMARKS = [
+        "好的，謝謝你今天的分享，我們這次面試就先到這裡。",
+        "非常謝謝你，今天的面試就結束了，辛苦了。",
+        "好，我們今天的面試到此結束，謝謝你的參與。",
+        "謝謝你今天的回答，面試到這裡告一段落，期待後續的結果。",
+    ]
+
     def __init__(self, professor_type="warm_industry_professor", department="im", use_did=False, custom_questions=None):
         self.professor_persona = get_professor_persona(professor_type)
         self.department = department
         self.use_did = use_did
         self.mode = "did" if use_did else "minimax"
 
-        # --- [2題精簡流程] 固定第一題為自我介紹，第二題依類型分流 ---
         import random
-        
-        fixed_q1 = "同學請坐，請花1分鐘跟我介紹你自己"
-        
-        # 第一題：所有類型一律固定為自我介紹
-        first_q = fixed_q1
-                
-        # 第二題：依面試類型分流
-        if self.department == "學習歷程":
-            # 學習歷程：優先從 custom_questions 中抽取
+
+        # ─────────────────────────────────────────────────────────
+        # 題目分配邏輯（2 題制）
+        # ─────────────────────────────────────────────────────────
+        if self.department == "通用型":
+            # 第一題：固定自介，隨機說法，不帶時間限制
+            first_q = random.choice(self._SELF_INTRO_PROMPTS)
+
+            # 第二題：PDF 優先，否則從 general.json（排除自介類問題）
             if custom_questions and len(custom_questions) > 0:
-                pool = [q for q in custom_questions if q != fixed_q1]
-                second_q = random.choice(pool) if pool else "請問你的學習歷程中，有哪個專題或活動讓你印象最深刻？"
+                second_q = random.choice(custom_questions)
             else:
-                second_q = "請問你的學習歷程中，有哪個專題或活動讓你印象最深刻？"
+                pool = get_questions("通用型", count=1, exclude_self_intro=True)
+                second_q = pool[0] if pool else "在你的求學過程中，有沒有遇過什麼重大的挫折？你是如何解決的？"
+
         elif self.department == "資管專業":
-            # 資管專業：從 im 題庫中抽取一題
-            im_questions = get_random_questions(department="資管專業")
-            im_pool = [q for q in im_questions if q != fixed_q1]
-            second_q = random.choice(im_pool) if im_pool else "請問你對於資訊管理這個領域，有什麼特別感興趣的研究方向？"
-        else:
-            # 通用型：GPT 會根據自我介紹追問，此處用佔位文字
-            second_q = "【通用型追問】"
-        
+            # 兩題都從資管題庫或 PDF，不固定自介
+            if custom_questions and len(custom_questions) > 0:
+                pool = custom_questions
+                if len(pool) >= 2:
+                    selected = random.sample(pool, 2)
+                else:
+                    # PDF 不足 2 題，補充題庫
+                    extra = get_questions("資管專業", count=2 - len(pool))
+                    selected = pool + extra
+                first_q, second_q = selected[0], selected[1]
+            else:
+                selected = get_questions("資管專業", count=2)
+                if len(selected) >= 2:
+                    first_q, second_q = selected[0], selected[1]
+                else:
+                    first_q = selected[0] if selected else "你覺得「資訊管理」跟「資訊工程」最大的差別在哪裡？"
+                    second_q = "請談談你對 AI 人工智慧改變未來職場的看法。"
+
+        else:  # 學習歷程
+            # 全部從 PDF，PDF 失敗則使用備用題庫
+            if custom_questions and len(custom_questions) > 0:
+                pool = custom_questions
+                if len(pool) >= 2:
+                    selected = random.sample(pool, 2)
+                else:
+                    from app.services.question_generator import DEFAULT_BANKS
+                    fallback = DEFAULT_BANKS.get("學習歷程", [])
+                    selected = pool + fallback[:max(0, 2 - len(pool))]
+                first_q, second_q = selected[0], selected[1]
+            else:
+                # PDF 必填但解析失敗時的最後備用
+                from app.services.question_generator import DEFAULT_BANKS
+                fallback = DEFAULT_BANKS.get("學習歷程", [])
+                first_q = fallback[0] if len(fallback) > 0 else "這份學習歷程中，哪一個部分是你投入心力最多、感到最自豪的？"
+                second_q = fallback[1] if len(fallback) > 1 else "在準備學習歷程檔案的過程中，你對自己的專業興趣有新的發現嗎？"
+
         self.questions = [first_q, second_q]
         self.current_question_index = 0  # 追蹤目前是第幾題
         self.total_questions = 2
+
+        print(f"[INIT] 面試類型: {self.department} | 題目: {self.questions}")
 
         # D-ID 設定 (從 .env 讀取，並處理 auth)
         self.did_api_key = os.getenv("D_ID_API_KEY")
@@ -66,8 +113,7 @@ class InterviewManager:
         elif self.did_api_key:
             self.session.headers.update({"Authorization": f"Basic {self.did_api_key}"})
 
-        questions_display = [q for q in self.questions if q != "【通用型追問】"]
-        questions_text = "\n".join([f"{i+1}. {q}" for i, q in enumerate(questions_display)])
+        questions_text = "\n".join([f"{i+1}. {q}" for i, q in enumerate(self.questions)])
 
         # 把題庫偷偷塞進系統提示詞
         self.system_prompt = self.professor_persona.prompt + f"\n\n【本次面試核心任務】\n請擔任主考官，自然地將以下題目融入對話中（總共 2 題，請嚴格按照題號順序進行）：\n{questions_text}\n目前進行到第 {self.current_question_index + 1} 題。"
@@ -145,16 +191,29 @@ class InterviewManager:
                 print(f"[ERROR] _on_student_text_sync 錯誤: {e}")
 
     async def _play_opening_greeting(self):
-        """讓教授自然地開場（第一題固定為自我介紹）"""
-        # 所有類型第一題都是自我介紹，統一使用相同的開場指令
-        opening_instruct = (
-            f"\n\n現在面試剛開始，請你作為面試官（{self.professor_persona.name}），主動向學生打招呼。\n"
-            "【開場強制任務】\n"
-            "1. 請務必先請學生「坐下」（例如：同學請坐、請坐下吧）。\n"
-            "2. 拋出的第一題必須是「請學生進行約 1 分鐘的自我介紹」。\n"
-            "3. 語氣要完全符合你的教授人格，可以有自然的開場白，但請保持簡短直接。\n"
-            "4. 注意：本次面試只有 2 題，請保持簡潔有力。"
-        )
+        """教授開場並提出第一題"""
+        first_q = self.questions[0]
+
+        if self.department == "通用型":
+            # 通用型第一題是自介，引導自然開場，不提時間
+            opening_instruct = (
+                f"\n\n現在面試剛開始，請你作為面試官（{self.professor_persona.name}），主動向學生打招呼。\n"
+                "【開場強制任務】\n"
+                "1. 請務必先請學生「坐下」（例如：同學請坐、請坐下吧）。\n"
+                f"2. 開場後，自然邀請學生自我介紹（核心問題：「{first_q}」），語氣輕鬆，不要提時間限制。\n"
+                "3. 語氣要完全符合你的教授人格，保持簡短直接。\n"
+                "4. 注意：本次面試只有 2 題，請保持簡潔有力。"
+            )
+        else:
+            # 資管專業 / 學習歷程：開場後自然拋出第一題
+            opening_instruct = (
+                f"\n\n現在面試剛開始，請你作為面試官（{self.professor_persona.name}），主動向學生打招呼。\n"
+                "【開場強制任務】\n"
+                "1. 請務必先請學生「坐下」（例如：同學請坐、請坐下吧）。\n"
+                f"2. 開場後，自然地提出第一個問題：「{first_q}」\n"
+                "3. 語氣要完全符合你的教授人格，保持簡短直接。\n"
+                "4. 注意：本次面試只有 2 題，請保持簡潔有力。"
+            )
         
         opening_prompt = self.system_prompt + opening_instruct
 
@@ -325,8 +384,9 @@ class InterviewManager:
         self.current_question_index += 1
         
         if self.current_question_index >= self.total_questions:
-            # 面試結束（2題完畢，使用指定結尾台詞）
-            reply = "謝謝同學，我們這次面試就先到這裡，期待你之後的表現。"
+            # 面試結束（2題完畢，隨機結語）
+            import random
+            reply = random.choice(self._CLOSING_REMARKS)
             print(f"[PROF] [面試結束]: {reply}")
             self.conversation_history.append({"role": "professor", "content": reply})
             if self.on_transcript:
@@ -357,29 +417,20 @@ class InterviewManager:
 
     def _build_llm_prompt(self):
         # 更新系統提示詞中的進度（2題流程）
-        questions_display = [q for q in self.questions if q != "【通用型追問】"]
-        questions_text = "\n".join([f"{i+1}. {q}" for i, q in enumerate(questions_display)])
+        questions_text = "\n".join([f"{i+1}. {q}" for i, q in enumerate(self.questions)])
         current_system_prompt = self.professor_persona.prompt + f"\n\n【本次面試核心任務】\n請擔任主考官，自然地將以下題目融入對話中（總共 2 題，請嚴格按照題號順序進行）：\n{questions_text}\n目前進行到第 {self.current_question_index + 1} 題。"
-        
+
         prompt_text = current_system_prompt + "\n\n"
         for turn in self.conversation_history[-10:]:
             label = "學生" if turn["role"] == "student" else "教授"
             prompt_text += f"{label}說: {turn['content']}\n"
-        
+
         target_q = self.questions[self.current_question_index]
-        
-        # 通用型第二題：GPT 針對學生自我介紹內容進行追問
-        if self.department == "通用型" and target_q == "【通用型追問】":
-            prompt_text += f"\n【重要指示】這是第 {self.current_question_index + 1} 題（最後一題）。\n"
-            prompt_text += "請仔細閱讀上方學生的自我介紹內容，針對其中一個具體的點（例如：提到的經歷、技能、興趣、或模糊的描述）進行深入追問。\n"
-            prompt_text += "要求：追問必須與學生剛才說的內容直接相關，不要問與自我介紹無關的問題。\n"
-            prompt_text += "請以教授身份自然地發問，語氣簡潔，直接提問即可。\n"
-        else:
-            # 學習歷程 / 資管專業：帶入排定的第二題題目
-            prompt_text += f"\n【重要指示】這是第 {self.current_question_index + 1} 題（最後一題），請直接提出以下問題：『{target_q}』。\n"
-            prompt_text += "請給予極簡的承接（如：了解、謝謝、好的）後，自然地帶出這個問題。\n"
-            prompt_text += "不要追問、不要延伸，直接以教授身份問出這題即可。\n"
-        
+
+        prompt_text += f"\n【重要指示】這是第 {self.current_question_index + 1} 題（最後一題），請直接提出以下問題：『{target_q}』。\n"
+        prompt_text += "請給予極簡的承接（如：了解、謝謝、好的）後，自然地帶出這個問題。\n"
+        prompt_text += "不要追問、不要延伸，直接以教授身份問出這題即可。\n"
+
         return prompt_text
 
     def stop_interview(self):
@@ -501,6 +552,15 @@ class InterviewManager:
                 self.did_session_id = res_data["session_id"]
                 self._update_did_cookies(res_data["session_id"])
         return response.json() if response.ok else {"error": response.text}
+
+    async def submit_did_ice(self, candidate_data):
+        """Websocket 專用的 ICE 轉發介面"""
+        return await self.submit_did_ice_candidate(
+            candidate=candidate_data.get("candidate"),
+            sdpMid=candidate_data.get("sdpMid"),
+            sdpMLineIndex=candidate_data.get("sdpMLineIndex"),
+            session_id=candidate_data.get("session_id")
+        )
 
     async def submit_did_ice_candidate(self, candidate, sdpMid, sdpMLineIndex, session_id=None):
         """將前端產生的 ICE Candidate 交回給 D-ID"""

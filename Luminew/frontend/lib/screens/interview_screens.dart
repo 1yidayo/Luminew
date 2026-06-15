@@ -552,9 +552,29 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
           print("✅ 成功生成 ${_generatedQuestions.length} 個問題");
         } else {
           print("⚠️ 問題生成失敗: ${data['message']}");
+          setState(() {
+            _generatedQuestions = [];
+          });
+          String userMsg = "檔案分析失敗，請重新上傳！";
+          if (data['message'] == 'empty_pdf') {
+            userMsg = "檔案分析失敗：PDF 內沒有可讀取的文字，請重新上傳含有文字的檔案！";
+          } else if (data['message'] == 'pdf_read_error') {
+            userMsg = "檔案分析失敗：無法讀取該 PDF 檔案，請確認是否損毀並重新上傳！";
+          } else if (data['message'] == 'no_api_key') {
+            userMsg = "系統錯誤：未配置 API 金鑰，請聯繫管理員！";
+          }
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(userMsg), backgroundColor: Colors.redAccent),
+          );
         }
       } else {
         print("❌ API 錯誤: ${response.statusCode}");
+        setState(() {
+          _generatedQuestions = [];
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('伺服器連線異常，請稍後再試！'), backgroundColor: Colors.redAccent),
+        );
       }
     } catch (e) {
       print("❌ 錯誤: $e");
@@ -849,7 +869,7 @@ class _MockInterviewSetupScreenState extends State<MockInterviewSetupScreen> {
                                   saveVideo: _saveVideo,
                                   interviewName: _nameController.text.trim(),
                                   baseline: _baseline,
-                                  questions: _type == '學習歷程' ? _generatedQuestions : null,
+                                  questions: _generatedQuestions.isNotEmpty ? _generatedQuestions : null,
                                 ),
                               ),
                             );
@@ -1140,10 +1160,16 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
     }
   }
 
-  // ★ 麥克風動畫變數
+  // ★ 麥克風動畫與教授說話監控變數
   late AnimationController _micWaveController;
   Timer? _amplitudeTimer;
   double _micAmplitude = 0.0;
+
+  Timer? _professorSpeakTimer;
+  bool _hasProfessorStartedSpeaking = false;
+  int _professorSilentTicks = 0;
+  int _professorLoadTicks = 0;
+  bool _receivedInterviewEnd = false;
 
   // ★ TTS 音訊播放
 
@@ -1174,6 +1200,10 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
           if (role == 'professor') {
             _isWaitingProfessor = true;
             _canStudentSpeak = false;
+            // 重設監聽器狀態
+            _hasProfessorStartedSpeaking = false;
+            _professorSilentTicks = 0;
+            _professorLoadTicks = 0;
           }
         });
         Future.delayed(const Duration(milliseconds: 100), () {
@@ -1199,27 +1229,11 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
       }
     };
     _didService.onTtsDone = () {
-      // ★ 教授說完了，延遲 1 秒後開啟麥克風顯示，讓學生心理有準備
-      if (mounted) {
-        setState(() {
-          _isWaitingProfessor = false;
-          // _startAudioStream(); // 不要立刻收音，等 1 秒
-        });
-
-        // ★ 移除重複長延時：後端已經預留 1.8 秒熱機時間，前端只需極短延遲亮燈
-        Timer(const Duration(milliseconds: 50), () {
-          if (mounted) {
-            setState(() => _canStudentSpeak = true);
-            if (_isInterviewing) {
-              _startAudioStream();
-            }
-          }
-        });
-      }
+      print("🔊 [WebSocket] 收到 tts_done，使用 WebRTC Stats 音量監控中，忽略此事件的主動開麥");
     };
     _didService.onVideoTrack = () {
       if (mounted) {
-        print('📺 [UI] 偵測到視訊執軌道掛載，重新渲染畫面');
+        print('📺 [UI] 偵測到視訊軌道掛載，重新渲染畫面');
         setState(() {
           _isVideoTrackReceived = true; // ★ 設為已接收影像
         });
@@ -1234,8 +1248,10 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
     };
     _didService.onInterviewEnd = () {
       if (mounted) {
-        print('🏁 [UI] 面試結束信號收到，自動啟動分析流程...');
-        _stopAndAnalyze();
+        print('🏁 [UI] 面試結束信號收到，等待教授結語播放完畢...');
+        setState(() {
+          _receivedInterviewEnd = true;
+        });
       }
     };
   }
@@ -1259,11 +1275,14 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
       '🎙️ [Interview] 開始建立與 D-ID 的 WebRTC 連線 (教授: ${widget.interviewer})...',
     );
     await _didService.startInterview(widget.interviewer, widget.type, customQuestions: widget.questions);
-    if (mounted)
+    if (mounted) {
       setState(() {
         _isInterviewing = true;
         _isWsConnecting = false;
+        _receivedInterviewEnd = false;
       });
+      _startProfessorSpeakMonitor();
+    }
   }
 
   void _stopLiveInterview() {
@@ -1304,6 +1323,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
 
   void _startAudioStream() {
     _didService.startRecording();
+    _startAmplitudeMonitor();
   }
 
   void _startAmplitudeMonitor() {
@@ -1318,6 +1338,64 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
   void _stopAmplitudeMonitor() {
     _amplitudeTimer?.cancel();
     if (mounted) setState(() => _micAmplitude = 0.0);
+  }
+
+  void _startProfessorSpeakMonitor() {
+    _professorSpeakTimer?.cancel();
+    _hasProfessorStartedSpeaking = false;
+    _professorSilentTicks = 0;
+    _professorLoadTicks = 0;
+
+    _professorSpeakTimer = Timer.periodic(const Duration(milliseconds: 100), (_) async {
+      if (!mounted || !_isInterviewing) return;
+
+      if (_isWaitingProfessor) {
+        _professorLoadTicks++;
+        bool isSpeaking = await _didService.isProfessorSpeaking();
+        if (isSpeaking) {
+          if (!_hasProfessorStartedSpeaking) {
+            print("🔊 [Monitor] 偵測到教授開始說話");
+            setState(() {
+              _hasProfessorStartedSpeaking = true;
+            });
+          }
+          _professorSilentTicks = 0;
+        } else {
+          // 安全超時降級：若已等待 12 秒且教授從未開始說話，視同已說完話
+          if (!_hasProfessorStartedSpeaking && _professorLoadTicks >= 120) {
+            print("⚠️ [Monitor] 教授加載超時 (12秒)，強制視同說完話");
+            setState(() {
+              _hasProfessorStartedSpeaking = true;
+            });
+          }
+          
+          if (_hasProfessorStartedSpeaking) {
+            _professorSilentTicks++;
+            if (_professorSilentTicks >= 12) { // 1.2 秒靜音
+              print("🔇 [Monitor] 偵測到教授說話結束");
+              setState(() {
+                _hasProfessorStartedSpeaking = false;
+                _professorSilentTicks = 0;
+                _professorLoadTicks = 0;
+                _isWaitingProfessor = false; // 重設此狀態
+              });
+              
+              if (_receivedInterviewEnd) {
+                print("🏁 [Monitor] 偵測到結語播放完畢，啟動自動分析");
+                _stopAndAnalyze();
+              } else {
+                setState(() {
+                  _canStudentSpeak = true;
+                });
+                _startAudioStream();
+              }
+            }
+          }
+        }
+      } else {
+        _professorLoadTicks = 0;
+      }
+    });
   }
 
   Future<void> _initCamera() async {
@@ -1379,6 +1457,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
     _webRecorder.dispose(); // 新增釋放 Web 錄影資源
     _timer?.cancel();
     _amplitudeTimer?.cancel();
+    _professorSpeakTimer?.cancel();
     _micWaveController.dispose();
     _didService.dispose();
     _chatScrollController.dispose();
@@ -2266,62 +2345,85 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        GestureDetector(
-                          key: _micButtonKey,
-                          onTap:
-                              _isWsConnecting ||
-                                  _isWaitingProfessor ||
-                                  (!_isInterviewing ? false : !_canStudentSpeak)
-                              ? null
-                              : (_isInterviewing
-                                    ? _signalSpeechEnd
-                                    : _startLiveInterview),
-                          onLongPress: (_isInterviewing || _isRecording)
-                              ? _stopLiveInterview
-                              : null,
-                          child: Container(
-                            width: 80,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color:
-                                  _isWaitingProfessor ||
-                                      (_isInterviewing && !_canStudentSpeak)
-                                  ? Colors.grey.withOpacity(0.1)
-                                  : (_isInterviewing
-                                        ? kLuminewMainPurple
-                                        : Colors.grey.withOpacity(0.1)),
-                              border: Border.all(
-                                color: kLuminewMainPurple,
-                                width: 3,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: kLuminewMainPurple.withOpacity(0.3),
-                                  blurRadius: 12,
-                                  offset: const Offset(0, 4),
-                                ),
-                              ],
-                            ),
-                            child: _isWsConnecting
-                                ? const Center(
-                                    child: CircularProgressIndicator(
-                                      color: kLuminewMainPurple,
-                                      strokeWidth: 3,
+                        AnimatedBuilder(
+                          animation: _micWaveController,
+                          builder: (context, child) {
+                            return SizedBox(
+                              width: 180,
+                              height: 180,
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  // 頻譜波浪指示器
+                                  Positioned.fill(
+                                    child: CustomPaint(
+                                      painter: _MicSpectrumPainter(
+                                        amplitude: _micAmplitude,
+                                        animationValue: _micWaveController.value,
+                                        isActive: _isInterviewing && _canStudentSpeak,
+                                      ),
                                     ),
-                                  )
-                                : Icon(
-                                    _isInterviewing
-                                        ? (_canStudentSpeak
-                                              ? Icons.mic
-                                              : Icons.mic_off)
-                                        : Icons.play_arrow_rounded,
-                                    color: _isInterviewing
-                                        ? Colors.white
-                                        : kLuminewMainPurple,
-                                    size: 40,
                                   ),
-                          ),
+                                  // 麥克風按鈕
+                                  GestureDetector(
+                                    key: _micButtonKey,
+                                    onTap: _isWsConnecting ||
+                                            _isWaitingProfessor ||
+                                            (!_isInterviewing ? false : !_canStudentSpeak)
+                                        ? null
+                                        : (_isInterviewing
+                                              ? _signalSpeechEnd
+                                              : _startLiveInterview),
+                                    onLongPress: (_isInterviewing || _isRecording)
+                                        ? _stopLiveInterview
+                                        : null,
+                                    child: Container(
+                                      width: 80,
+                                      height: 80,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: _isWaitingProfessor ||
+                                                (_isInterviewing && !_canStudentSpeak)
+                                            ? Colors.grey.withOpacity(0.1)
+                                            : (_isInterviewing
+                                                  ? kLuminewMainPurple
+                                                  : Colors.grey.withOpacity(0.1)),
+                                        border: Border.all(
+                                          color: kLuminewMainPurple,
+                                          width: 3,
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: kLuminewMainPurple.withOpacity(0.3),
+                                            blurRadius: 12,
+                                            offset: const Offset(0, 4),
+                                          ),
+                                        ],
+                                      ),
+                                      child: _isWsConnecting
+                                          ? const Center(
+                                              child: CircularProgressIndicator(
+                                                color: kLuminewMainPurple,
+                                                strokeWidth: 3,
+                                              ),
+                                            )
+                                          : Icon(
+                                              _isInterviewing
+                                                  ? (_canStudentSpeak
+                                                        ? Icons.mic
+                                                        : Icons.mic_off)
+                                                  : Icons.play_arrow_rounded,
+                                              color: _isInterviewing
+                                                  ? Colors.white
+                                                  : kLuminewMainPurple,
+                                              size: 40,
+                                            ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
                         ),
                         const SizedBox(height: 10),
                         Text(

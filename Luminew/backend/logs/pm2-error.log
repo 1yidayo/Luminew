@@ -10755,3 +10755,1717 @@
 2026-06-15 00:11 +08:00: INFO:     Waiting for application startup.
 2026-06-15 00:11 +08:00: INFO:     Application startup complete.
 2026-06-15 00:11 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-15 01:50 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 01:50 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 01:50 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:13 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 03:56 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 10:19 +08:00: INFO:     2407:4b00:1c09:7a74:710d:c6ce:47d1:d82:0 - "WebSocket /api/interview/ws/ed98931a-6b99-4442-ba62-69691bc7bb41" [accepted]
+2026-06-15 10:19 +08:00: INFO:     connection open
+2026-06-15 10:20 +08:00: INFO:     connection closed
+2026-06-15 10:20 +08:00: [ WARN:0@36569.124] global net_impl.cpp:178 cv::dnn::dnn4_v20230620::Net::Impl::setUpNet DNN module was not built with CUDA backend; switching to CPU
+2026-06-15 10:59 +08:00: INFO:     2407:4b00:1c09:7a74:710d:c6ce:47d1:d82:0 - "WebSocket /api/interview/ws/405e471a-f664-4791-8444-e156897f538c" [accepted]
+2026-06-15 10:59 +08:00: INFO:     connection open
+2026-06-15 11:00 +08:00: INFO:     connection closed
+2026-06-15 15:44 +08:00: INFO:     61.222.106.114:0 - "WebSocket /api/interview/ws/c5c4d10b-2cd0-4bbc-b501-719e90f95d0e" [accepted]
+2026-06-15 15:44 +08:00: INFO:     connection open
+2026-06-15 15:46 +08:00: INFO:     connection closed
+2026-06-15 15:51 +08:00: INFO:     61.222.106.114:0 - "WebSocket /api/interview/ws/240df0d6-e300-4300-bca7-16f23d2c0ac8" [accepted]
+2026-06-15 15:51 +08:00: INFO:     connection open
+2026-06-15 15:53 +08:00: INFO:     connection closed
+2026-06-15 16:10 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-15 16:10 +08:00:   warnings.warn(
+2026-06-15 16:10 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-15 16:10 +08:00:   warnings.warn(msg)
+2026-06-15 16:10 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-15 16:10 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-15 16:10 +08:00: 
+2026-06-15 16:10 +08:00:         Read more about it in the
+2026-06-15 16:10 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-15 16:10 +08:00:         
+2026-06-15 16:10 +08:00:   @app.on_event("startup")
+2026-06-15 16:10 +08:00: INFO:     Started server process [28936]
+2026-06-15 16:10 +08:00: INFO:     Waiting for application startup.
+2026-06-15 16:10 +08:00: INFO:     Application startup complete.
+2026-06-15 16:10 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-15 16:35 +08:00: ERROR:    Exception in ASGI application
+2026-06-15 16:35 +08:00: Traceback (most recent call last):
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 420, in run_asgi
+2026-06-15 16:35 +08:00:     result = await app(  # type: ignore[func-returns-value]
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+2026-06-15 16:35 +08:00:     return await self.app(scope, receive, send)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\fastapi\applications.py", line 1159, in __call__
+2026-06-15 16:35 +08:00:     await super().__call__(scope, receive, send)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\applications.py", line 90, in __call__
+2026-06-15 16:35 +08:00:     await self.middleware_stack(scope, receive, send)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+2026-06-15 16:35 +08:00:     raise exc
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+2026-06-15 16:35 +08:00:     await self.app(scope, receive, _send)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\middleware\cors.py", line 96, in __call__
+2026-06-15 16:35 +08:00:     await self.simple_response(scope, receive, send, request_headers=headers)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\middleware\cors.py", line 154, in simple_response
+2026-06-15 16:35 +08:00:     await self.app(scope, receive, send)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+2026-06-15 16:35 +08:00:     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+2026-06-15 16:35 +08:00:     raise exc
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+2026-06-15 16:35 +08:00:     await app(scope, receive, sender)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+2026-06-15 16:35 +08:00:     await self.app(scope, receive, send)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\routing.py", line 660, in __call__
+2026-06-15 16:35 +08:00:     await self.middleware_stack(scope, receive, send)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\routing.py", line 680, in app
+2026-06-15 16:35 +08:00:     await route.handle(scope, receive, send)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\routing.py", line 276, in handle
+2026-06-15 16:35 +08:00:     await self.app(scope, receive, send)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\fastapi\routing.py", line 134, in app
+2026-06-15 16:35 +08:00:     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+2026-06-15 16:35 +08:00:     raise exc
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+2026-06-15 16:35 +08:00:     await app(scope, receive, sender)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\fastapi\routing.py", line 120, in app
+2026-06-15 16:35 +08:00:     response = await f(request)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\fastapi\routing.py", line 674, in app
+2026-06-15 16:35 +08:00:     raw_response = await run_endpoint_function(
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\fastapi\routing.py", line 330, in run_endpoint_function
+2026-06-15 16:35 +08:00:     return await run_in_threadpool(dependant.call, **values)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\starlette\concurrency.py", line 32, in run_in_threadpool
+2026-06-15 16:35 +08:00:     return await anyio.to_thread.run_sync(func)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\anyio\to_thread.py", line 63, in run_sync
+2026-06-15 16:35 +08:00:     return await get_async_backend().run_sync_in_worker_thread(
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\anyio\_backends\_asyncio.py", line 2518, in run_sync_in_worker_thread
+2026-06-15 16:35 +08:00:     return await future
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\anyio\_backends\_asyncio.py", line 1002, in run
+2026-06-15 16:35 +08:00:     result = context.run(func, *args)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\db_routes.py", line 34, in registerUser
+2026-06-15 16:35 +08:00:     execute_write(sql)
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\database\db.py", line 78, in execute_write
+2026-06-15 16:35 +08:00:     raise e
+2026-06-15 16:35 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\database\db.py", line 74, in execute_write
+2026-06-15 16:35 +08:00:     cursor.execute(sql)
+2026-06-15 16:35 +08:00: pyodbc.IntegrityError: ('23000', "[23000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]違反 UNIQUE KEY 條件約束 'UQ__Users__A9D10534DC43AEBA'。無法在物件 'dbo.Users' 中插入重複的索引鍵。重複的索引鍵值是 (w0939836832@gmail.com)。 (2627) (SQLExecDirectW); [23000] [Microsoft][ODBC Driver 18 for SQL Server][SQL Server]陳述式已經結束。 (3621)")
+2026-06-15 17:12 +08:00: Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+2026-06-15 17:12 +08:00: handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+2026-06-15 17:12 +08:00: Traceback (most recent call last):
+2026-06-15 17:12 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 80, in _run
+2026-06-15 17:12 +08:00:     self._context.run(self._callback, *self._args)
+2026-06-15 17:12 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\asyncio\proactor_events.py", line 162, in _call_connection_lost
+2026-06-15 17:12 +08:00:     self._sock.shutdown(socket.SHUT_RDWR)
+2026-06-15 17:12 +08:00: ConnectionResetError: [WinError 10054] 遠端主機已強制關閉一個現存的連線。
+2026-06-15 17:13 +08:00: Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+2026-06-15 17:13 +08:00: handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+2026-06-15 17:13 +08:00: Traceback (most recent call last):
+2026-06-15 17:13 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\asyncio\events.py", line 80, in _run
+2026-06-15 17:13 +08:00:     self._context.run(self._callback, *self._args)
+2026-06-15 17:13 +08:00:   File "C:\Users\Luminew\AppData\Local\Programs\Python\Python310\lib\asyncio\proactor_events.py", line 162, in _call_connection_lost
+2026-06-15 17:13 +08:00:     self._sock.shutdown(socket.SHUT_RDWR)
+2026-06-15 17:13 +08:00: ConnectionResetError: [WinError 10054] 遠端主機已強制關閉一個現存的連線。
+2026-06-15 17:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 17:16 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 17:21 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-15 17:21 +08:00:   warnings.warn(
+2026-06-15 17:21 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-15 17:21 +08:00:   warnings.warn(msg)
+2026-06-15 17:21 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-15 17:21 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-15 17:21 +08:00: 
+2026-06-15 17:21 +08:00:         Read more about it in the
+2026-06-15 17:21 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-15 17:21 +08:00:         
+2026-06-15 17:21 +08:00:   @app.on_event("startup")
+2026-06-15 17:21 +08:00: INFO:     Started server process [31344]
+2026-06-15 17:21 +08:00: INFO:     Waiting for application startup.
+2026-06-15 17:21 +08:00: INFO:     Application startup complete.
+2026-06-15 17:21 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-15 17:22 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-15 17:22 +08:00:   warnings.warn(
+2026-06-15 17:22 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-15 17:22 +08:00:   warnings.warn(msg)
+2026-06-15 17:22 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-15 17:22 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-15 17:22 +08:00: 
+2026-06-15 17:22 +08:00:         Read more about it in the
+2026-06-15 17:22 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-15 17:22 +08:00:         
+2026-06-15 17:22 +08:00:   @app.on_event("startup")
+2026-06-15 17:22 +08:00: INFO:     Started server process [26264]
+2026-06-15 17:22 +08:00: INFO:     Waiting for application startup.
+2026-06-15 17:22 +08:00: INFO:     Application startup complete.
+2026-06-15 17:22 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-15 17:23 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-15 17:23 +08:00:   warnings.warn(
+2026-06-15 17:23 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-15 17:23 +08:00:   warnings.warn(msg)
+2026-06-15 17:23 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-15 17:23 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-15 17:23 +08:00: 
+2026-06-15 17:23 +08:00:         Read more about it in the
+2026-06-15 17:23 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-15 17:23 +08:00:         
+2026-06-15 17:23 +08:00:   @app.on_event("startup")
+2026-06-15 17:23 +08:00: INFO:     Started server process [31532]
+2026-06-15 17:23 +08:00: INFO:     Waiting for application startup.
+2026-06-15 17:23 +08:00: INFO:     Application startup complete.
+2026-06-15 17:23 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-15 17:26 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-15 17:26 +08:00:   warnings.warn(
+2026-06-15 17:26 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-15 17:26 +08:00:   warnings.warn(msg)
+2026-06-15 17:26 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-15 17:26 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-15 17:26 +08:00: 
+2026-06-15 17:26 +08:00:         Read more about it in the
+2026-06-15 17:26 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-15 17:26 +08:00:         
+2026-06-15 17:26 +08:00:   @app.on_event("startup")
+2026-06-15 17:26 +08:00: INFO:     Started server process [26400]
+2026-06-15 17:26 +08:00: INFO:     Waiting for application startup.
+2026-06-15 17:26 +08:00: INFO:     Application startup complete.
+2026-06-15 17:26 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-15 17:27 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-15 17:27 +08:00:   warnings.warn(
+2026-06-15 17:27 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-15 17:27 +08:00:   warnings.warn(msg)
+2026-06-15 17:27 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-15 17:27 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-15 17:27 +08:00: 
+2026-06-15 17:27 +08:00:         Read more about it in the
+2026-06-15 17:27 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-15 17:27 +08:00:         
+2026-06-15 17:27 +08:00:   @app.on_event("startup")
+2026-06-15 17:27 +08:00: INFO:     Started server process [4316]
+2026-06-15 17:27 +08:00: INFO:     Waiting for application startup.
+2026-06-15 17:27 +08:00: INFO:     Application startup complete.
+2026-06-15 17:27 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-15 17:47 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-15 17:47 +08:00:   warnings.warn(
+2026-06-15 17:47 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-15 17:47 +08:00:   warnings.warn(msg)
+2026-06-15 17:47 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-15 17:47 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-15 17:47 +08:00: 
+2026-06-15 17:47 +08:00:         Read more about it in the
+2026-06-15 17:47 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-15 17:47 +08:00:         
+2026-06-15 17:47 +08:00:   @app.on_event("startup")
+2026-06-15 17:47 +08:00: INFO:     Started server process [30728]
+2026-06-15 17:47 +08:00: INFO:     Waiting for application startup.
+2026-06-15 17:47 +08:00: INFO:     Application startup complete.
+2026-06-15 17:47 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-15 18:00 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-15 18:00 +08:00:   warnings.warn(
+2026-06-15 18:00 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-15 18:00 +08:00:   warnings.warn(msg)
+2026-06-15 18:00 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-15 18:00 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-15 18:00 +08:00: 
+2026-06-15 18:00 +08:00:         Read more about it in the
+2026-06-15 18:00 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-15 18:00 +08:00:         
+2026-06-15 18:00 +08:00:   @app.on_event("startup")
+2026-06-15 18:00 +08:00: INFO:     Started server process [31240]
+2026-06-15 18:00 +08:00: INFO:     Waiting for application startup.
+2026-06-15 18:00 +08:00: INFO:     Application startup complete.
+2026-06-15 18:00 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-15 18:05 +08:00: INFO:     61.222.106.114:0 - "WebSocket /api/interview/ws/9145a2a0-28b4-40b1-860d-c457a3c31a00" [accepted]
+2026-06-15 18:05 +08:00: INFO:     connection open
+2026-06-15 18:07 +08:00: INFO:     connection closed
+2026-06-15 18:07 +08:00: [ WARN:0@409.668] global net_impl.cpp:178 cv::dnn::dnn4_v20230620::Net::Impl::setUpNet DNN module was not built with CUDA backend; switching to CPU
+2026-06-15 18:32 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-15 18:32 +08:00:   warnings.warn(
+2026-06-15 18:32 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-15 18:32 +08:00:   warnings.warn(msg)
+2026-06-15 18:32 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-15 18:32 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-15 18:32 +08:00: 
+2026-06-15 18:32 +08:00:         Read more about it in the
+2026-06-15 18:32 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-15 18:32 +08:00:         
+2026-06-15 18:32 +08:00:   @app.on_event("startup")
+2026-06-15 18:32 +08:00: INFO:     Started server process [28572]
+2026-06-15 18:32 +08:00: INFO:     Waiting for application startup.
+2026-06-15 18:32 +08:00: INFO:     Application startup complete.
+2026-06-15 18:32 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-15 20:04 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 20:04 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 21:41 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 21:41 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 21:41 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 22:15 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 23:06 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 23:06 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 23:06 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 23:06 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 23:06 +08:00: WARNING:  Invalid HTTP request received.
+2026-06-15 23:55 +08:00: INFO:     2407:4b00:1c09:7a74:c8e2:95ff:2a5b:7063:0 - "WebSocket /api/interview/ws/29f44873-936d-4b66-ae25-0ec0d686560a" [accepted]
+2026-06-15 23:55 +08:00: INFO:     connection open
+2026-06-15 23:56 +08:00: INFO:     connection closed
+2026-06-15 23:56 +08:00: [ WARN:0@19435.231] global net_impl.cpp:178 cv::dnn::dnn4_v20230620::Net::Impl::setUpNet DNN module was not built with CUDA backend; switching to CPU
+2026-06-16 00:05 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-16 00:05 +08:00:   warnings.warn(
+2026-06-16 00:05 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-16 00:05 +08:00:   warnings.warn(msg)
+2026-06-16 00:05 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-16 00:05 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-16 00:05 +08:00: 
+2026-06-16 00:05 +08:00:         Read more about it in the
+2026-06-16 00:05 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-16 00:05 +08:00:         
+2026-06-16 00:05 +08:00:   @app.on_event("startup")
+2026-06-16 00:05 +08:00: INFO:     Started server process [29816]
+2026-06-16 00:05 +08:00: INFO:     Waiting for application startup.
+2026-06-16 00:05 +08:00: INFO:     Application startup complete.
+2026-06-16 00:05 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-16 00:08 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-16 00:08 +08:00:   warnings.warn(
+2026-06-16 00:08 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-16 00:08 +08:00:   warnings.warn(msg)
+2026-06-16 00:08 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-16 00:08 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-16 00:08 +08:00: 
+2026-06-16 00:08 +08:00:         Read more about it in the
+2026-06-16 00:08 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-16 00:08 +08:00:         
+2026-06-16 00:08 +08:00:   @app.on_event("startup")
+2026-06-16 00:08 +08:00: INFO:     Started server process [19256]
+2026-06-16 00:08 +08:00: INFO:     Waiting for application startup.
+2026-06-16 00:08 +08:00: INFO:     Application startup complete.
+2026-06-16 00:08 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-16 00:10 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-16 00:10 +08:00:   warnings.warn(
+2026-06-16 00:10 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-16 00:10 +08:00:   warnings.warn(msg)
+2026-06-16 00:10 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-16 00:10 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-16 00:10 +08:00: 
+2026-06-16 00:10 +08:00:         Read more about it in the
+2026-06-16 00:10 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-16 00:10 +08:00:         
+2026-06-16 00:10 +08:00:   @app.on_event("startup")
+2026-06-16 00:10 +08:00: INFO:     Started server process [30472]
+2026-06-16 00:10 +08:00: INFO:     Waiting for application startup.
+2026-06-16 00:10 +08:00: INFO:     Application startup complete.
+2026-06-16 00:10 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-16 00:11 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-16 00:11 +08:00:   warnings.warn(
+2026-06-16 00:11 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-16 00:11 +08:00:   warnings.warn(msg)
+2026-06-16 00:11 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-16 00:11 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-16 00:11 +08:00: 
+2026-06-16 00:11 +08:00:         Read more about it in the
+2026-06-16 00:11 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-16 00:11 +08:00:         
+2026-06-16 00:11 +08:00:   @app.on_event("startup")
+2026-06-16 00:11 +08:00: INFO:     Started server process [30864]
+2026-06-16 00:11 +08:00: INFO:     Waiting for application startup.
+2026-06-16 00:11 +08:00: INFO:     Application startup complete.
+2026-06-16 00:11 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:17 +08:00: Traceback (most recent call last):
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:17 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:17 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:17 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:17 +08:00:     【回覆格式】
+2026-06-16 00:17 +08:00:     ^
+2026-06-16 00:17 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:18 +08:00: Traceback (most recent call last):
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:18 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:18 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:18 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:18 +08:00:     【回覆格式】
+2026-06-16 00:18 +08:00:     ^
+2026-06-16 00:18 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:19 +08:00: Traceback (most recent call last):
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:19 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:19 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:19 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:19 +08:00:     【回覆格式】
+2026-06-16 00:19 +08:00:     ^
+2026-06-16 00:19 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:20 +08:00: Traceback (most recent call last):
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:20 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:20 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:20 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:20 +08:00:     【回覆格式】
+2026-06-16 00:20 +08:00:     ^
+2026-06-16 00:20 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:21 +08:00: Traceback (most recent call last):
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:21 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:21 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:21 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 460
+2026-06-16 00:21 +08:00:     【回覆格式】
+2026-06-16 00:21 +08:00:     ^
+2026-06-16 00:21 +08:00: SyntaxError: invalid character '【' (U+3010)
+2026-06-16 00:22 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-16 00:22 +08:00:   warnings.warn(
+2026-06-16 00:22 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-16 00:22 +08:00:   warnings.warn(msg)
+2026-06-16 00:22 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-16 00:22 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-16 00:22 +08:00: 
+2026-06-16 00:22 +08:00:         Read more about it in the
+2026-06-16 00:22 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-16 00:22 +08:00:         
+2026-06-16 00:22 +08:00:   @app.on_event("startup")
+2026-06-16 00:22 +08:00: INFO:     Started server process [15560]
+2026-06-16 00:22 +08:00: INFO:     Waiting for application startup.
+2026-06-16 00:22 +08:00: INFO:     Application startup complete.
+2026-06-16 00:22 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-16 00:23 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-16 00:23 +08:00:   warnings.warn(
+2026-06-16 00:23 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-16 00:23 +08:00:   warnings.warn(msg)
+2026-06-16 00:23 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-16 00:23 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-16 00:23 +08:00: 
+2026-06-16 00:23 +08:00:         Read more about it in the
+2026-06-16 00:23 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-16 00:23 +08:00:         
+2026-06-16 00:23 +08:00:   @app.on_event("startup")
+2026-06-16 00:23 +08:00: INFO:     Started server process [23564]
+2026-06-16 00:23 +08:00: INFO:     Waiting for application startup.
+2026-06-16 00:23 +08:00: INFO:     Application startup complete.
+2026-06-16 00:23 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-16 00:23 +08:00: INFO:     2407:4b00:1c09:7a74:c8e2:95ff:2a5b:7063:0 - "WebSocket /api/interview/ws/6c1f67d6-690a-49d6-92ae-fb174ac00f2a" [accepted]
+2026-06-16 00:23 +08:00: INFO:     connection open
+2026-06-16 00:25 +08:00: INFO:     connection closed
+2026-06-16 00:25 +08:00: [ WARN:0@156.591] global net_impl.cpp:178 cv::dnn::dnn4_v20230620::Net::Impl::setUpNet DNN module was not built with CUDA backend; switching to CPU
+2026-06-16 00:37 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-16 00:37 +08:00:   warnings.warn(
+2026-06-16 00:37 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-16 00:37 +08:00:   warnings.warn(msg)
+2026-06-16 00:37 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-16 00:37 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-16 00:37 +08:00: 
+2026-06-16 00:37 +08:00:         Read more about it in the
+2026-06-16 00:37 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-16 00:37 +08:00:         
+2026-06-16 00:37 +08:00:   @app.on_event("startup")
+2026-06-16 00:37 +08:00: INFO:     Started server process [19632]
+2026-06-16 00:37 +08:00: INFO:     Waiting for application startup.
+2026-06-16 00:37 +08:00: INFO:     Application startup complete.
+2026-06-16 00:37 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-16 00:37 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-16 00:37 +08:00:   warnings.warn(
+2026-06-16 00:37 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-16 00:37 +08:00:   warnings.warn(msg)
+2026-06-16 00:37 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-16 00:37 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-16 00:37 +08:00: 
+2026-06-16 00:37 +08:00:         Read more about it in the
+2026-06-16 00:37 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-16 00:37 +08:00:         
+2026-06-16 00:37 +08:00:   @app.on_event("startup")
+2026-06-16 00:37 +08:00: INFO:     Started server process [7216]
+2026-06-16 00:37 +08:00: INFO:     Waiting for application startup.
+2026-06-16 00:37 +08:00: INFO:     Application startup complete.
+2026-06-16 00:37 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-16 00:37 +08:00: Traceback (most recent call last):
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:37 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:37 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 456
+2026-06-16 00:37 +08:00:     prompt = f"""你是專業的面試培訓教練，正在直接對學生說話。
+2026-06-16 00:37 +08:00:                             ^
+2026-06-16 00:37 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-06-16 00:37 +08:00: Traceback (most recent call last):
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:37 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:37 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 456
+2026-06-16 00:37 +08:00:     prompt = f"""你是專業的面試培訓教練，正在直接對學生說話。
+2026-06-16 00:37 +08:00:                             ^
+2026-06-16 00:37 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-06-16 00:37 +08:00: Traceback (most recent call last):
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:37 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:37 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 456
+2026-06-16 00:37 +08:00:     prompt = f"""你是專業的面試培訓教練，正在直接對學生說話。
+2026-06-16 00:37 +08:00:                             ^
+2026-06-16 00:37 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-06-16 00:37 +08:00: Traceback (most recent call last):
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:37 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:37 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 456
+2026-06-16 00:37 +08:00:     prompt = f"""你是專業的面試培訓教練，正在直接對學生說話。
+2026-06-16 00:37 +08:00:                             ^
+2026-06-16 00:37 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-06-16 00:37 +08:00: Traceback (most recent call last):
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:37 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:37 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 456
+2026-06-16 00:37 +08:00:     prompt = f"""你是專業的面試培訓教練，正在直接對學生說話。
+2026-06-16 00:37 +08:00:                             ^
+2026-06-16 00:37 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-06-16 00:37 +08:00: Traceback (most recent call last):
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:37 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:37 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:37 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 456
+2026-06-16 00:37 +08:00:     prompt = f"""你是專業的面試培訓教練，正在直接對學生說話。
+2026-06-16 00:37 +08:00:                             ^
+2026-06-16 00:37 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-06-16 00:38 +08:00: Traceback (most recent call last):
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:38 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:38 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 456
+2026-06-16 00:38 +08:00:     prompt = f"""你是專業的面試培訓教練，正在直接對學生說話。
+2026-06-16 00:38 +08:00:                             ^
+2026-06-16 00:38 +08:00: SyntaxError: invalid character '，' (U+FF0C)
+2026-06-16 00:38 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-16 00:38 +08:00:   warnings.warn(
+2026-06-16 00:38 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-16 00:38 +08:00:   warnings.warn(msg)
+2026-06-16 00:38 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-16 00:38 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-16 00:38 +08:00: 
+2026-06-16 00:38 +08:00:         Read more about it in the
+2026-06-16 00:38 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-16 00:38 +08:00:         
+2026-06-16 00:38 +08:00:   @app.on_event("startup")
+2026-06-16 00:38 +08:00: INFO:     Started server process [28460]
+2026-06-16 00:38 +08:00: INFO:     Waiting for application startup.
+2026-06-16 00:38 +08:00: INFO:     Application startup complete.
+2026-06-16 00:38 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-16 00:38 +08:00: Traceback (most recent call last):
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:38 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:38 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 372
+2026-06-16 00:38 +08:00:     def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor", face_detected: bool = True) -> dict:
+2026-06-16 00:38 +08:00:                                                                                                                                                                         ^
+2026-06-16 00:38 +08:00: IndentationError: unindent does not match any outer indentation level
+2026-06-16 00:38 +08:00: Traceback (most recent call last):
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:38 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:38 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 372
+2026-06-16 00:38 +08:00:     def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor", face_detected: bool = True) -> dict:
+2026-06-16 00:38 +08:00:                                                                                                                                                                         ^
+2026-06-16 00:38 +08:00: IndentationError: unindent does not match any outer indentation level
+2026-06-16 00:38 +08:00: Traceback (most recent call last):
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:38 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:38 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 372
+2026-06-16 00:38 +08:00:     def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor", face_detected: bool = True) -> dict:
+2026-06-16 00:38 +08:00:                                                                                                                                                                         ^
+2026-06-16 00:38 +08:00: IndentationError: unindent does not match any outer indentation level
+2026-06-16 00:38 +08:00: Traceback (most recent call last):
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:38 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:38 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 372
+2026-06-16 00:38 +08:00:     def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor", face_detected: bool = True) -> dict:
+2026-06-16 00:38 +08:00:                                                                                                                                                                         ^
+2026-06-16 00:38 +08:00: IndentationError: unindent does not match any outer indentation level
+2026-06-16 00:38 +08:00: Traceback (most recent call last):
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:38 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:38 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 372
+2026-06-16 00:38 +08:00:     def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor", face_detected: bool = True) -> dict:
+2026-06-16 00:38 +08:00:                                                                                                                                                                         ^
+2026-06-16 00:38 +08:00: IndentationError: unindent does not match any outer indentation level
+2026-06-16 00:38 +08:00: Traceback (most recent call last):
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:38 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:38 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:38 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 372
+2026-06-16 00:38 +08:00:     def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor", face_detected: bool = True) -> dict:
+2026-06-16 00:38 +08:00:                                                                                                                                                                         ^
+2026-06-16 00:38 +08:00: IndentationError: unindent does not match any outer indentation level
+2026-06-16 00:38 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-16 00:38 +08:00:   warnings.warn(
+2026-06-16 00:38 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-16 00:38 +08:00:   warnings.warn(msg)
+2026-06-16 00:38 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-16 00:38 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-16 00:38 +08:00: 
+2026-06-16 00:38 +08:00:         Read more about it in the
+2026-06-16 00:38 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-16 00:38 +08:00:         
+2026-06-16 00:38 +08:00:   @app.on_event("startup")
+2026-06-16 00:38 +08:00: INFO:     Started server process [23504]
+2026-06-16 00:38 +08:00: INFO:     Waiting for application startup.
+2026-06-16 00:38 +08:00: INFO:     Application startup complete.
+2026-06-16 00:38 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-16 00:39 +08:00: Traceback (most recent call last):
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:39 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:39 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 366
+2026-06-16 00:39 +08:00:     def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor", face_detected: bool = True) -> dict:
+2026-06-16 00:39 +08:00: SyntaxError: expected 'except' or 'finally' block
+2026-06-16 00:39 +08:00: Traceback (most recent call last):
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:39 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:39 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 366
+2026-06-16 00:39 +08:00:     def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor", face_detected: bool = True) -> dict:
+2026-06-16 00:39 +08:00: SyntaxError: expected 'except' or 'finally' block
+2026-06-16 00:39 +08:00: Traceback (most recent call last):
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:39 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:39 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 366
+2026-06-16 00:39 +08:00:     def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor", face_detected: bool = True) -> dict:
+2026-06-16 00:39 +08:00: SyntaxError: expected 'except' or 'finally' block
+2026-06-16 00:39 +08:00: Traceback (most recent call last):
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:39 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:39 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 366
+2026-06-16 00:39 +08:00:     def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor", face_detected: bool = True) -> dict:
+2026-06-16 00:39 +08:00: SyntaxError: expected 'except' or 'finally' block
+2026-06-16 00:39 +08:00: Traceback (most recent call last):
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:39 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:39 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 366
+2026-06-16 00:39 +08:00:     def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor", face_detected: bool = True) -> dict:
+2026-06-16 00:39 +08:00: SyntaxError: expected 'except' or 'finally' block
+2026-06-16 00:39 +08:00: Traceback (most recent call last):
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:39 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:39 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 366
+2026-06-16 00:39 +08:00:     def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor", face_detected: bool = True) -> dict:
+2026-06-16 00:39 +08:00: SyntaxError: expected 'except' or 'finally' block
+2026-06-16 00:39 +08:00: Traceback (most recent call last):
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py", line 10, in <module>
+2026-06-16 00:39 +08:00:     from app.api.emotion import router as emotion_router
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\api\emotion.py", line 6, in <module>
+2026-06-16 00:39 +08:00:     from app.services.emotion_service import (
+2026-06-16 00:39 +08:00:   File "C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\app\services\emotion_service.py", line 366
+2026-06-16 00:39 +08:00:     def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor", face_detected: bool = True) -> dict:
+2026-06-16 00:39 +08:00: SyntaxError: expected 'except' or 'finally' block
+2026-06-16 00:39 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-16 00:39 +08:00:   warnings.warn(
+2026-06-16 00:39 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-16 00:39 +08:00:   warnings.warn(msg)
+2026-06-16 00:39 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-16 00:39 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-16 00:39 +08:00: 
+2026-06-16 00:39 +08:00:         Read more about it in the
+2026-06-16 00:39 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-16 00:39 +08:00:         
+2026-06-16 00:39 +08:00:   @app.on_event("startup")
+2026-06-16 00:39 +08:00: INFO:     Started server process [25876]
+2026-06-16 00:39 +08:00: INFO:     Waiting for application startup.
+2026-06-16 00:39 +08:00: INFO:     Application startup complete.
+2026-06-16 00:39 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-16 00:39 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-16 00:39 +08:00:   warnings.warn(
+2026-06-16 00:39 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-16 00:39 +08:00:   warnings.warn(msg)
+2026-06-16 00:39 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-16 00:39 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-16 00:39 +08:00: 
+2026-06-16 00:39 +08:00:         Read more about it in the
+2026-06-16 00:39 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-16 00:39 +08:00:         
+2026-06-16 00:39 +08:00:   @app.on_event("startup")
+2026-06-16 00:39 +08:00: INFO:     Started server process [25768]
+2026-06-16 00:39 +08:00: INFO:     Waiting for application startup.
+2026-06-16 00:39 +08:00: INFO:     Application startup complete.
+2026-06-16 00:39 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-16 00:45 +08:00: INFO:     2407:4b00:1c09:7a74:c8e2:95ff:2a5b:7063:0 - "WebSocket /api/interview/ws/1a325b5a-d5a7-419c-b4f4-3b9ddf3e7d2a" [accepted]
+2026-06-16 00:45 +08:00: INFO:     connection open
+2026-06-16 00:47 +08:00: INFO:     connection closed
+2026-06-16 00:47 +08:00: [ WARN:0@459.924] global net_impl.cpp:178 cv::dnn::dnn4_v20230620::Net::Impl::setUpNet DNN module was not built with CUDA backend; switching to CPU
+2026-06-16 00:48 +08:00: INFO:     2407:4b00:1c09:7a74:c8e2:95ff:2a5b:7063:0 - "WebSocket /api/interview/ws/1c18c7a3-f52b-4523-acf7-9e9a0222504a" [accepted]
+2026-06-16 00:48 +08:00: INFO:     connection open
+2026-06-16 00:48 +08:00: INFO:     connection closed
+2026-06-16 00:49 +08:00: INFO:     2407:4b00:1c09:7a74:c8e2:95ff:2a5b:7063:0 - "WebSocket /api/interview/ws/3518dd55-c9a9-4e4b-8a35-45047a6dd230" [accepted]
+2026-06-16 00:49 +08:00: INFO:     connection open
+2026-06-16 00:49 +08:00: INFO:     connection closed
+2026-06-16 01:02 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-16 01:02 +08:00:   warnings.warn(
+2026-06-16 01:02 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-16 01:02 +08:00:   warnings.warn(msg)
+2026-06-16 01:02 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-16 01:02 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-16 01:02 +08:00: 
+2026-06-16 01:02 +08:00:         Read more about it in the
+2026-06-16 01:02 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-16 01:02 +08:00:         
+2026-06-16 01:02 +08:00:   @app.on_event("startup")
+2026-06-16 01:02 +08:00: INFO:     Started server process [21512]
+2026-06-16 01:02 +08:00: INFO:     Waiting for application startup.
+2026-06-16 01:02 +08:00: INFO:     Application startup complete.
+2026-06-16 01:02 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-16 01:08 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+2026-06-16 01:08 +08:00:   warnings.warn(
+2026-06-16 01:08 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\luminew_env\lib\site-packages\torchvision\models\_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=None`.
+2026-06-16 01:08 +08:00:   warnings.warn(msg)
+2026-06-16 01:08 +08:00: C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\backend\main.py:78: DeprecationWarning: 
+2026-06-16 01:08 +08:00:         on_event is deprecated, use lifespan event handlers instead.
+2026-06-16 01:08 +08:00: 
+2026-06-16 01:08 +08:00:         Read more about it in the
+2026-06-16 01:08 +08:00:         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+2026-06-16 01:08 +08:00:         
+2026-06-16 01:08 +08:00:   @app.on_event("startup")
+2026-06-16 01:08 +08:00: INFO:     Started server process [25048]
+2026-06-16 01:08 +08:00: INFO:     Waiting for application startup.
+2026-06-16 01:08 +08:00: INFO:     Application startup complete.
+2026-06-16 01:08 +08:00: INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-06-16 01:11 +08:00: INFO:     2407:4b00:1c09:7a74:c8e2:95ff:2a5b:7063:0 - "WebSocket /api/interview/ws/b4abda36-dc8d-4172-8819-45221b415e23" [accepted]
+2026-06-16 01:11 +08:00: INFO:     connection open
+2026-06-16 01:12 +08:00: INFO:     connection closed
+2026-06-16 01:12 +08:00: [ WARN:0@279.120] global net_impl.cpp:178 cv::dnn::dnn4_v20230620::Net::Impl::setUpNet DNN module was not built with CUDA backend; switching to CPU
+2026-06-16 01:15 +08:00: INFO:     2407:4b00:1c09:7a74:c8e2:95ff:2a5b:7063:0 - "WebSocket /api/interview/ws/fd6f18bc-7ca7-4031-91a6-bd155cd6240e" [accepted]
+2026-06-16 01:15 +08:00: INFO:     connection open
+2026-06-16 01:16 +08:00: INFO:     connection closed
+2026-06-16 01:16 +08:00: INFO:     2407:4b00:1c09:7a74:c8e2:95ff:2a5b:7063:0 - "WebSocket /api/interview/ws/1d8da120-ffad-4e00-ba41-2339d96ac7a5" [accepted]
+2026-06-16 01:16 +08:00: INFO:     connection open
+2026-06-16 01:17 +08:00: INFO:     connection closed

@@ -13,7 +13,7 @@ load_dotenv()
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
-# 不同類型的預設題庫
+# 最後防線備用題庫（僅學習歷程無 JSON 題庫時使用）
 DEFAULT_BANKS = {
     "通用型": [
         "請簡單自我介紹，並說明你為什麼對這個領域有興趣？",
@@ -45,10 +45,67 @@ def get_default_questions(interview_type: str):
 executor = ThreadPoolExecutor(max_workers=4)
 
 
+def _build_prompt(text: str, interview_type: str) -> str:
+    """依面試類型建立對應的 OpenAI Prompt"""
+    base_requirement = """
+【要求】
+1. 問題必須針對學生提到的具體經驗、專案、活動來深入提問
+2. 不要問泛泛的問題，必須客製化
+3. 提問風格必須自然、口語化，並且自帶「承接式語氣」，例如：「我看到你的資料中提到...，想請你分享...」
+4. 用繁體中文
+
+【輸出格式】
+只回傳 JSON 陣列，不要有任何其他文字：["問題1", "問題2", "問題3", "問題4", "問題5", "問題6", "問題7", "問題8"]"""
+
+    if interview_type == "通用型":
+        return f"""你是專業的大學面試官。請根據以下學生的資料，生成 8 個通用型面試問題。
+
+【聚焦方向】各校系都適用的問題，例如：
+- 求學過程中遇到的困難與如何克服
+- 個人特質、優勢與劣勢
+- 團隊合作或人際衝突的處理方式
+- 對未來的規劃與目標
+- 自我成長與學習動機
+
+【學生資料】
+{text}
+{base_requirement}"""
+
+    elif interview_type == "資管專業":
+        return f"""你是資訊管理學系的面試官。請根據以下學生的資料，生成 8 個資管領域面試問題。
+
+【聚焦方向】切入資訊管理的問題，例如：
+- 程式設計、專案開發或資訊應用的經驗
+- 對 AI、數位轉型、雲端、大數據等科技趨勢的看法
+- 資訊與管理的交叉思維
+- 解決問題的邏輯與系統思考能力
+- 為何選擇資管系的動機與理解
+
+【學生資料】
+{text}
+{base_requirement}"""
+
+    else:  # 學習歷程（預設）
+        return f"""你是專業的大學面試官。請根據以下學生的學習歷程內容，生成 8 個針對這位學生具體經歷的個人化面試問題。
+
+【面試類型】{interview_type}
+
+【聚焦方向】
+- 學習歷程中具體提及的專題、作品、活動
+- 學生投入某項目的動機與過程
+- 遇到困難時的應對方式
+- 從經歷中獲得的成長或改變
+
+【學習歷程內容】
+{text}
+{base_requirement}"""
+
+
 def _process_pdf_and_call_openai_sync(pdf_path: str, interview_type: str) -> dict:
     """
     同步處理 PDF 並呼叫 OpenAI (在獨立線程中執行)
-    這樣即使出錯也不會影響主程式
+    成功 → {"success": True, "questions": [...]}
+    失敗 → {"success": False, "message": "原因"}（由 InterviewManager 決定 fallback）
     """
     try:
         print(f" [SYMBOL]  [Worker] 開始處理: {pdf_path}")
@@ -56,7 +113,7 @@ def _process_pdf_and_call_openai_sync(pdf_path: str, interview_type: str) -> dic
         
         if not os.path.exists(pdf_path):
             print("[ERROR] 檔案不存在")
-            return {"success": True, "questions": get_default_questions(interview_type)}
+            return {"success": False, "message": "pdf_not_found"}
         
         # 讀取 PDF
         print("[FILE] 讀取 PDF...")
@@ -72,41 +129,26 @@ def _process_pdf_and_call_openai_sync(pdf_path: str, interview_type: str) -> dic
         except Exception as e:
             print(f"[WARN] PDF 讀取失敗: {e}")
             traceback.print_exc()
-            return {"success": True, "questions": get_default_questions(interview_type)}
+            return {"success": False, "message": "pdf_read_error"}
         
         if not text.strip():
             print("[WARN] PDF 無文字")
-            return {"success": True, "questions": get_default_questions(interview_type)}
+            return {"success": False, "message": "empty_pdf"}
         
         # 檢查 API Key
         if not OPENAI_API_KEY or len(OPENAI_API_KEY) < 10:
             print("[WARN] 無 API Key")
-            return {"success": True, "questions": get_default_questions(interview_type)}
+            return {"success": False, "message": "no_api_key"}
         
         # 限制長度
         if len(text) > 5000:
             text = text[:5000]
         
-        # ★★★ 使用 httpx 同步模式呼叫 OpenAI ★★★
-        print("[AI] 呼叫 OpenAI (同步，在獨立線程中)...")
+        # 依類型建立 Prompt
+        prompt = _build_prompt(text, interview_type)
         
-        prompt = f"""你是專業的大學面試官。請根據以下學生的學習歷程內容，生成 10 個針對這位學生具體經歷的個人化面試問題。
-
-【面試類型】{interview_type}
-
-【學習歷程內容】
-{text}
-
-【要求】
-1. 問題必須針對學生提到的具體經驗、專案、活動來深入提問
-2. 不要問泛泛的問題，必須客製化
-3. 提問風格必須自然、口語化，並且自帶「承接式語氣」，例如：「我看到你的備審資料中提到...，想請你分享...」或是「對於你參加的...活動，你覺得...」
-4. 用繁體中文
-
-【輸出格式】
-只回傳 JSON 陣列：["問題1", "問題2", "問題3", "問題4", "問題5", "問題6", "問題7", "問題8", "問題9", "問題10"]"""
-        
-        # 使用同步 httpx（在線程中執行所以不會阻塞主程式）
+        # 呼叫 OpenAI
+        print(f"[AI] 呼叫 OpenAI ({interview_type} 模式，在獨立線程中)...")
         with httpx.Client(timeout=60.0) as client:
             resp = client.post(
                 "https://api.openai.com/v1/chat/completions",
@@ -117,7 +159,7 @@ def _process_pdf_and_call_openai_sync(pdf_path: str, interview_type: str) -> dic
                 json={
                     "model": "gpt-4o-mini",
                     "messages": [
-                        {"role": "system", "content": "你是專業的大學面試官，只回傳 JSON 陣列。"},
+                        {"role": "system", "content": "你是專業的大學面試官，只回傳 JSON 陣列，不要有任何其他文字。"},
                         {"role": "user", "content": prompt}
                     ],
                     "temperature": 0.7,
@@ -135,12 +177,12 @@ def _process_pdf_and_call_openai_sync(pdf_path: str, interview_type: str) -> dic
             return {"success": True, "questions": questions}
         else:
             print(f"[WARN] API 錯誤: {resp.status_code} - {resp.text}")
-            return {"success": True, "questions": get_default_questions(interview_type)}
+            return {"success": True, "questions": get_default_questions(interview_type), "is_fallback": True}
             
     except Exception as e:
         print(f"[ERROR] [Worker] 錯誤: {e}")
         traceback.print_exc()
-        return {"success": True, "questions": get_default_questions(interview_type)}
+        return {"success": True, "questions": get_default_questions(interview_type), "is_fallback": True}
 
 
 async def analyze_pdf_and_generate_questions(pdf_path: str, interview_type: str = "通用型") -> dict:

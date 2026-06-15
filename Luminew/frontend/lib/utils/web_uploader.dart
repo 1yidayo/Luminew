@@ -260,9 +260,20 @@ Future<String> uploadVideoWebChunked(
     xhr.timeout = 60000; // 每個分塊超時設為 60 秒
 
     final completer = Completer<String>();
+    StreamSubscription? progressSub;
     StreamSubscription? loadSub;
     StreamSubscription? errorSub;
     StreamSubscription? timeoutSub;
+
+    if (onProgress != null) {
+      progressSub = xhr.upload.onProgress.listen((html.ProgressEvent e) {
+        if (e.lengthComputable) {
+          final loadedInChunk = e.loaded ?? 0;
+          final currentTotalProgress = (start + loadedInChunk) / totalSize;
+          onProgress(currentTotalProgress.clamp(0.0, 1.0));
+        }
+      });
+    }
 
     loadSub = xhr.onLoad.listen((_) {
       if (xhr.status == 200) {
@@ -285,15 +296,11 @@ Future<String> uploadVideoWebChunked(
     try {
       lastResponse = await completer.future;
       print('📦 [WebUploadChunked] 成功上傳分塊 [${i + 1}/$totalChunks]');
-      if (onProgress != null) {
-        // 更新進度百分比
-        final percent = (i + 1) / totalChunks;
-        onProgress(percent);
-      }
     } catch (e) {
       print('❌ [WebUploadChunked] 上傳分塊 [${i + 1}/$totalChunks] 失敗: $e');
       rethrow;
     } finally {
+      progressSub?.cancel();
       loadSub?.cancel();
       errorSub?.cancel();
       timeoutSub?.cancel();

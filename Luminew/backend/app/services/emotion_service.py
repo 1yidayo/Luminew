@@ -339,7 +339,23 @@ def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None
         print(f"📊 [Worker] 分析完成：共 {frame_count} 幀，辨識 {detected_count} 幀")
         
         if not session_history:
-            return {"error": "No face detected. Please fetch camera directly to your face."}
+            video_url = None
+            if save_video:
+                filename = os.path.basename(video_path)
+                video_url = f"/static/videos/{filename}"
+            else:
+                try:
+                    os.remove(video_path)
+                    print(f"🗑️ 已刪除暫存影片")
+                except:
+                    pass
+            return {
+                "emotions": {"confidence": 0, "nervous": 0, "passion": 0, "relaxed": 0},
+                "timeline": [],
+                "final_scores_float": {"confidence": 0.0, "nervous": 0.0, "passion": 0.0, "relaxed": 0.0},
+                "video_url": video_url,
+                "face_detected": False
+            }
 
         # 計算平均分數
         avg_scores = {cls: 0.0 for cls in CLASSES}
@@ -396,7 +412,7 @@ def _analyze_video_sync(video_path: str, save_video: bool, baseline: dict = None
         return {"error": f"Error: {str(e)}"}
 
 
-def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor") -> dict:
+def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None, interviewer: str = "warm_industry_professor", face_detected: bool = True) -> dict:
     """同步生成 AI 評語 (在獨立線程中執行)"""
     try:
         if not OPENAI_API_KEY:
@@ -423,18 +439,47 @@ def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None
                 chat_lines.append(f"【{role_name}】{text}")
             chat_text = "\n".join(chat_lines)
 
+        # 未偵測到臉部的提示注入與三層防護鎖
+        if not face_detected:
+            face_status_prompt = """【⚠️ 重要評分調整：未偵測到臉部表情】
+- 由於此影片未偵測到清晰的人臉表情，微表情與情緒分數 (20%) 直接以 0 分計。
+- 請僅針對「口語回答內容」進行評估與打分（口語回答滿分為 100 分），並將該口語分數乘以 0.8 後作為最終的 `overall_score`（例如口語得 80 分，最終 overall_score 為 64 分）。"""
+            
+            guidelines_prompt = """- 請使用「你」直接對學生說話，不可使用「他」或「學生」等第三人稱來稱呼。
+- 你的評分依據為：口語回答內容 (佔 100%)。由於此面試未偵測到人臉表情，請完全忽略表情指標，僅根據回答內容評估。"""
+            
+            emotion_data_prompt = "⚠️ 注意：此影片完全未偵測到人臉，因此沒有任何表情與情緒數據。請忽略任何情緒分析，不可憑空捏造或猜測表情數據。"
+            
+            comment_desc = "150-250字的綜合評語。由於本次面試未偵測到學生的臉部表情，你必須『只針對學生的口語回答內容與邏輯』進行評分與評語，嚴禁在評語中提及任何微表情數據或情緒狀態（如緊張度、自信度等百分比）。"
+            
+            suggestion_desc = "2-3 條具體可執行的改進建議，用分號分隔。你必須針對學生的回答內容、專業度與故事案例提出內容上的改善建議，嚴禁提及任何與情緒或表情調整有關的建議。"
+        else:
+            face_status_prompt = ""
+            
+            guidelines_prompt = """- 請使用「你」直接對學生說話，不可使用「他」或「學生」等第三人稱來稱呼。
+- 你的兩大評分依據為：
+  1. 口語回答內容 (佔 80%)：學生是否有針對問題給出具體、有邏輯、符合該職位/科系期待的答案？內容是否貧乏或不知所云？
+  2. 微表情與情緒 (佔 20%)：考量到壓力測試或溫和引導，學生表現出的情緒是否合宜？"""
+            
+            emotion_data_prompt = f"""- 自信程度: {confidence:.0f}%
+- 表達熱忱: {passion:.0f}%
+- 放鬆程度: {relaxed:.0f}%
+- 緊張程度: {nervous:.0f}%"""
+            
+            comment_desc = "150-250字的綜合評語。你必須「結合對話內容與表情數據」：具體引述學生在逐字稿中說的某句話，並指出在講那句話（或整體面試）時，他的微表情數據（例如緊張度高達X%或自信僅有Y%）透露了什麼訊號。告訴他哪裡暴露了不自信、或是哪段內容太過空洞。"
+            
+            suggestion_desc = "2-3 條具體可執行的改進建議，用分號分隔。你必須明確指出他在逐字稿中『回答哪一題或哪句話』時情緒表現不佳（如太緊張或沒熱忱），並給出針對該句話的具體改善解法（例如教他下次講到這題時怎麼放鬆，或是內容該怎麼補強）。"
+
         # ★★★ 改進版提示詞 ★★★
         prompt = f"""你是專業的面試培訓教練，正在直接對學生說話。
 你這次安排讓學生與扮演「{persona_name}」的 AI 面試官進行面試。
 面試官的性格設定為：{persona_desc}
 
 請嚴格根據以下的「面試問答逐字稿」以及「微表情數據分析」，提供非常具有區別性、直接且客觀的建設性評估。
+{face_status_prompt}
 
 【重要指南：提升分數區別度】
-- 請使用「你」直接對學生說話。
-- 你的兩大評分依據為：
-  1. 口語回答內容 (佔 80%)：學生是否有針對問題給出具體、有邏輯、符合該職位/科系期待的答案？內容是否貧乏或不知所云？
-  2. 微表情與情緒 (佔 20%)：考量到壓力測試或溫和引導，學生表現出的情緒是否合宜？
+{guidelines_prompt}
 
 目前學生分數普遍偏高。為了鼓勵學生並保持鑑別度，請精準給分，避免大家的分數都差不多。分數範圍應真實分布在 45~95 分之間（不給滿分，留有進步空間）：
 85-95分：表現優異。回答具體有邏輯、內容豐富，且情緒表現佳（展現自信或熱忱）。
@@ -447,13 +492,10 @@ def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None
 {chat_text}
 
 【情緒微表情數據分析】
-- 自信程度: {confidence:.0f}%
-- 表達熱忱: {passion:.0f}%
-- 放鬆程度: {relaxed:.0f}%
-- 緊張程度: {nervous:.0f}%
+{emotion_data_prompt}
 
 【評分標準】（請依此計算 overall_score）
-1. 請根據上述級距，針對學生的實際表現給出「精準」的整數分數，不要習慣性給中間分數。
+1. 請根據上述級距，針對學生的實際表現給出「精準」的整數分數，不要習慣性給中間分數。請避免只給以 0 或 5 結尾的整數（如 80、85），請給予如 82、77、88 等個位數精確且具鑑別度的分數，使分數分佈更自然。
 2. 若回答內容空洞或放棄作答，分數應落在 45-54 分之間。
 3. 最終分數必須為一個介於 45-95 的整數。
 
@@ -462,8 +504,8 @@ def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None
 請只回傳純 JSON（不要 Markdown 區塊），格式如下：
 {{
   "overall_score": 綜合上述標準給出嚴格的整數分數,
-  "comment": "150-250字的綜合評語。你必須「結合對話內容與表情數據」：具體引述學生在逐字稿中說的某句話，並指出在講那句話（或整體面試）時，他的微表情數據（例如緊張度高達X%或自信僅有Y%）透露了什麼訊號。告訴他哪裡暴露了不自信、或是哪段內容太過空洞。",
-  "suggestion": "2-3 條具體可執行的改進建議，用分號分隔。你必須明確指出他在逐字稿中『回答哪一題或哪句話』時情緒表現不佳（如太緊張或沒熱忱），並給出針對該句話的具體改善解法（例如教他下次講到這題時怎麼放鬆，或是內容該怎麼補強）。"
+  "comment": "{comment_desc}",
+  "suggestion": "{suggestion_desc}"
 }}"""
             
         url = "https://api.openai.com/v1/chat/completions"
@@ -502,18 +544,23 @@ def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None
         r = int(final_scores_float.get('relaxed', 0))
         n = int(final_scores_float.get('nervous', 0))
         
-        calc_score = 65
-        if c >= 30: calc_score += 10
-        if c >= 50: calc_score += 10
-        if p >= 30: calc_score += 5
-        if r >= 30: calc_score += 5
-        if n >= 20: calc_score -= 5
-        if n >= 35: calc_score -= 10
-        calc_score = int(min(max(calc_score, 45), 95))
+        if not face_detected:
+            calc_score = 52 # 65 * 0.8
+            comment_text = "由於未偵測到臉部表情，系統已略過微表情分析，僅根據口語回答內容提供基本評析。請多練習模擬面試並確保光源充足。"
+        else:
+            calc_score = 65
+            if c >= 30: calc_score += 10
+            if c >= 50: calc_score += 10
+            if p >= 30: calc_score += 5
+            if r >= 30: calc_score += 5
+            if n >= 20: calc_score -= 5
+            if n >= 35: calc_score -= 10
+            calc_score = int(min(max(calc_score, 45), 95))
+            comment_text = f"你的自信程度為 {c}%，整體表現{'良好' if c >= 50 else '尚可'}。{'熱忱度足夠，能感受到你對這次面試的重視。' if p >= 40 else '建議展現更多熱忱。'}{'但緊張程度較高，可能影響發揮。' if n >= 50 else '情緒控制穩定。'}建議多練習模擬面試以提升表現。"
         
         return {
             "overall_score": calc_score,
-            "comment": f"你的自信程度為 {c}%，整體表現{'良好' if c >= 50 else '尚可'}。{'熱忱度足夠，能感受到你對這次面試的重視。' if p >= 40 else '建議展現更多熱忱。'}{'但緊張程度較高，可能影響發揮。' if n >= 50 else '情緒控制穩定。'}建議多練習模擬面試以提升表現。",
+            "comment": comment_text,
             "suggestion": "面試前做 3 次深呼吸放鬆；練習對鏡子回答問題；準備 2-3 個自己的故事案例"
         }
 
@@ -538,9 +585,10 @@ async def analyze_video(video_path: str, save_video: bool = True, baseline: dict
     
     # 提取分析結果
     final_scores_float = video_result.pop("final_scores_float", {})
+    face_detected = video_result.get("face_detected", True)
     
     # ★★★ 在獨立線程中呼叫 OpenAI ★★★
-    ai_feedback = await loop.run_in_executor(executor, _generate_ai_feedback_sync, final_scores_float, transcript, interviewer)
+    ai_feedback = await loop.run_in_executor(executor, _generate_ai_feedback_sync, final_scores_float, transcript, interviewer, face_detected)
     
     video_result["ai_analysis"] = ai_feedback
     return video_result
