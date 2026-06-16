@@ -1,0 +1,107 @@
+Resolving dependencies...
+Downloading packages...
+  _flutterfire_internals 1.3.64 (1.3.71 available)
+  async 2.13.0 (2.13.1 available)
+  camera 0.11.3 (0.12.0+1 available)
+  camera_android_camerax 0.6.24+3 (0.7.2 available)
+  camera_avfoundation 0.9.22+6 (0.10.1 available)
+  camera_platform_interface 2.12.0 (2.13.0 available)
+  camera_web 0.3.5+1 (0.3.5+3 available)
+  characters 1.4.0 (1.4.1 available)
+  cloud_firestore 6.1.0 (6.4.1 available)
+  cloud_firestore_platform_interface 7.0.4 (8.0.1 available)
+  cloud_firestore_web 5.1.0 (5.4.1 available)
+  cross_file 0.3.5 (0.3.5+2 available)
+  cupertino_icons 1.0.8 (1.0.9 available)
+  dbus 0.7.11 (0.7.12 available)
+  equatable 2.0.7 (2.0.8 available)
+  ffi 2.1.4 (2.2.0 available)
+  file_picker 10.3.6 (11.0.2 available)
+  firebase_auth 6.1.2 (6.5.1 available)
+  firebase_auth_platform_interface 8.1.4 (9.0.1 available)
+  firebase_auth_web 6.1.0 (6.2.1 available)
+  firebase_core 4.2.1 (4.9.0 available)
+  firebase_core_platform_interface 6.0.2 (7.0.1 available)
+  firebase_core_web 3.3.0 (3.7.0 available)
+  firebase_storage 13.0.4 (13.4.1 available)
+  firebase_storage_platform_interface 5.2.15 (6.0.1 available)
+  firebase_storage_web 3.11.0 (3.11.7 available)
+  fl_chart 1.1.1 (1.2.0 available)
+  flutter_lints 5.0.0 (6.0.0 available)
+  flutter_plugin_android_lifecycle 2.0.32 (2.0.34 available)
+  lints 5.1.1 (6.1.0 available)
+  matcher 0.12.17 (0.12.20 available)
+  material_color_utilities 0.11.1 (0.13.0 available)
+  meta 1.17.0 (1.18.2 available)
+  path_provider_android 2.2.22 (2.3.1 available)
+  path_provider_foundation 2.5.1 (2.6.0 available)
+  permission_handler 11.4.0 (12.0.1 available)
+  permission_handler_android 12.1.0 (13.0.1 available)
+  petitparser 7.0.1 (7.0.2 available)
+  source_span 1.10.1 (1.10.2 available)
+  synchronized 3.4.0 (3.4.0+1 available)
+  test_api 0.7.7 (0.7.12 available)
+  vector_math 2.2.0 (2.3.0 available)
+  video_player 2.10.1 (2.11.1 available)
+  video_player_android 2.9.1 (2.9.5 available)
+  video_player_avfoundation 2.8.8 (2.9.6 available)
+  video_player_platform_interface 6.6.0 (6.7.0 available)
+  vm_service 15.0.2 (15.2.0 available)
+  win32 5.15.0 (6.2.0 available)
+  xml 6.6.1 (7.0.1 available)
+Got dependencies!
+49 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Compiling lib\main.dart for the Web...                          
+Wasm dry run succeeded. Consider building and testing your application with the `--wasm` flag. See docs for more info: https://docs.flutter.dev/platform-integration/web/wasm
+Use --no-wasm-dry-run to disable these warnings.
+Target dart2js failed: ProcessException: Process exited abnormally with exit code 1:
+lib/screens/interview_screens.dart:1567:34:
+Error: Property 'path' cannot be accessed on 'XFile?' because it is potentially null.
+ - 'XFile' is from 'package:cross_file/src/types/html.dart' ('../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/cross_file-0.3.5/lib/src/types/html.dart').
+                  videoUrl: file.path,
+                                 ^^^^
+Error: Compilation failed.
+  Command: C:\src\flutter\bin\cache\dart-sdk\bin\dart.exe compile js --platform-binaries=C:\src\flutter\bin\cache\flutter_web_sdk\kernel --invoker=flutter_tool -Ddart.vm.product=true -DFLUTTER_VERSION=3.38.3 -DFLUTTER_CHANNEL=stable -DFLUTTER_GIT_URL=https://github.com/flutter/flutter.git -DFLUTTER_FRAMEWORK_REVISION=19074d12f7 -DFLUTTER_ENGINE_REVISION=13e658725d -DFLUTTER_DART_VERSION=3.10.1 -DFLUTTER_WEB_USE_SKIA=true -DFLUTTER_WEB_USE_SKWASM=false -DFLUTTER_WEB_CANVASKIT_URL=https://www.gstatic.com/flutter-canvaskit/13e658725ddaa270601426d1485636157e38c34c/ --native-null-assertions --no-source-maps -O4 --minify -o C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\frontend\.dart_tool\flutter_build\733e52537ad5f8f6f233e201229ff3cc\app.dill --packages=C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\frontend\.dart_tool\package_config.json --cfe-only C:\Users\Luminew\Desktop\Luminew\Luminew\Luminew\frontend\.dart_tool\flutter_build\733e52537ad5f8f6f233e201229ff3cc\main.dart
+#0      RunResult.throwException (package:flutter_tools/src/base/process.dart:153:5)
+#1      _DefaultProcessUtils.run (package:flutter_tools/src/base/process.dart:379:19)
+<asynchronous suspension>
+#2      Dart2JSTarget.build (package:flutter_tools/src/build_system/targets/web.dart:207:5)
+<asynchronous suspension>
+#3      _BuildInstance._invokeInternal (package:flutter_tools/src/build_system/build_system.dart:873:9)
+<asynchronous suspension>
+#4      Future.wait.<anonymous closure> (dart:async/future.dart:546:21)
+<asynchronous suspension>
+#5      _BuildInstance.invokeTarget (package:flutter_tools/src/build_system/build_system.dart:811:32)
+<asynchronous suspension>
+#6      Future.wait.<anonymous closure> (dart:async/future.dart:546:21)
+<asynchronous suspension>
+#7      _BuildInstance.invokeTarget (package:flutter_tools/src/build_system/build_system.dart:811:32)
+<asynchronous suspension>
+#8      FlutterBuildSystem.build (package:flutter_tools/src/build_system/build_system.dart:631:16)
+<asynchronous suspension>
+#9      WebBuilder.buildWeb (package:flutter_tools/src/web/compile.dart:94:34)
+<asynchronous suspension>
+#10     BuildWebCommand.runCommand (package:flutter_tools/src/commands/build_web.dart:296:5)
+<asynchronous suspension>
+#11     FlutterCommand.run.<anonymous closure> (package:flutter_tools/src/runner/flutter_command.dart:1559:27)
+<asynchronous suspension>
+#12     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+<asynchronous suspension>
+#13     CommandRunner.runCommand (package:args/command_runner.dart:212:13)
+<asynchronous suspension>
+#14     FlutterCommandRunner.runCommand.<anonymous closure> (package:flutter_tools/src/runner/flutter_command_runner.dart:487:9)
+<asynchronous suspension>
+#15     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+<asynchronous suspension>
+#16     FlutterCommandRunner.runCommand (package:flutter_tools/src/runner/flutter_command_runner.dart:422:5)
+<asynchronous suspension>
+#17     run.<anonymous closure>.<anonymous closure> (package:flutter_tools/runner.dart:104:11)
+<asynchronous suspension>
+#18     AppContext.run.<anonymous closure> (package:flutter_tools/src/base/context.dart:154:19)
+<asynchronous suspension>
+#19     main (package:flutter_tools/executable.dart:103:3)
+<asynchronous suspension>
+
+Compiling lib\main.dart for the Web...                             62.0s
+Error: Failed to compile application for the Web.
