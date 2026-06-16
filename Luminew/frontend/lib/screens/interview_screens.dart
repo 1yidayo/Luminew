@@ -1139,6 +1139,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
   bool _isWaitingProfessor = false;
   bool _canStudentSpeak = false; // ★ 新增：控制學生是否可以說話（延遲顯示開麥）
   bool _isVideoTrackReceived = false; // ★ 新增：影像軌道是否已成功接收
+  bool _hasFirstSpeakStarted = false; // ★ 新增：標記教授是否已經開始過第一次說話
   final List<Map<String, String>> _chatMessages = [];
   final ScrollController _chatScrollController = ScrollController();
   String _connectionStatus = "Disconnected";
@@ -1160,6 +1161,25 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
     }
   }
 
+  String _getConnectionLoadingText() {
+    final statusLower = _connectionStatus.toLowerCase();
+    if (statusLower.contains('failed')) {
+      return "連線失敗，請重試";
+    }
+    return "連線虛擬教授中，請稍候...";
+  }
+
+  void _onRemoteVideoValueChange() {
+    if (_didService.remoteRenderer.value.width > 0 && !_isVideoTrackReceived) {
+      print("📺 [WebRTC] 偵測到影片首幀寬度已大於 0 (${_didService.remoteRenderer.value.width}x${_didService.remoteRenderer.value.height})，立即移開毛玻璃卡片");
+      if (mounted) {
+        setState(() {
+          _isVideoTrackReceived = true;
+        });
+      }
+    }
+  }
+
   // ★ 麥克風動畫與教授說話監控變數
   late AnimationController _micWaveController;
   Timer? _amplitudeTimer;
@@ -1178,6 +1198,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
     super.initState();
     final baseUrl = ApiService.baseUrl.replaceAll('/api/db', '');
     _didService = DidInterviewService(backendUrl: baseUrl);
+    _didService.remoteRenderer.addListener(_onRemoteVideoValueChange); // ★ 新增監聽器
     _didService.init().then((_) {
       if (mounted) setState(() {});
     });
@@ -1233,10 +1254,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
     };
     _didService.onVideoTrack = () {
       if (mounted) {
-        print('📺 [UI] 偵測到視訊軌道掛載，重新渲染畫面');
-        setState(() {
-          _isVideoTrackReceived = true; // ★ 設為已接收影像
-        });
+        print('📺 [UI] 偵測到視訊軌道掛載，等待解碼器繪製首影格...');
       }
     };
     _didService.onConnectionState = (state) {
@@ -1263,6 +1281,7 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
       _isWaitingProfessor = true;
       _canStudentSpeak = false;
       _isVideoTrackReceived = false; // ★ 重置狀態
+      _hasFirstSpeakStarted = false; // ★ 重置狀態
     });
 
     // 如果開啟了錄影分析，也要同步啟動錄影
@@ -1357,9 +1376,17 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
             print("🔊 [Monitor] 偵測到教授開始說話");
             setState(() {
               _hasProfessorStartedSpeaking = true;
+              _hasFirstSpeakStarted = true; // ★ 首次說話已開始，允許後續思考時顯示遮罩
             });
           }
           _professorSilentTicks = 0;
+
+          // ★ 新增：如果本來在背景預開麥錄音，現在教授又出聲了，必須立刻關閉並丟棄
+          if (_didService.isRecording) {
+            print("🔇 [Monitor] 偵測到教授繼續發言，關閉背景預收音");
+            _stopAmplitudeMonitor();
+            await _didService.cancelRecording();
+          }
         } else {
           // 安全超時降級：若已等待 12 秒且教授從未開始說話，視同已說完話
           if (!_hasProfessorStartedSpeaking && _professorLoadTicks >= 120) {
@@ -1371,6 +1398,13 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
           
           if (_hasProfessorStartedSpeaking) {
             _professorSilentTicks++;
+
+            // ★ 新增：在靜音達 0.7 秒時（7 ticks），背景預先開啟麥克風收音
+            if (_professorSilentTicks == 7 && !_didService.isRecording) {
+              print("🎙️ [Monitor] 靜音達 0.7 秒，背景啟動預收音");
+              _startAudioStream();
+            }
+
             if (_professorSilentTicks >= 12) { // 1.2 秒靜音
               print("🔇 [Monitor] 偵測到教授說話結束");
               setState(() {
@@ -1387,7 +1421,9 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
                 setState(() {
                   _canStudentSpeak = true;
                 });
-                _startAudioStream();
+                if (!_didService.isRecording) {
+                  _startAudioStream();
+                }
               }
             }
           }
@@ -1446,11 +1482,17 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
         errorMsg = "找不到可用的相機設備。";
       }
       setState(() => _statusMessage = "相機開啟失敗: $errorMsg");
+    } finally {
+      // 確保不論相機鏡頭啟動成功或失敗，都自動開始連線 AI 教授
+      if (mounted && !_isInterviewing && !_isWsConnecting) {
+        _startLiveInterview();
+      }
     }
   }
 
   @override
   void dispose() {
+    _didService.remoteRenderer.removeListener(_onRemoteVideoValueChange); // ★ 移除監聽器
     _tutorialOverlayEntry?.remove();
     _tutorialOverlayEntry = null;
     _controller?.dispose();
@@ -2215,8 +2257,42 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
                           // A. 教授影像 (使用遠端渲染器)
                           DidVideoWidget(renderer: _didService.remoteRenderer),
 
-                          // B. 載入中遮罩
-                          if (_isWaitingProfessor)
+                          // B. 連線初始化毛玻璃遮罩 (方案 A：進房自動連線與毛玻璃加載 UI)
+                          if (!_isVideoTrackReceived)
+                            Positioned.fill(
+                              child: Container(
+                                color: Colors.black.withOpacity(0.4),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(16),
+                                  child: BackdropFilter(
+                                    filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                                    child: Center(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const CircularProgressIndicator(
+                                            color: kLuminewMainPurple,
+                                          ),
+                                          const SizedBox(height: 16),
+                                          Text(
+                                            _getConnectionLoadingText(),
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              letterSpacing: 1.1,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+
+                          // C. 載入中遮罩 (當已連線且教授正在思考下一個問題時)
+                          if (_isVideoTrackReceived && _isWaitingProfessor && !_hasProfessorStartedSpeaking && _hasFirstSpeakStarted)
                             Container(
                               color: Colors.black45,
                               child: const Center(
@@ -2427,11 +2503,15 @@ class _MockInterviewScreenState extends State<MockInterviewScreen> with SingleTi
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          _isWaitingProfessor
-                              ? "教授思考中..."
-                              : (_isInterviewing
-                                    ? (_canStudentSpeak ? "點擊結束個人發言" : "延遲收音中")
-                                    : "開始面試對答"),
+                          !_isVideoTrackReceived
+                              ? "連線中..."
+                              : (_isWaitingProfessor
+                                    ? (_hasProfessorStartedSpeaking
+                                          ? "教授發言中"
+                                          : "教授思考中")
+                                    : (_isInterviewing
+                                          ? (_canStudentSpeak ? "點擊結束個人發言" : "延遲收音中")
+                                          : "開始面試對答")),
                           style: const TextStyle(
                             color: kLuminewMainPurple,
                             fontSize: 14,
@@ -2965,7 +3045,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 3,
       child: Scaffold(
         backgroundColor: kLuminewGooseYellow,
         body: Stack(
@@ -3251,7 +3331,8 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                 ],
               ),
             ),
-            // Tab 2: 面試問題
+            // Tab 2: 面試問題 (已隱藏)
+            /*
             _KeepAliveWrapper(
               child: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
@@ -3310,6 +3391,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                 ),
               ),
             ),
+            */
             // Tab 3: 評語討論 (聊天室模式)
             _KeepAliveWrapper(
               child: Column(
@@ -3656,7 +3738,7 @@ class _InterviewResultScreenState extends State<InterviewResultScreen> {
                             unselectedLabelColor: Colors.white70,
                             tabs: [
                               Tab(text: 'AI 分析'),
-                              Tab(text: '面試問題'),
+                              // Tab(text: '面試問題'),
                               Tab(text: '評語討論'),
                               Tab(text: '詳細內容'),
                             ],

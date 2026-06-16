@@ -303,6 +303,13 @@ class DidInterviewService {
     await _forceSpeakerOn(); // ★ 新增：避免錄音結束後音訊通道被切換回聽筒導致聲音忽大忽小
   }
 
+  Future<void> cancelRecording() async {
+    isRecording = false;
+    await _audioStreamSubscription?.cancel();
+    await _audioRecorder.stop();
+    await _forceSpeakerOn();
+  }
+
   /// 回傳正規化後的麥克風音量 (0.0 = 靜音, 1.0 = 最大)
   Future<double> getCurrentAmplitudeDb() async {
     try {
