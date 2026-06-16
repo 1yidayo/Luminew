@@ -65,7 +65,15 @@ class MockDataService {
       studentId: 'Yi', // 這裡是您的使用者名稱
       date: DateTime.now().subtract(const Duration(days: 1)),
       durationSec: 180,
-      scores: {'confidence': 85, 'passion': 70, 'relaxed': 60, 'nervous': 30},
+      scores: {
+        'overall': 80,
+        'confidence': 85,
+        'passion': 70,
+        'relaxed': 60,
+        'nervous': 30,
+        'emotion_management': 70, // 100 - 30
+        'relevance': 80,
+      },
       type: '軟體工程師',
       interviewer: '嚴謹型教授',
       language: '中文',
@@ -82,7 +90,15 @@ class MockDataService {
       studentId: 'Yi',
       date: DateTime.now().subtract(const Duration(days: 3)),
       durationSec: 120,
-      scores: {'confidence': 65, 'passion': 80, 'relaxed': 40, 'nervous': 60},
+      scores: {
+        'overall': 72,
+        'confidence': 65,
+        'passion': 80,
+        'relaxed': 40,
+        'nervous': 60,
+        'emotion_management': 40, // 100 - 60
+        'relevance': 72,
+      },
       type: '產品經理',
       interviewer: '溫和型業界專家',
       language: '中文',

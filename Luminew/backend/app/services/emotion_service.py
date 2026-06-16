@@ -503,7 +503,8 @@ def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None
 請用繁體中文回覆，符合台灣人的說話習慣。
 請只回傳純 JSON（不要 Markdown 區塊），格式如下：
 {{
-  "overall_score": 綜合上述標準給出嚴格的整數分數,
+  "overall_score": 綜合上述標準給出嚴格的整數分數 (45~95),
+  "relevance": 針對學生回答內容的切題率給予的整數分數 (45~95，代表回答與問題的契合度、聚焦度，要有區分度，不要與 overall_score 完全一樣),
   "comment": "{comment_desc}",
   "suggestion": "{suggestion_desc}"
 }}"""
@@ -558,8 +559,12 @@ def _generate_ai_feedback_sync(final_scores_float: dict, transcript: list = None
             calc_score = int(min(max(calc_score, 45), 95))
             comment_text = f"你的自信程度為 {c}%，整體表現{'良好' if c >= 50 else '尚可'}。{'熱忱度足夠，能感受到你對這次面試的重視。' if p >= 40 else '建議展現更多熱忱。'}{'但緊張程度較高，可能影響發揮。' if n >= 50 else '情緒控制穩定。'}建議多練習模擬面試以提升表現。"
         
+        # 救援模式下，切題率給予一個與整體分數有細微區隔的合理預設值
+        fallback_relevance = int(min(max(calc_score + 3, 45), 95))
+        
         return {
             "overall_score": calc_score,
+            "relevance": fallback_relevance,
             "comment": comment_text,
             "suggestion": "面試前做 3 次深呼吸放鬆；練習對鏡子回答問題；準備 2-3 個自己的故事案例"
         }
