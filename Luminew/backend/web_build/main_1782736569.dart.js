@@ -33109,7 +33109,7 @@ axD(a){return A.bfj(a)},
 bfj(a){var s=0,r=A.r(t.H),q,p=2,o=[],n,m,l,k,j,i
 var $async$axD=A.n(function(b,c){if(b===1){o.push(c)
 s=p}for(;;)switch(s){case 0:p=4
-m=A.eH("https://luminew.site/sql/query")
+m=A.eH("https://luminew.website/sql/query")
 l=t.N
 k=A.a2(["Content-Type","application/json"],l,l)
 s=7
@@ -107700,7 +107700,7 @@ s=p}for(;;)switch(s){case 0:e=m.ax
 if(e==null){s=1
 break}m.I(new A.aKo(m))
 p=4
-l=A.aVM("POST",A.eH("https://luminew.site/emotion/generate_questions"))
+l=A.aVM("POST",A.eH("https://luminew.website/emotion/generate_questions"))
 l.r.n(0,"ngrok-skip-browser-warning","true")
 e=m.ax
 if(e!=null)l.y.push(A.aVL("pdf",e,m.ay))
@@ -107942,7 +107942,7 @@ break}n.I(new A.aDe(n))
 s=13
 return A.l(n.a.c.mJ(),$async$lM)
 case 13:l=a1
-k=A.aVM("POST",A.eH("https://luminew.site/emotion/calibrate"))
+k=A.aVM("POST",A.eH("https://luminew.website/emotion/calibrate"))
 b=k.y
 a=A
 s=14
@@ -108212,12 +108212,12 @@ case 3:s=2
 break
 case 6:if(m.c!=null)m.I(new A.aKb(m))
 p=9
-j="https://luminew.site/emotion/analyze"
+j="https://luminew.website/emotion/analyze"
 A.b8("\u2605\u2605\u2605 \u6e96\u5099\u4e0a\u50b3\u5f71\u7247\u5230: "+A.m(j)+" \u2605\u2605\u2605")
 a9=a7.c
 a9===$&&A.a()
 A.b8("\u2605\u2605\u2605 \u5f71\u7247\u8def\u5f91: "+a9+" \u2605\u2605\u2605")
-i="https://luminew.site/emotion/upload_chunk"
+i="https://luminew.website/emotion/upload_chunk"
 A.b8("\u2605\u2605\u2605 [Web] \u4f7f\u7528 XHR \u5206\u584a\u4e0a\u50b3\u5f71\u7247\u5230: "+A.m(i)+" \u2605\u2605\u2605")
 a7=a7.b
 b0=t.N
@@ -108244,7 +108244,7 @@ case 15:if(!!d){s=16
 break}s=17
 return A.l(A.hH(B.My,null,h),$async$n4)
 case 17:s=18
-return A.l(A.blL(A.eH("https://luminew.site/emotion/status/"+A.m(e))),$async$n4)
+return A.l(A.blL(A.eH("https://luminew.website/emotion/status/"+A.m(e))),$async$n4)
 case 18:c=c7
 if(c.b===200){a7=c
 b=B.Z.dF(0,A.fc(A.fa(a7.e)).cJ(0,a7.w),null)
@@ -108263,7 +108263,7 @@ b2=J.al(f,"timeline")
 a1=b2==null?[]:b2
 b3=J.al(f,"video_url")
 a2=b3==null?"":b3
-if(J.b95(a2,"/"))a2="https://luminew.site"+A.m(a2)
+if(J.b95(a2,"/"))a2="https://luminew.website"+A.m(a2)
 h=Date.now()
 a7=m.a.c
 a9=Date.now()
@@ -109848,7 +109848,7 @@ if(c==null||c.c==null){m.I(new A.aLE(m))
 s=1
 break}m.I(new A.aLF(m))
 p=4
-l=A.aVM("POST",A.eH("https://luminew.site/emotion/analyze_portfolio"))
+l=A.aVM("POST",A.eH("https://luminew.website/emotion/analyze_portfolio"))
 c=l.y
 f=m.d
 e=f.c
@@ -121657,7 +121657,7 @@ $.t6=null
 $.b2L=1
 $.aVW=-9007199254740992
 $.b0P=1
-$.aYW="https://luminew.site/api/db"
+$.aYW="https://luminew.website/api/db"
 $.rF=A.b([],t.Hw)
 $.bch=function(){var s=t.n
 return A.b([A.b([0.001200833568784504,0.002389694492170889,0.0002795742885861124],s),A.b([0.0005891086651375999,0.0029785502573438758,0.0003270666104008398],s),A.b([0.00010146692491640572,0.0005364214359186694,0.0032979401770712076],s)],t.zg)}()

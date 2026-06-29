@@ -24,7 +24,7 @@ class _LuminewAppState extends State<LuminewApp> {
   void _onAuthSuccess(AppUser user) {
     setState(() {
       _currentUser = user;
-      _showSplash = true; // 觸發待機畫面
+      // _showSplash = true; // 觸發待機畫面
     });
   }
 
@@ -65,14 +65,8 @@ class _LuminewAppState extends State<LuminewApp> {
       home: _currentUser == null
           // 未登入 → 顯示登入頁
           ? AuthScreen(onAuthSuccess: _onAuthSuccess)
-          // 已登入且剛登入 → 待機畫面（點擊後跳至主頁，不再出現）
-          : _showSplash
-              ? SplashScreen(
-                  destination: _buildMainScaffold(),
-                  onEntered: () => setState(() => _showSplash = false),
-                )
-              // 待機畫面已經看過 → 直接顯示主頁
-              : _buildMainScaffold(),
+          // 登入後直接顯示主頁
+          : _buildMainScaffold(),
     );
   }
 }
